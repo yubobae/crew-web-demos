@@ -10,8 +10,7 @@
     padding: var(--space-4);
     border: 1px solid var(--fx-line);
     border-radius: var(--radius-xl);
-    background: color-mix(in oklch, var(--fx-surface-2) 85%, transparent);
-    backdrop-filter: blur(12px);
+    background: var(--fx-surface-2);
     box-shadow: var(--shadow-lg);
     font-size: var(--text-sm);
   }

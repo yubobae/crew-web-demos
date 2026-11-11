@@ -30,22 +30,31 @@ export function init(root) {
       });
   };
 
+  let pageMax = 0;
+  const last = new Map();
+
+  // 한 프레임에 "모두 읽고 → 모두 쓴다". 읽기와 쓰기를 섞으면 매번 레이아웃을 다시 계산해 버벅인다.
   const update = () => {
     frame = 0;
     const vh = innerHeight;
+    const y = scrollY;
+    const values = [];
     for (const el of items) {
       const type = el.dataset.scrub;
-      let p;
       if (type === "page") {
-        const max = document.documentElement.scrollHeight - vh;
-        p = max > 0 ? scrollY / max : 0;
-      } else {
-        const r = el.getBoundingClientRect();
-        if (r.bottom < -vh || r.top > vh * 2) continue;
-        if (type === "view") p = (vh - r.top) / (vh + r.height);
-        else p = r.height > vh ? -r.top / (r.height - vh) : 0; // pin, hscroll
+        values.push([el, pageMax > 0 ? y / pageMax : 0]);
+        continue;
       }
-      el.style.setProperty("--progress", clamp(p).toFixed(4));
+      const r = el.getBoundingClientRect();
+      if (r.bottom < -vh || r.top > vh * 2) continue;
+      if (type === "view") values.push([el, (vh - r.top) / (vh + r.height)]);
+      else values.push([el, r.height > vh ? -r.top / (r.height - vh) : 0]); // pin, hscroll
+    }
+    for (const [el, p] of values) {
+      const v = clamp(p).toFixed(4);
+      if (last.get(el) === v) continue; // 같은 값이면 다시 쓰지 않는다
+      last.set(el, v);
+      el.style.setProperty("--progress", v);
     }
   };
 
@@ -54,17 +63,23 @@ export function init(root) {
   };
   const onResize = () => {
     measureH();
+    pageMax = document.documentElement.scrollHeight - innerHeight;
     request();
   };
 
   measureH();
+  pageMax = document.documentElement.scrollHeight - innerHeight;
   update();
+  // 이미지·글꼴이 늦게 들어와 페이지 높이가 바뀌는 경우
+  const ro = new ResizeObserver(onResize);
+  ro.observe(document.body);
   addEventListener("scroll", request, { passive: true });
   addEventListener("resize", onResize);
 
   return {
     destroy() {
       cancelAnimationFrame(frame);
+      ro.disconnect();
       removeEventListener("scroll", request);
       removeEventListener("resize", onResize);
     },

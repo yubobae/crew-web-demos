@@ -23,7 +23,8 @@
     gap: var(--space-6);
     width: max-content;
     padding-inline: var(--gutter);
-    translate: calc(var(--progress, 0) * var(--hs-distance, 0px) * -1) 0;
+    transform: translate3d(calc(var(--progress, 0) * var(--hs-distance, 0px) * -1), 0, 0);
+    will-change: transform;
   }
 
   .c-hscroll__card {
@@ -68,7 +69,7 @@
     }
 
     .c-hscroll__track {
-      translate: none;
+      transform: none;
     }
 
     .c-hscroll__card {
@@ -88,7 +89,7 @@
     }
 
     .c-hscroll__track {
-      translate: none;
+      transform: none;
     }
   }
 }

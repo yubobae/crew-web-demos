@@ -20,9 +20,43 @@
     pointer-events: auto;
   }
 
-  .l-header__meta {
+  /* 다른 데모로 이동 */
+  .l-header__demos {
+    display: flex;
+    gap: var(--space-4);
+    pointer-events: auto;
+  }
+
+  .l-header__demo-link {
+    color: inherit;
     font-size: var(--text-xs);
-    letter-spacing: var(--tracking-widest);
-    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+    text-decoration: none;
+    opacity: 0.6;
+    transition: opacity 200ms var(--ui-ease);
+  }
+
+  .l-header__demo-link[aria-current="page"] {
+    opacity: 1;
+    text-decoration: underline;
+    text-underline-offset: 6px;
+  }
+
+  @media (hover: hover) {
+    .l-header__demo-link:hover {
+      opacity: 1;
+    }
+  }
+
+  @media (max-width: 499px) {
+    .l-header__demos {
+      gap: var(--space-3);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .l-header__demo-link {
+      transition: none;
+    }
   }
 }

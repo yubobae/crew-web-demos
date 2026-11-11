@@ -8,6 +8,7 @@
     background: linear-gradient(90deg, var(--fx-c1), var(--fx-c2), var(--fx-c3));
     transform-origin: left center;
     transform: scaleX(var(--progress, 0));
+    will-change: transform;
     pointer-events: none;
   }
 }

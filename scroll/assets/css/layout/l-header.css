@@ -21,8 +21,7 @@
     inset: 0;
     z-index: -1;
     border-bottom: 1px solid var(--fx-line);
-    background: color-mix(in oklch, var(--fx-surface) 75%, transparent);
-    backdrop-filter: blur(12px);
+    background: color-mix(in oklch, var(--fx-surface) 94%, transparent);
     opacity: 0;
     transition: opacity 300ms var(--ui-ease);
   }

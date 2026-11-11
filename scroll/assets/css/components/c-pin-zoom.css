@@ -19,13 +19,24 @@
   .c-pin-zoom__media {
     width: min(90vw, 64rem);
     aspect-ratio: 16 / 9;
-    border-radius: calc((1 - var(--progress, 0)) * var(--radius-3xl));
+    position: relative;
+    border-radius: var(--radius-3xl);
     background:
       radial-gradient(60% 70% at 30% 30%, var(--fx-c1), transparent 70%),
       radial-gradient(60% 70% at 80% 80%, var(--fx-c3), transparent 70%),
       var(--fx-surface-2);
-    scale: calc(0.5 + var(--progress, 0) * 1.1);
-    filter: brightness(calc(0.6 + var(--progress, 0) * 0.4));
+    transform: scale(calc(0.5 + var(--progress, 0) * 1.1));
+    will-change: transform;
+  }
+
+  /* 처음엔 어둡다가 밝아짐: filter 대신 검은 층의 투명도(GPU에서 바로 합성) */
+  .c-pin-zoom__media::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: var(--fx-surface);
+    opacity: calc(0.45 - var(--progress, 0) * 0.45);
   }
 
   .c-pin-zoom__lines {
@@ -43,7 +54,7 @@
     font-weight: var(--font-weight-extrabold);
     letter-spacing: var(--tracking-tight);
     opacity: clamp(0, (var(--progress, 0) - var(--at, 0)) * 6, 1);
-    translate: 0 calc((1 - clamp(0, (var(--progress, 0) - var(--at, 0)) * 6, 1)) * 2rem);
+    transform: translate3d(0, calc((1 - clamp(0, (var(--progress, 0) - var(--at, 0)) * 6, 1)) * 2rem), 0);
   }
 
   .c-pin-zoom__line--2 {
@@ -65,13 +76,12 @@
     }
 
     .c-pin-zoom__media {
-      scale: 1;
-      filter: none;
+      transform: none;
     }
 
     .c-pin-zoom__line {
       opacity: 1;
-      translate: none;
+      transform: none;
     }
   }
 }

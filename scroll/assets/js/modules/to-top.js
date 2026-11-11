@@ -7,11 +7,18 @@ export function init(root) {
   const button = root.querySelector(".js-to-top");
   if (!button) return { destroy() {} };
   let frame = 0;
+  let max = 0;
+  let shown = null;
+  const measure = () => (max = document.documentElement.scrollHeight - innerHeight);
+  const ro = new ResizeObserver(measure);
+  ro.observe(document.body);
 
   const update = () => {
     frame = 0;
-    const max = document.documentElement.scrollHeight - innerHeight;
-    button.classList.toggle("is-visible", max > 0 && scrollY / max > SHOW_AFTER);
+    const show = max > 0 && scrollY / max > SHOW_AFTER;
+    if (show === shown) return;
+    shown = show;
+    button.classList.toggle("is-visible", show);
   };
   const onScroll = () => {
     if (!frame) frame = requestAnimationFrame(update);
@@ -21,6 +28,7 @@ export function init(root) {
     document.querySelector("a, button")?.focus({ preventScroll: true });
   };
 
+  measure();
   update();
   addEventListener("scroll", onScroll, { passive: true });
   button.addEventListener("click", onClick);
@@ -28,6 +36,7 @@ export function init(root) {
   return {
     destroy() {
       cancelAnimationFrame(frame);
+      ro.disconnect();
       removeEventListener("scroll", onScroll);
       button.removeEventListener("click", onClick);
     },
