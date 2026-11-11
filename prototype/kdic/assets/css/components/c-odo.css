@@ -1,0 +1,55 @@
+/* 주행계 숫자: 숫자 띠(0~9, 다시 0)가 위로 굴러 올라간다. 위치는 부모가 넣어 주는 --p0~--p3(자리별 0~10 소수). */
+@layer components {
+  .c-odo {
+    display: inline-flex;
+    font-family: var(--font-display);
+    font-size: min(24vw, 34vh, 15rem);
+    font-weight: var(--font-weight-extrabold);
+    line-height: 1.1;
+    letter-spacing: var(--tracking-tighter);
+    font-variant-numeric: tabular-nums;
+    color: var(--kd-white);
+  }
+
+  .c-odo__col {
+    display: block;
+    width: 0.62em;
+    height: 1.1em;
+    overflow: clip;
+  }
+
+  .c-odo__strip {
+    display: block;
+    transform: translate3d(0, calc(var(--p, 0) * -1.1em), 0);
+    will-change: transform;
+  }
+
+  .c-odo__col--k3 {
+    --p: var(--p3, 2);
+  }
+
+  .c-odo__col--k2 {
+    --p: var(--p2, 0);
+  }
+
+  .c-odo__col--k1 {
+    --p: var(--p1, 2);
+  }
+
+  .c-odo__col--k0 {
+    --p: var(--p0, 6);
+    color: var(--kd-red);
+  }
+
+  .c-odo__digit {
+    display: block;
+    height: 1.1em;
+    text-align: center;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .c-odo__strip {
+      will-change: auto;
+    }
+  }
+}

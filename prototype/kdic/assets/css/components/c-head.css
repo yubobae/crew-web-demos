@@ -1,0 +1,64 @@
+/* 섹션 머리: 원장 같은 번호 줄(No.01 ──) + 큰 제목 + 설명. 어두운 배경은 --ink 수식어 */
+@layer components {
+  .c-head {
+    display: grid;
+    gap: var(--space-3);
+    margin-bottom: var(--space-10);
+    padding-top: var(--space-4);
+    border-top: 2px solid var(--kd-text);
+  }
+
+  .c-head--ink {
+    border-top-color: var(--kd-text-on-ink);
+  }
+
+  .c-head__no {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    margin: 0;
+    font-size: var(--text-xs);
+    font-weight: var(--font-weight-bold);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: var(--tracking-widest);
+    color: var(--kd-red);
+  }
+
+  .c-head__no::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--kd-line);
+  }
+
+  .c-head--ink .c-head__no::after {
+    background: var(--kd-line-on-ink);
+  }
+
+  .c-head__title {
+    margin: 0;
+    font-size: var(--fs-h2);
+    font-weight: var(--font-weight-extrabold);
+  }
+
+  .c-head__desc {
+    max-width: 40rem;
+    margin: 0;
+    color: var(--kd-text-soft);
+  }
+
+  .c-head--ink .c-head__desc {
+    color: var(--kd-text-on-ink-soft);
+  }
+
+  @media (min-width: 1024px) {
+    .c-head {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+      align-items: end;
+    }
+
+    .c-head__no {
+      grid-column: 1 / -1;
+    }
+  }
+}

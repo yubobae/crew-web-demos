@@ -1,0 +1,23 @@
+/* 올라오며 나타나기: reveal.js 가 부모에 is-ready 를 붙이면 숨겨 두었다가, 화면에 들어오면 is-in 으로 보인다. JS가 없으면 처음부터 보인다 */
+@layer components {
+  .is-ready .c-rise {
+    opacity: 0;
+    transform: translate3d(0, var(--space-6), 0);
+    transition:
+      opacity 900ms var(--kd-ease),
+      transform 900ms var(--kd-ease);
+  }
+
+  .is-ready .c-rise.is-in {
+    opacity: 1;
+    transform: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .is-ready .c-rise {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
+}

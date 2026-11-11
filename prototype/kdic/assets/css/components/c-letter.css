@@ -1,0 +1,83 @@
+/* CEO 인사말: 왼쪽에 사진·제목이 붙어 있고(sticky), 오른쪽 문단이 읽는 자리에 올수록 선명해진다(read-focus.js) */
+@layer components {
+  .c-letter {
+    display: grid;
+    gap: var(--space-10);
+  }
+
+  .c-letter__side {
+    display: grid;
+    gap: var(--space-5);
+    align-content: start;
+  }
+
+  .c-letter__title {
+    margin: 0;
+    font-size: var(--fs-h1);
+    font-weight: var(--font-weight-black);
+    line-height: 1.12;
+  }
+
+  .c-letter__title em {
+    font-style: normal;
+    color: var(--kd-red);
+  }
+
+  .c-letter__pic {
+    overflow: clip;
+    max-width: 20rem;
+    background: var(--kd-paper-3);
+    border-bottom: 3px solid var(--kd-red);
+  }
+
+  .c-letter__img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .c-letter__body {
+    display: grid;
+    gap: var(--space-6);
+  }
+
+  .c-letter__p {
+    margin: 0;
+    font-size: var(--fs-body);
+    line-height: 1.85;
+    opacity: calc(0.28 + var(--f, 1) * 0.72);
+  }
+
+  .c-letter__sign {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-4);
+    margin: var(--space-4) 0 0;
+    font-weight: var(--font-weight-bold);
+  }
+
+  .c-letter__sign-img {
+    height: var(--space-12);
+    width: auto;
+  }
+
+  @media (min-width: 1024px) {
+    .c-letter {
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.2fr);
+      gap: var(--space-20);
+    }
+
+    .c-letter__side {
+      position: sticky;
+      top: calc(var(--kd-top-h) + var(--space-8));
+      align-self: start;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .c-letter__p {
+      opacity: 1;
+    }
+  }
+}

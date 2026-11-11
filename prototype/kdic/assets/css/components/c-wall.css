@@ -1,0 +1,82 @@
+/* 사진 벽(아카이브): 사진 비율 그대로 단을 나눠 쌓는 벽돌 배치. 누르면 크게 보기. 날짜는 사진 아래에 작게 */
+@layer components {
+  .c-wall {
+    columns: 2;
+    column-gap: var(--space-3);
+    margin: 0;
+  }
+
+  .c-wall__cell {
+    break-inside: avoid;
+    margin-bottom: var(--space-4);
+  }
+
+  .c-wall__open {
+    display: block;
+    width: 100%;
+    color: inherit;
+    text-align: left;
+    cursor: zoom-in;
+  }
+
+  .c-wall__pic {
+    display: block;
+    overflow: clip;
+    background: var(--kd-paper-3);
+  }
+
+  .c-wall__img {
+    display: block;
+    width: 100%;
+    height: auto;
+    transition: transform 900ms var(--kd-ease);
+  }
+
+  .c-wall__date {
+    display: block;
+    margin-top: var(--space-2);
+    font-size: var(--text-xs);
+    font-weight: var(--font-weight-bold);
+    font-variant-numeric: tabular-nums;
+    color: var(--kd-red);
+  }
+
+  .c-wall__cap {
+    display: block;
+    font-size: var(--text-sm);
+    line-height: var(--leading-snug);
+    color: var(--kd-text);
+  }
+
+  .c-wall--vid {
+    columns: auto;
+    display: grid;
+    gap: var(--space-8) var(--space-5);
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 16rem), 1fr));
+  }
+
+  @media (min-width: 820px) {
+    .c-wall {
+      columns: 3;
+      column-gap: var(--space-5);
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .c-wall {
+      columns: 4;
+    }
+  }
+
+  @media (hover: hover) {
+    .c-wall__open:hover .c-wall__img {
+      transform: scale(1.05);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .c-wall__img {
+      transition: none;
+    }
+  }
+}

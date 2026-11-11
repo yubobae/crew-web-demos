@@ -1,0 +1,71 @@
+/* 시기 바로가기 막대(하이라이트): 윗줄 아래에 붙어 따라오고, 지금 보는 시기가 켜진다(scrollspy.js가 aria-current) */
+@layer components {
+  .c-eranav {
+    position: sticky;
+    top: var(--kd-top-h);
+    z-index: 5;
+    background: var(--kd-glass);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--kd-line);
+  }
+
+  .c-eranav__list {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0;
+    width: min(100%, var(--content-max));
+    margin: 0 auto;
+    padding-inline: var(--gutter);
+  }
+
+  .c-eranav__link {
+    position: relative;
+    display: grid;
+    gap: 0;
+    min-height: var(--tap-min);
+    padding: var(--space-2) var(--space-1);
+    font-size: var(--text-xs);
+    color: var(--kd-text-soft);
+    text-decoration: none;
+  }
+
+  .c-eranav__link::after {
+    content: "";
+    position: absolute;
+    inset: auto 0 -1px;
+    height: 2px;
+    background: var(--kd-red);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform var(--kd-dur) var(--kd-ease);
+  }
+
+  .c-eranav__link[aria-current="true"] {
+    color: var(--kd-text);
+  }
+
+  .c-eranav__link[aria-current="true"]::after {
+    transform: scaleX(1);
+  }
+
+  .c-eranav__years {
+    font-weight: var(--font-weight-bold);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .c-eranav__name {
+    display: none;
+  }
+
+  @media (min-width: 820px) {
+    .c-eranav__name {
+      display: block;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .c-eranav__link::after {
+      transition: none;
+    }
+  }
+}

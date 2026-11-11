@@ -1,0 +1,59 @@
+/* 버튼·링크 버튼: 각진 모서리. 기본 빨강, --line 은 테두리만, --ink 는 먹빛 */
+@layer components {
+  .c-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    min-height: var(--tap-min);
+    padding: var(--space-2) var(--space-6);
+    font-weight: var(--font-weight-bold);
+    color: var(--kd-white);
+    text-decoration: none;
+    cursor: pointer;
+    background: var(--kd-red);
+    border: 1px solid var(--kd-red);
+    border-radius: var(--kd-radius);
+    transition:
+      background-color var(--kd-dur-fast) var(--kd-ease),
+      border-color var(--kd-dur-fast) var(--kd-ease),
+      color var(--kd-dur-fast) var(--kd-ease);
+  }
+
+  .c-btn--line {
+    color: var(--kd-text);
+    background: transparent;
+    border-color: var(--kd-line-strong);
+  }
+
+  .c-btn--ink {
+    background: var(--kd-ink);
+    border-color: var(--kd-ink);
+  }
+
+  .c-btn--on-ink {
+    color: var(--kd-text-on-ink);
+    background: transparent;
+    border-color: var(--kd-line-on-ink-strong);
+  }
+
+  @media (hover: hover) {
+    .c-btn:hover {
+      background: var(--kd-red-deep);
+      border-color: var(--kd-red-deep);
+      color: var(--kd-white);
+    }
+
+    .c-btn--line:hover {
+      color: var(--kd-white);
+      background: var(--kd-ink);
+      border-color: var(--kd-ink);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .c-btn {
+      transition: none;
+    }
+  }
+}

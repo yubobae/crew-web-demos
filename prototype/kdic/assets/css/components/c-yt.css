@@ -1,0 +1,80 @@
+/* 유튜브 레이어(<dialog>): 인터뷰·기념 영상 카드를 누르면 16:9 창에 영상을 넣어 바로 재생한다. yt-dialog.js
+   페이지를 열 때는 유튜브를 하나도 불러오지 않는다. */
+@layer components {
+  .c-yt {
+    width: min(94vw, 70rem);
+    max-width: none;
+    padding: 0;
+    color: var(--kd-white);
+    background: var(--kd-ink);
+    border: 1px solid var(--kd-line-on-ink-strong);
+    opacity: 0;
+    transform: translateY(var(--space-4)) scale(0.98);
+    transition:
+      opacity var(--kd-dur) var(--kd-ease),
+      transform var(--kd-dur) var(--kd-ease),
+      overlay var(--kd-dur) allow-discrete,
+      display var(--kd-dur) allow-discrete;
+  }
+
+  .c-yt[open] {
+    opacity: 1;
+    transform: none;
+  }
+
+  @starting-style {
+    .c-yt[open] {
+      opacity: 0;
+      transform: translateY(var(--space-4)) scale(0.98);
+    }
+  }
+
+  .c-yt::backdrop {
+    background: var(--kd-scrim);
+  }
+
+  .c-yt__bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+    padding: var(--space-2) var(--space-2) var(--space-2) var(--space-4);
+  }
+
+  .c-yt__title {
+    margin: 0;
+    overflow: hidden;
+    font-size: var(--text-sm);
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: var(--kd-text-on-ink-soft);
+  }
+
+  .c-yt__close {
+    display: grid;
+    place-items: center;
+    width: var(--tap-min);
+    height: var(--tap-min);
+    color: var(--kd-white);
+    cursor: pointer;
+  }
+
+  .c-yt__stage {
+    aspect-ratio: 16 / 9;
+    background: var(--kd-ink-2);
+  }
+
+  .c-yt__frame {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .c-yt {
+      transform: none;
+      transition: none;
+    }
+  }
+}

@@ -1,0 +1,239 @@
+/* 윗줄: 왼쪽 글자 로고, 가운데 번호 붙은 메뉴(01~06), 오른쪽 "프로토타입" 표시 + 보람찬크루로 돌아가기.
+   맨 위에서는 투명, 조금 내려가면 먹빛 유리 막(site-nav.js가 is-condensed). 휴대폰은 햄버거 → 전체 화면 메뉴. */
+@layer components {
+  .c-bar {
+    position: fixed;
+    inset: 0 0 auto;
+    z-index: var(--z-header);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3);
+    height: var(--kd-top-h);
+    padding-inline: var(--gutter);
+    color: var(--kd-text-on-ink);
+    transition: background-color var(--kd-dur) var(--kd-ease);
+  }
+
+  .c-bar::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: var(--kd-glass-ink);
+    backdrop-filter: blur(14px);
+    opacity: 0;
+    transition: opacity var(--kd-dur) var(--kd-ease);
+  }
+
+  .c-bar.is-condensed::before,
+  .c-bar.is-open::before {
+    opacity: 1;
+  }
+
+  .c-bar__brand {
+    display: inline-flex;
+    align-items: baseline;
+    gap: var(--space-2);
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .c-bar__mark {
+    font-family: var(--font-display);
+    font-size: var(--text-xl);
+    font-weight: var(--font-weight-black);
+    letter-spacing: var(--tracking-tight);
+  }
+
+  .c-bar__mark::after {
+    content: "";
+    display: inline-block;
+    width: var(--space-1-5);
+    height: var(--space-1-5);
+    margin-left: var(--space-1);
+    background: var(--kd-red);
+    border-radius: var(--radius-full);
+  }
+
+  .c-bar__sub {
+    display: none;
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-wide);
+    color: var(--kd-text-on-ink-soft);
+  }
+
+  .c-bar__menu {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    display: none;
+    align-content: center;
+    padding: var(--kd-top-h) var(--gutter) var(--space-8);
+    background: var(--kd-ink);
+  }
+
+  .c-bar.is-open .c-bar__menu {
+    display: grid;
+  }
+
+  .c-bar__list {
+    display: grid;
+    gap: 0;
+    margin: 0;
+  }
+
+  .c-bar__link {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-4);
+    padding: var(--space-4) 0;
+    font-family: var(--font-display);
+    font-size: var(--text-3xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--kd-text-on-ink);
+    text-decoration: none;
+    border-bottom: 1px solid var(--kd-line-on-ink);
+  }
+
+  .c-bar__no {
+    font-size: var(--text-xs);
+    font-weight: var(--font-weight-bold);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: var(--tracking-widest);
+    color: var(--kd-red);
+  }
+
+  .c-bar__link[aria-current="page"] {
+    color: var(--kd-white);
+  }
+
+  .c-bar__side {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+  }
+
+  .c-bar__tag {
+    padding: var(--space-0-5) var(--space-2);
+    font-size: var(--text-xs);
+    font-weight: var(--font-weight-bold);
+    color: var(--kd-white);
+    background: var(--kd-red);
+    border-radius: var(--kd-radius);
+  }
+
+  .c-bar__back {
+    display: none;
+    align-items: center;
+    gap: var(--space-1);
+    min-height: var(--tap-min);
+    font-size: var(--text-xs);
+    font-weight: var(--font-weight-bold);
+    color: inherit;
+    text-decoration: none;
+    opacity: 0.9;
+  }
+
+  .c-bar__toggle {
+    position: relative;
+    width: var(--tap-min);
+    height: var(--tap-min);
+    color: inherit;
+    cursor: pointer;
+  }
+
+  .c-bar__toggle::before,
+  .c-bar__toggle::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    width: var(--space-5);
+    height: 2px;
+    background: currentcolor;
+    transform: translateX(-50%);
+    transition:
+      transform var(--kd-dur) var(--kd-ease),
+      top var(--kd-dur) var(--kd-ease);
+  }
+
+  .c-bar__toggle::before {
+    top: calc(50% - var(--space-1));
+  }
+
+  .c-bar__toggle::after {
+    top: calc(50% + var(--space-1));
+  }
+
+  .c-bar.is-open .c-bar__toggle::before {
+    top: 50%;
+    transform: translateX(-50%) rotate(45deg);
+  }
+
+  .c-bar.is-open .c-bar__toggle::after {
+    top: 50%;
+    transform: translateX(-50%) rotate(-45deg);
+  }
+
+  @media (min-width: 500px) {
+    .c-bar__back {
+      display: inline-flex;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .c-bar__sub {
+      display: inline;
+    }
+
+    .c-bar__toggle {
+      display: none;
+    }
+
+    .c-bar__menu {
+      position: static;
+      z-index: auto;
+      display: block;
+      padding: 0;
+      background: none;
+    }
+
+    .c-bar__list {
+      display: flex;
+      gap: var(--space-1);
+    }
+
+    .c-bar__link {
+      gap: var(--space-1-5);
+      padding: var(--space-2) var(--space-3);
+      font-family: var(--font-sans);
+      font-size: var(--text-sm);
+      font-weight: var(--font-weight-medium);
+      color: var(--kd-text-on-ink-soft);
+      border: 0;
+      transition: color var(--kd-dur-fast) var(--kd-ease);
+    }
+
+    .c-bar__link[aria-current="page"] {
+      color: var(--kd-white);
+      box-shadow: inset 0 -2px 0 var(--kd-red);
+    }
+  }
+
+  @media (hover: hover) {
+    .c-bar__link:hover,
+    .c-bar__back:hover {
+      color: var(--kd-white);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .c-bar,
+    .c-bar::before,
+    .c-bar__toggle::before,
+    .c-bar__toggle::after,
+    .c-bar__link {
+      transition: none;
+    }
+  }
+}

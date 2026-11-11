@@ -1,0 +1,52 @@
+/* 페이지 끝 "다음으로" 큰 링크: 먹빛 바탕, 제목이 큰 글자, 화살표가 오른쪽으로 밀린다 */
+@layer components {
+  .c-next {
+    display: grid;
+    gap: var(--space-3);
+    padding: var(--space-12) var(--gutter);
+    color: var(--kd-text-on-ink);
+    text-decoration: none;
+    background: var(--kd-ink-2);
+    border-top: 1px solid var(--kd-line-on-ink);
+  }
+
+  .c-next__label {
+    margin: 0;
+    font-size: var(--text-xs);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: var(--tracking-widest);
+    color: var(--kd-red);
+  }
+
+  .c-next__title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+    margin: 0;
+    width: min(100%, var(--content-max));
+    margin-inline: auto;
+    font-family: var(--font-display);
+    font-size: clamp(var(--text-4xl), 1.6rem + 5vw, var(--text-8xl));
+    font-weight: var(--font-weight-black);
+    line-height: 1;
+    letter-spacing: var(--tracking-tighter);
+  }
+
+  .c-next__arrow {
+    flex: 0 0 auto;
+    transition: transform var(--kd-dur) var(--kd-ease);
+  }
+
+  @media (hover: hover) {
+    .c-next:hover .c-next__arrow {
+      transform: translate3d(var(--space-4), 0, 0);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .c-next__arrow {
+      transition: none;
+    }
+  }
+}

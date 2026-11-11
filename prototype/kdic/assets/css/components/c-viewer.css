@@ -1,0 +1,111 @@
+/* 크게 보기(<dialog>): 먹빛 막 위에 사진이 크게, 위에 번호·닫기, 아래에 설명·화살표. 사진은 살짝 커지며 나타난다. viewer.js */
+@layer components {
+  .c-viewer {
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    max-height: 100%;
+    margin: 0;
+    padding: var(--space-4);
+    color: var(--kd-white);
+    background: transparent;
+    border: 0;
+    opacity: 0;
+    transition:
+      opacity var(--kd-dur) var(--kd-ease),
+      overlay var(--kd-dur) allow-discrete,
+      display var(--kd-dur) allow-discrete;
+  }
+
+  .c-viewer[open] {
+    display: grid;
+    grid-template-rows: auto minmax(0, 1fr) auto;
+    gap: var(--space-3);
+    opacity: 1;
+  }
+
+  @starting-style {
+    .c-viewer[open] {
+      opacity: 0;
+    }
+  }
+
+  .c-viewer::backdrop {
+    background: var(--kd-scrim);
+  }
+
+  .c-viewer__top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: var(--text-sm);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .c-viewer__stage {
+    display: grid;
+    place-items: center;
+    min-height: 0;
+  }
+
+  .c-viewer__img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    animation: c-viewer-in 600ms var(--kd-ease);
+  }
+
+  .c-viewer__bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+  }
+
+  .c-viewer__cap {
+    max-width: 60ch;
+    margin: 0;
+    font-size: var(--text-sm);
+    opacity: 0.92;
+  }
+
+  .c-viewer__nav {
+    display: flex;
+    gap: var(--space-2);
+  }
+
+  .c-viewer__btn {
+    display: grid;
+    place-items: center;
+    width: var(--space-12);
+    aspect-ratio: 1;
+    color: var(--kd-white);
+    cursor: pointer;
+    background: var(--kd-glass-ink);
+    border: 1px solid var(--kd-line-on-ink-strong);
+    border-radius: var(--kd-radius);
+    transition: background-color var(--kd-dur-fast) var(--kd-ease);
+  }
+
+  .c-viewer__btn:active {
+    background: var(--kd-red);
+  }
+
+  @keyframes c-viewer-in {
+    from {
+      opacity: 0;
+      transform: scale(0.96);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .c-viewer,
+    .c-viewer__btn {
+      transition: none;
+    }
+
+    .c-viewer__img {
+      animation: none;
+    }
+  }
+}

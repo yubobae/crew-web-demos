@@ -1,0 +1,27 @@
+/* 섹션 틀: 바깥은 배경(종이·먹빛·옅은 종이), 안쪽은 최대 폭 + 좌우 여백 */
+@layer layout {
+  .l-kd-section {
+    padding-block: var(--section-pad);
+    color: var(--kd-text);
+    background: var(--kd-paper);
+  }
+
+  .l-kd-section--soft {
+    background: var(--kd-paper-2);
+  }
+
+  .l-kd-section--ink {
+    color: var(--kd-text-on-ink);
+    background: var(--kd-ink);
+  }
+
+  .l-kd-section--tight {
+    padding-block: var(--space-12);
+  }
+
+  .l-kd-section__inner {
+    width: min(100%, var(--content-max));
+    margin-inline: auto;
+    padding-inline: var(--gutter);
+  }
+}

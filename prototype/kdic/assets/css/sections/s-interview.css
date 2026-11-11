@@ -1,0 +1,26 @@
+/* 인터뷰 쪽 본문 틀: 휴대폰은 위에 붙는 칩 줄 + 아래로 파트들, PC는 왼쪽 목차(sticky) + 오른쪽 파트들 */
+@layer sections {
+  .s-interview {
+    background: var(--kd-paper);
+  }
+
+  .s-interview__body {
+    padding: var(--space-12) var(--gutter) 0;
+  }
+
+  @media (min-width: 1024px) {
+    .s-interview {
+      display: grid;
+      grid-template-columns: 17rem minmax(0, 1fr);
+      column-gap: var(--space-16);
+      width: min(100%, var(--content-max));
+      margin-inline: auto;
+      padding: var(--space-16) var(--gutter) 0;
+      background: none;
+    }
+
+    .s-interview__body {
+      padding: 0;
+    }
+  }
+}

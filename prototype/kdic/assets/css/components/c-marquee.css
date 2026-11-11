@@ -1,0 +1,57 @@
+/* 흐르는 띠: 키워드가 끝없이 옆으로 흐른다(CSS만). 두 번째 줄은 반대 방향·윤곽 글자. 동작 줄이기는 멈춤 */
+@layer components {
+  .c-marquee {
+    overflow: clip;
+    padding-block: var(--space-5);
+    color: var(--kd-text);
+    background: var(--kd-paper-2);
+    border-block: 1px solid var(--kd-line);
+  }
+
+  .c-marquee__row {
+    display: flex;
+    width: max-content;
+    animation: c-marquee-run 42s linear infinite;
+  }
+
+  .c-marquee__row--back {
+    animation-direction: reverse;
+    animation-duration: 56s;
+  }
+
+  .c-marquee__item {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-6);
+    padding-right: var(--space-6);
+    font-family: var(--font-display);
+    font-size: clamp(var(--text-3xl), 1.4rem + 3vw, var(--text-6xl));
+    font-weight: var(--font-weight-black);
+    letter-spacing: var(--tracking-tight);
+    white-space: nowrap;
+  }
+
+  .c-marquee__item--line {
+    color: transparent;
+    -webkit-text-stroke: 1px var(--kd-line-strong);
+  }
+
+  .c-marquee__dot {
+    width: var(--space-3);
+    height: var(--space-3);
+    background: var(--kd-red);
+    border-radius: var(--radius-full);
+  }
+
+  @keyframes c-marquee-run {
+    to {
+      transform: translate3d(-50%, 0, 0);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .c-marquee__row {
+      animation: none;
+    }
+  }
+}

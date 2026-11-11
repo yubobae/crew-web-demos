@@ -1,0 +1,74 @@
+/* 사사(社史) E-BOOK 책장: 책 표지 세 권. 마우스를 올리면 책이 살짝 들리고 그림자가 커진다 */
+@layer components {
+  .c-book {
+    display: grid;
+    gap: var(--space-10) var(--space-6);
+    margin: 0;
+  }
+
+  .c-book__item {
+    display: grid;
+    gap: var(--space-4);
+    align-content: start;
+  }
+
+  .c-book__cover {
+    display: grid;
+    place-items: center;
+    padding: var(--space-8) var(--space-4) var(--space-6);
+    background: var(--kd-ink-2);
+    border-bottom: 3px solid var(--kd-red);
+  }
+
+  .c-book__img {
+    display: block;
+    width: min(100%, 14rem);
+    height: auto;
+    box-shadow: var(--kd-shadow);
+    transition:
+      transform var(--kd-dur) var(--kd-ease),
+      box-shadow var(--kd-dur) var(--kd-ease);
+  }
+
+  .c-book__year {
+    margin: 0;
+    font-size: var(--text-xs);
+    font-weight: var(--font-weight-bold);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: var(--tracking-widest);
+    color: var(--kd-red);
+  }
+
+  .c-book__title {
+    margin: 0;
+    font-size: var(--fs-h3);
+    font-weight: var(--font-weight-extrabold);
+    color: var(--kd-text-on-ink);
+  }
+
+  .c-book__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin: 0;
+  }
+
+  @media (min-width: 820px) {
+    .c-book {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  @media (hover: hover) {
+    .c-book__item:hover .c-book__img {
+      transform: translate3d(0, calc(var(--space-2) * -1), 0);
+      box-shadow: var(--kd-shadow-float);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .c-book__img {
+      transition: none;
+    }
+  }
+}

@@ -1,0 +1,112 @@
+/* 숫자 원장 한 줄(30년 성과): 번호·이름 / 과거→현재 막대 / 큰 숫자(count-up). 막대는 화면에 들어오면 자란다(bar-grow.js가 --w 0~1) */
+@layer components {
+  .c-fig {
+    display: grid;
+    gap: var(--space-5);
+    padding: var(--space-8) 0;
+    border-top: 1px solid var(--kd-line-strong);
+  }
+
+  .c-fig__no {
+    margin: 0 0 var(--space-1);
+    font-size: var(--text-xs);
+    font-weight: var(--font-weight-bold);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: var(--tracking-widest);
+    color: var(--kd-red);
+  }
+
+  .c-fig__title {
+    margin: 0;
+    font-size: var(--fs-h3);
+    font-weight: var(--font-weight-bold);
+  }
+
+  .c-fig__bars {
+    display: grid;
+    gap: var(--space-4);
+    align-content: center;
+    margin: 0;
+  }
+
+  .c-fig__bar {
+    display: grid;
+    gap: var(--space-1);
+  }
+
+  .c-fig__bar-label {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-3);
+    font-size: var(--text-xs);
+    font-variant-numeric: tabular-nums;
+    color: var(--kd-text-soft);
+  }
+
+  .c-fig__bar-track {
+    display: block;
+    height: var(--space-2);
+    background: var(--kd-paper-3);
+  }
+
+  .c-fig__bar-fill {
+    display: block;
+    height: 100%;
+    background: var(--kd-ink);
+    transform: scaleX(var(--w, 1));
+    transform-origin: left;
+    transition: transform 1400ms var(--kd-ease-wipe);
+  }
+
+  .c-fig__bar--now .c-fig__bar-fill {
+    background: var(--kd-red);
+  }
+
+  .c-fig__bar--now .c-fig__bar-label {
+    color: var(--kd-text);
+    font-weight: var(--font-weight-bold);
+  }
+
+  .c-fig__now {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: clamp(var(--text-4xl), 1.6rem + 3.4vw, var(--text-7xl));
+    font-weight: var(--font-weight-black);
+    line-height: 1.05;
+    letter-spacing: var(--tracking-tighter);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .c-fig__unit {
+    margin-inline: var(--space-1) var(--space-2);
+    font-size: 0.36em;
+    font-weight: var(--font-weight-bold);
+    letter-spacing: var(--tracking-normal);
+    color: var(--kd-red);
+  }
+
+  .c-fig__sub {
+    display: block;
+    margin-top: var(--space-1);
+    font-family: var(--font-sans);
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-regular);
+    letter-spacing: var(--tracking-normal);
+    color: var(--kd-text-soft);
+  }
+
+  @media (min-width: 1024px) {
+    .c-fig {
+      grid-template-columns: 18rem minmax(0, 1fr) minmax(0, 1.2fr);
+      align-items: center;
+      gap: var(--space-10);
+      padding: var(--space-10) 0;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .c-fig__bar-fill {
+      transition: none;
+    }
+  }
+}

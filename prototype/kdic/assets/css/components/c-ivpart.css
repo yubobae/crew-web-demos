@@ -1,0 +1,51 @@
+/* 인터뷰 파트 묶음: 파트 번호·제목 머리 + 영상 카드 격자 */
+@layer components {
+  .c-ivpart {
+    padding-bottom: var(--space-16);
+  }
+
+  .c-ivpart__head {
+    display: grid;
+    gap: var(--space-2);
+    margin-bottom: var(--space-8);
+    padding-top: var(--space-4);
+    border-top: 2px solid var(--kd-text);
+  }
+
+  .c-ivpart__en {
+    margin: 0;
+    font-size: var(--text-xs);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: var(--tracking-widest);
+    color: var(--kd-red);
+  }
+
+  .c-ivpart__title {
+    margin: 0;
+    font-size: var(--fs-h2);
+    font-weight: var(--font-weight-extrabold);
+  }
+
+  .c-ivpart__title span {
+    display: block;
+    color: var(--kd-text-soft);
+  }
+
+  .c-ivpart__grid {
+    display: grid;
+    gap: var(--space-8) var(--space-5);
+    margin: 0;
+  }
+
+  @media (min-width: 500px) {
+    .c-ivpart__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .c-ivpart__grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+}

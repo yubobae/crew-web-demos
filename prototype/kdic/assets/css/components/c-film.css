@@ -1,0 +1,200 @@
+/* 필름 레일(하이라이트): PC는 화면에 고정된 채 세로 스크롤이 사진 줄을 가로로 밀고(hscroll.js가 --hp 0~1, --hs 이동 거리, --film-h 구간 높이),
+   왼쪽에는 시기 설명이 붙어 있다. 휴대폰·태블릿은 고정 없이 손가락으로 넘기는 가로 목록(스냅). 동작 줄이기도 같다. */
+@layer components {
+  .c-film {
+    position: relative;
+    color: var(--kd-text-on-ink);
+    background: var(--kd-ink);
+  }
+
+  .c-film--2 {
+    background: var(--kd-ink-2);
+  }
+
+  .c-film--3 {
+    background: var(--kd-ink-3);
+  }
+
+  .c-film__pin {
+    display: grid;
+    gap: var(--space-8);
+    padding: var(--space-16) 0;
+  }
+
+  .c-film__intro {
+    padding-inline: var(--gutter);
+  }
+
+  .c-film__no {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    margin: 0 0 var(--space-3);
+    font-size: var(--text-xs);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: var(--tracking-widest);
+    color: var(--kd-red);
+  }
+
+  .c-film__no::before {
+    content: "";
+    width: var(--space-8);
+    height: 2px;
+    background: var(--kd-red);
+  }
+
+  .c-film__years {
+    margin: 0;
+    font-size: clamp(var(--text-4xl), 1.4rem + 4.4vw, var(--text-7xl));
+    font-weight: var(--font-weight-black);
+    line-height: 1;
+    letter-spacing: var(--tracking-tighter);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .c-film__title {
+    margin: var(--space-4) 0 var(--space-3);
+    font-size: var(--fs-h3);
+    font-weight: var(--font-weight-bold);
+  }
+
+  .c-film__desc {
+    margin: 0;
+    font-size: var(--text-sm);
+    color: var(--kd-text-on-ink-soft);
+  }
+
+  .c-film__viewport {
+    min-width: 0;
+  }
+
+  .c-film__track {
+    display: flex;
+    gap: var(--space-4);
+    margin: 0;
+    padding: 0 var(--gutter) var(--space-3);
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: var(--gutter);
+    scrollbar-width: thin;
+  }
+
+  .c-film__card {
+    flex: 0 0 min(78vw, 22rem);
+    scroll-snap-align: start;
+  }
+
+  .c-film__open {
+    display: block;
+    width: 100%;
+    color: inherit;
+    text-align: left;
+    cursor: zoom-in;
+  }
+
+  .c-film__pic {
+    display: block;
+    overflow: clip;
+    aspect-ratio: 3 / 2;
+    background: var(--kd-ink);
+  }
+
+  .c-film__img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 900ms var(--kd-ease);
+  }
+
+  .c-film__date {
+    display: block;
+    margin-top: var(--space-3);
+    font-size: var(--text-xs);
+    font-weight: var(--font-weight-bold);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: var(--tracking-wide);
+    color: var(--kd-red);
+  }
+
+  .c-film__cap {
+    display: block;
+    margin-top: var(--space-1);
+    font-weight: var(--font-weight-medium);
+    line-height: var(--leading-snug);
+  }
+
+  .c-film__bar {
+    display: none;
+    height: 2px;
+    margin-top: var(--space-8);
+    background: var(--kd-line-on-ink);
+  }
+
+  .c-film__fill {
+    display: block;
+    height: 100%;
+    background: var(--kd-red);
+    transform: scaleX(var(--hp, 0));
+    transform-origin: left;
+  }
+
+  @media (hover: hover) {
+    .c-film__open:hover .c-film__img {
+      transform: scale(1.06);
+    }
+  }
+
+  @media (min-width: 820px) {
+    .c-film.is-pinned {
+      height: var(--film-h, auto);
+    }
+
+    .c-film.is-pinned .c-film__pin {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      height: 100svh;
+      grid-template-columns: minmax(20rem, 30vw) minmax(0, 1fr);
+      align-items: center;
+      gap: var(--space-6);
+      padding: var(--kd-top-h) 0 0;
+      overflow: clip;
+    }
+
+    .c-film.is-pinned .c-film__viewport {
+      overflow: clip;
+      padding-block: var(--space-2);
+    }
+
+    .c-film.is-pinned .c-film__years {
+      white-space: nowrap;
+    }
+
+    .c-film.is-pinned .c-film__track {
+      overflow: visible;
+      padding-bottom: 0;
+      transform: translate3d(calc(var(--hp, 0) * var(--hs, 0px) * -1), 0, 0);
+      will-change: transform;
+    }
+
+    .c-film.is-pinned .c-film__card {
+      flex-basis: min(36vw, 28rem);
+    }
+
+    .c-film.is-pinned .c-film__bar {
+      display: block;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .c-film__img {
+      transition: none;
+    }
+
+    .c-film.is-pinned .c-film__track {
+      transform: none;
+      will-change: auto;
+    }
+  }
+}

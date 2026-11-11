@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>예금보험공사 30주년 디지털 역사관 프로토타입 | 보람찬크루</title>
+  <meta name="description" content="예금보험공사 창립 30주년 디지털 역사관을 같은 공개 자료로 다시 만든 보람찬크루의 프로토타입. 화면 목업, 원본 비교, 페이지 구성, 적용 기능과 구현 기술.">
+  <meta name="robots" content="noindex, nofollow, noimageindex, noarchive">
+  <meta name="theme-color" content="#f8f7f4">
+  <meta property="og:title" content="예금보험공사 30주년 디지털 역사관 프로토타입 | 보람찬크루">
+  <meta property="og:description" content="예금보험공사 창립 30주년 디지털 역사관을 같은 공개 자료로 다시 만든 보람찬크루의 프로토타입. 화면 목업, 원본 비교, 페이지 구성, 적용 기능과 구현 기술.">
+  <meta property="og:type" content="website">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+  <link rel="icon" href="favicon.ico" sizes="48x48">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/media/icons/favicon-32.png">
+  <link rel="apple-touch-icon" href="assets/media/icons/apple-touch-icon.png">
+  <link rel="stylesheet" href="assets/css/main.css?v=202611120158">
+  <script type="module" src="assets/js/main.js?v=202611120158"></script>
+</head>
+<body data-effect="cursor scroll-progress">
+  <a class="u-visually-hidden" href="#main">본문 바로가기</a>
+  <header class="c-site-nav" data-module="site-nav">
+    <div class="c-site-nav__bar">
+      <a class="c-site-nav__logo" href="index.html"><span class="c-site-nav__mark" aria-hidden="true"></span>보람찬크루</a>
+      <nav class="c-site-nav__links" aria-label="주 메뉴" data-module="glider" data-glide="hover">
+        <span class="c-site-nav__glider js-glider" aria-hidden="true"></span>
+        <a class="c-site-nav__link js-glide-item" href="index.html">크루 소개</a>
+        <a class="c-site-nav__link js-glide-item" href="prototypes.html" aria-current="page">작업</a>
+        <a class="c-site-nav__link js-glide-item" href="lab.html">실험실</a>
+        <a class="c-site-nav__link js-glide-item" href="index.html#process">일하는 방식</a>
+        <a class="c-site-nav__link js-glide-item" href="index.html#contact">문의</a>
+      </nav>
+      <button class="c-site-nav__menu" type="button" popovertarget="site-menu">메뉴 <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
+    </div>
+    <div class="c-site-nav__panel" id="site-menu" popover>
+      <div class="c-site-nav__group c-site-nav__group--pages">
+        <p class="c-site-nav__group-title">보람찬크루</p>
+        <a class="c-site-nav__item" href="index.html">크루 소개</a>
+        <a class="c-site-nav__item" href="prototypes.html">작업</a>
+        <a class="c-site-nav__item" href="lab.html">실험실</a>
+        <a class="c-site-nav__item" href="index.html#process">일하는 방식</a>
+        <a class="c-site-nav__item" href="index.html#contact">문의</a>
+      </div>
+      <div class="c-site-nav__group">
+        <p class="c-site-nav__group-title">바로 가기</p>
+        <a class="c-site-nav__item" href="prototype-kogas.html">KOGAS 40 역사관 <span class="c-site-nav__item-desc">대표 작업</span></a>
+        <a class="c-site-nav__item" href="prototype-sgwon.html">승가원 30주년 역사관 <span class="c-site-nav__item-desc">대표 작업</span></a>
+        <a class="c-site-nav__item" href="prototype-kdic.html">예금보험공사 30주년 역사관 <span class="c-site-nav__item-desc">대표 작업</span></a>
+        <a class="c-site-nav__item" href="prototype/kogas/" rel="nofollow noopener" target="_blank">KOGAS 데모 바로 보기 <span class="c-site-nav__item-desc">데모</span></a>
+        <a class="c-site-nav__item" href="prototype/sgwon/" rel="nofollow noopener" target="_blank">승가원 데모 바로 보기 <span class="c-site-nav__item-desc">데모</span></a>
+        <a class="c-site-nav__item" href="prototype/kdic/" rel="nofollow noopener" target="_blank">예금보험공사 데모 바로 보기 <span class="c-site-nav__item-desc">데모</span></a>
+      </div>
+    </div>
+  </header>
+
+  <div class="l-curtain">
+  <main class="l-curtain__main" id="main">
+    <div class="c-page-intro" data-effect="parallax magnetic">
+      <div class="c-page-intro__art-wrap js-par" data-speed="0.12"><img class="c-page-intro__art" src="assets/media/art/hero-right.webp" width="880" height="960" alt="" decoding="async"></div>
+      <p class="c-page-intro__eyebrow"><span class="c-page-intro__badge">03</span>프로토타입 · 금융공기업 30주년</p>
+      <h1 class="c-page-intro__title">
+        <span class="c-page-intro__line"><span class="c-page-intro__line-inner">KDIC 30</span></span>
+        <span class="c-page-intro__line"><span class="c-page-intro__line-inner"><span class="c-page-intro__accent">디지털 역사관</span></span></span>
+      </h1>
+      <p class="c-page-intro__lead">예금보험공사 창립 30주년 역사관(2026)의 글·사진·영상을 그대로 써서, 먹빛 바탕에 한 줄 빨강, 굴러가는 연도 숫자로 '신뢰의 기록'이 먼저 읽히는 역사관으로 다시 만들었어요.</p>
+      <div class="c-btn-row" data-effect="magnetic">
+        <a class="c-btn" href="prototype/kdic/" rel="nofollow noopener" target="_blank">데모 사이트 보기 <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M19 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5"/></svg></a>
+        <a class="c-btn c-btn--line" href="http://www.kdic30th.kr/" rel="nofollow noopener" target="_blank">원본 사이트 <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M19 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5"/></svg></a>
+      </div>
+    </div>
+
+    <section class="l-section" aria-labelledby="mock-title">
+      <div class="l-section__head" data-effect="reveal">
+        <span class="l-section__num">01</span>
+        <h2 class="l-section__title" id="mock-title">화면 목업</h2>
+        <p class="l-section__desc">PC·태블릿·휴대폰에서 같은 내용이 각 화면에 맞게 바뀌어요.</p>
+      </div>
+      <div class="c-pagemap"><div class="c-pagemap__row">
+        <div class="c-pagemap__shots"><span class="c-device c-device--pc"><img class="c-device__img" src="assets/media/shots/kdic-index-pc.webp" width="1200" height="750" alt="PC 화면(1440px)" loading="lazy" decoding="async"></span><span class="c-pagemap__mo"><span class="c-device c-device--mo"><img class="c-device__img" src="assets/media/shots/kdic-index-mo.webp" width="600" height="1298" alt="휴대폰 화면(390px)" loading="lazy" decoding="async"></span></span></div>
+        <div><span class="c-device c-device--tab"><img class="c-device__img" src="assets/media/shots/kdic-index-tab.webp" width="820" height="1180" alt="태블릿 화면(820px)" loading="lazy" decoding="async"></span></div>
+      </div></div>
+    </section>
+
+    <section class="l-section" aria-labelledby="cmp-title">
+      <div class="l-section__head" data-effect="reveal">
+        <span class="l-section__num">02</span>
+        <h2 class="l-section__title" id="cmp-title">원본과 비교</h2>
+        <p class="l-section__desc">가운데 손잡이를 좌우로 끌어 보세요(키보드 ← → 도 됩니다). 왼쪽이 원본, 오른쪽이 프로토타입이에요.</p>
+      </div>
+      <div class="c-compare" data-module="compare">
+        <img class="c-compare__img" src="assets/media/shots/kdic-index-pc.webp" width="1200" height="750" alt="프로토타입 첫 화면" loading="lazy" decoding="async">
+        <span class="c-compare__top"><img class="c-compare__img" src="assets/media/shots/orig-kdic-pc.webp" width="1200" height="750" alt="원본 사이트 첫 화면" loading="lazy" decoding="async"></span>
+        <span class="c-compare__label c-compare__label--l">원본</span>
+        <span class="c-compare__label c-compare__label--r">프로토타입</span>
+        <input class="c-compare__range js-compare-range" type="range" min="0" max="100" value="50" aria-label="원본과 프로토타입 비교 위치">
+        <span class="c-compare__line" aria-hidden="true"><span class="c-compare__knob"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6-6 6 6 6M15 6l6 6-6 6"/></svg></span></span>
+      </div>
+      <div class="c-points c-points--2 c-points--stacked" data-effect="reveal tilt-grid">
+        <article class="c-points__item c-card js-reveal js-tilt"><p class="c-points__no">원본 · 휴대폰</p><h3 class="c-points__title">첫 화면 한 장이 전부예요</h3><span class="c-device c-device--mo c-device--crop"><img class="c-device__img" src="assets/media/shots/orig-kdic-mo.webp" width="600" height="1298" alt="원본 휴대폰 화면" loading="lazy" decoding="async"></span></article>
+        <article class="c-points__item c-card js-reveal js-tilt"><p class="c-points__no">프로토타입 · 휴대폰</p><h3 class="c-points__title">스크롤하면 장면이 넘어가고 연도가 굴러요</h3><span class="c-device c-device--mo c-device--crop"><img class="c-device__img" src="assets/media/shots/kdic-index-mo.webp" width="600" height="1298" alt="프로토타입 휴대폰 화면" loading="lazy" decoding="async"></span></article>
+      </div>
+    </section>
+
+    <section class="l-section" aria-labelledby="diff-title">
+      <div class="l-section__head" data-effect="reveal">
+        <span class="l-section__num">03</span>
+        <h2 class="l-section__title" id="diff-title">무엇을 다르게 했나</h2>
+        <p class="l-section__desc">원본의 남색·빨강·건물 사진을 이어받되, 면을 파랑으로 도배하지 않고 문서처럼 단단한 먹빛으로 잡았어요. KOGAS·승가원과 색·구성·움직임이 모두 달라요.</p>
+      </div>
+      <div class="c-points" data-effect="reveal tilt-grid">
+        <article class="c-points__item c-card js-reveal js-tilt"><p class="c-points__no">TONE</p><h3 class="c-points__title">먹빛 남색 · 한 줄 빨강</h3><p class="c-points__desc">서늘한 흰 종이와 먹빛 바탕에 로고의 빨강을 선·번호·강조에만. 신뢰와 기록의 무게를 문서 느낌으로.</p></article>
+        <article class="c-points__item c-card js-reveal js-tilt"><p class="c-points__no">TYPE</p><h3 class="c-points__title">Wanted Sans 제목 + Pretendard</h3><p class="c-points__desc">굵고 단단한 제목에 숫자는 폭이 같은 숫자꼴로. 두 글꼴 모두 OFL이라 상업 사용에 문제가 없어요.</p></article>
+        <article class="c-points__item c-card js-reveal js-tilt"><p class="c-points__no">FIRST VIEW</p><h3 class="c-points__title">연도 다이얼</h3><p class="c-points__desc">원본 메인의 1996→2026 숫자 세기를 살려, 큰 숫자가 주행계처럼 굴러가며 사진 장면이 바뀌어요. 휠을 살짝만 돌려도 한 장면씩.</p></article>
+        <article class="c-points__item c-card js-reveal js-tilt"><p class="c-points__no">GRID</p><h3 class="c-points__title">원장(장부) 구성</h3><p class="c-points__desc">번호 붙은 메뉴, 번호 줄 머리, 각진 모서리, 얇은 선. 숫자와 기록이 중심인 기관의 성격에 맞췄어요.</p></article>
+        <article class="c-points__item c-card js-reveal js-tilt"><p class="c-points__no">MOBILE</p><h3 class="c-points__title">번호 메뉴 전체 화면</h3><p class="c-points__desc">휴대폰 메뉴는 큰 번호 글자의 전체 화면 판. 모든 쪽을 여섯 화면 폭에서 검사해 가로 넘침 0.</p></article>
+        <article class="c-points__item c-card js-reveal js-tilt"><p class="c-points__no">SPEED</p><h3 class="c-points__title">영상은 누를 때만</h3><p class="c-points__desc">유튜브를 레이어 창으로 두고 누를 때만 불러와요. 원본처럼 주제 영상 버튼은 첫 화면에 그대로.</p></article>
+      </div>
+    </section>
+
+    <section class="l-section" aria-labelledby="map-title">
+      <div class="l-section__head" data-effect="reveal">
+        <span class="l-section__num">04</span>
+        <h2 class="l-section__title" id="map-title">페이지별 구성</h2>
+        <p class="l-section__desc">메인과 다섯 메뉴, 모두 6쪽. 쪽마다 들어간 내용과 움직임이에요.</p>
+      </div>
+      <div class="c-pagemap" data-effect="reveal">
+        <article class="c-pagemap__row js-reveal">
+          <div class="c-pagemap__shots"><span class="c-device c-device--pc"><img class="c-device__img" src="assets/media/shots/kdic-index-pc.webp" width="1200" height="750" alt="메인 PC 화면" loading="lazy" decoding="async"></span><span class="c-pagemap__mo"><span class="c-device c-device--mo"><img class="c-device__img" src="assets/media/shots/kdic-index-mo.webp" width="600" height="1298" alt="메인 휴대폰 화면" loading="lazy" decoding="async"></span></span></div>
+          <div>
+            <p class="c-pagemap__no">PAGE 01 · <span class="c-pagemap__file">index.html</span></p>
+            <h3 class="c-pagemap__title">메인</h3>
+            <ul class="c-pagemap__list"><li>화면에 고정된 큰 사진 무대 위에서 휠을 살짝만 돌려도 다섯 장면(2026·1996·1998·2011·2025)이 아래에서 위로 닦이듯 바뀜</li><li>큰 연도 숫자가 주행계처럼 굴러 올라가고 오른쪽 눈금자의 빨간 표시가 따라옴(처음엔 1996→2026이 자동으로 굴러 오름)</li><li>원본처럼 '창립 30주년 주제 영상 보기' 버튼이 유튜브 레이어를 열어 바로 재생</li><li>큰 선언문이 스크롤에 맞춰 흐림→선명, 숫자 네 칸, 시기 세 줄, 인터뷰·아카이브 맛보기</li></ul>
+            <p class="c-pagemap__chips"><span class="c-pagemap__chip">연도 다이얼</span><span class="c-pagemap__chip">주행계 숫자</span><span class="c-pagemap__chip">닦이는 사진 전환</span><span class="c-pagemap__chip">읽는 자리 선명하게</span><span class="c-pagemap__chip">숫자 굴리기</span></p>
+            <div class="c-btn-row" data-effect="magnetic"><a class="c-btn c-btn--line" href="prototype/kdic/index.html" rel="nofollow noopener" target="_blank">이 쪽 보기 <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M19 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5"/></svg></a></div>
+          </div>
+        </article>
+        <article class="c-pagemap__row js-reveal">
+          <div class="c-pagemap__shots"><span class="c-device c-device--pc"><img class="c-device__img" src="assets/media/shots/kdic-overview-pc.webp" width="1200" height="750" alt="개요 PC 화면" loading="lazy" decoding="async"></span><span class="c-pagemap__mo"><span class="c-device c-device--mo"><img class="c-device__img" src="assets/media/shots/kdic-overview-mo.webp" width="600" height="1298" alt="개요 휴대폰 화면" loading="lazy" decoding="async"></span></span></div>
+          <div>
+            <p class="c-pagemap__no">PAGE 02 · <span class="c-pagemap__file">overview.html</span></p>
+            <h3 class="c-pagemap__title">개요</h3>
+            <ul class="c-pagemap__list"><li>CEO 인사말: 왼쪽 사진·제목은 붙어 있고 오른쪽 문단이 읽는 자리에서 선명해짐</li><li>30주년 기념 영상 2편(사사 헌정식·비전 선포식)을 레이어로 재생</li><li>엠블럼·슬로건 의미를 먹빛 판 위에</li></ul>
+            <p class="c-pagemap__chips"><span class="c-pagemap__chip">붙는 사이드</span><span class="c-pagemap__chip">읽기 포커스</span><span class="c-pagemap__chip">영상 레이어</span></p>
+            <div class="c-btn-row" data-effect="magnetic"><a class="c-btn c-btn--line" href="prototype/kdic/overview.html" rel="nofollow noopener" target="_blank">이 쪽 보기 <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M19 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5"/></svg></a></div>
+          </div>
+        </article>
+        <article class="c-pagemap__row js-reveal">
+          <div class="c-pagemap__shots"><span class="c-device c-device--pc"><img class="c-device__img" src="assets/media/shots/kdic-highlight-pc.webp" width="1200" height="750" alt="역사 하이라이트 PC 화면" loading="lazy" decoding="async"></span><span class="c-pagemap__mo"><span class="c-device c-device--mo"><img class="c-device__img" src="assets/media/shots/kdic-highlight-mo.webp" width="600" height="1298" alt="역사 하이라이트 휴대폰 화면" loading="lazy" decoding="async"></span></span></div>
+          <div>
+            <p class="c-pagemap__no">PAGE 03 · <span class="c-pagemap__file">highlight.html</span></p>
+            <h3 class="c-pagemap__title">역사 하이라이트</h3>
+            <ul class="c-pagemap__list"><li>세 시기, 43장면을 가로 필름으로</li><li>세로로 스크롤하면 화면이 고정된 채 사진 줄이 가로로 흐르고 진행 막대가 참</li><li>시기 막대가 따라다니며 지금 시기를 표시</li><li>사진을 누르면 크게 보기(방향키·밀기)</li></ul>
+            <p class="c-pagemap__chips"><span class="c-pagemap__chip">가로 필름 레일</span><span class="c-pagemap__chip">스크롤 연동 막대</span><span class="c-pagemap__chip">크게 보기</span></p>
+            <div class="c-btn-row" data-effect="magnetic"><a class="c-btn c-btn--line" href="prototype/kdic/highlight.html" rel="nofollow noopener" target="_blank">이 쪽 보기 <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M19 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5"/></svg></a></div>
+          </div>
+        </article>
+        <article class="c-pagemap__row js-reveal">
+          <div class="c-pagemap__shots"><span class="c-device c-device--pc"><img class="c-device__img" src="assets/media/shots/kdic-interview-pc.webp" width="1200" height="750" alt="기념 인터뷰 PC 화면" loading="lazy" decoding="async"></span><span class="c-pagemap__mo"><span class="c-device c-device--mo"><img class="c-device__img" src="assets/media/shots/kdic-interview-mo.webp" width="600" height="1298" alt="기념 인터뷰 휴대폰 화면" loading="lazy" decoding="async"></span></span></div>
+          <div>
+            <p class="c-pagemap__no">PAGE 04 · <span class="c-pagemap__file">interview.html</span></p>
+            <h3 class="c-pagemap__title">기념 인터뷰</h3>
+            <ul class="c-pagemap__list"><li>6개 파트, 26편의 인터뷰 영상</li><li>PC는 왼쪽 파트 목차가 붙어 따라오며 지금 읽는 파트가 켜짐, 휴대폰은 위에 가로 칩 줄</li><li>영상 카드를 누르면 그 자리에서 유튜브 레이어로 재생</li></ul>
+            <p class="c-pagemap__chips"><span class="c-pagemap__chip">스크롤 목차</span><span class="c-pagemap__chip">붙는 목차</span><span class="c-pagemap__chip">영상 레이어</span></p>
+            <div class="c-btn-row" data-effect="magnetic"><a class="c-btn c-btn--line" href="prototype/kdic/interview.html" rel="nofollow noopener" target="_blank">이 쪽 보기 <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M19 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5"/></svg></a></div>
+          </div>
+        </article>
+        <article class="c-pagemap__row js-reveal">
+          <div class="c-pagemap__shots"><span class="c-device c-device--pc"><img class="c-device__img" src="assets/media/shots/kdic-figures-pc.webp" width="1200" height="750" alt="30년 주요 성과 PC 화면" loading="lazy" decoding="async"></span><span class="c-pagemap__mo"><span class="c-device c-device--mo"><img class="c-device__img" src="assets/media/shots/kdic-figures-mo.webp" width="600" height="1298" alt="30년 주요 성과 휴대폰 화면" loading="lazy" decoding="async"></span></span></div>
+          <div>
+            <p class="c-pagemap__no">PAGE 05 · <span class="c-pagemap__file">figures.html</span></p>
+            <h3 class="c-pagemap__title">30년 주요 성과</h3>
+            <ul class="c-pagemap__list"><li>열두 지표를 원장처럼 한 줄씩: 과거→지금 막대 + 큰 숫자</li><li>막대는 화면에 들어오면 자라고 숫자는 굴러 오름</li><li>흐르는 큰 글자 띠로 핵심 숫자를 한 줄 요약</li></ul>
+            <p class="c-pagemap__chips"><span class="c-pagemap__chip">막대 자라기</span><span class="c-pagemap__chip">숫자 굴리기</span><span class="c-pagemap__chip">흐르는 띠</span></p>
+            <div class="c-btn-row" data-effect="magnetic"><a class="c-btn c-btn--line" href="prototype/kdic/figures.html" rel="nofollow noopener" target="_blank">이 쪽 보기 <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M19 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5"/></svg></a></div>
+          </div>
+        </article>
+        <article class="c-pagemap__row js-reveal">
+          <div class="c-pagemap__shots"><span class="c-device c-device--pc"><img class="c-device__img" src="assets/media/shots/kdic-archive-pc.webp" width="1200" height="750" alt="아카이브 PC 화면" loading="lazy" decoding="async"></span><span class="c-pagemap__mo"><span class="c-device c-device--mo"><img class="c-device__img" src="assets/media/shots/kdic-archive-mo.webp" width="600" height="1298" alt="아카이브 휴대폰 화면" loading="lazy" decoding="async"></span></span></div>
+          <div>
+            <p class="c-pagemap__no">PAGE 06 · <span class="c-pagemap__file">archive.html</span></p>
+            <h3 class="c-pagemap__title">아카이브</h3>
+            <ul class="c-pagemap__list"><li>사진 81장·실물 14점·영상 9편을 탭으로</li><li>사진은 연대 칩(1990~2020년대)으로 걸러 보고 벽돌 배치, 누르면 크게 보기</li><li>사사(社史) E-BOOK 세 권 책장(원본 연결)</li></ul>
+            <p class="c-pagemap__chips"><span class="c-pagemap__chip">탭 + 연대 칩</span><span class="c-pagemap__chip">벽돌 갤러리</span><span class="c-pagemap__chip">크게 보기</span><span class="c-pagemap__chip">영상 레이어</span></p>
+            <div class="c-btn-row" data-effect="magnetic"><a class="c-btn c-btn--line" href="prototype/kdic/archive.html" rel="nofollow noopener" target="_blank">이 쪽 보기 <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M19 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5"/></svg></a></div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="l-section" aria-labelledby="tech-title">
+      <div class="l-section__head" data-effect="reveal">
+        <span class="l-section__num">05</span>
+        <h2 class="l-section__title" id="tech-title">디자인 · UI 구현 기술</h2>
+        <p class="l-section__desc">보람찬크루 공통 컨벤션 그대로. 같은 부품 체계 위에 예금보험공사 팔레트(--kd-*)를 입혔어요.</p>
+      </div>
+      <dl class="c-spec">
+        <div class="c-spec__row"><dt class="c-spec__key">구조</dt><dd class="c-spec__val">정적 HTML 6쪽. 원본 사이트에서 모은 자료(JSON)로 Node 스크립트가 쪽을 조립해요. 서버 프로그램이 필요 없어 고객 서버 어디에나 올릴 수 있어요.</dd></div>
+        <div class="c-spec__row"><dt class="c-spec__key">CSS</dt><dd class="c-spec__val"><span class="c-spec__code">@layer</span> 7단계, BEM 이름, 블록 하나 = 파일 하나(부품 29개). 색은 <span class="c-spec__code">--kd-*</span> 토큰만 사용. <span class="c-spec__code">position: sticky</span> 고정 무대와 <span class="c-spec__code">clip-path</span> 닦임 전환, 주행계 숫자 띠(<span class="c-spec__code">translate3d</span>), 가로 필름 레일(스크롤 진행률 → CSS 변수), CSS columns 벽돌 갤러리, 흐르는 띠, <span class="c-spec__code">@starting-style</span> 레이어 창.</dd></div>
+        <div class="c-spec__row"><dt class="c-spec__key">JS 모듈</dt><dd class="c-spec__val">프레임워크 없이 ES 모듈 11개를 <span class="c-spec__code">data-module</span>·<span class="c-spec__code">data-effect</span>로 연결: <span class="c-spec__code">scrollspy</span> <span class="c-spec__code">site-nav</span> <span class="c-spec__code">tab-filter</span> <span class="c-spec__code">viewer</span> <span class="c-spec__code">yt-dialog</span> <span class="c-spec__code">bar-grow</span> <span class="c-spec__code">count-up</span> <span class="c-spec__code">hscroll</span> <span class="c-spec__code">read-focus</span> <span class="c-spec__code">reveal</span> <span class="c-spec__code">year-dial</span></dd></div>
+        <div class="c-spec__row"><dt class="c-spec__key">사진·영상</dt><dd class="c-spec__val">원본 사진 186장(썸네일 별도)을 WebP로 줄여 합계 11.1MB(한 장 200KB 이하). 모든 그림에 width·height, 화면 밖은 lazy. 유튜브는 누를 때만 불러오는 레이어 창(쿠키 줄인 주소).</dd></div>
+        <div class="c-spec__row"><dt class="c-spec__key">반응형</dt><dd class="c-spec__val">휴대폰 우선. 360·390·820·1024·1280·1440px에서 가로 넘침 0. 메인은 휴대폰에서 평소 스크롤로 같은 장면 전환, 필름 레일은 손가락으로 넘기는 가로 목록, 목차는 위 칩 줄로.</dd></div>
+        <div class="c-spec__row"><dt class="c-spec__key">성능</dt><dd class="c-spec__val">움직임은 transform·opacity·clip-path 위주, 스크롤 처리는 프레임당 한 번(rAF). 실제 크롬 창에서 스크롤 프레임을 재서 60fps 확인.</dd></div>
+        <div class="c-spec__row"><dt class="c-spec__key">접근성</dt><dd class="c-spec__val">키보드만으로 메뉴·탭(← → Home End)·크게 보기·영상·단계 이동 사용, 동작 줄이기 설정이면 메인이 장면 목록으로 쌓이고 움직임 제거, 그림 대체 글, 본문 바로가기.</dd></div>
+        <div class="c-spec__row"><dt class="c-spec__key">검색 제외</dt><dd class="c-spec__val"><span class="c-spec__code">noindex, nofollow, noimageindex</span> 메타, 바깥 링크는 <span class="c-spec__code">rel="nofollow"</span>. 모든 쪽 윗줄에 "프로토타입" 표시와 보람찬크루로 돌아가기 버튼.</dd></div>
+      </dl>
+    </section>
+  </main>
+
+  <footer class="l-curtain__foot c-curtain-footer">
+    <p class="c-curtain-footer__word" aria-hidden="true">보람찬크루</p>
+    <div>
+      <p class="c-curtain-footer__label">다음으로</p>
+      <a class="c-curtain-footer__next" href="prototype/kdic/" rel="nofollow noopener" target="_blank">프로토타입 사이트 직접 보기 <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+    <nav class="c-curtain-footer__demos" aria-label="데모 바로가기">
+      <a class="c-curtain-footer__demo" href="prototypes.html">프로토타입</a>
+      <a class="c-curtain-footer__demo" href="ui-kit/">UI 키트</a>
+      <a class="c-curtain-footer__demo" href="effects/">인터랙션 효과</a>
+      <a class="c-curtain-footer__demo" href="scroll/">스크롤</a>
+      <a class="c-curtain-footer__demo" href="museum/">디지털 역사관</a>
+      <a class="c-curtain-footer__demo" href="trends/">요즘 UI</a>
+    </nav>
+    <div class="c-curtain-footer__bottom"><span>© 2026 보람찬크루</span><span>HTML · CSS · 순수 JS 모듈 · 프레임워크 없음</span></div>
+  </footer>
+  </div>
+</body>
+</html>
