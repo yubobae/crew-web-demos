@@ -1,0 +1,119 @@
+/* 대문 스크롤 연출(원본의 큰 메뉴 글자처럼): 대문이 화면에 붙어 있는 동안 스크롤하면
+   ① 제목 글이 위로 사라지고 ② 영상이 어두워지며 ③ 다섯 전시실 이름이 큼직하게 하나씩 들어온다.
+   진행률은 pin-progress.js의 --pp(0~1). 움직임 줄이기에서는 고정을 풀고 큰 글자는 숨긴다(아래 전시실 카드가 같은 역할). */
+@layer components {
+  .c-gate-wrap {
+    --pp: 0;
+    position: relative;
+    height: 320svh;
+  }
+
+  .c-gate-wrap .c-gate {
+    position: sticky;
+    top: 0;
+    height: 100svh;
+    min-height: 0;
+  }
+
+  .c-gate-wrap .c-gate__inner {
+    opacity: clamp(0, calc(1 - var(--pp) * 4), 1);
+    transform: translateY(calc(var(--pp) * -6rem));
+  }
+
+  .c-gate__dim {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: var(--kg-deep);
+    opacity: clamp(0, calc(var(--pp) * 1.6), 0.72);
+    pointer-events: none;
+  }
+
+  .c-gate__index {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    align-content: center;
+    padding: calc(var(--kg-header-h) + var(--space-6)) var(--gutter) var(--space-12);
+    list-style: none;
+    margin: 0;
+  }
+
+  .c-gate__index-item {
+    --i: 0;
+    --on: clamp(0, calc((var(--pp) - 0.3 - var(--i) * 0.09) * 9), 1);
+    border-top: 1px solid oklch(1 0 0 / calc(var(--on) * 0.45));
+    opacity: var(--on);
+    transform: translateX(calc((1 - var(--on)) * 5rem));
+  }
+
+  .c-gate__index-item:nth-child(2) { --i: 1; }
+  .c-gate__index-item:nth-child(3) { --i: 2; }
+  .c-gate__index-item:nth-child(4) { --i: 3; }
+  .c-gate__index-item:nth-child(5) { --i: 4; }
+
+  .c-gate__index-link {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-4);
+    padding-block: clamp(var(--space-2), 1.6vh, var(--space-4));
+    color: var(--kg-white);
+    text-decoration: none;
+    transition: padding-left 400ms var(--tr-ease, ease);
+  }
+
+  .c-gate__index-no {
+    min-width: 2.5ch;
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-semibold);
+    opacity: 0.8;
+  }
+
+  .c-gate__index-en {
+    font-size: clamp(2.25rem, 1rem + 6.4vw, 7rem);
+    font-weight: var(--font-weight-black);
+    letter-spacing: var(--tracking-tighter);
+    line-height: 1;
+    text-transform: uppercase;
+  }
+
+  .c-gate__index-ko {
+    margin-left: auto;
+    font-size: var(--text-lg);
+    opacity: 0.85;
+  }
+
+  @media (hover: hover) {
+    .c-gate__index-link:hover {
+      padding-left: var(--space-6);
+    }
+  }
+
+  @media (max-width: 819px) {
+    .c-gate__index-ko {
+      display: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .c-gate-wrap {
+      height: auto;
+    }
+
+    .c-gate-wrap .c-gate {
+      position: relative;
+      height: auto;
+      min-height: max(100svh, 40rem);
+    }
+
+    .c-gate-wrap .c-gate__inner {
+      opacity: 1;
+      transform: none;
+    }
+
+    .c-gate__dim,
+    .c-gate__index {
+      display: none;
+    }
+  }
+}

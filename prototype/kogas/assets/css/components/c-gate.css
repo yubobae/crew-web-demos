@@ -354,8 +354,8 @@
     top: 50%;
     left: 50%;
     z-index: -2;
-    width: max(100%, 177.78svh);
-    height: max(100%, 56.25vw);
+    width: max(135%, 240svh);
+    height: max(135%, 76vw);
     border: 0;
     opacity: 0;
     transform: translate(-50%, -50%);
