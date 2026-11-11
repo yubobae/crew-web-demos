@@ -4,9 +4,12 @@
 //   <section data-effect="text-reveal">     → effects/text-reveal.js
 //   공백으로 여러 개 연결 가능: data-module="a b"
 
+// 배포 버전(?v=)이 main.js 주소에 붙어 있으면 모듈에도 그대로 붙여, 브라우저가 예전 파일을 쓰지 않게 한다.
+const VERSION = new URL(import.meta.url).search;
+
 const LOADERS = {
-  module: (name) => import(`./modules/${name}.js`),
-  effect: (name) => import(`./effects/${name}.js`),
+  module: (name) => import(`./modules/${name}.js${VERSION}`),
+  effect: (name) => import(`./effects/${name}.js${VERSION}`),
 };
 
 const mounted = [];
