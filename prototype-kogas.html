@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>KOGAS 40 디지털 역사관 프로토타입 | 보람찬크루</title>
+  <meta name="description" content="한국가스공사 40주년 온라인 역사관을 같은 공개 자료로 다시 만든 보람찬크루의 프로토타입. 화면 목업, 원본 비교, 페이지 구성, 적용 기능과 구현 기술.">
+  <meta name="robots" content="noindex, nofollow, noimageindex, noarchive">
+  <meta name="theme-color" content="#f8f7f4">
+  <meta property="og:title" content="KOGAS 40 디지털 역사관 프로토타입 | 보람찬크루">
+  <meta property="og:description" content="한국가스공사 40주년 온라인 역사관을 같은 공개 자료로 다시 만든 보람찬크루의 프로토타입. 화면 목업, 원본 비교, 페이지 구성, 적용 기능과 구현 기술.">
+  <meta property="og:type" content="website">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+  <link rel="stylesheet" href="assets/css/main.css">
+  <script type="module" src="assets/js/main.js"></script>
+</head>
+<body>
+  <a class="u-visually-hidden" href="#main">본문 바로가기</a>
+  <header class="c-site-nav" data-module="site-nav">
+    <div class="c-site-nav__bar">
+      <a class="c-site-nav__logo" href="index.html"><span class="c-site-nav__mark" aria-hidden="true"></span>보람찬크루</a>
+      <nav class="c-site-nav__links" aria-label="주 메뉴" data-module="glider" data-glide="hover">
+        <span class="c-site-nav__glider js-glider" aria-hidden="true"></span>
+        <a class="c-site-nav__link js-glide-item" href="index.html#work" aria-current="page">프로토타입</a>
+        <a class="c-site-nav__link js-glide-item" href="index.html#demos">데모</a>
+        <a class="c-site-nav__link js-glide-item" href="index.html#standards">기준</a>
+      </nav>
+      <button class="c-site-nav__menu" type="button" popovertarget="site-menu">메뉴 <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
+    </div>
+    <div class="c-site-nav__panel" id="site-menu" popover>
+      <div class="c-site-nav__group c-site-nav__group--pages">
+        <p class="c-site-nav__group-title">보람찬크루</p>
+        <a class="c-site-nav__item" href="index.html#work">프로토타입</a>
+        <a class="c-site-nav__item" href="index.html#demos">데모</a>
+        <a class="c-site-nav__item" href="index.html#standards">기준</a>
+      </div>
+      <div class="c-site-nav__group">
+        <p class="c-site-nav__group-title">바로 보기</p>
+        <a class="c-site-nav__item" href="prototypes.html">프로토타입 소개 <span class="c-site-nav__item-desc">왜·어떻게</span></a>
+        <a class="c-site-nav__item" href="prototype-kogas.html">KOGAS 40 역사관 <span class="c-site-nav__item-desc">상세</span></a>
+        <a class="c-site-nav__item" href="trends/">요즘 UI <span class="c-site-nav__item-desc">8쪽 데모</span></a>
+      </div>
+    </div>
+  </header>
+
+  <div class="l-curtain">
+  <main class="l-curtain__main" id="main">
+    <div class="c-page-intro">
+      <p class="c-page-intro__eyebrow"><span class="c-page-intro__badge">01</span>프로토타입 · 공기업 40주년</p>
+      <h1 class="c-page-intro__title">
+        <span class="c-page-intro__line"><span class="c-page-intro__line-inner">KOGAS 40</span></span>
+        <span class="c-page-intro__line"><span class="c-page-intro__line-inner"><span class="c-page-intro__accent">디지털 역사관</span></span></span>
+      </h1>
+      <p class="c-page-intro__lead">한국가스공사 40주년 온라인 역사관(2023)의 글·사진·영상을 그대로 써서, 밝고 가볍고 휴대폰에서도 깨지지 않는 역사관으로 다시 만들었어요.</p>
+      <div class="c-work__actions">
+        <a class="c-work__btn" href="prototype/kogas/" rel="nofollow">데모 사이트 보기 <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M19 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5"/></svg></a>
+        <a class="c-work__btn c-work__btn--line" href="https://www.kogas.or.kr/resources/upload/index.html" rel="nofollow noopener" target="_blank">원본 사이트 <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M19 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5"/></svg></a>
+      </div>
+    </div>
+
+    <section class="l-section" aria-labelledby="mock-title">
+      <div class="l-section__head" data-effect="reveal">
+        <span class="l-section__num">01</span>
+        <h2 class="l-section__title" id="mock-title">화면 목업</h2>
+        <p class="l-section__desc">PC·태블릿·휴대폰에서 같은 내용이 각 화면에 맞게 바뀌어요.</p>
+      </div>
+      <div class="c-pagemap"><div class="c-pagemap__row">
+        <div class="c-pagemap__shots"><span class="c-device c-device--pc"><img class="c-device__img" src="assets/media/shots/kogas-index-pc.webp" width="1200" height="750" alt="PC 화면(1440px)" loading="lazy" decoding="async"></span><span class="c-pagemap__mo"><span class="c-device c-device--mo"><img class="c-device__img" src="assets/media/shots/kogas-index-mo.webp" width="600" height="1298" alt="휴대폰 화면(390px)" loading="lazy" decoding="async"></span></span></div>
+        <div><span class="c-device c-device--tab"><img class="c-device__img" src="assets/media/shots/kogas-index-tab.webp" width="820" height="1180" alt="태블릿 화면(820px)" loading="lazy" decoding="async"></span></div>
+      </div></div>
+    </section>
+
+    <section class="l-section" aria-labelledby="cmp-title">
+      <div class="l-section__head" data-effect="reveal">
+        <span class="l-section__num">02</span>
+        <h2 class="l-section__title" id="cmp-title">원본과 비교</h2>
+        <p class="l-section__desc">가운데 손잡이를 좌우로 끌어 보세요(키보드 ← → 도 됩니다). 왼쪽이 원본, 오른쪽이 프로토타입이에요.</p>
+      </div>
+      <div class="c-compare" data-module="compare">
+        <img class="c-compare__img" src="assets/media/shots/kogas-index-pc.webp" width="1200" height="750" alt="프로토타입 첫 화면" loading="lazy" decoding="async">
+        <span class="c-compare__top"><img class="c-compare__img" src="assets/media/shots/orig-kogas-pc.webp" width="1200" height="750" alt="원본 사이트 첫 화면" loading="lazy" decoding="async"></span>
+        <span class="c-compare__label c-compare__label--l">원본</span>
+        <span class="c-compare__label c-compare__label--r">프로토타입</span>
+        <input class="c-compare__range js-compare-range" type="range" min="0" max="100" value="50" aria-label="원본과 프로토타입 비교 위치">
+        <span class="c-compare__line" aria-hidden="true"><span class="c-compare__knob"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6-6 6 6 6M15 6l6 6-6 6"/></svg></span></span>
+      </div>
+      <div class="c-points c-points--2" data-effect="reveal">
+        <article class="c-points__item js-reveal"><p class="c-points__no">원본 · 휴대폰</p><h3 class="c-points__title">화면이 옆으로 넘치고 메뉴 글자가 잘려요</h3><span class="c-device c-device--mo c-device--crop"><img class="c-device__img" src="assets/media/shots/orig-kogas-mo.webp" width="600" height="1298" alt="원본 휴대폰 화면" loading="lazy" decoding="async"></span></article>
+        <article class="c-points__item js-reveal"><p class="c-points__no">프로토타입 · 휴대폰</p><h3 class="c-points__title">한 줄로 쌓이고 메뉴는 판으로 열려요</h3><span class="c-device c-device--mo c-device--crop"><img class="c-device__img" src="assets/media/shots/kogas-index-mo.webp" width="600" height="1298" alt="프로토타입 휴대폰 화면" loading="lazy" decoding="async"></span></article>
+      </div>
+    </section>
+
+    <section class="l-section" aria-labelledby="diff-title">
+      <div class="l-section__head" data-effect="reveal">
+        <span class="l-section__num">03</span>
+        <h2 class="l-section__title" id="diff-title">무엇을 바꿨나</h2>
+        <p class="l-section__desc">고객이 좋아한 역사관의 장점(따뜻한 첫 화면, 대문 여는 효과, 메인 스크롤로 나뉜 카테고리, 모바일 고려)을 기준으로 삼았어요.</p>
+      </div>
+      <div class="c-points" data-effect="reveal">
+        <article class="c-points__item js-reveal"><p class="c-points__no">TONE</p><h3 class="c-points__title">어두운 사진 → 밝은 하늘빛</h3><p class="c-points__desc">무겁고 어두운 바탕 대신 하늘빛 종이 + KOGAS 파랑 + 배관 청록.</p></article>
+        <article class="c-points__item js-reveal"><p class="c-points__no">SIGNATURE</p><h3 class="c-points__title">흐르는 배관 선</h3><p class="c-points__desc">5,140km 배관망을 닮은 선이 구역을 잇고, 그 안으로 가스가 흘러요.</p></article>
+        <article class="c-points__item js-reveal"><p class="c-points__no">FIRST VIEW</p><h3 class="c-points__title">대문 여는 첫 화면</h3><p class="c-points__desc">문 두 짝이 열리며 LNG 탱크가 드러나고 큰 40이 떠올라요.</p></article>
+        <article class="c-points__item js-reveal"><p class="c-points__no">STRUCTURE</p><h3 class="c-points__title">5메뉴 · 2단계 이내</h3><p class="c-points__desc">ENTRY·MEMORY 등 영문 메뉴를 연대기·사업·숫자·갤러리·아카이브로.</p></article>
+        <article class="c-points__item js-reveal"><p class="c-points__no">MOBILE</p><h3 class="c-points__title">휴대폰에서 깨지지 않게</h3><p class="c-points__desc">모든 쪽을 다섯 화면 폭에서 검사해 가로 넘침 0.</p></article>
+        <article class="c-points__item js-reveal"><p class="c-points__no">SPEED</p><h3 class="c-points__title">영상은 누를 때만</h3><p class="c-points__desc">유튜브 10편을 미리보기 그림으로 두고 누를 때만 불러와 첫 화면이 빨라요.</p></article>
+      </div>
+    </section>
+
+    <section class="l-section" aria-labelledby="map-title">
+      <div class="l-section__head" data-effect="reveal">
+        <span class="l-section__num">04</span>
+        <h2 class="l-section__title" id="map-title">페이지별 구성</h2>
+        <p class="l-section__desc">메인과 다섯 메뉴, 모두 6쪽. 쪽마다 들어간 내용과 움직임이에요.</p>
+      </div>
+      <div class="c-pagemap" data-effect="reveal">
+        <article class="c-pagemap__row js-reveal">
+          <div class="c-pagemap__shots"><span class="c-device c-device--pc"><img class="c-device__img" src="assets/media/shots/kogas-index-pc.webp" width="1200" height="750" alt="메인 PC 화면" loading="lazy" decoding="async"></span><span class="c-pagemap__mo"><span class="c-device c-device--mo"><img class="c-device__img" src="assets/media/shots/kogas-index-mo.webp" width="600" height="1298" alt="메인 휴대폰 화면" loading="lazy" decoding="async"></span></span></div>
+          <div>
+            <p class="c-pagemap__no">PAGE 01 · <span class="c-pagemap__file">index.html</span></p>
+            <h3 class="c-pagemap__title">메인</h3>
+            <ul class="c-pagemap__list"><li>대문 두 짝이 열리며 LNG 탱크 사진이 드러나는 첫 화면</li><li>40년을 네 숫자로(굴러 오르는 숫자)</li><li>흐르는 배관 선으로 구역 잇기</li><li>다섯 전시실 카드, CEO 메시지·비전 영상</li></ul>
+            <p class="c-pagemap__chips"><span class="c-pagemap__chip">대문 열림</span><span class="c-pagemap__chip">숫자 굴리기</span><span class="c-pagemap__chip">배관 흐름</span><span class="c-pagemap__chip">가벼운 유튜브</span></p>
+            <div class="c-work__actions"><a class="c-work__btn c-work__btn--line" href="prototype/kogas/index.html" rel="nofollow">이 쪽 보기 <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M19 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5"/></svg></a></div>
+          </div>
+        </article>
+        <article class="c-pagemap__row js-reveal">
+          <div class="c-pagemap__shots"><span class="c-device c-device--pc"><img class="c-device__img" src="assets/media/shots/kogas-history-pc.webp" width="1200" height="750" alt="연대기 SCENES PC 화면" loading="lazy" decoding="async"></span><span class="c-pagemap__mo"><span class="c-device c-device--mo"><img class="c-device__img" src="assets/media/shots/kogas-history-mo.webp" width="600" height="1298" alt="연대기 SCENES 휴대폰 화면" loading="lazy" decoding="async"></span></span></div>
+          <div>
+            <p class="c-pagemap__no">PAGE 02 · <span class="c-pagemap__file">history.html</span></p>
+            <h3 class="c-pagemap__title">연대기 SCENES</h3>
+            <ul class="c-pagemap__list"><li>여섯 시대, 218개 장면을 시대별로</li><li>붙어 따라오는 시대 바로가기(지금 시대 표시)</li><li>왼쪽 연도·시대 영상은 붙어 있고 오른쪽 사건이 흐름</li><li>사진 있는 사건은 카드로 크게</li></ul>
+            <p class="c-pagemap__chips"><span class="c-pagemap__chip">시대 추적</span><span class="c-pagemap__chip">붙는 머리</span><span class="c-pagemap__chip">하나씩 떠오르기</span></p>
+            <div class="c-work__actions"><a class="c-work__btn c-work__btn--line" href="prototype/kogas/history.html" rel="nofollow">이 쪽 보기 <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M19 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5"/></svg></a></div>
+          </div>
+        </article>
+        <article class="c-pagemap__row js-reveal">
+          <div class="c-pagemap__shots"><span class="c-device c-device--pc"><img class="c-device__img" src="assets/media/shots/kogas-business-pc.webp" width="1200" height="750" alt="사업 PORTFOLIO PC 화면" loading="lazy" decoding="async"></span><span class="c-pagemap__mo"><span class="c-device c-device--mo"><img class="c-device__img" src="assets/media/shots/kogas-business-mo.webp" width="600" height="1298" alt="사업 PORTFOLIO 휴대폰 화면" loading="lazy" decoding="async"></span></span></div>
+          <div>
+            <p class="c-pagemap__no">PAGE 03 · <span class="c-pagemap__file">business.html</span></p>
+            <h3 class="c-pagemap__title">사업 PORTFOLIO</h3>
+            <ul class="c-pagemap__list"><li>도입·생산·공급·미래 네 단계 스크롤 스토리텔링</li><li>글을 읽으면 오른쪽 사진이 단계에 맞춰 바뀜</li><li>40주년 웹툰 4편(원본 연결)</li></ul>
+            <p class="c-pagemap__chips"><span class="c-pagemap__chip">스크롤 스토리텔링</span><span class="c-pagemap__chip">흐르는 배관</span></p>
+            <div class="c-work__actions"><a class="c-work__btn c-work__btn--line" href="prototype/kogas/business.html" rel="nofollow">이 쪽 보기 <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M19 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5"/></svg></a></div>
+          </div>
+        </article>
+        <article class="c-pagemap__row js-reveal">
+          <div class="c-pagemap__shots"><span class="c-device c-device--pc"><img class="c-device__img" src="assets/media/shots/kogas-figures-pc.webp" width="1200" height="750" alt="숫자 FIGURES PC 화면" loading="lazy" decoding="async"></span><span class="c-pagemap__mo"><span class="c-device c-device--mo"><img class="c-device__img" src="assets/media/shots/kogas-figures-mo.webp" width="600" height="1298" alt="숫자 FIGURES 휴대폰 화면" loading="lazy" decoding="async"></span></span></div>
+          <div>
+            <p class="c-pagemap__no">PAGE 04 · <span class="c-pagemap__file">figures.html</span></p>
+            <h3 class="c-pagemap__title">숫자 FIGURES</h3>
+            <ul class="c-pagemap__list"><li>원본 인포그래픽의 아홉 지표를 카드로</li><li>최종 숫자는 굴러 오르고 연도별 막대는 차례로 자람</li><li>가장 큰 지표(배관망)는 파란 강조 카드</li></ul>
+            <p class="c-pagemap__chips"><span class="c-pagemap__chip">막대 자라기</span><span class="c-pagemap__chip">숫자 굴리기</span></p>
+            <div class="c-work__actions"><a class="c-work__btn c-work__btn--line" href="prototype/kogas/figures.html" rel="nofollow">이 쪽 보기 <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M19 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5"/></svg></a></div>
+          </div>
+        </article>
+        <article class="c-pagemap__row js-reveal">
+          <div class="c-pagemap__shots"><span class="c-device c-device--pc"><img class="c-device__img" src="assets/media/shots/kogas-gallery-pc.webp" width="1200" height="750" alt="갤러리 GALLERY PC 화면" loading="lazy" decoding="async"></span><span class="c-pagemap__mo"><span class="c-device c-device--mo"><img class="c-device__img" src="assets/media/shots/kogas-gallery-mo.webp" width="600" height="1298" alt="갤러리 GALLERY 휴대폰 화면" loading="lazy" decoding="async"></span></span></div>
+          <div>
+            <p class="c-pagemap__no">PAGE 05 · <span class="c-pagemap__file">gallery.html</span></p>
+            <h3 class="c-pagemap__title">갤러리 GALLERY</h3>
+            <ul class="c-pagemap__list"><li>사료 사진 48장을 벽돌처럼 쌓은 갤러리</li><li>누르면 크게 보기, 방향키·밀기로 넘기기, 번호 표시</li></ul>
+            <p class="c-pagemap__chips"><span class="c-pagemap__chip">크게 보기</span><span class="c-pagemap__chip">밀어서 넘기기</span></p>
+            <div class="c-work__actions"><a class="c-work__btn c-work__btn--line" href="prototype/kogas/gallery.html" rel="nofollow">이 쪽 보기 <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M19 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5"/></svg></a></div>
+          </div>
+        </article>
+        <article class="c-pagemap__row js-reveal">
+          <div class="c-pagemap__shots"><span class="c-device c-device--pc"><img class="c-device__img" src="assets/media/shots/kogas-archive-pc.webp" width="1200" height="750" alt="아카이브 ARCHIVE PC 화면" loading="lazy" decoding="async"></span><span class="c-pagemap__mo"><span class="c-device c-device--mo"><img class="c-device__img" src="assets/media/shots/kogas-archive-mo.webp" width="600" height="1298" alt="아카이브 ARCHIVE 휴대폰 화면" loading="lazy" decoding="async"></span></span></div>
+          <div>
+            <p class="c-pagemap__no">PAGE 06 · <span class="c-pagemap__file">archive.html</span></p>
+            <h3 class="c-pagemap__title">아카이브 ARCHIVE</h3>
+            <ul class="c-pagemap__list"><li>40년사 e-book 2권(원본 e-book 연결)</li><li>기울어지는 책 표지</li><li>40주년 축하 인터뷰·기념식 영상</li></ul>
+            <p class="c-pagemap__chips"><span class="c-pagemap__chip">기울기 카드</span><span class="c-pagemap__chip">가벼운 유튜브</span></p>
+            <div class="c-work__actions"><a class="c-work__btn c-work__btn--line" href="prototype/kogas/archive.html" rel="nofollow">이 쪽 보기 <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M19 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5"/></svg></a></div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="l-section" aria-labelledby="tech-title">
+      <div class="l-section__head" data-effect="reveal">
+        <span class="l-section__num">05</span>
+        <h2 class="l-section__title" id="tech-title">디자인 · UI 구현 기술</h2>
+        <p class="l-section__desc">보람찬크루 공통 컨벤션 그대로. 요즘 UI 데모의 부품을 가져와 팔레트만 바꿔 다시 썼어요.</p>
+      </div>
+      <dl class="c-spec">
+        <div class="c-spec__row"><dt class="c-spec__key">구조</dt><dd class="c-spec__val">정적 HTML 6쪽. 원본 사이트에서 모은 자료(JSON)로 Node 스크립트가 쪽을 조립해요. 서버 프로그램이 필요 없어 고객 서버 어디에나 올릴 수 있어요.</dd></div>
+        <div class="c-spec__row"><dt class="c-spec__key">CSS</dt><dd class="c-spec__val"><span class="c-spec__code">@layer</span> 7단계, BEM 이름, 블록 하나 = 파일 하나(부품 18개). 색은 <span class="c-spec__code">--kg-*</span> 토큰만 쓰고, 요즘 UI 부품은 <span class="c-spec__code">--tr-*</span> 별칭으로 같은 팔레트를 입혔어요. <span class="c-spec__code">clip-path</span> 대문·띠, <span class="c-spec__code">stroke-dashoffset</span> 배관, CSS columns 갤러리, <span class="c-spec__code">@starting-style</span> 팝업.</dd></div>
+        <div class="c-spec__row"><dt class="c-spec__key">JS 모듈</dt><dd class="c-spec__val">프레임워크 없이 ES 모듈 10개를 <span class="c-spec__code">data-module</span>·<span class="c-spec__code">data-effect</span>로 연결: <span class="c-spec__code">bar-chart</span> <span class="c-spec__code">glider</span> <span class="c-spec__code">lightbox</span> <span class="c-spec__code">site-nav</span> <span class="c-spec__code">story-steps</span> <span class="c-spec__code">yt-lite</span> <span class="c-spec__code">count-up</span> <span class="c-spec__code">reveal</span> <span class="c-spec__code">scroll-progress</span> <span class="c-spec__code">tilt</span></dd></div>
+        <div class="c-spec__row"><dt class="c-spec__key">사진·영상</dt><dd class="c-spec__val">원본 사진 106장을 WebP로 줄여 합계 8.7MB(한 장 200KB 이하). 모든 그림에 width·height, 화면 밖은 lazy. 유튜브는 누를 때만 불러오는 가벼운 방식(쿠키 줄인 주소).</dd></div>
+        <div class="c-spec__row"><dt class="c-spec__key">반응형</dt><dd class="c-spec__val">휴대폰 우선. 360·390·820·1024·1280px에서 가로 넘침 0. 휴대폰은 메뉴를 판(popover)으로, 연대기 왼쪽 머리는 붙지 않게, 스토리텔링은 화면을 위에.</dd></div>
+        <div class="c-spec__row"><dt class="c-spec__key">성능</dt><dd class="c-spec__val">움직임은 transform·opacity 위주, 스크롤·포인터 처리는 프레임당 한 번(rAF). 실제 브라우저에서 프레임을 재서 긴 프레임 0을 목표로 검수.</dd></div>
+        <div class="c-spec__row"><dt class="c-spec__key">접근성</dt><dd class="c-spec__val">키보드만으로 모든 메뉴·크게 보기·영상 사용, 동작 줄이기 설정이면 움직임 제거, 그림 대체 글, 본문 바로가기.</dd></div>
+        <div class="c-spec__row"><dt class="c-spec__key">검색 제외</dt><dd class="c-spec__val"><span class="c-spec__code">noindex, nofollow, noimageindex</span> 메타, 바깥 링크는 <span class="c-spec__code">rel="nofollow"</span>. 모든 쪽 왼쪽 아래에 "프로토타입" 표시.</dd></div>
+      </dl>
+    </section>
+  </main>
+
+  <footer class="l-curtain__foot c-curtain-footer">
+    <div>
+      <p class="c-curtain-footer__label">다음으로</p>
+      <a class="c-curtain-footer__next" href="prototype/kogas/">프로토타입 사이트 직접 보기 <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+    <nav class="c-curtain-footer__demos" aria-label="데모 바로가기">
+      <a class="c-curtain-footer__demo" href="prototypes.html">프로토타입</a>
+      <a class="c-curtain-footer__demo" href="ui-kit/">UI 키트</a>
+      <a class="c-curtain-footer__demo" href="effects/">인터랙션 효과</a>
+      <a class="c-curtain-footer__demo" href="scroll/">스크롤</a>
+      <a class="c-curtain-footer__demo" href="museum/">디지털 역사관</a>
+      <a class="c-curtain-footer__demo" href="trends/">요즘 UI</a>
+    </nav>
+    <div class="c-curtain-footer__bottom"><span>© 2026 보람찬크루</span><span>HTML · CSS · 순수 JS 모듈 · 프레임워크 없음</span></div>
+  </footer>
+  </div>
+</body>
+</html>

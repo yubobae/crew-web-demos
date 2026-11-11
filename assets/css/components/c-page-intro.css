@@ -1,0 +1,133 @@
+/* 페이지 첫머리: 작은 머리말 + 큰 제목 + 설명 + 바로가기 칩. 글자가 한 줄씩 올라온다. */
+@layer components {
+  .c-page-intro {
+    width: min(100% - var(--gutter) * 2, var(--content-max));
+    margin-inline: auto;
+    padding-block: calc(var(--tr-nav-h) + clamp(var(--space-16), 12vw, var(--space-32))) clamp(var(--space-12), 6vw, var(--space-20));
+  }
+
+  .c-page-intro__eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-1) var(--space-3) var(--space-1) var(--space-1);
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--tr-ink-soft);
+    background: var(--tr-paper-2);
+    border-radius: var(--radius-full);
+  }
+
+  .c-page-intro__badge {
+    padding: var(--space-0-5) var(--space-2);
+    font-size: var(--text-xs);
+    font-weight: var(--font-weight-bold);
+    color: var(--tr-white);
+    background: var(--tr-accent);
+    border-radius: var(--radius-full);
+  }
+
+  .c-page-intro__title {
+    max-width: 16ch;
+    margin-top: var(--space-6);
+    font-size: clamp(var(--text-5xl), 2rem + 5vw, var(--text-8xl));
+    font-weight: var(--font-weight-extrabold);
+    letter-spacing: var(--tracking-tighter);
+  }
+
+  .c-page-intro__line {
+    display: block;
+    overflow: hidden;
+    padding-bottom: 0.08em;
+  }
+
+  .c-page-intro__line-inner {
+    display: block;
+    animation: c-page-intro-rise 900ms var(--tr-ease) both;
+  }
+
+  .c-page-intro__line:nth-child(2) .c-page-intro__line-inner {
+    animation-delay: 90ms;
+  }
+
+  .c-page-intro__accent {
+    color: var(--tr-accent);
+  }
+
+  .c-page-intro__lead {
+    max-width: 52ch;
+    margin-top: var(--space-6);
+    font-size: var(--text-lg);
+    color: var(--tr-ink-soft);
+    animation: c-page-intro-fade 900ms 200ms var(--tr-ease) both;
+  }
+
+  .c-page-intro__chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin-top: var(--space-8);
+    animation: c-page-intro-fade 900ms 300ms var(--tr-ease) both;
+  }
+
+  .c-page-intro__chip {
+    padding: var(--space-2) var(--space-4);
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--tr-ink);
+    text-decoration: none;
+    border: 1px solid var(--tr-line);
+    border-radius: var(--radius-full);
+    transition:
+      background-color var(--tr-dur-fast) var(--tr-ease),
+      color var(--tr-dur-fast) var(--tr-ease),
+      border-color var(--tr-dur-fast) var(--tr-ease);
+  }
+
+  @media (hover: hover) {
+    .c-page-intro__chip:hover {
+      color: var(--tr-paper);
+      background: var(--tr-ink);
+      border-color: var(--tr-ink);
+    }
+  }
+
+  .c-page-intro--night .c-page-intro__eyebrow {
+    color: var(--tr-on-night-soft);
+    background: var(--tr-night-2);
+  }
+
+  .c-page-intro--night .c-page-intro__lead {
+    color: var(--tr-on-night-soft);
+  }
+
+  .c-page-intro--night .c-page-intro__chip {
+    color: var(--tr-on-night);
+    border-color: var(--tr-night-line);
+  }
+
+  @keyframes c-page-intro-rise {
+    from {
+      transform: translateY(105%);
+    }
+  }
+
+  @keyframes c-page-intro-fade {
+    from {
+      opacity: 0;
+      transform: translateY(var(--space-4));
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .c-page-intro__line-inner,
+    .c-page-intro__lead,
+    .c-page-intro__chips {
+      animation: none;
+    }
+
+    .c-page-intro__chip {
+      transition: none;
+    }
+  }
+}

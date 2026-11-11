@@ -1,0 +1,77 @@
+/* 푸터: 밝은 바탕, 큰 "40" 워드마크가 바닥에 걸쳐 잘리고, 출처·프로토타입 안내와 메뉴. */
+@layer layout {
+  .l-kg-footer {
+    container-type: inline-size;
+    display: grid;
+    gap: var(--space-10);
+    padding: var(--space-16) var(--gutter) 0;
+    overflow: hidden;
+    background: var(--kg-paper-2);
+  }
+
+  .l-kg-footer__top {
+    display: grid;
+    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+    gap: var(--space-8);
+    width: min(100%, 80rem);
+    margin-inline: auto;
+  }
+
+  .l-kg-footer__name {
+    font-size: var(--text-xl);
+    font-weight: var(--font-weight-extrabold);
+    color: var(--kg-ink);
+  }
+
+  .l-kg-footer__note {
+    max-width: 52ch;
+    margin-top: var(--space-3);
+    font-size: var(--text-sm);
+    color: var(--kg-ink-soft);
+  }
+
+  .l-kg-footer__links {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-2) var(--space-6);
+    font-size: var(--text-sm);
+  }
+
+  .l-kg-footer__link {
+    justify-self: start;
+    color: var(--kg-ink);
+    text-decoration: none;
+    background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat;
+    transition: background-size var(--tr-dur) var(--tr-ease);
+  }
+
+  .l-kg-footer__word {
+    font-size: 30cqi;
+    font-weight: var(--font-weight-black);
+    letter-spacing: var(--tracking-tighter);
+    line-height: 0.72;
+    text-align: center;
+    background: linear-gradient(180deg, var(--kg-sky), var(--kg-paper-2));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  @media (hover: hover) {
+    .l-kg-footer__link:hover {
+      background-size: 100% 1px;
+    }
+  }
+
+  @media (max-width: 819px) {
+    .l-kg-footer__top {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .l-kg-footer__link {
+      transition: none;
+    }
+  }
+}

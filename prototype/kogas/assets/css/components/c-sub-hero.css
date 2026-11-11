@@ -1,0 +1,98 @@
+/* 하위 페이지 첫머리: 번호·영문·국문 제목, 설명, 아래로 넓은 사진 띠가 가운데서 열린다(clip-path, 불러올 때 한 번). */
+@layer components {
+  .c-sub-hero {
+    padding: calc(var(--kg-header-h) + clamp(var(--space-12), 8vw, var(--space-24))) var(--gutter) 0;
+    background:
+      radial-gradient(50% 60% at 90% 0%, var(--kg-teal-soft), transparent 70%),
+      var(--kg-paper);
+  }
+
+  .c-sub-hero__inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-items: end;
+    gap: var(--space-8);
+    width: min(100%, 80rem);
+    margin-inline: auto;
+  }
+
+  .c-sub-hero__crumb {
+    display: flex;
+    gap: var(--space-2);
+    font-size: var(--text-sm);
+    color: var(--kg-ink-soft);
+  }
+
+  .c-sub-hero__en {
+    margin-top: var(--space-4);
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: var(--tracking-widest);
+    color: var(--kg-teal);
+  }
+
+  .c-sub-hero__title {
+    font-size: clamp(var(--text-5xl), 2rem + 4vw, var(--text-8xl));
+    font-weight: var(--font-weight-black);
+    letter-spacing: var(--tracking-tighter);
+    color: var(--kg-ink);
+    animation: c-sub-hero-up 1000ms 150ms var(--tr-ease) both;
+  }
+
+  .c-sub-hero__desc {
+    max-width: 44ch;
+    color: var(--kg-ink-soft);
+    animation: c-sub-hero-up 1000ms 300ms var(--tr-ease) both;
+  }
+
+  .c-sub-hero__band {
+    width: min(100%, 96rem);
+    height: clamp(12rem, 30vw, 26rem);
+    margin: clamp(var(--space-10), 5vw, var(--space-16)) auto 0;
+    overflow: hidden;
+    border-radius: var(--radius-4xl) var(--radius-4xl) 0 0;
+    clip-path: inset(0 0 0 0 round var(--radius-4xl) var(--radius-4xl) 0 0);
+    animation: c-sub-hero-open 1400ms 300ms var(--tr-ease) both;
+  }
+
+  .c-sub-hero__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    animation: c-sub-hero-zoom 2000ms 300ms var(--tr-ease) both;
+  }
+
+  @keyframes c-sub-hero-up {
+    from {
+      opacity: 0;
+      transform: translateY(var(--space-6));
+    }
+  }
+
+  @keyframes c-sub-hero-open {
+    from {
+      clip-path: inset(0 40% 0 40% round var(--radius-4xl) var(--radius-4xl) 0 0);
+    }
+  }
+
+  @keyframes c-sub-hero-zoom {
+    from {
+      transform: scale(1.2);
+    }
+  }
+
+  @media (max-width: 819px) {
+    .c-sub-hero__inner {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .c-sub-hero__title,
+    .c-sub-hero__desc,
+    .c-sub-hero__band,
+    .c-sub-hero__img {
+      animation: none;
+    }
+  }
+}

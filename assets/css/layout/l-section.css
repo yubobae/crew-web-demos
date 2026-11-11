@@ -1,0 +1,48 @@
+/* 데모 한 구역: 번호·제목·설명 머리 + 본문(무대) */
+@layer layout {
+  .l-section {
+    width: min(100% - var(--gutter) * 2, var(--content-max));
+    margin-inline: auto;
+    padding-block: clamp(var(--space-12), 7vw, var(--space-24));
+    border-top: 1px solid var(--tr-line);
+  }
+
+  .l-section__head {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-3);
+    margin-bottom: var(--space-8);
+  }
+
+  .l-section__num {
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-semibold);
+    font-variant-numeric: tabular-nums;
+    color: var(--tr-accent);
+  }
+
+  .l-section__title {
+    font-size: clamp(var(--text-2xl), 1.4rem + 1.6vw, var(--text-4xl));
+    font-weight: var(--font-weight-bold);
+  }
+
+  .l-section__desc {
+    max-width: 60ch;
+    color: var(--tr-ink-soft);
+  }
+
+  .l-section--night {
+    border-top-color: var(--tr-night-line);
+  }
+
+  .l-section--night .l-section__desc {
+    color: var(--tr-on-night-soft);
+  }
+
+  @media (min-width: 1024px) {
+    .l-section__head {
+      grid-template-columns: 6rem minmax(0, 1fr) minmax(0, 1fr);
+      align-items: end;
+    }
+  }
+}

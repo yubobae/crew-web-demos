@@ -1,0 +1,36 @@
+/* 프로토타입 표시: 화면 왼쪽 아래에 작게 떠 있는 알약. 실제 사이트로 오해하지 않게 모든 쪽에 둔다. */
+@layer components {
+  .c-proto-note {
+    position: fixed;
+    bottom: var(--space-3);
+    left: var(--space-3);
+    z-index: var(--z-header);
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    max-width: calc(100% - var(--space-6));
+    padding: var(--space-1-5) var(--space-3) var(--space-1-5) var(--space-1-5);
+    font-size: var(--text-xs);
+    color: var(--kg-ink);
+    background: var(--kg-glass);
+    border: 1px solid var(--kg-line);
+    border-radius: var(--radius-full);
+    box-shadow: var(--kg-shadow);
+    backdrop-filter: blur(10px);
+  }
+
+  .c-proto-note__tag {
+    flex: none;
+    padding: var(--space-0-5) var(--space-2);
+    font-weight: var(--font-weight-bold);
+    color: var(--kg-white);
+    background: var(--kg-flame);
+    border-radius: var(--radius-full);
+  }
+
+  .c-proto-note__text {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+}

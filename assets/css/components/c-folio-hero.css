@@ -1,0 +1,176 @@
+/* 포트폴리오 첫 화면: 왼쪽 큰 소개 글, 오른쪽 기기 목업 묶음(PC 뒤 + 휴대폰 앞)이 떠 있고 마우스 쪽으로 살짝 기운다(tilt.js).
+   글은 한 줄씩 올라오고, 목업은 아래에서 떠오른다(불러올 때 한 번). */
+@layer components {
+  .c-folio-hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+    align-items: center;
+    gap: clamp(var(--space-8), 5vw, var(--space-20));
+    width: min(100% - var(--gutter) * 2, var(--content-max));
+    min-height: 100svh;
+    margin-inline: auto;
+    padding-block: calc(var(--tr-nav-h) + var(--space-16)) var(--space-16);
+  }
+
+  .c-folio-hero__eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--tr-ink-soft);
+  }
+
+  .c-folio-hero__dot {
+    width: var(--space-2);
+    aspect-ratio: 1;
+    background: var(--tr-success);
+    border-radius: var(--radius-full);
+    animation: c-folio-hero-blink 2s steps(1) infinite;
+  }
+
+  .c-folio-hero__title {
+    margin-top: var(--space-5);
+    font-size: clamp(var(--text-5xl), 1.8rem + 4.6vw, var(--text-8xl));
+    font-weight: var(--font-weight-black);
+    letter-spacing: var(--tracking-tighter);
+    line-height: 1.02;
+  }
+
+  .c-folio-hero__line {
+    display: block;
+    overflow: hidden;
+    padding-bottom: 0.06em;
+  }
+
+  .c-folio-hero__in {
+    display: block;
+    animation: c-folio-hero-rise 1000ms var(--tr-ease) both;
+  }
+
+  .c-folio-hero__line:nth-child(2) .c-folio-hero__in {
+    animation-delay: 90ms;
+  }
+
+  .c-folio-hero__line:nth-child(3) .c-folio-hero__in {
+    animation-delay: 180ms;
+  }
+
+  .c-folio-hero__accent {
+    color: var(--tr-accent);
+  }
+
+  .c-folio-hero__lead {
+    max-width: 40ch;
+    margin-top: var(--space-6);
+    font-size: var(--text-lg);
+    color: var(--tr-ink-soft);
+    animation: c-folio-hero-up 900ms 300ms var(--tr-ease) both;
+  }
+
+  .c-folio-hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    margin-top: var(--space-8);
+    animation: c-folio-hero-up 900ms 400ms var(--tr-ease) both;
+  }
+
+  .c-folio-hero__btn {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-3) var(--space-6);
+    font-weight: var(--font-weight-semibold);
+    color: var(--tr-white);
+    text-decoration: none;
+    background: var(--tr-ink);
+    border-radius: var(--radius-full);
+    transition: transform var(--tr-dur-fast) var(--tr-spring);
+  }
+
+  .c-folio-hero__btn--ghost {
+    color: var(--tr-ink);
+    background: var(--tr-white);
+    border: 1px solid var(--tr-line);
+  }
+
+  .c-folio-hero__btn:active {
+    transform: scale(0.96);
+  }
+
+  .c-folio-hero__stage {
+    position: relative;
+    padding: var(--space-6) var(--space-10) var(--space-16) 0;
+    perspective: 1200px;
+    animation: c-folio-hero-up 1200ms 250ms var(--tr-ease) both;
+  }
+
+  .c-folio-hero__phone {
+    position: absolute;
+    right: -5%;
+    bottom: -14%;
+    width: 26%;
+  }
+
+  @keyframes c-folio-hero-rise {
+    from {
+      transform: translateY(105%);
+    }
+  }
+
+  @keyframes c-folio-hero-up {
+    from {
+      opacity: 0;
+      transform: translateY(var(--space-10));
+    }
+  }
+
+  @keyframes c-folio-hero-blink {
+    50% {
+      opacity: 0.25;
+    }
+  }
+
+  @media (max-width: 1023px) {
+    .c-folio-hero {
+      grid-template-columns: minmax(0, 1fr);
+      min-height: auto;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .c-folio-hero__dot,
+    .c-folio-hero__in,
+    .c-folio-hero__lead,
+    .c-folio-hero__actions,
+    .c-folio-hero__stage {
+      animation: none;
+    }
+
+    .c-folio-hero__btn {
+      transition: none;
+    }
+  }
+}
+
+/* 목업 묶음 기울기: tilt.js가 --rx, --ry를 쓰고 움직이는 동안 is-tilting */
+@layer components {
+  .c-folio-hero__float {
+    position: relative;
+    display: block;
+    transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+    transition: transform 700ms var(--tr-spring);
+    will-change: transform;
+  }
+
+  .c-folio-hero__stage.is-tilting .c-folio-hero__float {
+    transition: transform 120ms linear;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .c-folio-hero__float {
+      transition: none;
+    }
+  }
+}

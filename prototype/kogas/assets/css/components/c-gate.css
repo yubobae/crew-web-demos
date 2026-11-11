@@ -1,0 +1,250 @@
+/* 대문 히어로: 들어오면 문 두 짝(왼쪽·오른쪽 판)이 열리며 사진이 드러나고, 사진은 살짝 당겨진다.
+   큰 "40"과 제목이 한 줄씩 올라오고, 아래로 배관 선이 그려진다. CSS 애니메이션만(불러올 때 한 번). */
+@layer components {
+  .c-gate {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+    align-items: center;
+    gap: clamp(var(--space-8), 5vw, var(--space-20));
+    min-height: 100svh;
+    padding: calc(var(--kg-header-h) + var(--space-10)) var(--gutter) var(--space-16);
+    overflow: hidden;
+    background:
+      radial-gradient(60% 50% at 85% 20%, var(--kg-teal-soft), transparent 70%),
+      radial-gradient(50% 50% at 10% 90%, var(--kg-blue-soft), transparent 70%),
+      var(--kg-paper);
+  }
+
+  .c-gate__copy {
+    position: relative;
+    z-index: 1;
+  }
+
+  .c-gate__eyebrow {
+    display: inline-flex;
+    gap: var(--space-2);
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--kg-blue);
+    animation: c-gate-up 900ms 200ms var(--tr-ease) both;
+  }
+
+  .c-gate__num {
+    display: block;
+    font-size: clamp(7rem, 4rem + 14vw, 17rem);
+    font-weight: var(--font-weight-black);
+    letter-spacing: var(--tracking-tighter);
+    line-height: 0.85;
+    background: linear-gradient(135deg, var(--kg-blue), var(--kg-teal));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: c-gate-up 1100ms 300ms var(--tr-ease) both;
+  }
+
+  .c-gate__title {
+    margin-top: var(--space-4);
+    font-size: clamp(var(--text-3xl), 1.2rem + 2.4vw, var(--text-5xl));
+    font-weight: var(--font-weight-extrabold);
+    letter-spacing: var(--tracking-tight);
+    color: var(--kg-ink);
+  }
+
+  .c-gate__line {
+    display: block;
+    overflow: hidden;
+  }
+
+  .c-gate__line-in {
+    display: block;
+    animation: c-gate-rise 1000ms 500ms var(--tr-ease) both;
+  }
+
+  .c-gate__line:nth-child(2) .c-gate__line-in {
+    animation-delay: 600ms;
+  }
+
+  .c-gate__lead {
+    max-width: 38ch;
+    margin-top: var(--space-5);
+    color: var(--kg-ink-soft);
+    animation: c-gate-up 900ms 800ms var(--tr-ease) both;
+  }
+
+  .c-gate__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    margin-top: var(--space-8);
+    animation: c-gate-up 900ms 900ms var(--tr-ease) both;
+  }
+
+  .c-gate__btn {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-3) var(--space-6);
+    font-weight: var(--font-weight-semibold);
+    color: var(--kg-white);
+    text-decoration: none;
+    background: var(--kg-blue);
+    border-radius: var(--radius-full);
+    transition: transform var(--tr-dur-fast) var(--tr-spring);
+  }
+
+  .c-gate__btn--ghost {
+    color: var(--kg-blue);
+    background: var(--kg-white);
+    border: 1px solid var(--kg-line);
+  }
+
+  .c-gate__btn:active {
+    transform: scale(0.96);
+  }
+
+  /* 대문: 사진 위를 덮은 두 문짝이 양옆으로 열린다 */
+  .c-gate__door {
+    position: relative;
+    aspect-ratio: 4 / 5;
+    max-height: 72svh;
+    overflow: hidden;
+    border-radius: 40% 40% var(--radius-4xl) var(--radius-4xl) / 28% 28% var(--radius-4xl) var(--radius-4xl);
+    box-shadow: var(--kg-shadow);
+  }
+
+  .c-gate__photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    animation: c-gate-zoom 2200ms 300ms var(--tr-ease) both;
+  }
+
+  .c-gate__leaf {
+    position: absolute;
+    inset: 0 50% 0 0;
+    background: linear-gradient(90deg, var(--kg-blue), var(--kg-blue-2));
+    animation: c-gate-open-l 1300ms 250ms var(--tr-ease) forwards;
+  }
+
+  .c-gate__leaf--r {
+    inset: 0 0 0 50%;
+    background: linear-gradient(270deg, var(--kg-teal), var(--kg-blue-2));
+    animation-name: c-gate-open-r;
+  }
+
+  .c-gate__badge {
+    position: absolute;
+    right: var(--space-5);
+    bottom: var(--space-5);
+    padding: var(--space-3) var(--space-4);
+    font-size: var(--text-sm);
+    color: var(--kg-ink);
+    background: var(--kg-glass);
+    border-radius: var(--radius-2xl);
+    backdrop-filter: blur(10px);
+    animation: c-gate-up 900ms 1300ms var(--tr-ease) both;
+  }
+
+  .c-gate__badge-num {
+    display: block;
+    font-size: var(--text-2xl);
+    font-weight: var(--font-weight-extrabold);
+    color: var(--kg-blue);
+  }
+
+  .c-gate__scroll {
+    position: absolute;
+    bottom: var(--space-6);
+    left: 50%;
+    width: 1px;
+    height: var(--space-12);
+    overflow: hidden;
+    background: var(--kg-line);
+  }
+
+  .c-gate__scroll::after {
+    content: "";
+    display: block;
+    height: 40%;
+    background: var(--kg-blue);
+    animation: c-gate-drip 1.8s var(--tr-ease) infinite;
+  }
+
+  @keyframes c-gate-up {
+    from {
+      opacity: 0;
+      transform: translateY(var(--space-6));
+    }
+  }
+
+  @keyframes c-gate-rise {
+    from {
+      transform: translateY(105%);
+    }
+  }
+
+  @keyframes c-gate-zoom {
+    from {
+      transform: scale(1.18);
+    }
+  }
+
+  @keyframes c-gate-open-l {
+    to {
+      transform: translateX(-101%);
+    }
+  }
+
+  @keyframes c-gate-open-r {
+    to {
+      transform: translateX(101%);
+    }
+  }
+
+  @keyframes c-gate-drip {
+    from {
+      transform: translateY(-100%);
+    }
+
+    to {
+      transform: translateY(260%);
+    }
+  }
+
+  @media (max-width: 819px) {
+    .c-gate {
+      grid-template-columns: minmax(0, 1fr);
+      min-height: auto;
+    }
+
+    .c-gate__door {
+      max-height: 60svh;
+    }
+
+    .c-gate__scroll {
+      display: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .c-gate__eyebrow,
+    .c-gate__num,
+    .c-gate__line-in,
+    .c-gate__lead,
+    .c-gate__actions,
+    .c-gate__photo,
+    .c-gate__badge,
+    .c-gate__scroll::after {
+      animation: none;
+    }
+
+    .c-gate__leaf {
+      display: none;
+    }
+
+    .c-gate__btn {
+      transition: none;
+    }
+  }
+}

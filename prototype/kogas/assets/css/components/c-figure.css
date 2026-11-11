@@ -1,0 +1,168 @@
+/* 숫자로 보는 40년: 지표 카드. 큰 최종 숫자가 굴러 오르고(count-up.js), 연도별 값이 있으면 막대가 차례로 자란다.
+   막대 높이는 bar-chart.js가 --h(0~1)로 쓴다. 화면에 들어오면 카드에 is-in(reveal.js). */
+@layer components {
+  .c-figure {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-3);
+  }
+
+  .c-figure__card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    padding: var(--space-6);
+    background: var(--kg-white);
+    border: 1px solid var(--kg-line);
+    border-radius: var(--radius-3xl);
+    transition:
+      opacity 800ms var(--tr-ease),
+      transform 900ms var(--tr-ease);
+  }
+
+  .c-figure.is-ready .c-figure__card:not(.is-in) {
+    opacity: 0;
+    transform: translateY(var(--space-8));
+  }
+
+  .c-figure__card--wide {
+    grid-column: span 2;
+  }
+
+  .c-figure__card--blue {
+    color: var(--kg-white);
+    background: linear-gradient(150deg, var(--kg-blue), var(--kg-blue-2));
+    border-color: transparent;
+  }
+
+  .c-figure__head {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-3);
+    font-size: var(--text-sm);
+  }
+
+  .c-figure__no {
+    font-weight: var(--font-weight-bold);
+    color: var(--kg-teal);
+  }
+
+  .c-figure__note {
+    color: var(--kg-ink-soft);
+  }
+
+  .c-figure__card--blue .c-figure__note,
+  .c-figure__card--blue .c-figure__no {
+    color: var(--kg-sky);
+  }
+
+  .c-figure__title {
+    font-size: var(--text-lg);
+    font-weight: var(--font-weight-bold);
+  }
+
+  .c-figure__value {
+    font-size: clamp(var(--text-4xl), 1.4rem + 2.4vw, var(--text-6xl));
+    font-weight: var(--font-weight-extrabold);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: var(--tracking-tighter);
+    line-height: 1;
+    color: var(--kg-blue);
+  }
+
+  .c-figure__card--blue .c-figure__value {
+    color: var(--kg-white);
+  }
+
+  .c-figure__unit {
+    margin-left: var(--space-1);
+    font-size: 0.4em;
+  }
+
+  .c-figure__bars {
+    display: flex;
+    align-items: flex-end;
+    gap: var(--space-2);
+    height: 9rem;
+    margin-top: auto;
+    padding-top: var(--space-4);
+  }
+
+  .c-figure__bar {
+    --h: 0;
+    --d: 0;
+    position: relative;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    gap: var(--space-1);
+    height: 100%;
+    font-size: var(--text-xs);
+    color: var(--kg-ink-soft);
+  }
+
+  .c-figure__fill {
+    width: 100%;
+    height: calc(var(--h) * 100%);
+    min-height: 3px;
+    background: linear-gradient(var(--kg-teal), var(--kg-blue));
+    border-radius: var(--radius-md) var(--radius-md) var(--radius-sm) var(--radius-sm);
+    transform: scaleY(0);
+    transform-origin: bottom;
+    transition: transform 1000ms calc(200ms + var(--d) * 90ms) var(--tr-spring);
+  }
+
+  .c-figure__card.is-in .c-figure__fill {
+    transform: none;
+  }
+
+  .c-figure__bar:nth-child(2) { --d: 1; }
+  .c-figure__bar:nth-child(3) { --d: 2; }
+  .c-figure__bar:nth-child(4) { --d: 3; }
+  .c-figure__bar:nth-child(5) { --d: 4; }
+
+  .c-figure__bar-val {
+    font-weight: var(--font-weight-semibold);
+    color: var(--kg-ink);
+  }
+
+  @media (max-width: 1023px) {
+    .c-figure {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 599px) {
+    .c-figure {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .c-figure__card--wide {
+      grid-column: auto;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .c-figure__card,
+    .c-figure__fill {
+      transition: none;
+    }
+  }
+}
+
+/* 파란 카드 안의 막대 글자는 밝게 */
+@layer components {
+  .c-figure__card--blue .c-figure__bar {
+    color: var(--kg-sky);
+  }
+
+  .c-figure__card--blue .c-figure__bar-val {
+    color: var(--kg-white);
+  }
+
+  .c-figure__card--blue .c-figure__fill {
+    background: linear-gradient(var(--kg-white), var(--kg-sky));
+  }
+}

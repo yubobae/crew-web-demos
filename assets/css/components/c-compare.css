@@ -1,0 +1,103 @@
+/* 전후 비교 슬라이더: 같은 크기 사진 두 장을 겹치고, 손잡이를 끌면 위 사진이 그만큼 잘려 아래 사진이 보인다.
+   compare.js가 --pos(0~100)를 쓴다. 손잡이는 실제 range 입력이라 키보드 ← → 로도 움직인다. */
+@layer components {
+  .c-compare {
+    --pos: 50;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--tr-line);
+    border-radius: var(--radius-3xl);
+    box-shadow: var(--tr-shadow-pop);
+    user-select: none;
+  }
+
+  .c-compare__img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .c-compare__top {
+    position: absolute;
+    inset: 0;
+    clip-path: inset(0 calc(100% - var(--pos) * 1%) 0 0);
+  }
+
+  .c-compare__top .c-compare__img {
+    height: 100%;
+    object-fit: cover;
+    object-position: left top;
+  }
+
+  .c-compare__label {
+    position: absolute;
+    top: var(--space-4);
+    padding: var(--space-1) var(--space-3);
+    font-size: var(--text-xs);
+    font-weight: var(--font-weight-bold);
+    color: var(--tr-white);
+    background: var(--tr-veil);
+    border-radius: var(--radius-full);
+  }
+
+  .c-compare__label--l {
+    left: var(--space-4);
+  }
+
+  .c-compare__label--r {
+    right: var(--space-4);
+    background: var(--tr-accent);
+  }
+
+  .c-compare__line {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: calc(var(--pos) * 1%);
+    width: 2px;
+    background: var(--tr-white);
+    pointer-events: none;
+  }
+
+  .c-compare__knob {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: grid;
+    place-items: center;
+    width: var(--space-12);
+    aspect-ratio: 1;
+    color: var(--tr-ink);
+    background: var(--tr-white);
+    border-radius: var(--radius-full);
+    box-shadow: var(--tr-shadow-pop);
+    transform: translate(-50%, -50%);
+    transition: transform var(--tr-dur-fast) var(--tr-spring);
+  }
+
+  .c-compare.is-dragging .c-compare__knob {
+    transform: translate(-50%, -50%) scale(1.12);
+  }
+
+  /* 실제 입력은 화면 전체를 덮는 투명 range */
+  .c-compare__range {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    opacity: 0;
+    cursor: ew-resize;
+  }
+
+  .c-compare:has(.c-compare__range:focus-visible) .c-compare__knob {
+    outline: 3px solid var(--tr-accent);
+    outline-offset: 3px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .c-compare__knob {
+      transition: none;
+    }
+  }
+}

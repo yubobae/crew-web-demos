@@ -1,0 +1,28 @@
+/* 진입점: 레이어 순서 선언 + 불러오기만 둔다 */
+@layer reset, tokens, base, layout, components, sections, utilities;
+
+@import "tokens.css";
+@import "base/reset.css";
+@import "base/document.css";
+
+@import "layout/l-block.css";
+@import "layout/l-kg-footer.css";
+
+@import "components/c-cat.css";
+@import "components/c-era-nav.css";
+@import "components/c-era.css";
+@import "components/c-figure.css";
+@import "components/c-gallery.css";
+@import "components/c-gate.css";
+@import "components/c-lightbox.css";
+@import "components/c-media-card.css";
+@import "components/c-page-outro.css";
+@import "components/c-pipe.css";
+@import "components/c-proto-note.css";
+@import "components/c-site-nav.css";
+@import "components/c-stat.css";
+@import "components/c-story.css";
+@import "components/c-sub-hero.css";
+@import "components/c-yt.css";
+
+@import "utilities/u-visually-hidden.css";

@@ -1,0 +1,83 @@
+/* 기준·특징 목록: 번호(또는 큰 숫자) + 제목 + 설명 카드 묶음. 큰 숫자는 굴러 오른다(count-up.js). 3칸 → 2칸 → 1칸. */
+@layer components {
+  .c-points {
+    display: grid;
+    grid-template-columns: repeat(var(--cols, 3), minmax(0, 1fr));
+    gap: var(--space-3);
+  }
+
+  .c-points--2 {
+    --cols: 2;
+  }
+
+  .c-points__item {
+    --i: 0;
+    display: grid;
+    align-content: start;
+    gap: var(--space-2);
+    padding: var(--space-6);
+    background: var(--tr-white);
+    border: 1px solid var(--tr-line);
+    border-radius: var(--radius-3xl);
+    transition:
+      opacity 800ms calc(var(--i) * 70ms) var(--tr-ease),
+      transform 900ms calc(var(--i) * 70ms) var(--tr-ease);
+  }
+
+  .c-points.is-ready .c-points__item:not(.is-in) {
+    opacity: 0;
+    transform: translateY(var(--space-8));
+  }
+
+  .c-points__item:nth-child(3n + 2) { --i: 1; }
+  .c-points__item:nth-child(3n) { --i: 2; }
+
+  .c-points__big {
+    font-size: var(--text-4xl);
+    font-weight: var(--font-weight-extrabold);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: var(--tracking-tighter);
+    line-height: 1;
+    color: var(--tr-accent);
+  }
+
+  .c-points__no {
+    font-size: var(--text-xs);
+    font-weight: var(--font-weight-bold);
+    color: var(--tr-accent);
+  }
+
+  .c-points__title {
+    font-size: var(--text-lg);
+    font-weight: var(--font-weight-bold);
+  }
+
+  .c-points__desc {
+    font-size: var(--text-sm);
+    color: var(--tr-ink-soft);
+  }
+
+  .c-points__where {
+    font-size: var(--text-xs);
+    color: var(--tr-ink-soft);
+  }
+
+  @media (max-width: 1023px) {
+    .c-points {
+      --cols: 2;
+    }
+  }
+
+  @media (max-width: 599px) {
+    .c-points,
+    .c-points--2 {
+      --cols: 1;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .c-points__item {
+      transition: none;
+    }
+  }
+}

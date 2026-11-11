@@ -422,3 +422,47 @@
     --ui-switch-thumb-on: oklch(0.205 0 0);
   }
 }
+
+/* ===================================================================
+   요즘 UI 데모(trends) 전용 의미 토큰 — 이 데모의 CSS는 --tr-* 만 쓴다
+   밝은 종이 바탕 + 먹색 글자 + 한 가지 강조색(주황), 벤토·푸터는 밤색 바탕
+   =================================================================== */
+@layer tokens {
+  :root {
+    --font-sans: "Pretendard Variable", Pretendard, var(--font-system);
+    --tr-paper: oklch(0.975 0.004 85);
+    --tr-paper-2: oklch(0.935 0.007 85);
+    --tr-paper-3: oklch(0.89 0.009 85);
+    --tr-ink: oklch(0.2 0.012 270);
+    --tr-ink-soft: oklch(0.47 0.014 270);
+    --tr-line: oklch(0.2 0.012 270 / 12%);
+    --tr-night: oklch(0.155 0.01 270);
+    --tr-night-2: oklch(0.205 0.012 270);
+    --tr-night-3: oklch(0.26 0.014 270);
+    --tr-night-line: oklch(1 0 0 / 10%);
+    --tr-on-night: oklch(0.965 0.005 85);
+    --tr-on-night-soft: oklch(0.7 0.012 270);
+    --tr-accent: oklch(0.66 0.21 34);
+    --tr-accent-soft: oklch(0.66 0.21 34 / 14%);
+    --tr-accent-glow: oklch(0.7 0.2 40 / 55%);
+    --tr-lime: oklch(0.91 0.2 122);
+    --tr-violet: oklch(0.58 0.23 288);
+    --tr-sky: oklch(0.8 0.1 235);
+    --tr-rose: oklch(0.8 0.1 10);
+    --tr-white: oklch(1 0 0);
+    --tr-glass: oklch(0.985 0.003 85 / 72%);
+    --tr-glass-night: oklch(0.2 0.012 270 / 72%);
+    --tr-veil: oklch(0.155 0.01 270 / 55%);
+    --tr-success: oklch(0.7 0.17 150);
+    --tr-danger: oklch(0.62 0.22 25);
+    --tr-shadow-float: 0 12px 32px -12px oklch(0.2 0.012 270 / 28%), 0 2px 6px oklch(0.2 0.012 270 / 8%);
+    --tr-shadow-pop: 0 24px 60px -20px oklch(0.2 0.012 270 / 40%);
+    --tr-ease: cubic-bezier(0.22, 1, 0.36, 1);
+    --tr-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+    --tr-dur: 450ms;
+    --tr-dur-fast: 220ms;
+    --tr-nav-h: 3.5rem;
+    --tr-stage-h: 30rem;
+    --tr-blur: 14px;
+  }
+}

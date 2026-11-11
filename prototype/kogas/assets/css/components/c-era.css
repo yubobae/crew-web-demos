@@ -1,0 +1,164 @@
+/* 연대기: 시대 하나 = 왼쪽(붙어 따라오는 연도·제목·시대 영상) + 오른쪽(사건 목록: 세로선 위 점, 사진 사건은 카드).
+   사건은 화면에 들어오며 하나씩 떠오른다(reveal.js가 is-ready·is-in). 휴대폰은 한 줄로 쌓인다. */
+@layer components {
+  .c-era {
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    gap: clamp(var(--space-8), 6vw, var(--space-24));
+    padding-block: clamp(var(--space-16), 8vw, var(--space-24));
+    border-top: 1px solid var(--kg-line);
+  }
+
+  .c-era__side {
+    position: sticky;
+    top: calc(var(--kg-header-h) + var(--space-16));
+    align-self: start;
+    display: grid;
+    gap: var(--space-4);
+  }
+
+  .c-era__years {
+    font-size: clamp(var(--text-4xl), 1.4rem + 3.4vw, var(--text-7xl));
+    font-weight: var(--font-weight-black);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: var(--tracking-tighter);
+    line-height: 1;
+    color: var(--kg-blue);
+  }
+
+  .c-era__dash {
+    color: var(--kg-teal);
+  }
+
+  .c-era__title {
+    font-size: clamp(var(--text-xl), 1rem + 1vw, var(--text-3xl));
+    font-weight: var(--font-weight-bold);
+    letter-spacing: var(--tracking-tight);
+  }
+
+  .c-era__count {
+    font-size: var(--text-sm);
+    color: var(--kg-ink-soft);
+  }
+
+  .c-era__list {
+    position: relative;
+    display: grid;
+    gap: var(--space-1);
+    padding-left: var(--space-8);
+  }
+
+  /* 세로선 */
+  .c-era__list::before {
+    content: "";
+    position: absolute;
+    top: var(--space-2);
+    bottom: var(--space-2);
+    left: var(--space-2);
+    width: 2px;
+    background: linear-gradient(var(--kg-sky), var(--kg-teal-soft));
+    border-radius: var(--radius-full);
+  }
+
+  .c-era__event {
+    position: relative;
+    display: grid;
+    grid-template-columns: 5.5rem minmax(0, 1fr);
+    gap: var(--space-4);
+    padding-block: var(--space-3);
+    transition:
+      opacity 700ms var(--tr-ease),
+      transform 800ms var(--tr-ease);
+  }
+
+  .c-era.is-ready .c-era__event:not(.is-in) {
+    opacity: 0;
+    transform: translateX(var(--space-6));
+  }
+
+  /* 점 */
+  .c-era__event::before {
+    content: "";
+    position: absolute;
+    top: calc(var(--space-3) + 0.4em);
+    left: calc(var(--space-8) * -1 + var(--space-2) - 4px);
+    width: 10px;
+    aspect-ratio: 1;
+    background: var(--kg-white);
+    border: 2px solid var(--kg-blue);
+    border-radius: var(--radius-full);
+  }
+
+  .c-era__date {
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-bold);
+    font-variant-numeric: tabular-nums;
+    color: var(--kg-blue);
+  }
+
+  .c-era__what {
+    color: var(--kg-ink);
+  }
+
+  /* 사진이 있는 사건: 카드로 크게 */
+  .c-era__event--photo {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-3);
+    margin-block: var(--space-4);
+    padding: var(--space-3) var(--space-3) var(--space-5);
+    background: var(--kg-white);
+    border: 1px solid var(--kg-line);
+    border-radius: var(--radius-2xl);
+    box-shadow: var(--kg-shadow);
+  }
+
+  .c-era__event--photo::before {
+    top: var(--space-6);
+    border-color: var(--kg-teal);
+    background: var(--kg-teal);
+  }
+
+  .c-era__photo {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    border-radius: var(--radius-xl);
+  }
+
+  .c-era__event--photo .c-era__date,
+  .c-era__event--photo .c-era__what,
+  .c-era__desc {
+    padding-inline: var(--space-2);
+  }
+
+  .c-era__event--photo .c-era__what {
+    font-size: var(--text-lg);
+    font-weight: var(--font-weight-bold);
+  }
+
+  .c-era__desc {
+    font-size: var(--text-sm);
+    color: var(--kg-ink-soft);
+  }
+
+  @media (max-width: 819px) {
+    .c-era {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .c-era__side {
+      position: static;
+    }
+
+    .c-era__event {
+      grid-template-columns: 4.5rem minmax(0, 1fr);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .c-era__event {
+      transition: none;
+    }
+  }
+}

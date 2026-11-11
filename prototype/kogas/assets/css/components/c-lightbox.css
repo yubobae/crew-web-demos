@@ -1,0 +1,97 @@
+/* 크게 보기(<dialog>): 사진이 살짝 커지며 나타나고, ← → 버튼·키·휴대폰 밀기로 넘긴다. 번호 표시(3 / 48). lightbox.js */
+@layer components {
+  .c-lightbox {
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    max-height: 100%;
+    margin: 0;
+    padding: var(--space-4);
+    color: var(--kg-white);
+    background: transparent;
+    border: 0;
+    opacity: 0;
+    transition:
+      opacity var(--tr-dur) var(--tr-ease),
+      overlay var(--tr-dur) allow-discrete,
+      display var(--tr-dur) allow-discrete;
+  }
+
+  .c-lightbox[open] {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    gap: var(--space-3);
+    opacity: 1;
+  }
+
+  @starting-style {
+    .c-lightbox[open] {
+      opacity: 0;
+    }
+  }
+
+  .c-lightbox::backdrop {
+    background: var(--kg-scrim);
+  }
+
+  .c-lightbox__top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: var(--text-sm);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .c-lightbox__stage {
+    display: grid;
+    place-items: center;
+    min-height: 0;
+  }
+
+  .c-lightbox__img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    border-radius: var(--radius-xl);
+    animation: c-lightbox-in 450ms var(--tr-ease);
+  }
+
+  .c-lightbox__nav {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-3);
+  }
+
+  .c-lightbox__btn {
+    display: grid;
+    place-items: center;
+    width: var(--space-12);
+    aspect-ratio: 1;
+    color: var(--kg-ink);
+    background: var(--kg-white);
+    border-radius: var(--radius-full);
+    transition: transform var(--tr-dur-fast) var(--tr-spring);
+  }
+
+  .c-lightbox__btn:active {
+    transform: scale(0.92);
+  }
+
+  @keyframes c-lightbox-in {
+    from {
+      opacity: 0;
+      transform: scale(0.96);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .c-lightbox,
+    .c-lightbox__btn {
+      transition: none;
+    }
+
+    .c-lightbox__img {
+      animation: none;
+    }
+  }
+}

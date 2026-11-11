@@ -1,0 +1,55 @@
+/* 숫자 묶음: 큰 숫자가 굴러 오르고(count-up.js), 아래 이름·기준일. 칸 사이 세로선. */
+@layer components {
+  .c-stat {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    border-top: 1px solid var(--kg-line);
+  }
+
+  .c-stat__item {
+    display: grid;
+    gap: var(--space-2);
+    padding: var(--space-8) var(--space-6) var(--space-6) 0;
+  }
+
+  .c-stat__item + .c-stat__item {
+    padding-left: var(--space-6);
+    border-left: 1px solid var(--kg-line);
+  }
+
+  .c-stat__num {
+    font-size: clamp(var(--text-4xl), 1.4rem + 2.6vw, var(--text-6xl));
+    font-weight: var(--font-weight-extrabold);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: var(--tracking-tighter);
+    line-height: 1;
+    color: var(--kg-blue);
+  }
+
+  .c-stat__unit {
+    margin-left: var(--space-1);
+    font-size: 0.4em;
+    font-weight: var(--font-weight-bold);
+    color: var(--kg-ink);
+  }
+
+  .c-stat__label {
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .c-stat__note {
+    font-size: var(--text-xs);
+    color: var(--kg-ink-soft);
+  }
+
+  @media (max-width: 819px) {
+    .c-stat {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .c-stat__item:nth-child(3) {
+      padding-left: 0;
+      border-left: 0;
+    }
+  }
+}

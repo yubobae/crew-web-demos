@@ -1,0 +1,53 @@
+/* 시대 바로가기: 헤더 아래 붙어 따라오는 연도 알약 줄. 지금 보는 시대가 채워진다(story-steps.js의 is-active).
+   휴대폰은 옆으로 밀어 본다. */
+@layer components {
+  .c-era-nav {
+    position: sticky;
+    top: calc(var(--tr-nav-h) + var(--space-5));
+    z-index: 5;
+    display: flex;
+    justify-content: center;
+    padding-block: var(--space-2);
+    pointer-events: none;
+  }
+
+  .c-era-nav__list {
+    display: flex;
+    gap: var(--space-1);
+    max-width: 100%;
+    padding: var(--space-1);
+    overflow-x: auto;
+    background: var(--kg-glass);
+    border: 1px solid var(--kg-line);
+    border-radius: var(--radius-full);
+    box-shadow: var(--kg-shadow);
+    backdrop-filter: blur(12px);
+    pointer-events: auto;
+    scrollbar-width: none;
+  }
+
+  .c-era-nav__link {
+    flex: none;
+    padding: var(--space-2) var(--space-4);
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-semibold);
+    font-variant-numeric: tabular-nums;
+    color: var(--kg-ink-soft);
+    text-decoration: none;
+    border-radius: var(--radius-full);
+    transition:
+      color var(--tr-dur-fast) var(--tr-ease),
+      background-color var(--tr-dur) var(--tr-ease);
+  }
+
+  .c-era-nav__link.is-active {
+    color: var(--kg-white);
+    background: var(--kg-blue);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .c-era-nav__link {
+      transition: none;
+    }
+  }
+}

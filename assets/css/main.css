@@ -5,10 +5,20 @@
 @import "base/reset.css";
 @import "base/document.css";
 
-@import "layout/l-hub.css";
+@import "layout/l-curtain.css";
+@import "layout/l-section.css";
 
-@import "components/c-button.css";
-@import "components/c-badge.css";
-@import "components/c-demo-card.css";
+@import "components/c-compare.css";
+@import "components/c-curtain-footer.css";
+@import "components/c-device.css";
+@import "components/c-folio-hero.css";
+@import "components/c-page-intro.css";
+@import "components/c-page-outro.css";
+@import "components/c-pagemap.css";
+@import "components/c-points.css";
+@import "components/c-showcase.css";
+@import "components/c-site-nav.css";
+@import "components/c-spec.css";
+@import "components/c-work.css";
 
 @import "utilities/u-visually-hidden.css";

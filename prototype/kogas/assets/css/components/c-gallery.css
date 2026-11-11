@@ -1,0 +1,49 @@
+/* 사진 갤러리: 높이가 다른 사진을 벽돌처럼 쌓는다(CSS columns). 누르면 크게 보기(c-lightbox).
+   올리면 사진이 당겨지고 돋보기 표시가 나온다. 4칸 → 3칸 → 2칸. */
+@layer components {
+  .c-gallery {
+    columns: 4 16rem;
+    column-gap: var(--space-3);
+  }
+
+  .c-gallery__item {
+    display: block;
+    width: 100%;
+    margin-bottom: var(--space-3);
+    overflow: hidden;
+    border-radius: var(--radius-2xl);
+    break-inside: avoid;
+    cursor: zoom-in;
+  }
+
+  .c-gallery__img {
+    display: block;
+    width: 100%;
+    height: auto;
+    transition: transform 800ms var(--tr-ease);
+  }
+
+  @media (hover: hover) {
+    .c-gallery__item:hover .c-gallery__img {
+      transform: scale(1.05);
+    }
+  }
+
+  @media (max-width: 599px) {
+    .c-gallery {
+      columns: 2;
+      column-gap: var(--space-2);
+    }
+
+    .c-gallery__item {
+      margin-bottom: var(--space-2);
+      border-radius: var(--radius-xl);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .c-gallery__img {
+      transition: none;
+    }
+  }
+}

@@ -1,0 +1,64 @@
+/* 기기 목업: PC(브라우저 창), 태블릿, 휴대폰 틀 안에 실제 화면 캡처를 넣는다. 크기는 놓인 자리 폭을 따른다.
+   --pc: 위에 점 셋 막대 / --tab, --mo: 둥근 검은 테 */
+@layer components {
+  .c-device {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    background: var(--tr-white);
+    box-shadow: var(--tr-shadow-pop);
+  }
+
+  .c-device--pc {
+    padding-top: var(--space-6);
+    border: 1px solid var(--tr-line);
+    border-radius: var(--radius-2xl);
+  }
+
+  /* 브라우저 막대의 점 셋 */
+  .c-device--pc::before {
+    content: "";
+    position: absolute;
+    top: var(--space-2);
+    left: var(--space-3);
+    width: 2.5rem;
+    height: var(--space-2);
+    background:
+      radial-gradient(circle, var(--tr-paper-3) 3.5px, transparent 4px) 0 50% / 0.83rem 100% repeat-x;
+  }
+
+  .c-device--tab,
+  .c-device--mo {
+    background: var(--tr-ink);
+    border: 6px solid var(--tr-ink);
+  }
+
+  .c-device--tab {
+    border-radius: var(--radius-3xl);
+  }
+
+  .c-device--mo {
+    border-radius: 2rem;
+  }
+
+  .c-device__img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .c-device--mo .c-device__img {
+    border-radius: 1.5rem;
+  }
+
+  .c-device--tab .c-device__img {
+    border-radius: var(--radius-2xl);
+  }
+
+  /* 화면 일부만 보여 줄 때(긴 캡처) */
+  .c-device--crop .c-device__img {
+    aspect-ratio: var(--ratio, 16 / 10);
+    object-fit: cover;
+    object-position: top;
+  }
+}
