@@ -15,8 +15,8 @@
   <link rel="icon" href="favicon.ico" sizes="48x48">
   <link rel="icon" type="image/png" sizes="32x32" href="assets/media/icons/favicon-32.png">
   <link rel="apple-touch-icon" href="assets/media/icons/apple-touch-icon.png">
-  <link rel="stylesheet" href="assets/css/main.css?v=202611120130">
-  <script type="module" src="assets/js/main.js?v=202611120130"></script>
+  <link rel="stylesheet" href="assets/css/main.css?v=202611120220">
+  <script type="module" src="assets/js/main.js?v=202611120220"></script>
 </head>
 <body data-effect="cursor scroll-progress">
   <a class="u-visually-hidden" href="#main">본문 바로가기</a>
@@ -128,8 +128,8 @@
           <div>
             <p class="c-pagemap__no">PAGE 01 · <span class="c-pagemap__file">index.html</span></p>
             <h3 class="c-pagemap__title">메인</h3>
-            <ul class="c-pagemap__list"><li>사진이 세로 다섯 조각으로 열리며 바뀌는 첫 화면(설명·진행 막대)</li><li>문장 속에 알약 사진이 열리는 소개</li><li>30년을 여섯 개의 동그라미 숫자로(굴러 오르는 숫자)</li><li>네 시대를 옆으로 넘기는 가로 레일</li><li>부채꼴로 흩어진 이야기 카드, 기념영상, 아카이브 세 칸</li></ul>
-            <p class="c-pagemap__chips"><span class="c-pagemap__chip">슬랫 열림</span><span class="c-pagemap__chip">알약 사진</span><span class="c-pagemap__chip">숫자 굴리기</span><span class="c-pagemap__chip">가로 레일</span><span class="c-pagemap__chip">가벼운 유튜브</span></p>
+            <ul class="c-pagemap__list"><li>사진이 세로 다섯 조각으로 열리며 바뀌는 첫 화면(설명·진행 막대)</li><li>휠을 살짝만 돌려도 장면이 넘어가며 네 시대 카드가 부채꼴로 쌓임(세로 진행 표시)</li><li>문장 속에 알약 사진이 열리는 소개</li><li>30년을 여섯 개의 동그라미 숫자로(굴러 오르는 숫자)</li><li>네 시대를 옆으로 넘기는 가로 레일</li><li>부채꼴로 흩어진 이야기 카드, 기념영상, 아카이브 세 칸</li></ul>
+            <p class="c-pagemap__chips"><span class="c-pagemap__chip">슬랫 열림</span><span class="c-pagemap__chip">장면 넘김</span><span class="c-pagemap__chip">알약 사진</span><span class="c-pagemap__chip">숫자 굴리기</span><span class="c-pagemap__chip">가로 레일</span><span class="c-pagemap__chip">가벼운 유튜브</span></p>
             <div class="c-btn-row" data-effect="magnetic"><a class="c-btn c-btn--line" href="prototype/sgwon/index.html" rel="nofollow noopener" target="_blank">이 쪽 보기 <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M19 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5"/></svg></a></div>
           </div>
         </article>
@@ -194,8 +194,8 @@
       </div>
       <dl class="c-spec">
         <div class="c-spec__row"><dt class="c-spec__key">구조</dt><dd class="c-spec__val">정적 HTML 6쪽. 원본 사이트에서 모은 자료(JSON)로 Node 스크립트가 쪽을 조립해요. 서버 프로그램이 필요 없어 고객 서버 어디에나 올릴 수 있어요.</dd></div>
-        <div class="c-spec__row"><dt class="c-spec__key">CSS</dt><dd class="c-spec__val"><span class="c-spec__code">@layer</span> 7단계, BEM 이름, 블록 하나 = 파일 하나(부품 25개). 색은 <span class="c-spec__code">--sg-*</span> 토큰만 사용. 세로 슬랫 마스크(<span class="c-spec__code">@property</span>로 열린 폭을 애니메이션), <span class="c-spec__code">scroll-snap</span> 가로 레일, 접이식 <span class="c-spec__code">details name</span> 문답, <span class="c-spec__code">flex-grow</span> 펼침 세 칸, 알약 사진이 열리는 문장, <span class="c-spec__code">@starting-style</span> 뷰어.</dd></div>
-        <div class="c-spec__row"><dt class="c-spec__key">JS 모듈</dt><dd class="c-spec__val">프레임워크 없이 ES 모듈 8개를 <span class="c-spec__code">data-module</span>·<span class="c-spec__code">data-effect</span>로 연결: <span class="c-spec__code">rail</span> <span class="c-spec__code">show-more</span> <span class="c-spec__code">site-nav</span> <span class="c-spec__code">tab-panels</span> <span class="c-spec__code">viewer</span> <span class="c-spec__code">yt-lite</span> <span class="c-spec__code">count-up</span> <span class="c-spec__code">reveal</span></dd></div>
+        <div class="c-spec__row"><dt class="c-spec__key">CSS</dt><dd class="c-spec__val"><span class="c-spec__code">@layer</span> 7단계, BEM 이름, 블록 하나 = 파일 하나(부품 26개). 색은 <span class="c-spec__code">--sg-*</span> 토큰만 사용. 세로 슬랫 마스크(<span class="c-spec__code">@property</span>로 열린 폭을 애니메이션), <span class="c-spec__code">scroll-snap</span> 가로 레일, 접이식 <span class="c-spec__code">details name</span> 문답, <span class="c-spec__code">flex-grow</span> 펼침 세 칸, 알약 사진이 열리는 문장, <span class="c-spec__code">@starting-style</span> 뷰어.</dd></div>
+        <div class="c-spec__row"><dt class="c-spec__key">JS 모듈</dt><dd class="c-spec__val">프레임워크 없이 ES 모듈 10개를 <span class="c-spec__code">data-module</span>·<span class="c-spec__code">data-effect</span>로 연결: <span class="c-spec__code">rail</span> <span class="c-spec__code">show-more</span> <span class="c-spec__code">site-nav</span> <span class="c-spec__code">tab-panels</span> <span class="c-spec__code">viewer</span> <span class="c-spec__code">yt-lite</span> <span class="c-spec__code">count-up</span> <span class="c-spec__code">pin-progress</span> <span class="c-spec__code">reveal</span> <span class="c-spec__code">scene-snap</span></dd></div>
         <div class="c-spec__row"><dt class="c-spec__key">사진·영상</dt><dd class="c-spec__val">원본 사진 218장(썸네일 별도)을 WebP로 줄여 합계 8.9MB. 모든 그림에 width·height, 화면 밖은 lazy. 유튜브는 누를 때만 불러오는 가벼운 방식(쿠키 줄인 주소).</dd></div>
         <div class="c-spec__row"><dt class="c-spec__key">반응형</dt><dd class="c-spec__val">휴대폰 우선. 360·390·820·1024·1280px에서 가로 넘침 0. 탭은 옆으로 밀고, 레일은 스냅, 뒤따라오는 사진·소개는 휴대폰에서 풀어 위로.</dd></div>
         <div class="c-spec__row"><dt class="c-spec__key">성능</dt><dd class="c-spec__val">움직임은 transform·opacity 위주, 스크롤·포인터 처리는 프레임당 한 번(rAF). 실제 브라우저에서 스크롤 프레임을 재서 긴 프레임 0 확인.</dd></div>

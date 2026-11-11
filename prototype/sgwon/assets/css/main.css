@@ -1,35 +1,36 @@
 /* 진입점: 레이어 순서 선언 + 불러오기만 둔다 */
 @layer reset, tokens, base, layout, components, sections, utilities;
 
-@import "tokens.css?v=202611120130";
-@import "base/reset.css?v=202611120130";
-@import "base/document.css?v=202611120130";
+@import "tokens.css?v=202611120220";
+@import "base/reset.css?v=202611120220";
+@import "base/document.css?v=202611120220";
 
-@import "layout/l-sg-footer.css?v=202611120130";
-@import "layout/l-sg-section.css?v=202611120130";
+@import "layout/l-sg-footer.css?v=202611120220";
+@import "layout/l-sg-section.css?v=202611120220";
 
-@import "components/c-arc.css?v=202611120130";
-@import "components/c-cta-photo.css?v=202611120130";
-@import "components/c-dock.css?v=202611120130";
-@import "components/c-emblem.css?v=202611120130";
-@import "components/c-era-head.css?v=202611120130";
-@import "components/c-fan.css?v=202611120130";
-@import "components/c-interview.css?v=202611120130";
-@import "components/c-ledger.css?v=202611120130";
-@import "components/c-letter.css?v=202611120130";
-@import "components/c-mosaic.css?v=202611120130";
-@import "components/c-next.css?v=202611120130";
-@import "components/c-rail.css?v=202611120130";
-@import "components/c-sg-head.css?v=202611120130";
-@import "components/c-slats.css?v=202611120130";
-@import "components/c-stamps.css?v=202611120130";
-@import "components/c-statement.css?v=202611120130";
-@import "components/c-story-card.css?v=202611120130";
-@import "components/c-tabs.css?v=202611120130";
-@import "components/c-topbar.css?v=202611120130";
-@import "components/c-tri.css?v=202611120130";
-@import "components/c-viewer.css?v=202611120130";
-@import "components/c-yt.css?v=202611120130";
-@import "components/c-zig.css?v=202611120130";
+@import "components/c-arc.css?v=202611120220";
+@import "components/c-cta-photo.css?v=202611120220";
+@import "components/c-dock.css?v=202611120220";
+@import "components/c-emblem.css?v=202611120220";
+@import "components/c-era-head.css?v=202611120220";
+@import "components/c-fan.css?v=202611120220";
+@import "components/c-interview.css?v=202611120220";
+@import "components/c-ledger.css?v=202611120220";
+@import "components/c-letter.css?v=202611120220";
+@import "components/c-mosaic.css?v=202611120220";
+@import "components/c-next.css?v=202611120220";
+@import "components/c-rail.css?v=202611120220";
+@import "components/c-scene.css?v=202611120220";
+@import "components/c-sg-head.css?v=202611120220";
+@import "components/c-slats.css?v=202611120220";
+@import "components/c-stamps.css?v=202611120220";
+@import "components/c-statement.css?v=202611120220";
+@import "components/c-story-card.css?v=202611120220";
+@import "components/c-tabs.css?v=202611120220";
+@import "components/c-topbar.css?v=202611120220";
+@import "components/c-tri.css?v=202611120220";
+@import "components/c-viewer.css?v=202611120220";
+@import "components/c-yt.css?v=202611120220";
+@import "components/c-zig.css?v=202611120220";
 
-@import "utilities/u-visually-hidden.css?v=202611120130";
+@import "utilities/u-visually-hidden.css?v=202611120220";

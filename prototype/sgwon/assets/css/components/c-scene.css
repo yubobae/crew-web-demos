@@ -1,0 +1,212 @@
+/* 메인 첫 화면 장면 넘김: 첫 화면(사진 슬랫)이 화면에 붙어 있는 동안 스크롤(또는 휠 한 번)하면
+   ① 사진 위로 따뜻한 먹색 막이 내려오고 ② 네 시대 카드가 아래에서 한 장씩 올라와 부채꼴로 쌓이며 ③ 오른쪽 세로 진행 표시가 차오른다.
+   진행률은 pin-progress.js 의 --pp(0~1), 휠·키로 한 단계씩 넘기는 건 scene-snap.js.
+   움직임 줄이기·낮은 화면에서는 붙지 않고 평소 첫 화면만 보인다(아래 시대 레일이 같은 역할). */
+@layer components {
+  .c-scene {
+    --pp: 0;
+  }
+
+  .c-scene__pin {
+    position: relative;
+  }
+
+  .c-scene__veil,
+  .c-scene__stack,
+  .c-scene__pager,
+  .c-scene__title {
+    display: none;
+  }
+
+  @media (prefers-reduced-motion: no-preference) and (min-height: 40rem) {
+    .c-scene {
+      height: 300svh;
+    }
+
+    .c-scene__pin {
+      position: sticky;
+      top: 0;
+      height: 100svh;
+      overflow: hidden;
+    }
+
+    .c-scene__veil {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      display: block;
+      pointer-events: none;
+      background: var(--sg-scrim);
+      opacity: clamp(0, calc(var(--pp) * 1.5), 1);
+    }
+
+    .c-scene__title {
+      position: absolute;
+      top: calc(var(--sg-top-h) + var(--space-6));
+      left: 0;
+      right: 0;
+      z-index: 2;
+      display: block;
+      padding-inline: var(--gutter);
+      font-size: clamp(var(--text-2xl), 1rem + 2vw, var(--text-5xl));
+      font-weight: var(--font-weight-black);
+      letter-spacing: var(--tracking-tighter);
+      text-align: center;
+      color: var(--sg-white);
+      opacity: clamp(0, calc((var(--pp) - 0.05) * 4), 1);
+      transform: translateY(calc((1 - clamp(0, calc((var(--pp) - 0.05) * 4), 1)) * var(--space-6)));
+    }
+
+    .c-scene__stack {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      display: block;
+      pointer-events: none;
+    }
+
+    .c-scene__card {
+      --i: 0;
+      --q: clamp(0, calc((var(--pp) - 0.08 - var(--i) * 0.2) / 0.24), 1);
+      --dx: clamp(1.25rem, 11vw, 12rem);
+      position: absolute;
+      top: 54%;
+      left: 50%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      width: min(70vw, 20rem, calc(50svh * 0.75));
+      aspect-ratio: 3 / 4;
+      padding: var(--space-5);
+      overflow: hidden;
+      isolation: isolate;
+      color: var(--sg-white);
+      text-decoration: none;
+      border: 1px solid var(--sg-line-light);
+      border-radius: var(--radius-3xl);
+      box-shadow: var(--sg-shadow);
+      opacity: var(--q);
+      pointer-events: auto;
+      transform: translate(calc(-50% + (var(--i) - 1.5) * var(--dx)), calc(-50% + (1 - var(--q)) * 80svh))
+        rotate(calc((var(--i) - 1.5) * 4deg * var(--q)));
+    }
+
+    .c-scene__card:nth-child(2) {
+      --i: 1;
+    }
+
+    .c-scene__card:nth-child(3) {
+      --i: 2;
+    }
+
+    .c-scene__card:nth-child(4) {
+      --i: 3;
+    }
+
+    .c-scene__img {
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .c-scene__card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background: linear-gradient(to top, var(--sg-shade-strong) 0%, transparent 65%);
+    }
+
+    .c-scene__years {
+      font-family: var(--font-serif);
+      font-size: clamp(var(--text-2xl), 1rem + 1.2vw, var(--text-4xl));
+      font-weight: var(--font-weight-black);
+      font-variant-numeric: tabular-nums;
+      letter-spacing: var(--tracking-tighter);
+      line-height: 1;
+    }
+
+    .c-scene__name {
+      margin-top: var(--space-2);
+      font-size: var(--text-sm);
+      font-weight: var(--font-weight-semibold);
+      line-height: var(--leading-snug);
+      opacity: 0.92;
+    }
+
+    .c-scene__pager {
+      position: absolute;
+      top: 50%;
+      right: var(--gutter);
+      z-index: 2;
+      display: grid;
+      gap: var(--space-5);
+      padding: 0;
+      margin: 0;
+      list-style: none;
+      transform: translateY(-50%);
+    }
+
+    .c-scene__pager::before {
+      content: "";
+      position: absolute;
+      top: var(--space-1);
+      bottom: var(--space-1);
+      left: 50%;
+      width: 2px;
+      background: var(--sg-line-light);
+      transform: translateX(-50%);
+    }
+
+    .c-scene__pager::after {
+      content: "";
+      position: absolute;
+      top: var(--space-1);
+      bottom: var(--space-1);
+      left: 50%;
+      width: 2px;
+      background: var(--sg-sun);
+      transform: translateX(-50%) scaleY(var(--pp));
+      transform-origin: top;
+    }
+
+    .c-scene__dot {
+      --i: 0;
+      position: relative;
+      z-index: 1;
+      width: var(--space-3);
+      aspect-ratio: 1;
+      background: var(--sg-scrim);
+      border: 2px solid var(--sg-line-light);
+      border-radius: var(--radius-full);
+      opacity: clamp(0.45, calc(0.45 + (var(--pp) - var(--i) * 0.2) * 6), 1);
+    }
+
+    .c-scene__dot:nth-child(2) {
+      --i: 1;
+    }
+
+    .c-scene__dot:nth-child(3) {
+      --i: 2;
+    }
+
+    .c-scene__dot:nth-child(4) {
+      --i: 3;
+    }
+
+    @media (min-width: 820px) {
+      .c-scene__card {
+        --dx: clamp(8rem, 15vw, 12rem);
+      }
+    }
+
+    @media (max-width: 819px) {
+      .c-scene__pager {
+        display: none;
+      }
+    }
+  }
+}
