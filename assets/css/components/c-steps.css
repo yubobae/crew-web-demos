@@ -1,0 +1,126 @@
+/* 일하는 방식: 다섯 단계가 가로선 위 점으로 이어지고, 화면에 들어오면 선이 왼쪽부터 그어지며 단계가 차례로 떠오른다.
+   단계마다 시기·하는 일·결과물. 태블릿 이하는 세로 줄로. reveal.js가 root에 is-ready·is-in. */
+@layer components {
+  .c-steps {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: var(--space-4);
+    padding-top: var(--space-10);
+    list-style: none;
+  }
+
+  .c-steps::before {
+    content: "";
+    position: absolute;
+    top: calc(var(--space-2) - 1px);
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--tr-accent), var(--tr-violet));
+    transform-origin: left;
+    transition: transform 1600ms var(--tr-ease);
+  }
+
+  .c-steps.is-ready:not(.is-in)::before {
+    transform: scaleX(0);
+  }
+
+  .c-steps__item {
+    --i: 0;
+    position: relative;
+    display: grid;
+    align-content: start;
+    gap: var(--space-2);
+    transition:
+      opacity 800ms calc(300ms + var(--i) * 150ms) var(--tr-ease),
+      transform 900ms calc(300ms + var(--i) * 150ms) var(--tr-ease);
+  }
+
+  .c-steps.is-ready:not(.is-in) .c-steps__item {
+    opacity: 0;
+    transform: translateY(var(--space-6));
+  }
+
+  .c-steps__item:nth-child(2) { --i: 1; }
+  .c-steps__item:nth-child(3) { --i: 2; }
+  .c-steps__item:nth-child(4) { --i: 3; }
+  .c-steps__item:nth-child(5) { --i: 4; }
+
+  /* 선 위의 점 */
+  .c-steps__item::before {
+    content: "";
+    position: absolute;
+    top: calc(var(--space-10) * -1);
+    left: 0;
+    width: var(--space-4);
+    aspect-ratio: 1;
+    background: var(--tr-paper);
+    border: 3px solid var(--tr-accent);
+    border-radius: var(--radius-full);
+  }
+
+  .c-steps__when {
+    font-size: var(--text-xs);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: var(--tracking-wide);
+    color: var(--tr-accent);
+  }
+
+  .c-steps__title {
+    font-size: var(--text-xl);
+    font-weight: var(--font-weight-bold);
+  }
+
+  .c-steps__desc {
+    font-size: var(--text-sm);
+    color: var(--tr-ink-soft);
+  }
+
+  .c-steps__out {
+    justify-self: start;
+    margin-top: var(--space-2);
+    padding: var(--space-1) var(--space-3);
+    font-size: var(--text-xs);
+    font-weight: var(--font-weight-semibold);
+    background: var(--tr-white);
+    border: 1px solid var(--tr-line);
+    border-radius: var(--radius-full);
+  }
+
+  @media (max-width: 1023px) {
+    .c-steps {
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-8);
+      padding-top: 0;
+      padding-left: var(--space-10);
+    }
+
+    .c-steps::before {
+      top: 0;
+      bottom: 0;
+      left: calc(var(--space-2) - 1px);
+      right: auto;
+      width: 2px;
+      height: auto;
+      background: linear-gradient(var(--tr-accent), var(--tr-violet));
+      transform-origin: top;
+    }
+
+    .c-steps.is-ready:not(.is-in)::before {
+      transform: scaleY(0);
+    }
+
+    .c-steps__item::before {
+      top: var(--space-0-5);
+      left: calc(var(--space-10) * -1);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .c-steps::before,
+    .c-steps__item {
+      transition: none;
+    }
+  }
+}

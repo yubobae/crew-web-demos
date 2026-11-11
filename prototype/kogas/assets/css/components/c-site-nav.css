@@ -258,3 +258,20 @@
     border-color: var(--tr-night-line);
   }
 }
+
+/* 사진 배경 히어로 위: 맨 위(줄어들기 전)에서는 글자를 희게 */
+@layer components {
+  .c-site-nav--photo:not(.is-condensed) .c-site-nav__logo,
+  .c-site-nav--photo:not(.is-condensed) .c-site-nav__link {
+    color: var(--kg-white);
+  }
+
+  .c-site-nav--photo:not(.is-condensed) .c-site-nav__glider {
+    background: var(--kg-glass-dark);
+  }
+
+  .c-site-nav--photo:not(.is-condensed) .c-site-nav__menu {
+    color: var(--kg-blue);
+    background: var(--kg-white);
+  }
+}

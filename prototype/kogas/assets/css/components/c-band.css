@@ -1,0 +1,66 @@
+/* 사진 띠: 구역 사이를 화면 폭 가득 사진으로 끊어 웅장함을 더한다. 사진은 스크롤보다 느리게 움직이고(패럴랙스, --sp),
+   가운데 큰 문장과 숫자. scroll-progress.js가 --sp(0~1)를 쓴다. */
+@layer components {
+  .c-band {
+    --sp: 0.5;
+    position: relative;
+    display: grid;
+    place-items: center;
+    min-height: max(80svh, 32rem);
+    padding: var(--space-16) var(--gutter);
+    overflow: hidden;
+    isolation: isolate;
+    text-align: center;
+    color: var(--kg-white);
+    background: var(--kg-deep);
+  }
+
+  .c-band__img {
+    position: absolute;
+    inset: -12% 0;
+    z-index: -2;
+    width: 100%;
+    height: 124%;
+    object-fit: cover;
+    transform: translateY(calc((var(--sp) - 0.5) * -14%));
+    will-change: transform;
+  }
+
+  .c-band::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: radial-gradient(70% 70% at 50% 55%, var(--kg-veil), transparent);
+  }
+
+  .c-band__eyebrow {
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: var(--tracking-widest);
+    color: var(--kg-sky);
+  }
+
+  .c-band__title {
+    max-width: 18ch;
+    margin: var(--space-4) auto 0;
+    font-size: clamp(var(--text-4xl), 1.4rem + 3.6vw, var(--text-7xl));
+    font-weight: var(--font-weight-extrabold);
+    letter-spacing: var(--tracking-tighter);
+    line-height: 1.1;
+    text-wrap: balance;
+  }
+
+  .c-band__text {
+    max-width: 40ch;
+    margin: var(--space-5) auto 0;
+    font-size: var(--text-lg);
+    opacity: 0.92;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .c-band__img {
+      transform: none;
+    }
+  }
+}

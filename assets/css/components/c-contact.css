@@ -1,0 +1,90 @@
+/* 문의 구역: 어두운 둥근 판 위 큰 문장 + 버튼, 뒤에서 빛 덩어리가 천천히 떠돈다. */
+@layer components {
+  .c-contact {
+    position: relative;
+    display: grid;
+    justify-items: center;
+    gap: var(--space-6);
+    padding: clamp(var(--space-16), 9vw, var(--space-32)) var(--space-6);
+    overflow: hidden;
+    isolation: isolate;
+    text-align: center;
+    color: var(--tr-on-night);
+    background: var(--tr-night);
+    border-radius: var(--radius-4xl);
+  }
+
+  .c-contact::before {
+    content: "";
+    position: absolute;
+    inset: 40% 10% -40%;
+    z-index: -1;
+    background: radial-gradient(closest-side, var(--tr-accent-glow), transparent);
+    animation: c-contact-glow 10s var(--ease-in-out) infinite alternate;
+  }
+
+  .c-contact__eyebrow {
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--tr-on-night-soft);
+  }
+
+  .c-contact__title {
+    max-width: 16ch;
+    font-size: clamp(var(--text-4xl), 1.4rem + 4vw, var(--text-7xl));
+    font-weight: var(--font-weight-black);
+    letter-spacing: var(--tracking-tighter);
+    line-height: 1.05;
+  }
+
+  .c-contact__text {
+    max-width: 44ch;
+    color: var(--tr-on-night-soft);
+  }
+
+  .c-contact__actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-3);
+  }
+
+  .c-contact__btn {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-3) var(--space-6);
+    font-weight: var(--font-weight-semibold);
+    color: var(--tr-ink);
+    text-decoration: none;
+    background: var(--tr-lime);
+    border-radius: var(--radius-full);
+    transition: transform var(--tr-dur-fast) var(--tr-spring);
+  }
+
+  .c-contact__btn--line {
+    color: var(--tr-on-night);
+    background: none;
+    border: 1px solid var(--tr-night-line);
+  }
+
+  .c-contact__btn:active {
+    transform: scale(0.96);
+  }
+
+  @keyframes c-contact-glow {
+    to {
+      transform: translate(8%, -10%) scale(1.1);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .c-contact::before {
+      animation: none;
+    }
+
+    .c-contact__btn {
+      transition: none;
+    }
+  }
+}

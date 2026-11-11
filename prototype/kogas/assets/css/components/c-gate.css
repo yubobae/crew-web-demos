@@ -1,75 +1,133 @@
-/* 대문 히어로: 들어오면 문 두 짝(왼쪽·오른쪽 판)이 열리며 사진이 드러나고, 사진은 살짝 당겨진다.
-   큰 "40"과 제목이 한 줄씩 올라오고, 아래로 배관 선이 그려진다. CSS 애니메이션만(불러올 때 한 번). */
+/* 대문 히어로(사진 배경): 화면 가득 사진 세 장이 천천히 당겨지며(켄 번스) 6초마다 교차한다.
+   들어오면 문 두 짝이 양옆으로 열리며 사진이 드러나고, 큰 "40"과 제목이 한 줄씩 올라온다.
+   글자 쪽(왼쪽 아래)만 그라디언트로 어둡게 해 사진 전체를 무겁게 덮지 않는다. CSS 애니메이션만. */
 @layer components {
   .c-gate {
+    --cycle: 18s;
     position: relative;
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
-    align-items: center;
-    gap: clamp(var(--space-8), 5vw, var(--space-20));
-    min-height: 100svh;
-    padding: calc(var(--kg-header-h) + var(--space-10)) var(--gutter) var(--space-16);
+    align-content: end;
+    min-height: max(100svh, 40rem);
+    padding: calc(var(--kg-header-h) + var(--space-10)) var(--gutter) clamp(var(--space-12), 8vh, var(--space-20));
     overflow: hidden;
-    background:
-      radial-gradient(60% 50% at 85% 20%, var(--kg-teal-soft), transparent 70%),
-      radial-gradient(50% 50% at 10% 90%, var(--kg-blue-soft), transparent 70%),
-      var(--kg-paper);
+    isolation: isolate;
+    color: var(--kg-white);
+    background: var(--kg-deep);
   }
 
-  .c-gate__copy {
-    position: relative;
-    z-index: 1;
+  .c-gate__slide {
+    position: absolute;
+    inset: 0;
+    z-index: -3;
+    opacity: 0;
+    animation: c-gate-fade var(--cycle) linear infinite;
+  }
+
+  .c-gate__slide:nth-child(2) {
+    animation-delay: calc(var(--cycle) / 3);
+  }
+
+  .c-gate__slide:nth-child(3) {
+    animation-delay: calc(var(--cycle) / 3 * 2);
+  }
+
+  .c-gate__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    animation: c-gate-ken var(--cycle) linear infinite;
+    animation-delay: inherit;
+  }
+
+  .c-gate__shade {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    background:
+      linear-gradient(to bottom, var(--kg-veil) 0%, transparent 22%),
+      linear-gradient(to top, var(--kg-veil-strong) 0%, transparent 55%),
+      linear-gradient(to right, var(--kg-veil) 0%, transparent 60%);
+  }
+
+  /* 문 두 짝: 바탕색 판이 양옆으로 열린다(처음 한 번) */
+  .c-gate__leaf {
+    position: absolute;
+    inset: 0 50% 0 0;
+    z-index: -1;
+    background: var(--kg-paper);
+    animation: c-gate-open-l 1500ms 200ms var(--tr-ease) forwards;
+  }
+
+  .c-gate__leaf--r {
+    inset: 0 0 0 50%;
+    animation-name: c-gate-open-r;
+  }
+
+  .c-gate__inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: end;
+    gap: var(--space-8);
+    width: min(100%, 90rem);
+    margin-inline: auto;
   }
 
   .c-gate__eyebrow {
     display: inline-flex;
-    gap: var(--space-2);
+    align-items: center;
+    gap: var(--space-3);
     font-size: var(--text-sm);
     font-weight: var(--font-weight-semibold);
-    color: var(--kg-blue);
-    animation: c-gate-up 900ms 200ms var(--tr-ease) both;
+    letter-spacing: var(--tracking-wide);
+    animation: c-gate-up 900ms 900ms var(--tr-ease) both;
   }
 
-  .c-gate__num {
-    display: block;
-    font-size: clamp(7rem, 4rem + 14vw, 17rem);
-    font-weight: var(--font-weight-black);
-    letter-spacing: var(--tracking-tighter);
-    line-height: 0.85;
-    background: linear-gradient(135deg, var(--kg-blue), var(--kg-teal));
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    animation: c-gate-up 1100ms 300ms var(--tr-ease) both;
+  .c-gate__eyebrow::before {
+    content: "";
+    width: var(--space-10);
+    height: 1px;
+    background: currentColor;
   }
 
   .c-gate__title {
     margin-top: var(--space-4);
-    font-size: clamp(var(--text-3xl), 1.2rem + 2.4vw, var(--text-5xl));
+    font-size: clamp(var(--text-4xl), 1.4rem + 3.6vw, var(--text-7xl));
     font-weight: var(--font-weight-extrabold);
-    letter-spacing: var(--tracking-tight);
-    color: var(--kg-ink);
+    letter-spacing: var(--tracking-tighter);
+    line-height: 1.08;
+    text-wrap: balance;
+  }
+
+  .c-gate__num {
+    display: block;
+    font-size: clamp(8rem, 4rem + 16vw, 20rem);
+    font-weight: var(--font-weight-black);
+    letter-spacing: var(--tracking-tighter);
+    line-height: 0.8;
+    animation: c-gate-up 1200ms 700ms var(--tr-ease) both;
   }
 
   .c-gate__line {
     display: block;
     overflow: hidden;
+    padding-bottom: 0.06em;
   }
 
   .c-gate__line-in {
     display: block;
-    animation: c-gate-rise 1000ms 500ms var(--tr-ease) both;
+    animation: c-gate-rise 1100ms 1000ms var(--tr-ease) both;
   }
 
-  .c-gate__line:nth-child(2) .c-gate__line-in {
-    animation-delay: 600ms;
+  .c-gate__line:nth-child(3) .c-gate__line-in {
+    animation-delay: 1100ms;
   }
 
   .c-gate__lead {
-    max-width: 38ch;
+    max-width: 40ch;
     margin-top: var(--space-5);
-    color: var(--kg-ink-soft);
-    animation: c-gate-up 900ms 800ms var(--tr-ease) both;
+    font-size: var(--text-lg);
+    opacity: 0.9;
+    animation: c-gate-up 900ms 1300ms var(--tr-ease) both;
   }
 
   .c-gate__actions {
@@ -77,7 +135,7 @@
     flex-wrap: wrap;
     gap: var(--space-3);
     margin-top: var(--space-8);
-    animation: c-gate-up 900ms 900ms var(--tr-ease) both;
+    animation: c-gate-up 900ms 1400ms var(--tr-ease) both;
   }
 
   .c-gate__btn {
@@ -86,71 +144,81 @@
     gap: var(--space-2);
     padding: var(--space-3) var(--space-6);
     font-weight: var(--font-weight-semibold);
-    color: var(--kg-white);
+    color: var(--kg-blue);
     text-decoration: none;
-    background: var(--kg-blue);
+    background: var(--kg-white);
     border-radius: var(--radius-full);
     transition: transform var(--tr-dur-fast) var(--tr-spring);
   }
 
   .c-gate__btn--ghost {
-    color: var(--kg-blue);
-    background: var(--kg-white);
-    border: 1px solid var(--kg-line);
+    color: var(--kg-white);
+    background: var(--kg-glass-dark);
+    border: 1px solid var(--kg-line-light);
+    backdrop-filter: blur(10px);
   }
 
   .c-gate__btn:active {
     transform: scale(0.96);
   }
 
-  /* 대문: 사진 위를 덮은 두 문짝이 양옆으로 열린다 */
-  .c-gate__door {
-    position: relative;
-    aspect-ratio: 4 / 5;
-    max-height: 72svh;
-    overflow: hidden;
-    border-radius: 40% 40% var(--radius-4xl) var(--radius-4xl) / 28% 28% var(--radius-4xl) var(--radius-4xl);
-    box-shadow: var(--kg-shadow);
-  }
-
-  .c-gate__photo {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    animation: c-gate-zoom 2200ms 300ms var(--tr-ease) both;
-  }
-
-  .c-gate__leaf {
-    position: absolute;
-    inset: 0 50% 0 0;
-    background: linear-gradient(90deg, var(--kg-blue), var(--kg-blue-2));
-    animation: c-gate-open-l 1300ms 250ms var(--tr-ease) forwards;
-  }
-
-  .c-gate__leaf--r {
-    inset: 0 0 0 50%;
-    background: linear-gradient(270deg, var(--kg-teal), var(--kg-blue-2));
-    animation-name: c-gate-open-r;
-  }
-
-  .c-gate__badge {
-    position: absolute;
-    right: var(--space-5);
-    bottom: var(--space-5);
-    padding: var(--space-3) var(--space-4);
+  /* 오른쪽 아래: 지금 사진 설명 + 진행 막대 세 개 */
+  .c-gate__meta {
+    display: grid;
+    justify-items: end;
+    gap: var(--space-3);
+    min-width: 14rem;
     font-size: var(--text-sm);
-    color: var(--kg-ink);
-    background: var(--kg-glass);
-    border-radius: var(--radius-2xl);
-    backdrop-filter: blur(10px);
-    animation: c-gate-up 900ms 1300ms var(--tr-ease) both;
+    animation: c-gate-up 900ms 1500ms var(--tr-ease) both;
   }
 
-  .c-gate__badge-num {
+  .c-gate__caps {
+    display: grid;
+    text-align: end;
+  }
+
+  .c-gate__cap {
+    grid-area: 1 / 1;
+    opacity: 0;
+    animation: c-gate-fade var(--cycle) linear infinite;
+  }
+
+  .c-gate__cap:nth-child(2) {
+    animation-delay: calc(var(--cycle) / 3);
+  }
+
+  .c-gate__cap:nth-child(3) {
+    animation-delay: calc(var(--cycle) / 3 * 2);
+  }
+
+  .c-gate__bars {
+    display: flex;
+    gap: var(--space-1-5);
+  }
+
+  .c-gate__bar {
+    width: var(--space-10);
+    height: 2px;
+    overflow: hidden;
+    background: var(--kg-line-light);
+  }
+
+  .c-gate__bar::after {
+    content: "";
     display: block;
-    font-size: var(--text-2xl);
-    font-weight: var(--font-weight-extrabold);
-    color: var(--kg-blue);
+    height: 100%;
+    background: var(--kg-white);
+    transform: scaleX(0);
+    transform-origin: left;
+    animation: c-gate-bar var(--cycle) linear infinite;
+  }
+
+  .c-gate__bar:nth-child(2)::after {
+    animation-delay: calc(var(--cycle) / 3);
+  }
+
+  .c-gate__bar:nth-child(3)::after {
+    animation-delay: calc(var(--cycle) / 3 * 2);
   }
 
   .c-gate__scroll {
@@ -160,15 +228,37 @@
     width: 1px;
     height: var(--space-12);
     overflow: hidden;
-    background: var(--kg-line);
+    background: var(--kg-line-light);
   }
 
   .c-gate__scroll::after {
     content: "";
     display: block;
     height: 40%;
-    background: var(--kg-blue);
+    background: var(--kg-white);
     animation: c-gate-drip 1.8s var(--tr-ease) infinite;
+  }
+
+  /* 한 장이 보이는 1/3 구간: 빠르게 나타나 머물다 사라진다 */
+  @keyframes c-gate-fade {
+    0% { opacity: 0; }
+    5% { opacity: 1; }
+    33% { opacity: 1; }
+    39% { opacity: 0; }
+    100% { opacity: 0; }
+  }
+
+  @keyframes c-gate-ken {
+    0% { transform: scale(1.14); }
+    40% { transform: scale(1.02); }
+    100% { transform: scale(1.02); }
+  }
+
+  @keyframes c-gate-bar {
+    0% { transform: scaleX(0); }
+    33% { transform: scaleX(1); }
+    34% { transform: scaleX(0); }
+    100% { transform: scaleX(0); }
   }
 
   @keyframes c-gate-up {
@@ -181,12 +271,6 @@
   @keyframes c-gate-rise {
     from {
       transform: translateY(105%);
-    }
-  }
-
-  @keyframes c-gate-zoom {
-    from {
-      transform: scale(1.18);
     }
   }
 
@@ -213,13 +297,16 @@
   }
 
   @media (max-width: 819px) {
-    .c-gate {
+    .c-gate__inner {
       grid-template-columns: minmax(0, 1fr);
-      min-height: auto;
     }
 
-    .c-gate__door {
-      max-height: 60svh;
+    .c-gate__meta {
+      justify-items: start;
+    }
+
+    .c-gate__caps {
+      text-align: start;
     }
 
     .c-gate__scroll {
@@ -228,13 +315,24 @@
   }
 
   @media (prefers-reduced-motion: reduce) {
+    .c-gate__slide,
+    .c-gate__cap {
+      animation: none;
+    }
+
+    .c-gate__slide:first-child,
+    .c-gate__cap:first-child {
+      opacity: 1;
+    }
+
+    .c-gate__img,
+    .c-gate__bar::after,
     .c-gate__eyebrow,
     .c-gate__num,
     .c-gate__line-in,
     .c-gate__lead,
     .c-gate__actions,
-    .c-gate__photo,
-    .c-gate__badge,
+    .c-gate__meta,
     .c-gate__scroll::after {
       animation: none;
     }

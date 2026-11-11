@@ -1,15 +1,53 @@
-/* 하위 페이지 첫머리: 번호·영문·국문 제목, 설명, 아래로 넓은 사진 띠가 가운데서 열린다(clip-path, 불러올 때 한 번). */
+/* 하위 페이지 머리(사진 배경): 화면 70% 높이를 사진으로 채우고, 들어올 때 사진이 가운데서 열리며 천천히 물러난다.
+   스크롤하면 사진은 글보다 느리게 올라간다(scroll-progress.js의 --sp). 글은 왼쪽 아래, 그 자리만 그라디언트. */
 @layer components {
   .c-sub-hero {
-    padding: calc(var(--kg-header-h) + clamp(var(--space-12), 8vw, var(--space-24))) var(--gutter) 0;
+    --sp: 0;
+    position: relative;
+    display: grid;
+    align-content: end;
+    min-height: max(70svh, 30rem);
+    padding: calc(var(--kg-header-h) + var(--space-12)) var(--gutter) clamp(var(--space-10), 6vh, var(--space-16));
+    overflow: hidden;
+    isolation: isolate;
+    color: var(--kg-white);
+    background: var(--kg-deep);
+    clip-path: inset(0);
+    animation: c-sub-hero-open 1400ms var(--tr-ease) both;
+  }
+
+  .c-sub-hero__img {
+    position: absolute;
+    inset: -8% 0 0;
+    z-index: -2;
+    width: 100%;
+    height: 108%;
+    object-fit: cover;
+    transform: translateY(calc(var(--sp) * 8%));
+    will-change: transform;
+  }
+
+  .c-sub-hero__zoom {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    animation: c-sub-hero-zoom 2400ms var(--tr-ease) both;
+  }
+
+  .c-sub-hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
     background:
-      radial-gradient(50% 60% at 90% 0%, var(--kg-teal-soft), transparent 70%),
-      var(--kg-paper);
+      linear-gradient(to bottom, var(--kg-veil) 0%, transparent 30%),
+      linear-gradient(to top, var(--kg-veil-strong) 0%, transparent 65%),
+      linear-gradient(to right, var(--kg-veil) 0%, transparent 55%);
   }
 
   .c-sub-hero__inner {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1fr) minmax(0, 0.8fr);
     align-items: end;
     gap: var(--space-8);
     width: min(100%, 80rem);
@@ -20,7 +58,11 @@
     display: flex;
     gap: var(--space-2);
     font-size: var(--text-sm);
-    color: var(--kg-ink-soft);
+    opacity: 0.85;
+  }
+
+  .c-sub-hero__crumb a {
+    color: inherit;
   }
 
   .c-sub-hero__en {
@@ -28,56 +70,39 @@
     font-size: var(--text-sm);
     font-weight: var(--font-weight-bold);
     letter-spacing: var(--tracking-widest);
-    color: var(--kg-teal);
+    color: var(--kg-sky);
   }
 
   .c-sub-hero__title {
-    font-size: clamp(var(--text-5xl), 2rem + 4vw, var(--text-8xl));
+    font-size: clamp(var(--text-5xl), 2rem + 4.4vw, var(--text-8xl));
     font-weight: var(--font-weight-black);
     letter-spacing: var(--tracking-tighter);
-    color: var(--kg-ink);
-    animation: c-sub-hero-up 1000ms 150ms var(--tr-ease) both;
+    animation: c-sub-hero-up 1000ms 400ms var(--tr-ease) both;
   }
 
   .c-sub-hero__desc {
-    max-width: 44ch;
-    color: var(--kg-ink-soft);
-    animation: c-sub-hero-up 1000ms 300ms var(--tr-ease) both;
+    max-width: 42ch;
+    font-size: var(--text-lg);
+    opacity: 0.92;
+    animation: c-sub-hero-up 1000ms 550ms var(--tr-ease) both;
   }
 
-  .c-sub-hero__band {
-    width: min(100%, 96rem);
-    height: clamp(12rem, 30vw, 26rem);
-    margin: clamp(var(--space-10), 5vw, var(--space-16)) auto 0;
-    overflow: hidden;
-    border-radius: var(--radius-4xl) var(--radius-4xl) 0 0;
-    clip-path: inset(0 0 0 0 round var(--radius-4xl) var(--radius-4xl) 0 0);
-    animation: c-sub-hero-open 1400ms 300ms var(--tr-ease) both;
+  @keyframes c-sub-hero-open {
+    from {
+      clip-path: inset(12% 18% 12% 18% round var(--radius-4xl));
+    }
   }
 
-  .c-sub-hero__img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    animation: c-sub-hero-zoom 2000ms 300ms var(--tr-ease) both;
+  @keyframes c-sub-hero-zoom {
+    from {
+      transform: scale(1.18);
+    }
   }
 
   @keyframes c-sub-hero-up {
     from {
       opacity: 0;
       transform: translateY(var(--space-6));
-    }
-  }
-
-  @keyframes c-sub-hero-open {
-    from {
-      clip-path: inset(0 40% 0 40% round var(--radius-4xl) var(--radius-4xl) 0 0);
-    }
-  }
-
-  @keyframes c-sub-hero-zoom {
-    from {
-      transform: scale(1.2);
     }
   }
 
@@ -88,11 +113,15 @@
   }
 
   @media (prefers-reduced-motion: reduce) {
+    .c-sub-hero,
+    .c-sub-hero__zoom,
     .c-sub-hero__title,
-    .c-sub-hero__desc,
-    .c-sub-hero__band,
-    .c-sub-hero__img {
+    .c-sub-hero__desc {
       animation: none;
+    }
+
+    .c-sub-hero__img {
+      transform: none;
     }
   }
 }

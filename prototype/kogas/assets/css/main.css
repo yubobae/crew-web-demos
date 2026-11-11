@@ -8,6 +8,7 @@
 @import "layout/l-block.css";
 @import "layout/l-kg-footer.css";
 
+@import "components/c-band.css";
 @import "components/c-cat.css";
 @import "components/c-era-nav.css";
 @import "components/c-era.css";

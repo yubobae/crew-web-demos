@@ -1,0 +1,51 @@
+/* 작업 릴: 우리가 만든 화면들이 두 줄로 서로 반대 방향으로 천천히 흐른다(첫 화면 아래 배경처럼).
+   마우스를 올리면 멈추고, 양 끝은 흐리게 사라진다. 같은 묶음을 두 번 이어 -50%까지 움직여 끊김 없이 반복. */
+@layer components {
+  .c-reel {
+    display: grid;
+    gap: var(--space-4);
+    padding-block: var(--space-4);
+    overflow: hidden;
+    mask-image: linear-gradient(90deg, transparent, var(--tr-white) 8%, var(--tr-white) 92%, transparent);
+  }
+
+  .c-reel__row {
+    display: flex;
+    gap: var(--space-4);
+    width: max-content;
+    animation: c-reel-slide 70s linear infinite;
+  }
+
+  .c-reel__row--back {
+    animation-direction: reverse;
+    animation-duration: 85s;
+  }
+
+  .c-reel:hover .c-reel__row {
+    animation-play-state: paused;
+  }
+
+  .c-reel__shot {
+    flex: none;
+    width: clamp(16rem, 26vw, 26rem);
+    height: auto;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    object-position: top;
+    border: 1px solid var(--tr-line);
+    border-radius: var(--radius-2xl);
+    box-shadow: var(--tr-shadow-float);
+  }
+
+  @keyframes c-reel-slide {
+    to {
+      transform: translateX(calc(-50% - var(--space-2)));
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .c-reel__row {
+      animation: none;
+    }
+  }
+}

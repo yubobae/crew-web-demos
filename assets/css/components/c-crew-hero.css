@@ -1,0 +1,172 @@
+/* 크루 첫 화면: 가운데 아주 큰 한 문장 + 짧은 소개 + 버튼, 바로 아래 작업 릴(c-reel)이 흐른다.
+   글은 한 줄씩 올라오고(불러올 때 한 번), 바탕에는 흐릿한 빛 두 개가 천천히 떠돈다. */
+@layer components {
+  .c-crew-hero {
+    position: relative;
+    display: grid;
+    align-content: center;
+    gap: clamp(var(--space-10), 6vh, var(--space-16));
+    min-height: 100svh;
+    padding-block: calc(var(--tr-nav-h) + var(--space-12)) var(--space-10);
+    overflow: hidden;
+    isolation: isolate;
+    text-align: center;
+  }
+
+  .c-crew-hero::before,
+  .c-crew-hero::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    width: 40vw;
+    aspect-ratio: 1;
+    border-radius: var(--radius-full);
+    filter: blur(80px);
+    opacity: 0.35;
+    animation: c-crew-hero-drift 16s var(--ease-in-out) infinite alternate;
+  }
+
+  .c-crew-hero::before {
+    top: -10%;
+    left: -5%;
+    background: var(--tr-accent);
+  }
+
+  .c-crew-hero::after {
+    right: -10%;
+    bottom: 10%;
+    background: var(--tr-violet);
+    animation-duration: 20s;
+  }
+
+  .c-crew-hero__copy {
+    width: min(100% - var(--gutter) * 2, 68rem);
+    margin-inline: auto;
+  }
+
+  .c-crew-hero__eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-1-5) var(--space-4);
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-semibold);
+    background: var(--tr-white);
+    border: 1px solid var(--tr-line);
+    border-radius: var(--radius-full);
+    animation: c-crew-hero-up 900ms var(--tr-ease) both;
+  }
+
+  .c-crew-hero__dot {
+    width: var(--space-2);
+    aspect-ratio: 1;
+    background: var(--tr-success);
+    border-radius: var(--radius-full);
+  }
+
+  .c-crew-hero__title {
+    margin-top: var(--space-6);
+    font-size: clamp(var(--text-5xl), 1.6rem + 6vw, 8.5rem);
+    font-weight: var(--font-weight-black);
+    letter-spacing: var(--tracking-tighter);
+    line-height: 1;
+  }
+
+  .c-crew-hero__line {
+    display: block;
+    overflow: hidden;
+    padding-bottom: 0.06em;
+  }
+
+  .c-crew-hero__in {
+    display: block;
+    animation: c-crew-hero-rise 1000ms 100ms var(--tr-ease) both;
+  }
+
+  .c-crew-hero__line:nth-child(2) .c-crew-hero__in {
+    animation-delay: 200ms;
+  }
+
+  .c-crew-hero__accent {
+    color: var(--tr-accent);
+  }
+
+  .c-crew-hero__lead {
+    max-width: 46ch;
+    margin: var(--space-6) auto 0;
+    font-size: var(--text-lg);
+    color: var(--tr-ink-soft);
+    animation: c-crew-hero-up 900ms 400ms var(--tr-ease) both;
+  }
+
+  .c-crew-hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-3);
+    margin-top: var(--space-8);
+    animation: c-crew-hero-up 900ms 500ms var(--tr-ease) both;
+  }
+
+  .c-crew-hero__btn {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-3) var(--space-6);
+    font-weight: var(--font-weight-semibold);
+    color: var(--tr-white);
+    text-decoration: none;
+    background: var(--tr-ink);
+    border-radius: var(--radius-full);
+    transition: transform var(--tr-dur-fast) var(--tr-spring);
+  }
+
+  .c-crew-hero__btn--ghost {
+    color: var(--tr-ink);
+    background: var(--tr-white);
+    border: 1px solid var(--tr-line);
+  }
+
+  .c-crew-hero__btn:active {
+    transform: scale(0.96);
+  }
+
+  .c-crew-hero__reel {
+    animation: c-crew-hero-up 1200ms 600ms var(--tr-ease) both;
+  }
+
+  @keyframes c-crew-hero-rise {
+    from {
+      transform: translateY(105%);
+    }
+  }
+
+  @keyframes c-crew-hero-up {
+    from {
+      opacity: 0;
+      transform: translateY(var(--space-8));
+    }
+  }
+
+  @keyframes c-crew-hero-drift {
+    to {
+      transform: translate(10%, 12%) scale(1.15);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .c-crew-hero::before,
+    .c-crew-hero::after,
+    .c-crew-hero__eyebrow,
+    .c-crew-hero__in,
+    .c-crew-hero__lead,
+    .c-crew-hero__actions,
+    .c-crew-hero__reel {
+      animation: none;
+    }
+
+    .c-crew-hero__btn {
+      transition: none;
+    }
+  }
+}
