@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="ko" data-play-mode="reverse">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>디지털 역사관 메인 | 보람찬크루 웹 데모</title>
+  <meta name="description" content="풀페이지 디지털 역사관 메인 화면 데모입니다. 덮으며 넘어가는 화면 전환, 진행 표시, 사진 띠 슬라이더, 차오르는 글자, 기록집 표지, 소개 영상 카드와 재생 방식 선택을 담았습니다.">
+  <meta name="theme-color" content="#1a1f2c">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+  <link rel="stylesheet" href="assets/css/main.css">
+  <script type="module" src="assets/js/main.js"></script>
+</head>
+<body data-effect="play">
+  <a class="u-visually-hidden" href="#main">본문 바로가기</a>
+
+  <header class="l-mu-header" data-module="header-theme">
+    <a class="l-mu-header__logo" href="https://yubobae.github.io/crew-web-demos/">
+      <span class="l-mu-header__mark">OO 50</span>
+      <span class="l-mu-header__sub">보람찬크루 데모</span>
+    </a>
+    <nav class="c-gnb" data-module="gnb" aria-label="주 메뉴">
+      <button class="c-gnb__toggle" type="button" aria-expanded="false" aria-controls="mu-gnb" aria-label="메뉴 열기">
+        <span class="c-gnb__bar c-gnb__bar--top"></span>
+        <span class="c-gnb__bar c-gnb__bar--mid"></span>
+        <span class="c-gnb__bar c-gnb__bar--bottom"></span>
+      </button>
+      <div class="c-gnb__panel" id="mu-gnb">
+        <ul class="c-gnb__list">
+          <li class="c-gnb__item">
+            <button class="c-gnb__link" type="button" aria-expanded="false" aria-controls="mu-sub-1">50년을 돌아보며<svg class="c-gnb__chevron" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="m7 10 5 5 5-5z"/></svg></button>
+            <div class="c-gnb__sub" id="mu-sub-1">
+              <ul class="c-gnb__sub-inner">
+                <li><a class="c-gnb__sub-link" href="#mu-timeline">연대기 소개</a></li>
+                <li><a class="c-gnb__sub-link" href="timeline.html">연대기 자세히</a></li>
+              </ul>
+            </div>
+          </li>
+          <li class="c-gnb__item"><a class="c-gnb__link" href="#mu-message">50년을 기념하며</a></li>
+          <li class="c-gnb__item">
+            <button class="c-gnb__link" type="button" aria-expanded="false" aria-controls="mu-sub-3">50년을 기록하며<svg class="c-gnb__chevron" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="m7 10 5 5 5-5z"/></svg></button>
+            <div class="c-gnb__sub" id="mu-sub-3">
+              <ul class="c-gnb__sub-inner">
+                <li><a class="c-gnb__sub-link" href="#mu-ebook">기록집</a></li>
+                <li><a class="c-gnb__sub-link" href="#mu-heritage">전시관</a></li>
+              </ul>
+            </div>
+          </li>
+          <li class="c-gnb__item">
+            <button class="c-gnb__link" type="button" aria-expanded="false" aria-controls="mu-sub-4">다른 데모<svg class="c-gnb__chevron" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="m7 10 5 5 5-5z"/></svg></button>
+            <div class="c-gnb__sub" id="mu-sub-4">
+              <ul class="c-gnb__sub-inner">
+                <li><a class="c-gnb__sub-link" href="https://yubobae.github.io/crew-web-demos/">데모 목록</a></li>
+                <li><a class="c-gnb__sub-link" href="https://yubobae.github.io/crew-web-demos/ui-kit/">UI 키트</a></li>
+                <li><a class="c-gnb__sub-link" href="https://yubobae.github.io/crew-web-demos/effects/">인터랙션 효과</a></li>
+                <li><a class="c-gnb__sub-link" href="https://yubobae.github.io/crew-web-demos/scroll/">스크롤</a></li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <div class="l-fp" data-effect="fullpage" data-fp-mode="cover">
+    <nav class="c-fp-progress js-fp-progress" aria-label="화면 이동"></nav>
+
+    <main id="main">
+      <!-- 1. 첫 화면 -->
+      <section class="l-fp__panel s-mu-hero" id="mu-hero" data-theme="dark" aria-label="첫 화면" data-play-group>
+        <div class="s-mu-hero__bg" aria-hidden="true"></div>
+        <div class="c-grain" aria-hidden="true"></div>
+        <div class="s-mu-hero__inner">
+          <div>
+            <p class="s-mu-hero__eyebrow c-play c-play--up">OO기업 창립 50주년 기념 디지털 역사관</p>
+            <h1 class="s-mu-hero__title">
+              <span class="c-play c-play--mask"><span class="c-play__inner">50년의 믿음,</span></span>
+              <span class="s-mu-hero__line--indent c-play c-play--mask"><span class="c-play__inner">다음 100년의 약속</span></span>
+            </h1>
+          </div>
+          <p class="s-mu-hero__mark c-play c-play--blur" aria-hidden="true">OO 50<span class="s-mu-hero__mark-sub">SINCE 1975</span></p>
+        </div>
+        <p class="s-mu-hero__hint c-scroll-hint">SCROLL</p>
+      </section>
+
+      <!-- 2. 연대기 소개: 사진 띠 -->
+      <section class="l-fp__panel s-mu-timeline" id="mu-timeline" data-theme="dark" aria-label="50년을 돌아보며" data-play-group>
+        <div class="c-grain" aria-hidden="true"></div>
+        <div class="s-mu-timeline__head">
+          <span class="s-mu-timeline__eyebrow c-play c-play--up">Since 1975</span>
+          <h2 class="s-mu-timeline__title c-play c-play--mask"><span class="c-play__inner">50년을 돌아보며</span></h2>
+          <span class="s-mu-timeline__accent c-play c-play--up">Timeline</span>
+        </div>
+        <div class="s-mu-timeline__strip c-play c-play--scale">
+          <div class="c-carousel c-carousel--strip" data-effect="carousel" aria-roledescription="슬라이더" aria-label="연대기 사진">
+            <div class="c-carousel__viewport">
+              <figure class="c-carousel__slide"><div class="c-carousel__media c-carousel__media--a"><span class="c-carousel__year">1975</span><figcaption class="c-carousel__caption">창립, 첫 현판</figcaption></div></figure>
+              <figure class="c-carousel__slide"><div class="c-carousel__media c-carousel__media--b"><span class="c-carousel__year">1983</span><figcaption class="c-carousel__caption">첫 지역 사무소</figcaption></div></figure>
+              <figure class="c-carousel__slide"><div class="c-carousel__media c-carousel__media--c"><span class="c-carousel__year">1996</span><figcaption class="c-carousel__caption">본사 이전</figcaption></div></figure>
+              <figure class="c-carousel__slide"><div class="c-carousel__media c-carousel__media--d"><span class="c-carousel__year">2008</span><figcaption class="c-carousel__caption">새 이름, 새 출발</figcaption></div></figure>
+              <figure class="c-carousel__slide"><div class="c-carousel__media c-carousel__media--e"><span class="c-carousel__year">2020</span><figcaption class="c-carousel__caption">디지털 전환</figcaption></div></figure>
+              <figure class="c-carousel__slide"><div class="c-carousel__media c-carousel__media--a"><span class="c-carousel__year">2025</span><figcaption class="c-carousel__caption">다음 50년</figcaption></div></figure>
+            </div>
+            <div class="c-carousel__controls">
+              <button class="c-carousel__arrow" type="button" data-carousel="prev" aria-label="이전 사진">←</button>
+              <div class="c-carousel__dots js-carousel-dots"></div>
+              <button class="c-carousel__arrow" type="button" data-carousel="next" aria-label="다음 사진">→</button>
+            </div>
+            <p class="u-visually-hidden js-carousel-status" aria-live="polite"></p>
+          </div>
+        </div>
+        <p class="s-mu-timeline__desc c-play c-play--up">제도의 첫걸음부터 오늘에 이르기까지, 그동안의 변화와 성장을 담은 역사를 만나 보세요.</p>
+        <a class="c-button c-button--secondary c-play c-play--up" href="timeline.html">연대기 자세히 보기</a>
+      </section>
+
+      <!-- 3. 기념 메시지: 차오르는 글자 + 궤도 인물 -->
+      <section class="l-fp__panel s-mu-message" id="mu-message" data-theme="light" aria-label="50년을 기념하며" data-play-group>
+        <div class="c-grain" aria-hidden="true"></div>
+        <div class="s-mu-message__text">
+          <h2 class="s-mu-message__title c-play c-play--mask"><span class="c-play__inner">50주년을 기념하며</span></h2>
+          <p class="s-mu-message__sub c-play c-play--up">함께 만든 반세기, 함께 열 다음 장</p>
+          <div class="s-mu-message__body" data-play-group>
+            <p class="c-play c-play--fill">지난 성과에 머무르지 않고 처음의 마음을 다시 새기겠습니다.</p>
+            <p class="c-play c-play--fill">고객과 지역이 보내 준 믿음을 다음 50년의 힘으로 바꾸겠습니다.</p>
+            <p class="c-play c-play--fill">오늘의 선택이 내일의 기준이 된다는 책임으로 한 걸음씩 나아가겠습니다.</p>
+          </div>
+          <a class="c-button c-play c-play--up" href="#mu-ebook">자세히 보기</a>
+        </div>
+        <figure class="c-orbit c-play c-play--scale">
+          <span class="c-orbit__circle" aria-hidden="true"></span>
+          <span class="c-orbit__ring" aria-hidden="true"></span>
+          <span class="c-orbit__ring c-orbit__ring--2" aria-hidden="true"></span>
+          <span class="c-orbit__photo" role="img" aria-label="대표 인물 사진 자리"></span>
+          <span class="c-orbit__label" aria-hidden="true">Our Message</span>
+          <figcaption class="c-orbit__caption">대표이사 홍길동</figcaption>
+        </figure>
+      </section>
+
+      <!-- 4. 기록집 -->
+      <section class="l-fp__panel s-mu-ebook" id="mu-ebook" data-theme="light" aria-label="50년을 기록하며" data-play-group>
+        <div class="s-mu-ebook__bg" aria-hidden="true"></div>
+        <p class="s-mu-ebook__watermark" aria-hidden="true">ARCHIVE 1975</p>
+        <div class="s-mu-ebook__books" data-play-group>
+          <a class="c-ebook c-play c-play--up" href="#mu-ebook">
+            <span class="c-ebook__cover"><span class="c-ebook__vol">VOL. 30</span><span class="c-ebook__badge" aria-hidden="true">Click</span><span class="c-ebook__name">OO기업<br>30년사</span></span>
+            <span class="c-ebook__label">30년사</span>
+          </a>
+          <a class="c-ebook c-play c-play--up" href="#mu-ebook">
+            <span class="c-ebook__cover c-ebook__cover--b"><span class="c-ebook__vol">VOL. 40</span><span class="c-ebook__name">OO기업<br>40년사</span></span>
+            <span class="c-ebook__label">40년사</span>
+          </a>
+          <a class="c-ebook c-play c-play--up" href="#mu-ebook">
+            <span class="c-ebook__cover c-ebook__cover--c"><span class="c-ebook__vol">VOL. 50</span><span class="c-ebook__name">OO기업<br>50년사</span></span>
+            <span class="c-ebook__label">50년사</span>
+          </a>
+        </div>
+        <div class="s-mu-ebook__text">
+          <h2 class="s-mu-ebook__title c-play c-play--mask"><span class="c-play__inner">e-Book</span></h2>
+          <p class="s-mu-ebook__accent c-play c-play--up">50th Online Archive</p>
+          <p class="c-play c-play--up">OO기업이 걸어온 50년의 기록을<br>디지털 기록집으로 만나 보세요.</p>
+          <a class="c-button c-play c-play--up" href="#mu-ebook">자세히 보기</a>
+        </div>
+      </section>
+
+      <!-- 5. 전시관 + 영상 -->
+      <section class="l-fp__panel s-mu-heritage" id="mu-heritage" data-theme="dark" aria-label="전시관" data-module="dialog" data-play-group>
+        <div class="s-mu-heritage__bg" aria-hidden="true"></div>
+        <div class="c-grain" aria-hidden="true"></div>
+        <div class="s-mu-heritage__brand">
+          <p class="s-mu-heritage__name c-play c-play--left">OO Hall</p>
+          <p class="s-mu-heritage__sub c-play c-play--up">HERITAGE 1975</p>
+          <a class="c-button c-button--secondary c-play c-play--up" href="timeline.html">전시관 둘러보기</a>
+        </div>
+        <div class="s-mu-heritage__video c-play c-play--scale">
+          <button class="c-video-card js-dialog-open" type="button">
+            <span class="c-video-card__thumb">
+              <span class="c-video-card__play"><svg class="c-video-card__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M8 5v14l11-7z"/></svg></span>
+            </span>
+            <span class="c-video-card__caption">전시관 소개 영상 보기</span>
+          </button>
+        </div>
+        <dialog class="c-dialog js-dialog" aria-labelledby="mu-video-title">
+          <div class="c-dialog__header">
+            <h2 class="c-dialog__title" id="mu-video-title">전시관 소개 영상</h2>
+            <p class="c-dialog__description">실제 사이트에서는 여기에서 영상을 불러옵니다(누르기 전에는 불러오지 않음).</p>
+          </div>
+          <div class="c-video-card__thumb" role="img" aria-label="영상 자리"></div>
+          <div class="c-dialog__footer">
+            <button class="c-button js-dialog-close" type="button">닫기</button>
+          </div>
+        </dialog>
+      </section>
+
+      <!-- 6. 푸터(자기 높이만큼) -->
+      <footer class="l-fp__panel l-fp__panel--auto l-footer" data-fp-auto data-theme="dark" aria-label="푸터">
+        <div class="l-footer__top">
+          <div class="l-footer__brand">
+            <a class="l-footer__logo" href="#mu-hero">OO 50 디지털 역사관</a>
+            <p>보람찬크루가 만든 디지털 역사관 데모입니다. 사진과 문구는 모두 예시입니다.</p>
+          </div>
+          <nav class="l-footer__nav" aria-label="푸터 메뉴">
+            <div>
+              <h2 class="l-footer__heading">둘러보기</h2>
+              <ul class="l-footer__links">
+                <li><a class="l-footer__link" href="#mu-timeline">50년을 돌아보며</a></li>
+                <li><a class="l-footer__link" href="#mu-message">50년을 기념하며</a></li>
+                <li><a class="l-footer__link" href="#mu-ebook">50년을 기록하며</a></li>
+              </ul>
+            </div>
+            <div>
+              <h2 class="l-footer__heading">하위 페이지</h2>
+              <ul class="l-footer__links">
+                <li><a class="l-footer__link" href="timeline.html">연대기 자세히</a></li>
+                <li><a class="l-footer__link" href="https://yubobae.github.io/crew-web-demos/">데모 목록</a></li>
+              </ul>
+            </div>
+          </nav>
+        </div>
+        <div class="l-footer__bottom">
+          <ul class="l-footer__legal">
+            <li><a class="l-footer__link l-footer__link--strong" href="#mu-hero">개인정보처리방침</a></li>
+            <li><a class="l-footer__link" href="#mu-hero">이용약관</a></li>
+          </ul>
+          <address class="l-footer__info"><span>(주)OO기업</span><span>서울특별시 OO구 OO로 00</span><span>대표전화 00-0000-0000</span></address>
+          <p class="l-footer__copy">© 2026 보람찬크루. 예시용 회사 정보입니다.</p>
+        </div>
+      </footer>
+    </main>
+  </div>
+
+  <aside class="c-mu-panel" data-module="play-panel" aria-label="재생 방식">
+    <p class="c-mu-panel__title">재생 방식</p>
+    <fieldset class="c-mu-panel__options">
+      <legend class="u-visually-hidden">효과를 실행하는 방식</legend>
+      <span class="c-mu-panel__option"><input class="c-mu-panel__input" type="radio" name="play-mode" id="pm-once" value="once"><label class="c-mu-panel__label" for="pm-once">한 번만</label></span>
+      <span class="c-mu-panel__option"><input class="c-mu-panel__input" type="radio" name="play-mode" id="pm-repeat" value="repeat"><label class="c-mu-panel__label" for="pm-repeat">매번</label></span>
+      <span class="c-mu-panel__option"><input class="c-mu-panel__input" type="radio" name="play-mode" id="pm-reverse" value="reverse" checked><label class="c-mu-panel__label" for="pm-reverse">되감기</label></span>
+      <span class="c-mu-panel__option"><input class="c-mu-panel__input" type="radio" name="play-mode" id="pm-scrub" value="scrub"><label class="c-mu-panel__label" for="pm-scrub">스크롤</label></span>
+    </fieldset>
+    <p class="c-mu-panel__hint">휠을 살짝만 굴려도 한 화면씩 넘어갑니다.</p>
+  </aside>
+</body>
+</html>

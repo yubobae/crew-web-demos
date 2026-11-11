@@ -18,3 +18,12 @@ export function setSnap(on) {
   document.documentElement.classList.toggle("is-snap", on);
   window.dispatchEvent(new CustomEvent("scroll-mode:change"));
 }
+
+export function isPaged() {
+  return document.documentElement.classList.contains("is-paged");
+}
+
+export function setPaged(on) {
+  document.documentElement.classList.toggle("is-paged", on);
+  window.dispatchEvent(new CustomEvent("scroll-mode:change"));
+}

@@ -1,0 +1,96 @@
+/* 오른쪽 진행 표시: 세로선 위 눈금(화면마다 하나) + 현재 화면 번호 + 그 옆에서 천천히 도는 점선 고리.
+   번호와 고리는 눈금 사이를 미끄러지듯 이동한다(--at: 0~1). 밝은 화면에서는 진한 색(data-theme="light") */
+@layer components {
+  .c-fp-progress {
+    --line: var(--mu-ivory);
+    position: fixed;
+    inset-block: 15vh;
+    inset-inline-end: var(--space-8);
+    z-index: var(--z-header);
+    display: none;
+    width: var(--space-16);
+    color: var(--line);
+    pointer-events: none;
+    transition: color 500ms var(--ui-ease);
+  }
+
+  .c-fp-progress[data-theme="light"] {
+    --line: var(--mu-ink);
+  }
+
+  .c-fp-progress.is-enabled {
+    display: block;
+  }
+
+  .c-fp-progress__line {
+    position: absolute;
+    inset-block: 0;
+    inset-inline-end: var(--space-2);
+    width: 1px;
+    background: currentColor;
+    opacity: 0.9;
+  }
+
+  .c-fp-progress__tick {
+    position: absolute;
+    inset-block-start: calc(var(--at) * 100%);
+    inset-inline-start: 50%;
+    width: 7px;
+    height: 7px;
+    padding: 0;
+    border: 0;
+    border-radius: var(--radius-full);
+    background: currentColor;
+    translate: -50% -50%;
+    cursor: pointer;
+    pointer-events: auto;
+  }
+
+  /* 클릭 영역은 넓게 */
+  .c-fp-progress__tick::before {
+    content: "";
+    position: absolute;
+    inset: calc(var(--space-3) * -1);
+  }
+
+  .c-fp-progress__current {
+    position: absolute;
+    inset-block-start: calc(var(--at, 0) * 100%);
+    inset-inline-end: 0;
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--text-sm);
+    font-variant-numeric: tabular-nums;
+    translate: calc(50% - var(--space-2) - 0.5px) -50%;
+    transition: inset-block-start 900ms var(--ease-out-expo);
+  }
+
+  /* 도는 점선 고리 */
+  .c-fp-progress__current::after {
+    content: "";
+    order: 2;
+    width: 30px;
+    height: 30px;
+    border: 1.5px dotted currentColor;
+    border-radius: var(--radius-full);
+    animation: c-fp-progress-spin 8s linear infinite;
+  }
+
+  @keyframes c-fp-progress-spin {
+    to {
+      rotate: 1turn;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .c-fp-progress,
+    .c-fp-progress__current {
+      transition: none;
+    }
+
+    .c-fp-progress__current::after {
+      animation: none;
+    }
+  }
+}

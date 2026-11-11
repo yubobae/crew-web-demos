@@ -1,0 +1,238 @@
+/* 연대기: 왼쪽에 붙어 있는 시대 목록(지금 보고 있는 시대가 크게 바뀜) + 오른쪽 시대 표지 사진과 연표.
+   effects/scrollspy.js가 지금 시대(aria-current), 지금 항목(is-current), 진행선(--era-progress)을 넣는다.
+   모바일: 시대 목록이 위쪽에 붙는 가로 칩이 된다. */
+@layer components {
+  .c-era {
+    display: grid;
+    background: var(--mu-ivory);
+  }
+
+  .c-era__aside {
+    position: sticky;
+    top: var(--mu-header-h);
+    z-index: 2;
+    display: grid;
+    align-content: start;
+    gap: var(--space-4);
+    padding: var(--space-3) var(--gutter);
+    background: var(--mu-teal);
+    color: var(--mu-ivory);
+  }
+
+  .c-era__now {
+    display: none;
+  }
+
+  .c-era__nav {
+    display: flex;
+    gap: var(--space-2);
+    margin: 0;
+    padding: 0;
+    overflow-x: auto;
+    list-style: none;
+    scrollbar-width: none;
+  }
+
+  .c-era__link {
+    display: block;
+    padding: var(--space-1-5) var(--space-3);
+    color: color-mix(in oklch, var(--mu-ivory) 55%, transparent);
+    font-size: var(--text-sm);
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+    text-decoration: none;
+    transition: color 300ms var(--ui-ease);
+  }
+
+  .c-era__link[aria-current="true"] {
+    color: var(--mu-ivory);
+    font-weight: var(--font-weight-bold);
+  }
+
+  .c-era__body {
+    display: grid;
+    gap: var(--space-16);
+    padding: var(--space-12) var(--gutter) var(--space-24);
+  }
+
+  .c-era__section {
+    display: grid;
+    gap: var(--space-10);
+    scroll-margin-top: calc(var(--mu-header-h) + var(--space-16));
+  }
+
+  /* 시대 표지: 큰 사진 위 가운데 글 */
+  .c-era__cover {
+    position: relative;
+    display: grid;
+    place-content: center;
+    gap: var(--space-2);
+    min-height: clamp(16rem, 40vw, 30rem);
+    padding: var(--space-8);
+    overflow: hidden;
+    background:
+      linear-gradient(180deg, transparent 30%, var(--mu-veil)),
+      radial-gradient(50% 60% at 40% 40%, var(--cover-c, var(--mu-photo-1)), transparent 72%),
+      var(--mu-photo-2);
+    color: var(--mu-ivory);
+    text-align: center;
+    filter: sepia(0.25);
+  }
+
+  .c-era__cover--b { --cover-c: var(--mu-photo-3); }
+  .c-era__cover--c { --cover-c: var(--mu-gold); }
+
+  .c-era__cover-years {
+    font-size: var(--text-sm);
+    letter-spacing: var(--tracking-widest);
+  }
+
+  .c-era__cover-title {
+    font-size: clamp(var(--text-2xl), 3vw, var(--text-4xl));
+    font-weight: var(--font-weight-bold);
+  }
+
+  /* 연표: 왼쪽 세로선 + 점, 지나가는 항목의 점이 켜진다 */
+  .c-era__list {
+    position: relative;
+    display: grid;
+    gap: var(--space-12);
+    margin: 0;
+    padding: 0 0 0 var(--space-8);
+    list-style: none;
+  }
+
+  .c-era__list::before {
+    content: "";
+    position: absolute;
+    inset-block: 0;
+    inset-inline-start: 0;
+    width: 1px;
+    background: color-mix(in oklch, var(--mu-ink) 15%, transparent);
+  }
+
+  .c-era__list::after {
+    content: "";
+    position: absolute;
+    inset-block-start: 0;
+    inset-inline-start: 0;
+    width: 1px;
+    height: 100%;
+    background: var(--mu-clay);
+    transform-origin: top;
+    transform: scaleY(var(--era-progress, 0));
+  }
+
+  .c-era__item {
+    position: relative;
+    display: grid;
+    gap: var(--space-3);
+  }
+
+  .c-era__item::before {
+    content: "";
+    position: absolute;
+    inset-block-start: var(--space-2);
+    inset-inline-start: calc(var(--space-8) * -1 - var(--space-1-5));
+    width: 11px;
+    height: 11px;
+    border: 2px solid var(--mu-ivory);
+    border-radius: var(--radius-full);
+    background: color-mix(in oklch, var(--mu-ink) 25%, transparent);
+    transition:
+      background-color 300ms var(--ui-ease),
+      scale 400ms var(--fx-ease-spring);
+  }
+
+  .c-era__item.is-current::before {
+    background: var(--mu-clay);
+    scale: 1.4;
+  }
+
+  .c-era__date {
+    color: color-mix(in oklch, var(--mu-ink) 35%, transparent);
+    font-size: var(--text-lg);
+    font-weight: var(--font-weight-bold);
+    font-variant-numeric: tabular-nums;
+    transition: color 300ms var(--ui-ease);
+  }
+
+  .c-era__item.is-current .c-era__date {
+    color: var(--mu-clay);
+  }
+
+  .c-era__item-title {
+    font-size: var(--text-lg);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .c-era__item-text {
+    color: var(--mu-ink-soft);
+    font-size: var(--text-sm);
+  }
+
+  .c-era__thumb {
+    width: min(100%, 14rem);
+    aspect-ratio: 4 / 3;
+    background:
+      radial-gradient(60% 60% at 40% 40%, var(--mu-photo-1), transparent 70%),
+      var(--mu-photo-2);
+    filter: sepia(0.3);
+  }
+
+  @media (min-width: 1025px) {
+    .c-era {
+      grid-template-columns: minmax(16rem, 22vw) 1fr;
+    }
+
+    .c-era__aside {
+      height: calc(100vh - var(--mu-header-h));
+      padding: var(--space-16) var(--space-10);
+    }
+
+    .c-era__now {
+      display: grid;
+      gap: var(--space-2);
+    }
+
+    .c-era__now-years {
+      font-size: var(--text-3xl);
+      font-weight: var(--font-weight-bold);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .c-era__now-desc {
+      font-size: var(--text-sm);
+      opacity: 0.8;
+    }
+
+    .c-era__nav {
+      display: grid;
+      gap: var(--space-1);
+      overflow: visible;
+    }
+
+    .c-era__link {
+      padding-inline: 0;
+    }
+
+    .c-era__item {
+      grid-template-columns: 7rem 1fr auto;
+      align-items: start;
+    }
+  }
+
+  @media (hover: hover) {
+    .c-era__link:hover {
+      color: var(--mu-ivory);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .c-era__link,
+    .c-era__item::before,
+    .c-era__date {
+      transition: none;
+    }
+  }
+}

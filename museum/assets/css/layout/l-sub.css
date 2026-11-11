@@ -1,0 +1,77 @@
+/* 하위 페이지 공통 틀: 헤더 높이만큼 띄우고, 섹션마다 넉넉한 여백과 제목 */
+@layer layout {
+  .l-sub {
+    padding-top: var(--mu-header-h);
+  }
+
+  .l-sub__section {
+    position: relative;
+    display: grid;
+    gap: var(--space-10);
+    padding: var(--space-24) var(--gutter);
+    overflow: hidden;
+  }
+
+  .l-sub__section--sand {
+    background: var(--mu-sand);
+  }
+
+  .l-sub__section--night {
+    background: var(--mu-night);
+    color: var(--mu-ivory);
+  }
+
+  .l-sub__head {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    gap: var(--space-3);
+    max-width: 44rem;
+  }
+
+  .l-sub__eyebrow {
+    color: var(--mu-clay);
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .l-sub__title {
+    font-size: clamp(var(--text-3xl), 3.4vw, var(--text-5xl));
+    font-weight: var(--font-weight-bold);
+  }
+
+  .l-sub__desc {
+    color: var(--mu-ink-soft);
+  }
+
+  .l-sub__section--night .l-sub__desc {
+    color: var(--fx-text-muted);
+  }
+
+  /* 큰 바탕 글자(인사말 등) */
+  .l-sub__watermark {
+    position: absolute;
+    inset-block-end: var(--space-8);
+    inset-inline-start: var(--gutter);
+    font-size: clamp(var(--text-6xl), 11vw, 10rem);
+    font-weight: var(--font-weight-black);
+    line-height: 1;
+    color: color-mix(in oklch, var(--mu-ink) 6%, transparent);
+    white-space: nowrap;
+    pointer-events: none;
+  }
+
+  .l-sub__grid {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    gap: var(--space-8);
+  }
+
+  @media (min-width: 1024px) {
+    .l-sub__grid {
+      grid-template-columns: 1.2fr 1fr;
+      align-items: center;
+    }
+  }
+}

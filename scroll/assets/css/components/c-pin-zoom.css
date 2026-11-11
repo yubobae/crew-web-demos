@@ -1,9 +1,9 @@
 /* 고정 + 확대(pin & scrub): 화면에 고정된 채 스크롤한 만큼 그림이 커지고 문구가 차례로 나타난다.
-   바깥 상자를 길게(300vh) 두고 안쪽을 sticky로 붙인다. --progress(0~1)는 고정 구간 진행률. */
+   바깥 상자를 길게(220vh) 두고 안쪽을 sticky로 붙인다. --progress(0~1)는 고정 구간 진행률. */
 @layer components {
   .c-pin-zoom {
     position: relative;
-    height: 300vh;
+    height: 220vh;
   }
 
   .c-pin-zoom__stage {

@@ -1,0 +1,72 @@
+/* 기록집(e-Book): 흐릿한 옛 사진 배경 + 큰 바탕 글자, 왼쪽 표지 3권, 오른쪽 큰 제목·설명·버튼 */
+@layer sections {
+  .s-mu-ebook {
+    display: grid;
+    align-content: center;
+    gap: var(--space-12);
+    padding: var(--mu-header-h) var(--gutter) var(--space-12);
+    background: var(--mu-sand);
+    color: var(--mu-ink);
+  }
+
+  .s-mu-ebook__bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(20% 30% at 20% 60%, var(--mu-photo-2), transparent 70%),
+      radial-gradient(18% 28% at 45% 55%, var(--mu-photo-2), transparent 70%),
+      radial-gradient(20% 30% at 72% 62%, var(--mu-photo-2), transparent 70%),
+      var(--mu-sand);
+    opacity: 0.35;
+    filter: blur(6px);
+  }
+
+  .s-mu-ebook__watermark {
+    position: absolute;
+    inset-block-start: var(--mu-header-h);
+    inset-inline: 0;
+    font-size: clamp(var(--text-6xl), 12vw, 12rem);
+    font-weight: var(--font-weight-black);
+    line-height: 1;
+    text-align: center;
+    color: color-mix(in oklch, var(--mu-ink) 6%, transparent);
+    white-space: nowrap;
+    pointer-events: none;
+  }
+
+  .s-mu-ebook__books {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-6);
+    max-width: 52rem;
+  }
+
+  .s-mu-ebook__text {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    justify-items: end;
+    gap: var(--space-4);
+    text-align: end;
+  }
+
+  .s-mu-ebook__title {
+    font-size: clamp(var(--text-5xl), 7vw, var(--text-8xl));
+    font-weight: var(--font-weight-extrabold);
+    letter-spacing: var(--tracking-tighter);
+  }
+
+  .s-mu-ebook__accent {
+    color: var(--mu-clay);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  @media (min-width: 1025px) {
+    .s-mu-ebook {
+      grid-template-columns: 1.6fr 1fr;
+      align-items: center;
+    }
+  }
+}

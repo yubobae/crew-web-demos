@@ -72,15 +72,15 @@
 
   <main id="main">
     <!-- 첫 화면 -->
-    <section class="s-sc-hero" id="top" aria-labelledby="sc-title">
+    <section class="s-sc-hero" id="top" data-page aria-labelledby="sc-title">
       <div class="c-grain" aria-hidden="true"></div>
       <h1 class="s-sc-hero__title c-sr c-sr--up" id="sc-title">스크롤이 이야기를 이끕니다</h1>
-      <p class="s-sc-hero__lead c-sr c-sr--up">휠을 조금만 굴려도 미끄러지듯 내려가고, 화면은 스크롤에 맞춰 움직입니다. 왼쪽 아래 스위치로 부드러운 스크롤과 섹션 스냅을 켜고 끄며 비교해 보세요.</p>
+      <p class="s-sc-hero__lead c-sr c-sr--up">휠을 살짝만 굴려도 다음 섹션으로 넘어가고, 화면은 스크롤에 맞춰 움직입니다. 왼쪽 아래 스위치로 섹션 넘김·부드러운 스크롤·자석 스냅을 켜고 끄며 비교해 보세요.</p>
       <p class="s-sc-hero__hint c-scroll-hint" aria-hidden="true">↓</p>
     </section>
 
     <!-- 01 스크롤 리빌 -->
-    <section class="l-block" id="reveal" aria-labelledby="sc-reveal">
+    <section class="l-block" id="reveal" data-page aria-labelledby="sc-reveal">
       <div class="l-block__head">
         <span class="l-block__no">01</span>
         <h2 class="l-block__title c-sr c-sr--up" id="sc-reveal">스크롤 리빌</h2>
@@ -95,7 +95,7 @@
     </section>
 
     <!-- 02 패럴랙스 -->
-    <section class="l-block l-block--alt" id="parallax" aria-labelledby="sc-parallax">
+    <section class="l-block l-block--alt" id="parallax" data-page aria-labelledby="sc-parallax">
       <div class="l-block__head">
         <span class="l-block__no">02</span>
         <h2 class="l-block__title c-sr c-sr--up" id="sc-parallax">패럴랙스</h2>
@@ -109,7 +109,7 @@
     </section>
 
     <!-- 03 고정 + 확대 -->
-    <section class="l-block l-block--flush" id="pin" aria-labelledby="sc-pin">
+    <section class="l-block l-block--flush" id="pin" data-page aria-labelledby="sc-pin">
       <div class="l-block__head">
         <span class="l-block__no">03</span>
         <h2 class="l-block__title c-sr c-sr--up" id="sc-pin">고정 + 확대</h2>
@@ -128,7 +128,7 @@
     </section>
 
     <!-- 04 가로 스크롤 -->
-    <section class="l-block l-block--flush l-block--alt" id="horizontal" aria-labelledby="sc-horizontal">
+    <section class="l-block l-block--flush l-block--alt" id="horizontal" data-page aria-labelledby="sc-horizontal">
       <div class="l-block__head">
         <span class="l-block__no">04</span>
         <h2 class="l-block__title c-sr c-sr--up" id="sc-horizontal">가로 스크롤</h2>
@@ -149,7 +149,7 @@
     </section>
 
     <!-- 05 스냅 갤러리 -->
-    <section class="l-block l-block--flush" id="snap" aria-labelledby="sc-snap">
+    <section class="l-block l-block--flush" id="snap" data-page aria-labelledby="sc-snap">
       <div class="l-block__head">
         <span class="l-block__no">05</span>
         <h2 class="l-block__title c-sr c-sr--up" id="sc-snap">스냅 갤러리</h2>
@@ -164,7 +164,7 @@
     </section>
 
     <!-- 마무리 -->
-    <section class="l-block l-block--alt" id="outro" aria-labelledby="sc-outro">
+    <section class="l-block l-block--alt" id="outro" data-page aria-labelledby="sc-outro">
       <div class="l-block__head">
         <h2 class="l-block__title c-sr c-sr--scale" id="sc-outro">끝까지 오셨네요</h2>
         <p class="l-block__desc">오른쪽 아래 버튼의 원이 지금까지 읽은 만큼 채워져 있습니다. 누르면 맨 위로 돌아갑니다.</p>
@@ -172,7 +172,7 @@
     </section>
   </main>
 
-  <footer class="l-footer">
+  <footer class="l-footer" data-page>
     <div class="l-footer__top">
       <div class="l-footer__brand">
         <a class="l-footer__logo" href="#top">보람찬크루</a>
@@ -228,6 +228,10 @@
     <div class="c-field c-field--inline">
       <input class="c-switch js-smooth-toggle" id="sc-smooth" type="checkbox" role="switch" checked>
       <label class="c-field__label" for="sc-smooth">부드러운 스크롤</label>
+    </div>
+    <div class="c-field c-field--inline">
+      <input class="c-switch js-paged-toggle" id="sc-paged" type="checkbox" role="switch" checked>
+      <label class="c-field__label" for="sc-paged">섹션 넘김(살짝만 굴려도)</label>
     </div>
     <div class="c-field c-field--inline">
       <input class="c-switch js-snap-toggle" id="sc-snap-toggle" type="checkbox" role="switch">

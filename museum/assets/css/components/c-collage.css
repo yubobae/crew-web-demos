@@ -1,0 +1,57 @@
+/* 사진 콜라주: 크기와 높낮이가 다른 사진이 엇갈려 놓이고, 화면에 들어오면 차례로 떠오른다 */
+@layer components {
+  .c-collage {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-6);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .c-collage__item {
+    display: grid;
+    gap: var(--space-2);
+    align-content: start;
+  }
+
+  .c-collage__photo {
+    aspect-ratio: 4 / 3;
+    background:
+      radial-gradient(60% 60% at 50% 40%, var(--photo-c, var(--mu-photo-1)), transparent 72%),
+      var(--mu-photo-2);
+    filter: sepia(0.3);
+  }
+
+  .c-collage__item--tall .c-collage__photo {
+    aspect-ratio: 3 / 4;
+  }
+
+  .c-collage__item--b { --photo-c: var(--mu-photo-3); }
+  .c-collage__item--c { --photo-c: var(--mu-gold); }
+
+  .c-collage__year {
+    font-weight: var(--font-weight-bold);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .c-collage__caption {
+    color: var(--mu-ink-soft);
+    font-size: var(--text-sm);
+  }
+
+  @media (min-width: 1024px) {
+    .c-collage {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      align-items: start;
+    }
+
+    .c-collage__item--down {
+      margin-top: var(--space-24);
+    }
+
+    .c-collage__item--up {
+      margin-top: var(--space-8);
+    }
+  }
+}

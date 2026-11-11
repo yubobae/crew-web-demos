@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="ko" data-play-mode="reverse">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>연대기 | 보람찬크루 웹 데모</title>
+  <meta name="description" content="디지털 역사관 하위 페이지 데모입니다. 위치 표시와 칩 메뉴, 열리는 큰 사진, 따라오는 시대 목록과 연표, 사진 콜라주, 흐르는 큰 글자, 숫자로 보는 성과, 인사말, 영상 목록을 담았습니다.">
+  <meta name="theme-color" content="#f6f1e6">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+  <link rel="stylesheet" href="assets/css/main.css">
+  <script type="module" src="assets/js/main.js"></script>
+</head>
+<body data-effect="play">
+  <a class="u-visually-hidden" href="#main">본문 바로가기</a>
+
+  <header class="l-mu-header is-on-light" data-module="header-theme">
+    <a class="l-mu-header__logo" href="index.html">
+      <span class="l-mu-header__mark">OO 50</span>
+      <span class="l-mu-header__sub">디지털 역사관</span>
+    </a>
+    <nav class="c-gnb" data-module="gnb" aria-label="주 메뉴">
+      <button class="c-gnb__toggle" type="button" aria-expanded="false" aria-controls="tl-gnb" aria-label="메뉴 열기">
+        <span class="c-gnb__bar c-gnb__bar--top"></span>
+        <span class="c-gnb__bar c-gnb__bar--mid"></span>
+        <span class="c-gnb__bar c-gnb__bar--bottom"></span>
+      </button>
+      <div class="c-gnb__panel" id="tl-gnb">
+        <ul class="c-gnb__list">
+          <li class="c-gnb__item"><a class="c-gnb__link" href="index.html">메인</a></li>
+          <li class="c-gnb__item"><a class="c-gnb__link" href="#era" aria-current="page">연대기</a></li>
+          <li class="c-gnb__item"><a class="c-gnb__link" href="#stats">숫자로 보는 성과</a></li>
+          <li class="c-gnb__item"><a class="c-gnb__link" href="#message">인사말</a></li>
+          <li class="c-gnb__item">
+            <button class="c-gnb__link" type="button" aria-expanded="false" aria-controls="tl-sub-demo">다른 데모<svg class="c-gnb__chevron" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="m7 10 5 5 5-5z"/></svg></button>
+            <div class="c-gnb__sub" id="tl-sub-demo">
+              <ul class="c-gnb__sub-inner">
+                <li><a class="c-gnb__sub-link" href="https://yubobae.github.io/crew-web-demos/">데모 목록</a></li>
+                <li><a class="c-gnb__sub-link" href="https://yubobae.github.io/crew-web-demos/ui-kit/">UI 키트</a></li>
+                <li><a class="c-gnb__sub-link" href="https://yubobae.github.io/crew-web-demos/effects/">인터랙션 효과</a></li>
+                <li><a class="c-gnb__sub-link" href="https://yubobae.github.io/crew-web-demos/scroll/">스크롤</a></li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <main class="l-sub" id="main">
+    <!-- 페이지 머리 -->
+    <section class="c-page-head" data-theme="light" aria-labelledby="tl-title" data-play-group>
+      <ol class="c-page-head__crumbs c-play c-play--up" aria-label="현재 위치">
+        <li class="c-page-head__crumb"><a class="c-page-head__crumb-link" href="index.html" aria-label="홈">⌂</a></li>
+        <li class="c-page-head__crumb"><a class="c-page-head__crumb-link" href="index.html#mu-timeline">50년을 돌아보며</a></li>
+        <li class="c-page-head__crumb"><a class="c-page-head__crumb-link" href="#era" aria-current="page">연대기</a></li>
+      </ol>
+      <h1 class="c-page-head__title c-play c-play--mask" id="tl-title"><span class="c-play__inner">50년의 발자취</span></h1>
+      <ul class="c-page-head__chips c-play c-play--up">
+        <li><a class="c-page-head__chip" href="#era" aria-current="page">연대기</a></li>
+        <li><a class="c-page-head__chip" href="#collage">사진으로 보는 터</a></li>
+        <li><a class="c-page-head__chip" href="#stats">숫자로 보는 성과</a></li>
+        <li><a class="c-page-head__chip" href="#message">인사말</a></li>
+        <li><a class="c-page-head__chip" href="#videos">인터뷰</a></li>
+      </ul>
+      <div class="c-page-head__hero c-play c-play--clip" data-play-mode="scrub" data-scrub-from="0.62" data-scrub-to="0.15" role="img" aria-label="본사 전경 사진 자리"></div>
+    </section>
+
+    <!-- 연대기 -->
+    <div class="c-era" id="era" data-theme="light" data-module="scrollspy">
+      <aside class="c-era__aside" aria-label="시대 목록">
+        <div class="c-era__now" aria-live="polite">
+          <span class="c-era__now-years js-era-now-years">1975~1989</span>
+          <span class="c-era__now-desc js-era-now-desc">첫걸음과 기틀</span>
+        </div>
+        <ol class="c-era__nav">
+          <li><a class="c-era__link" href="#era-1" aria-current="true">1975~1989</a></li>
+          <li><a class="c-era__link" href="#era-2">1990~2007</a></li>
+          <li><a class="c-era__link" href="#era-3">2008~2025</a></li>
+        </ol>
+      </aside>
+
+      <div class="c-era__body">
+        <section class="c-era__section" id="era-1" data-years="1975~1989" data-desc="첫걸음과 기틀" aria-labelledby="era-1-title">
+          <div class="c-era__cover c-play c-play--scale">
+            <span class="c-era__cover-years">1975~1989</span>
+            <h2 class="c-era__cover-title" id="era-1-title">작은 현판에서 시작한 첫걸음</h2>
+          </div>
+          <ol class="c-era__list">
+            <li class="c-era__item c-play c-play--up"><span class="c-era__date">1975.07</span><div><h3 class="c-era__item-title">창립</h3><p class="c-era__item-text">직원 열두 명, 작은 사무실 하나에서 시작했습니다.</p></div><span class="c-era__thumb" role="img" aria-label="창립 기념 사진 자리"></span></li>
+            <li class="c-era__item c-play c-play--up"><span class="c-era__date">1979.03</span><div><h3 class="c-era__item-title">첫 지역 사무소</h3><p class="c-era__item-text">지역 고객을 직접 만나기 위해 첫 사무소를 열었습니다.</p></div><span class="c-era__thumb" role="img" aria-label="지역 사무소 사진 자리"></span></li>
+            <li class="c-era__item c-play c-play--up"><span class="c-era__date">1986.11</span><div><h3 class="c-era__item-title">전산화</h3><p class="c-era__item-text">모든 업무를 전산으로 옮기며 처리 시간을 절반으로 줄였습니다.</p></div><span class="c-era__thumb" role="img" aria-label="전산실 사진 자리"></span></li>
+          </ol>
+        </section>
+
+        <section class="c-era__section" id="era-2" data-years="1990~2007" data-desc="위기를 넘어 성장으로" aria-labelledby="era-2-title">
+          <div class="c-era__cover c-era__cover--b c-play c-play--scale">
+            <span class="c-era__cover-years">1990~2007</span>
+            <h2 class="c-era__cover-title" id="era-2-title">위기를 넘어 성장으로</h2>
+          </div>
+          <ol class="c-era__list">
+            <li class="c-era__item c-play c-play--up"><span class="c-era__date">1996.04</span><div><h3 class="c-era__item-title">본사 이전</h3><p class="c-era__item-text">늘어난 식구를 위해 새 본사로 옮겼습니다.</p></div><span class="c-era__thumb" role="img" aria-label="새 본사 사진 자리"></span></li>
+            <li class="c-era__item c-play c-play--up"><span class="c-era__date">1998.01</span><div><h3 class="c-era__item-title">위기 극복 지원</h3><p class="c-era__item-text">어려운 시기에 고객사와 함께 버텼습니다.</p></div><span class="c-era__thumb" role="img" aria-label="지원 현장 사진 자리"></span></li>
+            <li class="c-era__item c-play c-play--up"><span class="c-era__date">2005.09</span><div><h3 class="c-era__item-title">해외 첫 협력</h3><p class="c-era__item-text">해외 기관과 첫 협력을 맺었습니다.</p></div><span class="c-era__thumb" role="img" aria-label="협약식 사진 자리"></span></li>
+          </ol>
+        </section>
+
+        <section class="c-era__section" id="era-3" data-years="2008~2025" data-desc="디지털과 다음 50년" aria-labelledby="era-3-title">
+          <div class="c-era__cover c-era__cover--c c-play c-play--scale">
+            <span class="c-era__cover-years">2008~2025</span>
+            <h2 class="c-era__cover-title" id="era-3-title">디지털로 여는 다음 50년</h2>
+          </div>
+          <ol class="c-era__list">
+            <li class="c-era__item c-play c-play--up"><span class="c-era__date">2008.12</span><div><h3 class="c-era__item-title">새 이름, 새 출발</h3><p class="c-era__item-text">새 이름과 새 상징을 선포했습니다.</p></div><span class="c-era__thumb" role="img" aria-label="선포식 사진 자리"></span></li>
+            <li class="c-era__item c-play c-play--up"><span class="c-era__date">2020.06</span><div><h3 class="c-era__item-title">디지털 전환</h3><p class="c-era__item-text">모든 서비스를 온라인으로 옮겼습니다.</p></div><span class="c-era__thumb" role="img" aria-label="디지털 서비스 사진 자리"></span></li>
+            <li class="c-era__item c-play c-play--up"><span class="c-era__date">2025.07</span><div><h3 class="c-era__item-title">창립 50주년</h3><p class="c-era__item-text">다음 50년의 약속을 새겼습니다.</p></div><span class="c-era__thumb" role="img" aria-label="50주년 기념식 사진 자리"></span></li>
+          </ol>
+        </section>
+      </div>
+    </div>
+
+    <!-- 사진 콜라주 + 흐르는 글자 -->
+    <section class="l-sub__section l-sub__section--sand" id="collage" data-theme="light" aria-labelledby="collage-title">
+      <div class="l-sub__head">
+        <span class="l-sub__eyebrow c-play c-play--up">Places</span>
+        <h2 class="l-sub__title c-play c-play--mask" id="collage-title"><span class="c-play__inner">사진으로 보는 터</span></h2>
+      </div>
+      <ul class="c-collage" data-play-group>
+        <li class="c-collage__item c-play c-play--up"><span class="c-collage__photo" role="img" aria-label="첫 사무실 사진 자리"></span><span class="c-collage__year">1975.07</span><span class="c-collage__caption">첫 사무실</span></li>
+        <li class="c-collage__item c-collage__item--tall c-collage__item--down c-collage__item--b c-play c-play--up"><span class="c-collage__photo" role="img" aria-label="두 번째 사옥 사진 자리"></span><span class="c-collage__year">1983.10</span><span class="c-collage__caption">두 번째 사옥</span></li>
+        <li class="c-collage__item c-collage__item--up c-collage__item--c c-play c-play--up"><span class="c-collage__photo" role="img" aria-label="본사 사진 자리"></span><span class="c-collage__year">1996.04</span><span class="c-collage__caption">본사 이전</span></li>
+        <li class="c-collage__item c-collage__item--tall c-collage__item--down c-play c-play--up"><span class="c-collage__photo" role="img" aria-label="지금의 캠퍼스 사진 자리"></span><span class="c-collage__year">2015.03</span><span class="c-collage__caption">지금의 캠퍼스</span></li>
+      </ul>
+      <div class="c-marquee" aria-hidden="true">
+        <div class="c-marquee__track">
+          <span class="c-marquee__text">OO 50th · 50 Years of History ·</span>
+          <span class="c-marquee__text">OO 50th · 50 Years of History ·</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 숫자로 보는 성과 -->
+    <section class="l-sub__section" id="stats" data-theme="light" aria-labelledby="stats-title" data-effect="odometer">
+      <div class="l-sub__head">
+        <span class="l-sub__eyebrow c-play c-play--up">Numbers</span>
+        <h2 class="l-sub__title c-play c-play--mask" id="stats-title"><span class="c-play__inner">숫자로 보는 성과</span></h2>
+        <p class="l-sub__desc c-play c-play--up">화면에 들어오면 숫자가 굴러 올라갑니다.</p>
+      </div>
+      <div class="l-sub__grid" data-play-group>
+        <div class="c-stat c-play c-play--up">
+          <svg class="c-stat__icon" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><path fill="none" stroke="currentColor" stroke-width="3" d="M6 50 22 30l12 10 22-24M42 16h14v14"/></svg>
+          <span class="c-stat__value"><span class="c-odometer js-odometer" data-to="65.1">65.1</span><span class="c-stat__unit">%</span></span>
+          <span class="c-stat__label">고객 재이용률</span>
+        </div>
+        <div class="c-stat c-play c-play--up">
+          <svg class="c-stat__icon" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><circle cx="32" cy="22" r="10" fill="none" stroke="currentColor" stroke-width="3"/><path fill="none" stroke="currentColor" stroke-width="3" d="M12 56c2-12 10-18 20-18s18 6 20 18"/></svg>
+          <span class="c-stat__value"><span class="c-odometer js-odometer" data-to="1034" data-delay="150">1034</span><span class="c-stat__unit">곳</span></span>
+          <span class="c-stat__label">함께한 협력사</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 인사말: 큰 바탕 글자 -->
+    <section class="l-sub__section l-sub__section--sand" id="message" data-theme="light" aria-labelledby="message-title">
+      <p class="l-sub__watermark" aria-hidden="true">Our Message</p>
+      <div class="l-sub__grid">
+        <div class="l-sub__head" data-play-group>
+          <span class="l-sub__eyebrow c-play c-play--up">Greeting</span>
+          <h2 class="l-sub__title c-play c-play--mask" id="message-title"><span class="c-play__inner">대표이사 인사말</span></h2>
+          <p class="c-play c-play--fill">반세기 동안 보내 주신 믿음에 감사드립니다.</p>
+          <p class="c-play c-play--fill">처음의 마음으로 다음 50년을 준비하겠습니다.</p>
+          <p class="c-play c-play--up">2026년 1월 · 대표이사 홍길동</p>
+        </div>
+        <figure class="c-orbit c-play c-play--scale">
+          <span class="c-orbit__circle" aria-hidden="true"></span>
+          <span class="c-orbit__ring" aria-hidden="true"></span>
+          <span class="c-orbit__photo" role="img" aria-label="대표이사 사진 자리"></span>
+        </figure>
+      </div>
+    </section>
+
+    <!-- 인터뷰 영상 목록 -->
+    <section class="l-sub__section l-sub__section--night" id="videos" data-theme="dark" aria-labelledby="videos-title" data-module="dialog">
+      <div class="l-sub__head">
+        <span class="l-sub__eyebrow c-play c-play--up">Interview</span>
+        <h2 class="l-sub__title c-play c-play--mask" id="videos-title"><span class="c-play__inner">역대 대표와 퇴직 임원 인터뷰</span></h2>
+        <p class="l-sub__desc c-play c-play--up">썸네일을 누르면 영상 창이 열립니다. 외부 영상은 누르기 전까지 불러오지 않습니다.</p>
+      </div>
+      <div class="l-sub__grid" data-play-group>
+        <button class="c-video-card js-dialog-open c-play c-play--up" type="button"><span class="c-video-card__thumb"><span class="c-video-card__play"><svg class="c-video-card__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M8 5v14l11-7z"/></svg></span></span><span class="c-video-card__caption">초대 대표 인터뷰</span></button>
+        <button class="c-video-card js-dialog-open c-play c-play--up" type="button"><span class="c-video-card__thumb"><span class="c-video-card__play"><svg class="c-video-card__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M8 5v14l11-7z"/></svg></span></span><span class="c-video-card__caption">퇴직 임원 좌담</span></button>
+      </div>
+      <dialog class="c-dialog js-dialog" aria-labelledby="tl-video-title">
+        <div class="c-dialog__header">
+          <h2 class="c-dialog__title" id="tl-video-title">인터뷰 영상</h2>
+          <p class="c-dialog__description">실제 사이트에서는 여기에서 영상을 불러옵니다.</p>
+        </div>
+        <div class="c-video-card__thumb" role="img" aria-label="영상 자리"></div>
+        <div class="c-dialog__footer"><button class="c-button js-dialog-close" type="button">닫기</button></div>
+      </dialog>
+    </section>
+  </main>
+
+  <footer class="l-footer" data-theme="dark">
+    <div class="l-footer__top">
+      <div class="l-footer__brand">
+        <a class="l-footer__logo" href="index.html">OO 50 디지털 역사관</a>
+        <p>보람찬크루가 만든 디지털 역사관 데모입니다. 사진과 문구는 모두 예시입니다.</p>
+      </div>
+      <nav class="l-footer__nav" aria-label="푸터 메뉴">
+        <div>
+          <h2 class="l-footer__heading">이 페이지</h2>
+          <ul class="l-footer__links">
+            <li><a class="l-footer__link" href="#era">연대기</a></li>
+            <li><a class="l-footer__link" href="#stats">숫자로 보는 성과</a></li>
+            <li><a class="l-footer__link" href="#message">인사말</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2 class="l-footer__heading">다른 곳</h2>
+          <ul class="l-footer__links">
+            <li><a class="l-footer__link" href="index.html">역사관 메인</a></li>
+            <li><a class="l-footer__link" href="https://yubobae.github.io/crew-web-demos/">데모 목록</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+    <div class="l-footer__bottom">
+      <ul class="l-footer__legal">
+        <li><a class="l-footer__link l-footer__link--strong" href="#main">개인정보처리방침</a></li>
+      </ul>
+      <address class="l-footer__info"><span>(주)OO기업</span><span>대표전화 00-0000-0000</span></address>
+      <p class="l-footer__copy">© 2026 보람찬크루. 예시용 회사 정보입니다.</p>
+    </div>
+  </footer>
+
+  <aside class="c-mu-panel" data-module="play-panel" aria-label="재생 방식">
+    <p class="c-mu-panel__title">재생 방식</p>
+    <fieldset class="c-mu-panel__options">
+      <legend class="u-visually-hidden">효과를 실행하는 방식</legend>
+      <span class="c-mu-panel__option"><input class="c-mu-panel__input" type="radio" name="play-mode" id="tm-once" value="once"><label class="c-mu-panel__label" for="tm-once">한 번만</label></span>
+      <span class="c-mu-panel__option"><input class="c-mu-panel__input" type="radio" name="play-mode" id="tm-repeat" value="repeat"><label class="c-mu-panel__label" for="tm-repeat">매번</label></span>
+      <span class="c-mu-panel__option"><input class="c-mu-panel__input" type="radio" name="play-mode" id="tm-reverse" value="reverse" checked><label class="c-mu-panel__label" for="tm-reverse">되감기</label></span>
+      <span class="c-mu-panel__option"><input class="c-mu-panel__input" type="radio" name="play-mode" id="tm-scrub" value="scrub"><label class="c-mu-panel__label" for="tm-scrub">스크롤</label></span>
+    </fieldset>
+  </aside>
+</body>
+</html>

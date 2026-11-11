@@ -1,0 +1,45 @@
+/* 기념 메시지: 왼쪽 글(제목·포인트 부제·채워지는 본문·버튼) + 오른쪽 인물(원·궤도선·세로 표지) */
+@layer sections {
+  .s-mu-message {
+    display: grid;
+    align-content: center;
+    gap: var(--space-12);
+    padding: var(--mu-header-h) var(--gutter) var(--space-12);
+    background:
+      radial-gradient(70% 60% at 80% 50%, color-mix(in oklch, var(--mu-peach) 30%, transparent), transparent 70%),
+      var(--mu-sand);
+    color: var(--mu-ink);
+  }
+
+  .s-mu-message__text {
+    display: grid;
+    justify-items: start;
+    gap: var(--space-5);
+    max-width: 36rem;
+  }
+
+  .s-mu-message__title {
+    font-size: clamp(var(--text-3xl), 3.6vw, var(--text-5xl));
+    font-weight: var(--font-weight-bold);
+  }
+
+  .s-mu-message__sub {
+    color: var(--mu-clay);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .s-mu-message__body {
+    display: grid;
+    gap: var(--space-1);
+    --play-fill-to: var(--mu-ink);
+    --play-fill-from: var(--mu-mute);
+  }
+
+  @media (min-width: 1025px) {
+    .s-mu-message {
+      grid-template-columns: 1.1fr 1fr;
+      align-items: center;
+      padding-inline: max(var(--gutter), 8vw);
+    }
+  }
+}

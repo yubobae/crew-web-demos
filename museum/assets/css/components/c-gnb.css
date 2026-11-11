@@ -1,0 +1,292 @@
+/* GNB(전체 메뉴)
+   PC(1025px 이상): 가로 메뉴, 마우스를 올리거나 클릭·키보드로 하위 메뉴가 펼쳐진다. 현재 메뉴 밑줄이 미끄러져 따라온다.
+   모바일: 햄버거(☰)가 ✕로 바뀌며 전체 화면 메뉴가 열리고 항목이 차례로 나타난다. 하위 메뉴는 아코디언.
+   동작은 modules/gnb.js (is-open, aria-expanded, --gnb-x/--gnb-w) */
+@layer components {
+  .c-gnb {
+    display: flex;
+    align-items: center;
+  }
+
+  /* ── 햄버거 버튼 ───────────────────────────── */
+  .c-gnb__toggle {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    place-items: center;
+    width: var(--tap-min);
+    height: var(--tap-min);
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: inherit;
+    cursor: pointer;
+  }
+
+  .c-gnb__bar {
+    grid-area: 1 / 1;
+    width: 22px;
+    height: 2px;
+    border-radius: var(--radius-full);
+    background: currentColor;
+    transition:
+      translate 400ms var(--ease-out-expo),
+      rotate 400ms var(--ease-out-expo),
+      opacity 200ms var(--ui-ease);
+  }
+
+  .c-gnb__bar--top { translate: 0 -7px; }
+  .c-gnb__bar--bottom { translate: 0 7px; }
+
+  .c-gnb.is-open .c-gnb__bar--top { translate: 0 0; rotate: 45deg; }
+  .c-gnb.is-open .c-gnb__bar--mid { opacity: 0; }
+  .c-gnb.is-open .c-gnb__bar--bottom { translate: 0 0; rotate: -45deg; }
+
+  /* ── 메뉴 판(모바일: 전체 화면) ─────────────── */
+  .c-gnb__panel {
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    display: grid;
+    align-content: start;
+    padding: calc(var(--space-20) + env(safe-area-inset-top, 0px)) var(--gutter) var(--space-10);
+    overflow-y: auto;
+    background: var(--fx-surface);
+    clip-path: circle(0% at calc(100% - 2.5rem) 2.5rem);
+    visibility: hidden;
+    transition:
+      clip-path 700ms var(--ease-out-expo),
+      visibility 0s linear 700ms;
+  }
+
+  .c-gnb.is-open .c-gnb__panel {
+    clip-path: circle(150% at calc(100% - 2.5rem) 2.5rem);
+    visibility: visible;
+    transition:
+      clip-path 700ms var(--ease-out-expo),
+      visibility 0s;
+  }
+
+  .c-gnb__list {
+    position: relative;
+    display: grid;
+    gap: var(--space-1);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .c-gnb__item {
+    opacity: 0;
+    translate: 0 var(--space-6);
+    transition:
+      opacity 500ms var(--ease-out-expo),
+      translate 500ms var(--ease-out-expo);
+    transition-delay: calc(150ms + var(--gnb-i, 0) * 60ms);
+  }
+
+  .c-gnb.is-open .c-gnb__item {
+    opacity: 1;
+    translate: 0 0;
+  }
+
+  .c-gnb__link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3);
+    width: 100%;
+    padding: var(--space-3) 0;
+    border: 0;
+    background: transparent;
+    color: var(--fx-text);
+    font: inherit;
+    font-size: var(--text-3xl);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: var(--tracking-tight);
+    text-align: start;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .c-gnb__link[aria-current="page"] {
+    color: var(--fx-c2);
+  }
+
+  .c-gnb__chevron {
+    flex-shrink: 0;
+    width: 1.25rem;
+    height: 1.25rem;
+    transition: rotate 300ms var(--ease-out-expo);
+  }
+
+  .c-gnb__link[aria-expanded="true"] .c-gnb__chevron {
+    rotate: 180deg;
+  }
+
+  /* 하위 메뉴(모바일: 아코디언) */
+  .c-gnb__sub {
+    display: grid;
+    grid-template-rows: 0fr;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    transition: grid-template-rows 400ms var(--ease-out-expo);
+  }
+
+  .c-gnb__sub-inner {
+    display: grid;
+    gap: var(--space-1);
+    min-height: 0;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    list-style: none;
+  }
+
+  .c-gnb__item.is-expanded .c-gnb__sub {
+    grid-template-rows: 1fr;
+  }
+
+  .c-gnb__sub-link {
+    display: block;
+    padding: var(--space-2) var(--space-4);
+    color: var(--fx-text-muted);
+    text-decoration: none;
+    transition: color 200ms var(--ui-ease);
+  }
+
+  /* ── PC ───────────────────────────────────── */
+  @media (min-width: 1025px) {
+    .c-gnb__toggle {
+      display: none;
+    }
+
+    .c-gnb__panel {
+      position: static;
+      padding: 0;
+      overflow: visible;
+      background: none;
+      clip-path: none;
+      visibility: visible;
+      transition: none;
+    }
+
+    .c-gnb__list {
+      display: flex;
+      gap: var(--space-2);
+    }
+
+    /* 미끄러지는 밑줄 */
+    .c-gnb__list::after {
+      content: "";
+      position: absolute;
+      inset-block-end: 0;
+      inset-inline-start: 0;
+      width: var(--gnb-w, 0);
+      height: 2px;
+      border-radius: var(--radius-full);
+      background: var(--fx-c2);
+      translate: var(--gnb-x, 0) 0;
+      opacity: var(--gnb-o, 0);
+      transition:
+        translate 400ms var(--ease-out-expo),
+        width 400ms var(--ease-out-expo),
+        opacity 200ms var(--ui-ease);
+    }
+
+    .c-gnb__item {
+      position: relative;
+      opacity: 1;
+      translate: 0 0;
+      transition: none;
+    }
+
+    .c-gnb__link {
+      padding: var(--space-3) var(--space-3);
+      color: var(--fx-text-muted);
+      font-size: var(--text-sm);
+      font-weight: var(--font-weight-medium);
+      letter-spacing: 0;
+      transition: color 200ms var(--ui-ease);
+    }
+
+    .c-gnb__link[aria-expanded="true"],
+    .c-gnb__link[aria-current="page"] {
+      color: var(--fx-text);
+    }
+
+    .c-gnb__chevron {
+      width: 0.875rem;
+      height: 0.875rem;
+    }
+
+    /* 하위 메뉴(PC: 아래로 떨어지는 카드) */
+    .c-gnb__sub {
+      position: absolute;
+      inset-block-start: calc(100% + var(--space-2));
+      inset-inline-start: 50%;
+      display: block;
+      min-width: 12rem;
+      padding: var(--space-2);
+      border: 1px solid var(--fx-line);
+      border-radius: var(--radius-xl);
+      background: var(--fx-surface-2);
+      box-shadow: var(--shadow-xl);
+      opacity: 0;
+      translate: -50% calc(var(--space-2) * -1);
+      scale: 0.97;
+      visibility: hidden;
+      transition:
+        opacity 200ms var(--ui-ease),
+        translate 300ms var(--ease-out-expo),
+        scale 300ms var(--ease-out-expo),
+        visibility 0s linear 300ms;
+    }
+
+    .c-gnb__item.is-expanded .c-gnb__sub {
+      opacity: 1;
+      translate: -50% 0;
+      scale: 1;
+      visibility: visible;
+      transition:
+        opacity 200ms var(--ui-ease),
+        translate 300ms var(--ease-out-expo),
+        scale 300ms var(--ease-out-expo),
+        visibility 0s;
+    }
+
+    .c-gnb__sub-inner {
+      overflow: visible;
+    }
+
+    .c-gnb__sub-link {
+      padding: var(--space-2) var(--space-3);
+      border-radius: var(--radius-md);
+      font-size: var(--text-sm);
+      white-space: nowrap;
+    }
+  }
+
+  @media (hover: hover) {
+    .c-gnb__link:hover,
+    .c-gnb__sub-link:hover {
+      color: var(--fx-text);
+    }
+
+    .c-gnb__sub-link:hover {
+      background: var(--fx-line);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .c-gnb__bar,
+    .c-gnb__panel,
+    .c-gnb__item,
+    .c-gnb__chevron,
+    .c-gnb__sub,
+    .c-gnb__sub-link {
+      transition: none;
+    }
+  }
+}

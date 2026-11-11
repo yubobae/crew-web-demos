@@ -1,0 +1,73 @@
+/* 박물관 헤더: 로고 + GNB. 화면 밝기에 따라 글자색이 바뀐다(modules/header-theme.js → is-on-light).
+   GNB(c-gnb)는 --fx-text 계열 변수를 쓰므로 여기서 값만 바꿔 주면 함께 바뀐다. */
+@layer layout {
+  .l-mu-header {
+    --fx-text: var(--mu-ivory);
+    --fx-text-muted: var(--mu-ivory-80);
+    position: fixed;
+    inset: 0 0 auto;
+    z-index: var(--z-header);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-6);
+    height: var(--mu-header-h);
+    padding-inline: var(--gutter);
+    padding-top: env(safe-area-inset-top, 0px);
+    color: var(--fx-text);
+    transition: color 500ms var(--ui-ease);
+  }
+
+  /* 밝은 화면: 글자뿐 아니라 전체 화면 메뉴·하위 메뉴 바탕도 밝게(어두운 바탕에 진한 글자가 되지 않게) */
+  .l-mu-header.is-on-light {
+    --fx-text: var(--mu-ink);
+    --fx-text-muted: var(--mu-teal);
+    --fx-surface: var(--mu-ivory);
+    --fx-surface-2: var(--mu-sand);
+    --fx-line: color-mix(in oklch, var(--mu-ink) 14%, transparent);
+    --fx-c2: var(--mu-clay);
+  }
+
+  /* 일반 스크롤 페이지에서 내려오면 바탕을 깐다(내용이 헤더 밑으로 비치지 않게). 흐림 효과는 쓰지 않는다 */
+  .l-mu-header::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-bottom: 1px solid var(--fx-line);
+    background: var(--fx-surface);
+    opacity: 0;
+    transition: opacity 300ms var(--ui-ease);
+  }
+
+  .l-mu-header.is-scrolled::before {
+    opacity: 0.96;
+  }
+
+  .l-mu-header__logo {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    line-height: 1.1;
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .l-mu-header__mark {
+    font-size: var(--text-2xl);
+    font-weight: var(--font-weight-black);
+    letter-spacing: var(--tracking-tighter);
+  }
+
+  .l-mu-header__sub {
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-wide);
+    opacity: 0.8;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .l-mu-header {
+      transition: none;
+    }
+  }
+}

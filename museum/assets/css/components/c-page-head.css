@@ -1,0 +1,98 @@
+/* 하위 페이지 머리: 위치 표시(홈 › 상위 › 현재) + 큰 제목 + 같은 묶음 페이지 칩 + 화면 폭 가득 사진(스크롤하면 양옆으로 열림) */
+@layer components {
+  .c-page-head {
+    display: grid;
+    gap: var(--space-6);
+    padding: var(--space-16) var(--gutter) 0;
+  }
+
+  .c-page-head__crumbs {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-2);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-size: var(--text-xs);
+    color: var(--mu-ink-soft);
+  }
+
+  .c-page-head__crumb {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+  }
+
+  .c-page-head__crumb + .c-page-head__crumb::before {
+    content: "";
+    width: var(--space-6);
+    height: 1px;
+    background: currentColor;
+    opacity: 0.5;
+  }
+
+  .c-page-head__crumb-link {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .c-page-head__crumb-link[aria-current="page"] {
+    color: var(--mu-teal);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .c-page-head__title {
+    font-size: clamp(var(--text-4xl), 4.6vw, var(--text-6xl));
+    font-weight: var(--font-weight-bold);
+  }
+
+  .c-page-head__chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .c-page-head__chip {
+    display: inline-block;
+    padding: var(--space-1-5) var(--space-4);
+    background: color-mix(in oklch, var(--mu-ink) 10%, transparent);
+    color: var(--mu-ink-soft);
+    font-size: var(--text-sm);
+    text-decoration: none;
+    transition:
+      background-color 250ms var(--ui-ease),
+      color 250ms var(--ui-ease);
+  }
+
+  .c-page-head__chip[aria-current="page"] {
+    background: var(--mu-teal);
+    color: var(--mu-ivory);
+  }
+
+  .c-page-head__hero {
+    height: clamp(14rem, 34vw, 28rem);
+    margin-inline: calc(var(--gutter) * -1);
+    background:
+      linear-gradient(180deg, transparent 50%, color-mix(in oklch, var(--mu-ink) 25%, transparent)),
+      radial-gradient(40% 70% at 70% 30%, var(--mu-photo-3), transparent 70%),
+      radial-gradient(50% 60% at 20% 80%, var(--mu-photo-1), transparent 70%),
+      linear-gradient(180deg, var(--mu-sky), var(--mu-photo-2));
+  }
+
+  @media (hover: hover) {
+    .c-page-head__chip:hover {
+      background: color-mix(in oklch, var(--mu-teal) 20%, transparent);
+      color: var(--mu-ink);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .c-page-head__chip {
+      transition: none;
+    }
+  }
+}

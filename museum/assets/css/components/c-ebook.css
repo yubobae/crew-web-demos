@@ -1,0 +1,85 @@
+/* 기록집 표지: 마우스를 올리면 살짝 떠오르며 그림자가 깊어지고, 첫 권에는 "Click" 표지가 통통 튄다 */
+@layer components {
+  .c-ebook {
+    display: grid;
+    gap: var(--space-3);
+    justify-items: center;
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .c-ebook__cover {
+    position: relative;
+    display: grid;
+    align-content: space-between;
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    padding: var(--space-5);
+    background: var(--cover-bg, var(--mu-ivory));
+    color: var(--cover-fg, var(--mu-ink));
+    box-shadow: var(--shadow-md);
+    transition:
+      transform 500ms var(--fx-ease-spring),
+      box-shadow 500ms var(--ui-ease);
+  }
+
+  .c-ebook__cover--b {
+    --cover-bg: var(--mu-cover-grey);
+    --cover-fg: var(--mu-ink);
+  }
+
+  .c-ebook__cover--c {
+    --cover-bg: var(--mu-ink-soft);
+    --cover-fg: var(--mu-ivory);
+  }
+
+  .c-ebook__vol {
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-widest);
+  }
+
+  .c-ebook__name {
+    font-size: var(--text-lg);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--leading-snug);
+  }
+
+  .c-ebook__badge {
+    position: absolute;
+    inset-block-start: 14%;
+    inset-inline-start: 50%;
+    padding: var(--space-1) var(--space-3);
+    background: var(--mu-peach);
+    color: var(--mu-ivory);
+    font-size: var(--text-sm);
+    translate: -50% 0;
+    animation: c-ebook-bounce 1.6s var(--ease-in-out) infinite;
+  }
+
+  .c-ebook__label {
+    font-weight: var(--font-weight-semibold);
+  }
+
+  @keyframes c-ebook-bounce {
+    50% {
+      translate: -50% calc(var(--space-2) * -1);
+    }
+  }
+
+  @media (hover: hover) {
+    .c-ebook:hover .c-ebook__cover {
+      transform: translate3d(0, calc(var(--space-3) * -1), 0) rotate(-1deg);
+      box-shadow: var(--shadow-2xl);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .c-ebook__cover {
+      transition: none;
+    }
+
+    .c-ebook__badge {
+      animation: none;
+    }
+  }
+}

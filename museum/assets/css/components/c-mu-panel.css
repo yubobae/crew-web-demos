@@ -1,0 +1,78 @@
+/* 데모 설정 패널: 재생 방식(한 번만/매번/되감기/스크롤)을 고르는 칸. 고른 칸으로 바탕이 미끄러진다 */
+@layer components {
+  .c-mu-panel {
+    position: fixed;
+    inset-block-end: max(var(--space-4), env(safe-area-inset-bottom, 0px));
+    inset-inline-start: max(var(--space-4), env(safe-area-inset-left, 0px));
+    z-index: calc(var(--z-header) - 1);
+    display: grid;
+    gap: var(--space-2);
+    max-width: calc(100vw - var(--space-8));
+    padding: var(--space-3);
+    border: 1px solid var(--fx-line);
+    border-radius: var(--radius-xl);
+    background: var(--mu-night);
+    color: var(--mu-ivory);
+    box-shadow: var(--shadow-xl);
+    font-size: var(--text-xs);
+  }
+
+  .c-mu-panel__title {
+    letter-spacing: var(--tracking-widest);
+    text-transform: uppercase;
+    opacity: 0.7;
+  }
+
+  .c-mu-panel__options {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: var(--space-0-5);
+    margin: 0;
+    padding: var(--space-0-5);
+    border: 0;
+    border-radius: var(--radius-lg);
+    background: var(--fx-surface-2);
+  }
+
+  .c-mu-panel__option {
+    position: relative;
+  }
+
+  .c-mu-panel__input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .c-mu-panel__label {
+    display: block;
+    padding: var(--space-2) var(--space-3);
+    border-radius: var(--radius-md);
+    text-align: center;
+    white-space: nowrap;
+    cursor: pointer;
+    transition:
+      background-color 250ms var(--ui-ease),
+      color 250ms var(--ui-ease);
+  }
+
+  .c-mu-panel__input:checked + .c-mu-panel__label {
+    background: var(--mu-ivory);
+    color: var(--mu-ink);
+  }
+
+  .c-mu-panel__input:focus-visible + .c-mu-panel__label {
+    outline: 2px solid var(--mu-gold);
+    outline-offset: 2px;
+  }
+
+  .c-mu-panel__hint {
+    opacity: 0.7;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .c-mu-panel__label {
+      transition: none;
+    }
+  }
+}

@@ -1,0 +1,73 @@
+/* 재생 효과: --p(0~1) 하나로 모양을 정한다. 값을 바꾸는 쪽은 effects/play.js(재생 방식: 한 번/매번/되감기/스크롤).
+   --p를 숫자로 등록해 두면 CSS transition이 --p 자체를 부드럽게 움직인다(되감기도 같은 곡선으로 거꾸로).
+   종류: --up(아래에서) --left(왼쪽에서) --scale(작게에서) --blur(흐림에서) --mask(글자 아래에서 솟기) --clip(가로로 열리기) --fill(글자색 채우기) */
+@layer components {
+  @property --p {
+    syntax: "<number>";
+    inherits: true;
+    initial-value: 0;
+  }
+
+  .c-play {
+    --p: 0;
+    transition: --p var(--play-dur, 1100ms) var(--ease-out-expo) calc(var(--i, 0) * var(--play-stagger, 90ms));
+  }
+
+  /* 스크롤에 맞춰 움직일 때·조용히 되돌릴 때는 전환 없이 바로 */
+  .c-play.is-instant {
+    transition: none;
+  }
+
+  .c-play--up {
+    opacity: var(--p);
+    transform: translate3d(0, calc((1 - var(--p)) * var(--space-12)), 0);
+  }
+
+  .c-play--left {
+    opacity: var(--p);
+    transform: translate3d(calc((1 - var(--p)) * var(--space-16) * -1), 0, 0);
+  }
+
+  .c-play--scale {
+    opacity: var(--p);
+    transform: scale(calc(0.85 + var(--p) * 0.15));
+  }
+
+  .c-play--blur {
+    opacity: var(--p);
+    filter: blur(calc((1 - var(--p)) * 12px));
+  }
+
+  /* 글자가 아래에서 솟는 마스크: 바깥이 가리고 안쪽(c-play__inner)이 올라온다 */
+  .c-play--mask {
+    display: block;
+    overflow: hidden;
+  }
+
+  .c-play__inner {
+    display: inline-block;
+    transform: translate3d(0, calc((1 - var(--p)) * 110%), 0);
+  }
+
+  /* 가로로 열리기(넓은 사진): 가운데 좁은 띠에서 양옆으로 */
+  .c-play--clip {
+    clip-path: inset(0 calc((1 - var(--p)) * 30%) round calc((1 - var(--p)) * var(--radius-3xl)));
+  }
+
+  /* 글자색 채우기: 연한 회색 글자가 왼쪽부터 진한 색으로 차오른다 */
+  .c-play--fill {
+    background: linear-gradient(90deg, var(--play-fill-to, var(--fx-text)) 0 50%, var(--play-fill-from, var(--fx-text-muted)) 50% 100%);
+    background-size: 200% 100%;
+    background-position-x: calc((1 - var(--p)) * 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .c-play {
+      --p: 1;
+      transition: none;
+    }
+  }
+}

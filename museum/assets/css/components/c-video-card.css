@@ -1,0 +1,87 @@
+/* 영상 카드: 썸네일 위 둥근 재생 버튼(바깥으로 퍼지는 물결), 마우스를 올리면 썸네일이 살짝 커진다.
+   누르면 바로 영상을 불러오지 않고 모달로 연다(외부 영상은 눌렀을 때만 불러오기) */
+@layer components {
+  .c-video-card {
+    display: grid;
+    gap: var(--space-3);
+    width: 100%;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: inherit;
+    text-align: center;
+    cursor: pointer;
+  }
+
+  .c-video-card__thumb {
+    position: relative;
+    display: grid;
+    place-items: center;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+  }
+
+  .c-video-card__thumb::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(50% 60% at 50% 50%, color-mix(in oklch, var(--mu-clay) 45%, transparent), transparent 70%),
+      repeating-radial-gradient(circle at 50% 50%, color-mix(in oklch, var(--mu-gold) 18%, transparent) 0 2px, transparent 2px 14px),
+      var(--mu-hall-1);
+    transition: transform 700ms var(--ease-out-expo);
+  }
+
+  .c-video-card__play {
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: 4.5rem;
+    height: 4.5rem;
+    border-radius: var(--radius-full);
+    background: color-mix(in oklch, var(--mu-ivory) 85%, transparent);
+    color: var(--mu-ink);
+  }
+
+  .c-video-card__play::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border: 2px solid var(--mu-ivory);
+    border-radius: inherit;
+    animation: c-video-card-pulse 2s var(--ease-out) infinite;
+  }
+
+  .c-video-card__icon {
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-inline-start: var(--space-1);
+  }
+
+  .c-video-card__caption {
+    font-weight: var(--font-weight-semibold);
+  }
+
+  @keyframes c-video-card-pulse {
+    to {
+      opacity: 0;
+      transform: scale(1.6);
+    }
+  }
+
+  @media (hover: hover) {
+    .c-video-card:hover .c-video-card__thumb::before {
+      transform: scale(1.06);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .c-video-card__thumb::before {
+      transition: none;
+    }
+
+    .c-video-card__play::after {
+      animation: none;
+    }
+  }
+}

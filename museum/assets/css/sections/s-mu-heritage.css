@@ -1,0 +1,66 @@
+/* 전시관 소개: 화면 가득 어두운 전시장(천천히 다가오는 배경) + 큰 이름 + 버튼 + 소개 영상 카드 */
+@layer sections {
+  .s-mu-heritage {
+    display: grid;
+    align-content: center;
+    gap: var(--space-10);
+    padding: var(--mu-header-h) var(--gutter) var(--space-16);
+    background: var(--mu-hall-2);
+    color: var(--mu-ivory);
+  }
+
+  .s-mu-heritage__bg {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(180deg, transparent 40%, var(--mu-veil)),
+      radial-gradient(60% 50% at 30% 30%, var(--mu-hall-1), transparent 75%),
+      repeating-linear-gradient(90deg, color-mix(in oklch, var(--mu-gold) 14%, transparent) 0 3px, transparent 3px 120px),
+      linear-gradient(180deg, var(--mu-hall-2), var(--mu-deep));
+    animation: s-mu-heritage-zoom 20s ease-out infinite alternate;
+  }
+
+  @keyframes s-mu-heritage-zoom {
+    to {
+      transform: scale(1.1);
+    }
+  }
+
+  .s-mu-heritage__brand {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    gap: var(--space-4);
+    justify-items: start;
+  }
+
+  .s-mu-heritage__name {
+    font-size: clamp(var(--text-5xl), 8vw, var(--text-9xl));
+    font-weight: var(--font-weight-black);
+    line-height: 0.9;
+    letter-spacing: var(--tracking-tighter);
+  }
+
+  .s-mu-heritage__sub {
+    font-size: var(--text-sm);
+    letter-spacing: 0.6em;
+  }
+
+  .s-mu-heritage__video {
+    position: relative;
+    z-index: 1;
+  }
+
+  @media (min-width: 1025px) {
+    .s-mu-heritage {
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .s-mu-heritage__bg {
+      animation: none;
+    }
+  }
+}

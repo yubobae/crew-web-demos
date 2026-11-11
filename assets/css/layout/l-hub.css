@@ -53,13 +53,10 @@
     }
   }
 
+  /* 카드 4장: 넓은 화면에서도 2×2로 */
   @media (min-width: 1280px) {
     .l-hub {
-      max-width: 80rem;
-    }
-
-    .l-hub__list {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+      max-width: 72rem;
     }
   }
 }

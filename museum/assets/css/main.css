@@ -1,0 +1,40 @@
+/* 진입점: 레이어 순서 선언 + 불러오기만 둔다 */
+@layer reset, tokens, base, layout, components, sections, utilities;
+
+@import "tokens.css";
+@import "base/reset.css";
+@import "base/document.css";
+
+@import "layout/l-mu-header.css";
+@import "layout/l-fp.css";
+@import "layout/l-footer.css";
+@import "layout/l-sub.css";
+
+@import "components/c-play.css";
+@import "components/c-button.css";
+@import "components/c-dialog.css";
+@import "components/c-field.css";
+@import "components/c-switch.css";
+@import "components/c-gnb.css";
+@import "components/c-grain.css";
+@import "components/c-scroll-hint.css";
+@import "components/c-odometer.css";
+@import "components/c-carousel.css";
+@import "components/c-fp-progress.css";
+@import "components/c-orbit.css";
+@import "components/c-ebook.css";
+@import "components/c-video-card.css";
+@import "components/c-mu-panel.css";
+@import "components/c-page-head.css";
+@import "components/c-era.css";
+@import "components/c-collage.css";
+@import "components/c-marquee.css";
+@import "components/c-stat.css";
+
+@import "sections/s-mu-hero.css";
+@import "sections/s-mu-timeline.css";
+@import "sections/s-mu-message.css";
+@import "sections/s-mu-ebook.css";
+@import "sections/s-mu-heritage.css";
+
+@import "utilities/u-visually-hidden.css";

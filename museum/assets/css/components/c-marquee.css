@@ -1,0 +1,37 @@
+/* 흐르는 큰 글자: 테두리만 있는 큰 글자가 끝없이 옆으로 흐른다. 같은 내용을 두 번 두고(두 번째는 화면 읽기 제외) -50%까지 옮겨 이음새가 없다 */
+@layer components {
+  .c-marquee {
+    overflow: hidden;
+    padding-block: var(--space-4);
+    pointer-events: none;
+  }
+
+  .c-marquee__track {
+    display: flex;
+    width: max-content;
+    animation: c-marquee-flow var(--fx-dur-marquee) linear infinite;
+  }
+
+  .c-marquee__text {
+    padding-inline-end: var(--space-12);
+    font-size: clamp(var(--text-5xl), 9vw, 9rem);
+    font-weight: var(--font-weight-black);
+    line-height: 1;
+    letter-spacing: var(--tracking-tight);
+    white-space: nowrap;
+    color: transparent;
+    -webkit-text-stroke: 1px color-mix(in oklch, var(--mu-ink) 25%, transparent);
+  }
+
+  @keyframes c-marquee-flow {
+    to {
+      transform: translate3d(-50%, 0, 0);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .c-marquee__track {
+      animation: none;
+    }
+  }
+}

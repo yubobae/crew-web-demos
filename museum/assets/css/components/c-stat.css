@@ -1,0 +1,48 @@
+/* 숫자로 보는 성과: 그림 + 굴러 올라가는 큰 숫자(c-odometer) + 단위 + 설명. 마우스를 올리면 그림이 살짝 튄다 */
+@layer components {
+  .c-stat {
+    display: grid;
+    justify-items: center;
+    gap: var(--space-3);
+    padding: var(--space-8);
+    background: var(--mu-ivory);
+    text-align: center;
+  }
+
+  .c-stat__icon {
+    width: 4rem;
+    height: 4rem;
+    color: var(--mu-teal);
+    transition: transform 500ms var(--fx-ease-spring);
+  }
+
+  .c-stat__value {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-1);
+    color: var(--mu-clay);
+    font-size: clamp(var(--text-4xl), 4vw, var(--text-6xl));
+    font-weight: var(--font-weight-bold);
+  }
+
+  .c-stat__unit {
+    font-size: var(--text-lg);
+  }
+
+  .c-stat__label {
+    color: var(--mu-ink-soft);
+    font-size: var(--text-sm);
+  }
+
+  @media (hover: hover) {
+    .c-stat:hover .c-stat__icon {
+      transform: translate3d(0, calc(var(--space-2) * -1), 0) rotate(-6deg);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .c-stat__icon {
+      transition: none;
+    }
+  }
+}

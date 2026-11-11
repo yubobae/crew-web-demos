@@ -1,0 +1,475 @@
+/*
+ * 크루 기본 토큰 (v0.1) — 새 사이트의 assets/css/tokens.css 시작점
+ *
+ * 구조
+ *   1. 원시 값(primitive): 팔레트·간격·글자·반경·그림자·이징 단계. 고치지 않는다.
+ *   2. 의미 토큰(semantic): 사이트마다 컨셉에 맞게 바꾸는 값. 다른 CSS 파일은 이것만 쓴다.
+ *      (예: 컴포넌트에서 var(--palette-blue-600) 대신 var(--color-accent))
+ *
+ * 출처: 원시 값의 색·간격·글자·반경·그림자·이징은 Tailwind CSS 기본 테마 값을 옮겼다.
+ *   https://github.com/tailwindlabs/tailwindcss — packages/tailwindcss/theme.css
+ *   (main 브랜치, 최신 릴리스 v4.3.5 시점, 2026-11-11 확인)
+ *   Tailwind CSS는 MIT License, Copyright (c) Tailwind Labs, Inc.
+ *   Tailwind 프레임워크 자체는 쓰지 않는다. 값 체계만 참고한다.
+ *
+ * 분기점은 Tailwind 값을 쓰지 않고 크루 기준(500/820/1024/1280/1440/1600)을 쓴다(컨벤션 4장).
+ * 색은 oklch() 형식: 사파리 15.4 이상, 크롬·엣지 111 이상, 파이어폭스 113 이상 지원.
+ */
+@layer tokens {
+  :root {
+    /* ===================================================================
+       1. 원시 값 — 고치지 않는다
+       =================================================================== */
+
+    /* 1-1. 팔레트: 무채색 4종(취향에 따라 하나만 고른다) */
+    --palette-gray-50: oklch(98.5% 0.002 247.839);
+    --palette-gray-100: oklch(96.7% 0.003 264.542);
+    --palette-gray-200: oklch(92.8% 0.006 264.531);
+    --palette-gray-300: oklch(87.2% 0.01 258.338);
+    --palette-gray-400: oklch(70.7% 0.022 261.325);
+    --palette-gray-500: oklch(55.1% 0.027 264.364);
+    --palette-gray-600: oklch(44.6% 0.03 256.802);
+    --palette-gray-700: oklch(37.3% 0.034 259.733);
+    --palette-gray-800: oklch(27.8% 0.033 256.848);
+    --palette-gray-900: oklch(21% 0.034 264.665);
+    --palette-gray-950: oklch(13% 0.028 261.692);
+
+    --palette-slate-50: oklch(98.4% 0.003 247.858);
+    --palette-slate-100: oklch(96.8% 0.007 247.896);
+    --palette-slate-200: oklch(92.9% 0.013 255.508);
+    --palette-slate-300: oklch(86.9% 0.022 252.894);
+    --palette-slate-400: oklch(70.4% 0.04 256.788);
+    --palette-slate-500: oklch(55.4% 0.046 257.417);
+    --palette-slate-600: oklch(44.6% 0.043 257.281);
+    --palette-slate-700: oklch(37.2% 0.044 257.287);
+    --palette-slate-800: oklch(27.9% 0.041 260.031);
+    --palette-slate-900: oklch(20.8% 0.042 265.755);
+    --palette-slate-950: oklch(12.9% 0.042 264.695);
+
+    --palette-zinc-50: oklch(98.5% 0 none);
+    --palette-zinc-100: oklch(96.7% 0.001 286.375);
+    --palette-zinc-200: oklch(92% 0.004 286.32);
+    --palette-zinc-300: oklch(87.1% 0.006 286.286);
+    --palette-zinc-400: oklch(70.5% 0.015 286.067);
+    --palette-zinc-500: oklch(55.2% 0.016 285.938);
+    --palette-zinc-600: oklch(44.2% 0.017 285.786);
+    --palette-zinc-700: oklch(37% 0.013 285.805);
+    --palette-zinc-800: oklch(27.4% 0.006 286.033);
+    --palette-zinc-900: oklch(21% 0.006 285.885);
+    --palette-zinc-950: oklch(14.1% 0.005 285.823);
+
+    --palette-neutral-50: oklch(98.5% 0 none);
+    --palette-neutral-100: oklch(97% 0 none);
+    --palette-neutral-200: oklch(92.2% 0 none);
+    --palette-neutral-300: oklch(87% 0 none);
+    --palette-neutral-400: oklch(70.8% 0 none);
+    --palette-neutral-500: oklch(55.6% 0 none);
+    --palette-neutral-600: oklch(43.9% 0 none);
+    --palette-neutral-700: oklch(37.1% 0 none);
+    --palette-neutral-800: oklch(26.9% 0 none);
+    --palette-neutral-900: oklch(20.5% 0 none);
+    --palette-neutral-950: oklch(14.5% 0 none);
+
+    /* 1-2. 팔레트: 포인트·상태 색 */
+    --palette-blue-50: oklch(97% 0.014 254.604);
+    --palette-blue-100: oklch(93.2% 0.032 255.585);
+    --palette-blue-200: oklch(88.2% 0.059 254.128);
+    --palette-blue-300: oklch(80.9% 0.105 251.813);
+    --palette-blue-400: oklch(70.7% 0.165 254.624);
+    --palette-blue-500: oklch(62.3% 0.214 259.815);
+    --palette-blue-600: oklch(54.6% 0.245 262.881);
+    --palette-blue-700: oklch(48.8% 0.243 264.376);
+    --palette-blue-800: oklch(42.4% 0.199 265.638);
+    --palette-blue-900: oklch(37.9% 0.146 265.522);
+    --palette-blue-950: oklch(28.2% 0.091 267.935);
+
+    --palette-red-50: oklch(97.1% 0.013 17.38);
+    --palette-red-100: oklch(93.6% 0.032 17.717);
+    --palette-red-200: oklch(88.5% 0.062 18.334);
+    --palette-red-300: oklch(80.8% 0.114 19.571);
+    --palette-red-400: oklch(70.4% 0.191 22.216);
+    --palette-red-500: oklch(63.7% 0.237 25.331);
+    --palette-red-600: oklch(57.7% 0.245 27.325);
+    --palette-red-700: oklch(50.5% 0.213 27.518);
+    --palette-red-800: oklch(44.4% 0.177 26.899);
+    --palette-red-900: oklch(39.6% 0.141 25.723);
+    --palette-red-950: oklch(25.8% 0.092 26.042);
+
+    --palette-amber-50: oklch(98.7% 0.022 95.277);
+    --palette-amber-100: oklch(96.2% 0.059 95.617);
+    --palette-amber-200: oklch(92.4% 0.12 95.746);
+    --palette-amber-300: oklch(87.9% 0.169 91.605);
+    --palette-amber-400: oklch(82.8% 0.189 84.429);
+    --palette-amber-500: oklch(76.9% 0.188 70.08);
+    --palette-amber-600: oklch(66.6% 0.179 58.318);
+    --palette-amber-700: oklch(55.5% 0.163 48.998);
+    --palette-amber-800: oklch(47.3% 0.137 46.201);
+    --palette-amber-900: oklch(41.4% 0.112 45.904);
+    --palette-amber-950: oklch(27.9% 0.077 45.635);
+
+    --palette-green-50: oklch(98.2% 0.018 155.826);
+    --palette-green-100: oklch(96.2% 0.044 156.743);
+    --palette-green-200: oklch(92.5% 0.084 155.995);
+    --palette-green-300: oklch(87.1% 0.15 154.449);
+    --palette-green-400: oklch(79.2% 0.209 151.711);
+    --palette-green-500: oklch(72.3% 0.219 149.579);
+    --palette-green-600: oklch(62.7% 0.194 149.214);
+    --palette-green-700: oklch(52.7% 0.154 150.069);
+    --palette-green-800: oklch(44.8% 0.119 151.328);
+    --palette-green-900: oklch(39.3% 0.095 152.535);
+    --palette-green-950: oklch(26.6% 0.065 152.934);
+
+    --palette-black: #000;
+    --palette-white: #fff;
+
+    /* 1-3. 간격: 0.25rem(4px) 단위. --space-N = N × 0.25rem (Tailwind의 p-4 = --space-4 = 1rem) */
+    --space-0: 0;
+    --space-px: 1px;
+    --space-0-5: 0.125rem;
+    --space-1: 0.25rem;
+    --space-1-5: 0.375rem;
+    --space-2: 0.5rem;
+    --space-3: 0.75rem;
+    --space-4: 1rem;
+    --space-5: 1.25rem;
+    --space-6: 1.5rem;
+    --space-8: 2rem;
+    --space-10: 2.5rem;
+    --space-12: 3rem;
+    --space-16: 4rem;
+    --space-20: 5rem;
+    --space-24: 6rem;
+    --space-32: 8rem;
+    --space-40: 10rem;
+
+    /* 1-4. 글자 크기 단계와 줄 간격 */
+    --text-xs: 0.75rem;
+    --text-xs--line-height: calc(1 / 0.75);
+    --text-sm: 0.875rem;
+    --text-sm--line-height: calc(1.25 / 0.875);
+    --text-base: 1rem;
+    --text-base--line-height: calc(1.5 / 1);
+    --text-lg: 1.125rem;
+    --text-lg--line-height: calc(1.75 / 1.125);
+    --text-xl: 1.25rem;
+    --text-xl--line-height: calc(1.75 / 1.25);
+    --text-2xl: 1.5rem;
+    --text-2xl--line-height: calc(2 / 1.5);
+    --text-3xl: 1.875rem;
+    --text-3xl--line-height: calc(2.25 / 1.875);
+    --text-4xl: 2.25rem;
+    --text-4xl--line-height: calc(2.5 / 2.25);
+    --text-5xl: 3rem;
+    --text-5xl--line-height: 1;
+    --text-6xl: 3.75rem;
+    --text-6xl--line-height: 1;
+    --text-7xl: 4.5rem;
+    --text-7xl--line-height: 1;
+    --text-8xl: 6rem;
+    --text-8xl--line-height: 1;
+    --text-9xl: 8rem;
+    --text-9xl--line-height: 1;
+
+    /* 1-5. 굵기·자간·행간 */
+    --font-weight-light: 300;
+    --font-weight-normal: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+    --font-weight-extrabold: 800;
+    --font-weight-black: 900;
+
+    --tracking-tighter: -0.05em;
+    --tracking-tight: -0.025em;
+    --tracking-normal: 0em;
+    --tracking-wide: 0.025em;
+    --tracking-wider: 0.05em;
+    --tracking-widest: 0.1em;
+
+    --leading-tight: 1.25;
+    --leading-snug: 1.375;
+    --leading-normal: 1.5;
+    --leading-relaxed: 1.625;
+    --leading-loose: 2;
+
+    /* 1-6. 반경·그림자 */
+    --radius-xs: 0.125rem;
+    --radius-sm: 0.25rem;
+    --radius-md: 0.375rem;
+    --radius-lg: 0.5rem;
+    --radius-xl: 0.75rem;
+    --radius-2xl: 1rem;
+    --radius-3xl: 1.5rem;
+    --radius-4xl: 2rem;
+    --radius-full: 9999px;
+
+    --shadow-2xs: 0 1px rgb(0 0 0 / 0.05);
+    --shadow-xs: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+    --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+
+    /* 1-7. 이징·시간 (Tailwind 기본 + 크루 모션 하한선용 이징) */
+    --ease-in: cubic-bezier(0.4, 0, 1, 1);
+    --ease-out: cubic-bezier(0, 0, 0.2, 1);
+    --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+    --ease-out-expo: cubic-bezier(0.22, 1, 0.36, 1);   /* 크루: 리빌·등장 */
+    --ease-sine-in-out: cubic-bezier(0.37, 0, 0.63, 1); /* 크루: 반복 미세 모션 */
+    --duration-fast: 150ms;
+
+    /* 1-8. 글꼴 대체 순서 (폰트 프리셋은 samples/fonts, 8장) */
+    --font-system: -apple-system, BlinkMacSystemFont, system-ui, "Segoe UI", Roboto, "Helvetica Neue",
+      "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji",
+      "Segoe UI Symbol", sans-serif;
+    --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+
+    /* ===================================================================
+       2. 의미 토큰 — 사이트마다 여기만 바꾼다. 다른 CSS는 이것만 쓴다
+       =================================================================== */
+
+    /* 2-1. 색 */
+    --color-bg: var(--palette-white);
+    --color-bg-subtle: var(--palette-gray-50);
+    --color-bg-1: var(--palette-gray-50);
+    --color-bg-2: var(--palette-gray-900);
+    --color-bg-3: var(--palette-gray-100);
+    --color-bg-4: var(--palette-gray-800);
+    --color-bg-5: var(--palette-white);
+    --color-fg: var(--palette-gray-900);
+    --color-fg-muted: var(--palette-gray-500);
+    --color-fg-on-light: var(--palette-gray-900);
+    --color-fg-on-dark: var(--palette-gray-50);
+    --color-border: var(--palette-gray-200);
+    --color-accent: var(--palette-blue-600);
+    --color-accent-hover: var(--palette-blue-700);
+    --color-accent-2: var(--palette-amber-500);
+    --color-focus: var(--palette-blue-500);
+    --color-success: var(--palette-green-600);
+    --color-warning: var(--palette-amber-600);
+    --color-danger: var(--palette-red-600);
+
+    /* 2-2. 글꼴 (프리셋을 쓰면 아래 두 줄을 프리셋 값으로 바꾼다) */
+    --font-sans: var(--font-system);
+    --font-display: var(--font-sans);
+    --fw-regular: var(--font-weight-normal);
+    --fw-medium: var(--font-weight-medium);
+    --fw-bold: var(--font-weight-bold);
+    --fw-display: var(--font-weight-extrabold);
+    --ls-display: var(--tracking-tight);
+    --ls-body: var(--tracking-normal);
+
+    /* 2-3. 반응형 글자 크기 (단계 사이를 화면 폭에 따라 부드럽게) */
+    --fs-small: var(--text-sm);
+    --fs-body: clamp(var(--text-base), 0.95rem + 0.2vw, var(--text-lg));
+    --fs-h3: clamp(var(--text-lg), 1rem + 0.6vw, var(--text-2xl));
+    --fs-h2: clamp(var(--text-2xl), 1.2rem + 1.6vw, var(--text-4xl));
+    --fs-h1: clamp(var(--text-4xl), 1.6rem + 3vw, var(--text-6xl));
+    --fs-display: clamp(var(--text-5xl), 2rem + 6vw, var(--text-9xl));
+    --lh-tight: var(--leading-tight);
+    --lh-body: var(--leading-relaxed);
+
+    /* 2-4. 레이아웃 */
+    --gutter: clamp(var(--space-4), 4vw, var(--space-20));
+    --content-max: 1440px;
+    --section-pad: clamp(var(--space-16), 10vw, var(--space-24));
+    --z-header: 10;
+    --z-overlay: 100;
+
+    /* 2-5. 모양 */
+    --radius-control: var(--radius-md);
+    --radius-card: var(--radius-xl);
+    --shadow-card: var(--shadow-md);
+    --focus-ring: 3px solid var(--color-focus);
+    --focus-offset: 3px;
+    --tap-min: 44px;
+
+    /* 2-6. 모션 (크루 품질 하한선 수치) */
+    --dur-micro: 0.45s;
+    --dur-reveal: 1s;
+    --stagger-reveal: 0.4s;
+    --dur-clip: 1.5s;
+    --dur-section: 1000ms;
+    --dur-bg-focus: 5s;
+    --dur-hint: 1.6s;
+    --ease-reveal: var(--ease-out-expo);
+
+    /* ===================================================================
+       3. UI 컴포넌트 토큰 (samples/ui-kit) — shadcn/ui "neutral" 테마 값
+          출처: github.com/shadcn-ui/ui apps/v4/registry/_legacy-base-colors.ts,
+                new-york-v4 컴포넌트 (MIT License, Copyright (c) 2023 shadcn), 2026-11-11 확인
+          --ui-accent는 shadcn 의미 그대로 "hover 배경"이다. 브랜드 포인트 색은 --color-accent.
+       =================================================================== */
+    --ui-radius: 0.625rem;
+    --ui-radius-sm: calc(var(--ui-radius) * 0.6);
+    --ui-radius-md: calc(var(--ui-radius) * 0.8);
+    --ui-radius-lg: var(--ui-radius);
+    --ui-radius-xl: calc(var(--ui-radius) * 1.4);
+
+    --ui-background: oklch(1 0 0);
+    --ui-foreground: oklch(0.145 0 0);
+    --ui-card: oklch(1 0 0);
+    --ui-card-foreground: oklch(0.145 0 0);
+    --ui-popover: oklch(1 0 0);
+    --ui-popover-foreground: oklch(0.145 0 0);
+    --ui-primary: oklch(0.205 0 0);
+    --ui-primary-foreground: oklch(0.985 0 0);
+    --ui-secondary: oklch(0.97 0 0);
+    --ui-secondary-foreground: oklch(0.205 0 0);
+    --ui-muted: oklch(0.97 0 0);
+    --ui-muted-foreground: oklch(0.556 0 0);
+    --ui-accent: oklch(0.97 0 0);
+    --ui-accent-foreground: oklch(0.205 0 0);
+    --ui-destructive: oklch(0.577 0.245 27.325);
+    --ui-destructive-foreground: oklch(1 0 0);
+    --ui-border: oklch(0.922 0 0);
+    --ui-input: oklch(0.922 0 0);
+    --ui-ring: oklch(0.708 0 0);
+    --ui-overlay: oklch(0 0 0 / 50%);
+
+    /* shadcn 인터랙션 기준: 반응 150ms, 열림·닫힘 페이드 + 95% 확대, 아코디언 200ms */
+    --ui-duration: 150ms;
+    --ui-duration-dialog: 200ms;
+    --ui-duration-accordion: 200ms;
+    --ui-ease: ease;
+    --ui-enter-scale: 0.95;
+    --ui-enter-offset: var(--space-2);
+    --ui-ring-width: 3px;
+    --ui-control-h: 2.25rem;     /* h-9 */
+    --ui-control-h-sm: 2rem;     /* h-8 */
+    --ui-control-h-lg: 2.5rem;   /* h-10 */
+    --ui-tabs-pad: 3px;
+    --ui-duration-toggle: 250ms;
+    --ui-ease-toggle: var(--ease-in-out);
+    --ui-switch-thumb: oklch(1 0 0);
+    --ui-switch-thumb-on: oklch(1 0 0);          /* 탭 목록 안쪽 여백 p-[3px] */
+
+    /* ===================================================================
+       4. 효과 토큰 (samples/effects) — 화려한 랜딩 인터랙션용 색·시간
+       =================================================================== */
+    --fx-surface: oklch(0.16 0.01 270);
+    --fx-surface-2: oklch(0.21 0.015 270);
+    --fx-line: oklch(1 0 0 / 10%);
+    --fx-text: oklch(0.97 0 0);
+    --fx-text-muted: oklch(0.72 0.01 270);
+    --fx-c1: oklch(0.72 0.19 300);   /* 보라 */
+    --fx-c2: oklch(0.75 0.15 230);   /* 하늘 */
+    --fx-c3: oklch(0.82 0.16 170);   /* 민트 */
+    --fx-c4: oklch(0.8 0.17 60);     /* 주황 */
+    --fx-beam: oklch(0.85 0.12 230);
+    --fx-glow: oklch(0.72 0.19 300 / 35%);
+    --fx-spotlight: oklch(1 0 0 / 12%);
+    --fx-meteor: oklch(1 0 0 / 80%);
+    --fx-dur-beam: 3s;
+    --fx-dur-aurora: 18s;
+    --fx-dur-marquee: 30s;
+    --fx-dur-gradient: 6s;
+    --fx-dur-meteor: 6s;
+    --fx-ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+    --ui-toast-w: 22.25rem;      /* 356px */
+    --ui-dialog-w: 32rem;        /* sm:max-w-lg */
+  }
+
+  /* 다크 모드: 시스템 설정을 따르고, html[data-theme]로 직접 고를 수도 있다 */
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      color-scheme: dark;
+      --ui-background: oklch(0.145 0 0);
+      --ui-foreground: oklch(0.985 0 0);
+      --ui-card: oklch(0.205 0 0);
+      --ui-card-foreground: oklch(0.985 0 0);
+      --ui-popover: oklch(0.205 0 0);
+      --ui-popover-foreground: oklch(0.985 0 0);
+      --ui-primary: oklch(0.922 0 0);
+      --ui-primary-foreground: oklch(0.205 0 0);
+      --ui-secondary: oklch(0.269 0 0);
+      --ui-secondary-foreground: oklch(0.985 0 0);
+      --ui-muted: oklch(0.269 0 0);
+      --ui-muted-foreground: oklch(0.708 0 0);
+      --ui-accent: oklch(0.269 0 0);
+      --ui-accent-foreground: oklch(0.985 0 0);
+      --ui-destructive: oklch(0.704 0.191 22.216);
+      --ui-border: oklch(1 0 0 / 10%);
+      --ui-input: oklch(1 0 0 / 15%);
+      --ui-ring: oklch(0.556 0 0);
+      --ui-switch-thumb: oklch(0.985 0 0);
+      --ui-switch-thumb-on: oklch(0.205 0 0);
+    }
+  }
+
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --ui-background: oklch(0.145 0 0);
+    --ui-foreground: oklch(0.985 0 0);
+    --ui-card: oklch(0.205 0 0);
+    --ui-card-foreground: oklch(0.985 0 0);
+    --ui-popover: oklch(0.205 0 0);
+    --ui-popover-foreground: oklch(0.985 0 0);
+    --ui-primary: oklch(0.922 0 0);
+    --ui-primary-foreground: oklch(0.205 0 0);
+    --ui-secondary: oklch(0.269 0 0);
+    --ui-secondary-foreground: oklch(0.985 0 0);
+    --ui-muted: oklch(0.269 0 0);
+    --ui-muted-foreground: oklch(0.708 0 0);
+    --ui-accent: oklch(0.269 0 0);
+    --ui-accent-foreground: oklch(0.985 0 0);
+    --ui-destructive: oklch(0.704 0.191 22.216);
+    --ui-border: oklch(1 0 0 / 10%);
+    --ui-input: oklch(1 0 0 / 15%);
+    --ui-ring: oklch(0.556 0 0);
+    --ui-switch-thumb: oklch(0.985 0 0);
+    --ui-switch-thumb-on: oklch(0.205 0 0);
+  }
+}
+
+/* ===================================================================
+   5. 박물관 데모 토큰 (samples/museum) — 레퍼런스와 다른 우리 팔레트
+   =================================================================== */
+@layer tokens {
+  :root {
+    --mu-ink: oklch(0.24 0.03 255);        /* 남색 먹 */
+    --mu-ink-soft: oklch(0.42 0.025 255);
+    --mu-ivory: oklch(0.965 0.018 85);     /* 따뜻한 상아 */
+    --mu-sand: oklch(0.91 0.035 78);
+    --mu-teal: oklch(0.38 0.06 215);       /* 깊은 청록 */
+    --mu-clay: oklch(0.64 0.15 42);        /* 테라코타 포인트 */
+    --mu-peach: oklch(0.86 0.07 50);
+    --mu-night: oklch(0.2 0.025 255);      /* 푸터·어두운 화면 */
+    --mu-gold: oklch(0.8 0.11 85);
+    --mu-mute: oklch(0.72 0.015 255);      /* 채우기 전 글자색 */
+    --mu-veil: oklch(0.2 0.025 255 / 55%); /* 사진 위 어둡게 */
+    --mu-hall-1: oklch(0.32 0.05 60);      /* 전시장 조명 그라디언트 */
+    --mu-hall-2: oklch(0.18 0.02 40);
+    --mu-photo-1: oklch(0.7 0.03 70);      /* 옛 사진 느낌 자리 표시 */
+    --mu-photo-2: oklch(0.45 0.03 60);
+    --mu-photo-3: oklch(0.58 0.04 230);
+    --mu-header-h: 5.5rem;
+
+    /* 공용 부품(GNB·푸터)이 쓰는 --fx-* 값을 박물관 팔레트로 */
+    --fx-surface: var(--mu-night);
+    --fx-surface-2: oklch(0.26 0.03 255);
+    --fx-text: var(--mu-ivory);
+    --fx-text-muted: oklch(0.78 0.02 85);
+    --fx-line: oklch(1 0 0 / 14%);
+    --fx-c2: var(--mu-gold);
+  }
+}
+
+@layer tokens {
+  :root {
+    /* 사진 띠·카드 색도 박물관 팔레트로(공용 carousel이 --fx-c1~4를 씀) */
+    --fx-c1: var(--mu-photo-1);
+    --fx-c3: var(--mu-photo-3);
+    --fx-c4: var(--mu-peach);
+  }
+}
+
+@layer tokens {
+  :root {
+    --mu-cover-grey: oklch(0.7 0.01 255);
+    --mu-sky: oklch(0.85 0.04 230);
+    --mu-ivory-80: oklch(0.9 0.02 85 / 80%);
+    --mu-deep: oklch(0.12 0.01 40);
+  }
+}

@@ -1,0 +1,48 @@
+/* 연대기 소개: 가운데 제목(위 작은 표지, 오른쪽 아래 영문 강조) + 화면 끝까지 이어지는 사진 띠 + 설명 + 버튼 */
+@layer sections {
+  .s-mu-timeline {
+    display: grid;
+    align-content: center;
+    justify-items: center;
+    gap: var(--space-10);
+    padding-block: var(--mu-header-h) var(--space-12);
+    background: var(--mu-teal);
+    color: var(--mu-ivory);
+    text-align: center;
+  }
+
+  .s-mu-timeline__head {
+    display: grid;
+    padding-inline: var(--gutter);
+  }
+
+  .s-mu-timeline__eyebrow {
+    justify-self: start;
+    color: var(--mu-clay);
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .s-mu-timeline__title {
+    font-size: clamp(var(--text-3xl), 4vw, var(--text-6xl));
+    font-weight: var(--font-weight-bold);
+  }
+
+  .s-mu-timeline__accent {
+    justify-self: end;
+    color: var(--mu-clay);
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .s-mu-timeline__strip {
+    width: 100%;
+  }
+
+  .s-mu-timeline__desc {
+    max-width: 32rem;
+    padding-inline: var(--gutter);
+    font-size: var(--text-sm);
+    color: color-mix(in oklch, var(--mu-ivory) 85%, transparent);
+  }
+}

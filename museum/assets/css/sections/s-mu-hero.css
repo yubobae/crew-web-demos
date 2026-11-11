@@ -1,0 +1,99 @@
+/* 첫 화면: 어두운 전시장 배경(천천히 흐르는 조명) + 왼쪽 큰 제목(두 줄, 둘째 줄 들여쓰기) + 오른쪽 기념 표지 */
+@layer sections {
+  .s-mu-hero {
+    display: grid;
+    align-items: center;
+    padding: var(--mu-header-h) var(--gutter) var(--space-16);
+    background: var(--mu-hall-2);
+    color: var(--mu-ivory);
+  }
+
+  /* 영상 대신: 두 개의 조명이 천천히 흐르는 배경(transform만 움직여 가볍다) */
+  .s-mu-hero__bg {
+    position: absolute;
+    inset: -10%;
+    background:
+      radial-gradient(40% 50% at 25% 40%, var(--mu-hall-1), transparent 70%),
+      radial-gradient(35% 45% at 75% 60%, color-mix(in oklch, var(--mu-gold) 35%, transparent), transparent 70%),
+      repeating-linear-gradient(90deg, color-mix(in oklch, var(--mu-gold) 10%, transparent) 0 2px, transparent 2px 80px),
+      var(--mu-hall-2);
+    animation: s-mu-hero-drift 24s ease-in-out infinite alternate;
+  }
+
+  @keyframes s-mu-hero-drift {
+    to {
+      transform: translate3d(-4%, -2%, 0) scale(1.08);
+    }
+  }
+
+  .s-mu-hero__inner {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    gap: var(--space-8);
+    width: 100%;
+    max-width: 80rem;
+    margin-inline: auto;
+  }
+
+  .s-mu-hero__eyebrow {
+    color: var(--mu-clay);
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: var(--tracking-wide);
+  }
+
+  .s-mu-hero__title {
+    display: grid;
+    gap: var(--space-2);
+    font-size: clamp(var(--text-4xl), 5.4vw, var(--text-7xl));
+    font-weight: var(--font-weight-bold);
+  }
+
+  .s-mu-hero__line--indent {
+    padding-inline-start: 1.6em;
+  }
+
+  .s-mu-hero__mark {
+    justify-self: end;
+    display: grid;
+    justify-items: end;
+    font-size: clamp(var(--text-5xl), 9vw, var(--text-9xl));
+    font-weight: var(--font-weight-black);
+    line-height: 0.9;
+    letter-spacing: var(--tracking-tighter);
+    color: transparent;
+    -webkit-text-stroke: 1px color-mix(in oklch, var(--mu-ivory) 70%, transparent);
+  }
+
+  .s-mu-hero__mark-sub {
+    font-size: var(--text-xs);
+    font-weight: var(--font-weight-medium);
+    letter-spacing: 0.5em;
+    color: var(--mu-ivory);
+    -webkit-text-stroke: 0;
+  }
+
+  .s-mu-hero__hint {
+    position: absolute;
+    inset-block-end: var(--space-8);
+    inset-inline-start: 50%;
+    z-index: 1;
+    translate: -50% 0;
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-widest);
+  }
+
+  @media (min-width: 1025px) {
+    .s-mu-hero__inner {
+      grid-template-columns: 1fr auto;
+      align-items: end;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .s-mu-hero__bg {
+      animation: none;
+    }
+  }
+}

@@ -55,6 +55,35 @@ export function init() {
     return false;
   };
 
+  // ── 섹션 넘김(html.is-paged): 휠을 살짝만 굴려도 다음·이전 섹션 시작으로 이동 ──
+  // 화면보다 훨씬 긴 섹션(고정 확대·가로 스크롤처럼 스크롤로 움직이는 구간)은 그 안에서는 평소처럼 흐르고,
+  // 끝에 닿으면 다음 섹션으로 넘어간다.
+  const PAGE_LOCK_MS = 750;
+  let pageUntil = 0;
+  let lastWheelAt = 0;
+  const paged = () => document.documentElement.classList.contains("is-paged");
+  const stops = () =>
+    [...document.querySelectorAll("[data-page]")].map((el) => {
+      const top = Math.round(el.getBoundingClientRect().top + scrollY);
+      return { top, bottom: top + el.offsetHeight, tall: el.offsetHeight > innerHeight * 1.3 };
+    });
+
+  const pageStep = (dir) => {
+    const list = stops();
+    const y = scrollY;
+    const here = list.findIndex((s) => y >= s.top - 2 && y < s.bottom - 2);
+    const cur = list[here];
+    // 긴 섹션 안에서는 한 화면 단위로 흐르다가 끝에서 넘어간다
+    if (cur?.tall) {
+      const innerNext = dir > 0 ? Math.min(cur.bottom - innerHeight, y + innerHeight * 0.85) : Math.max(cur.top, y - innerHeight * 0.85);
+      if ((dir > 0 && y < cur.bottom - innerHeight - 2) || (dir < 0 && y > cur.top + 2)) return innerNext;
+    }
+    if (dir > 0) return (list.find((s) => s.top > y + 2) ?? { top: maxY }).top;
+    const prev = [...list].reverse().find((s) => s.top < y - 2);
+    if (!prev) return 0;
+    return prev.tall ? Math.max(prev.top, prev.bottom - innerHeight) : prev.top;
+  };
+
   const onWheel = (event) => {
     if (!active() || event.ctrlKey || document.documentElement.classList.contains("is-locked")) return;
     if (canScrollInside(event.target, event.deltaY)) return;
@@ -63,6 +92,17 @@ export function init() {
     if (!animating) {
       current = target = scrollY;
       measure(); // 페이지 높이는 움직이기 시작할 때 한 번만 읽는다(매 프레임 읽으면 레이아웃 계산이 생김)
+    }
+    if (paged()) {
+      const now = performance.now();
+      const quiet = now - lastWheelAt > 180; // 트랙패드 관성 휠은 한 번으로
+      lastWheelAt = now;
+      if (now < pageUntil || !quiet || Math.abs(delta) < 2) return;
+      pageUntil = now + PAGE_LOCK_MS;
+      current = scrollY;
+      target = Math.max(0, Math.min(maxY, pageStep(delta > 0 ? 1 : -1)));
+      start();
+      return;
     }
     target = Math.max(0, Math.min(maxY, target + delta * WHEEL_SCALE));
     start();

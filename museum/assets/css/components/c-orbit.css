@@ -1,0 +1,88 @@
+/* 궤도 인물: 복숭아색 큰 원 위에 인물 사진이 겹치고, 가는 궤도선 두 개가 천천히 돌며, 옆에 세로 표지 */
+@layer components {
+  .c-orbit {
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: min(100%, 30rem);
+    aspect-ratio: 1;
+    margin-inline: auto;
+  }
+
+  .c-orbit__circle {
+    position: absolute;
+    inset: 4% 10% 16% 4%;
+    border-radius: var(--radius-full);
+    background: var(--mu-peach);
+  }
+
+  .c-orbit__ring {
+    position: absolute;
+    inset: 8%;
+    border: 1px solid color-mix(in oklch, var(--mu-ink) 25%, transparent);
+    border-radius: var(--radius-full);
+    animation: c-orbit-spin 30s linear infinite;
+  }
+
+  .c-orbit__ring--2 {
+    inset: 14% 2% 2% 14%;
+    border-style: dashed;
+    animation-duration: 42s;
+    animation-direction: reverse;
+  }
+
+  .c-orbit__ring::after {
+    content: "";
+    position: absolute;
+    inset-block-start: 14%;
+    inset-inline-end: 14%;
+    width: 8px;
+    height: 8px;
+    border-radius: var(--radius-full);
+    background: var(--mu-clay);
+  }
+
+  .c-orbit__photo {
+    position: relative;
+    z-index: 1;
+    width: 54%;
+    aspect-ratio: 4 / 5;
+    margin-inline-start: 18%;
+    background:
+      radial-gradient(28% 22% at 50% 34%, var(--mu-sand), transparent 72%),
+      radial-gradient(55% 45% at 50% 100%, var(--mu-ink-soft), transparent 75%),
+      linear-gradient(180deg, var(--mu-ivory), var(--mu-sand));
+    box-shadow: var(--shadow-xl);
+  }
+
+  .c-orbit__label {
+    position: absolute;
+    inset-block-start: 50%;
+    inset-inline-end: 6%;
+    z-index: 1;
+    color: var(--mu-clay);
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-bold);
+    writing-mode: vertical-rl;
+  }
+
+  .c-orbit__caption {
+    position: absolute;
+    inset-block-end: 4%;
+    inset-inline-start: 50%;
+    translate: -20% 0;
+    font-size: var(--text-sm);
+  }
+
+  @keyframes c-orbit-spin {
+    to {
+      rotate: 1turn;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .c-orbit__ring {
+      animation: none;
+    }
+  }
+}

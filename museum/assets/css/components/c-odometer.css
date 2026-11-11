@@ -1,0 +1,32 @@
+/* 숫자 회전 카운터: 자릿수마다 0~9 띠가 위로 굴러가 목표 숫자에서 멈춘다.
+   effects/odometer.js가 띠를 만들고 --digit 값을 넣는다. 화면 읽기용 숫자는 HTML 그대로 남긴다. */
+@layer components {
+  .c-odometer {
+    display: inline-flex;
+    font-variant-numeric: tabular-nums;
+    line-height: 1;
+  }
+
+  .c-odometer__digit {
+    display: inline-block;
+    height: 1em;
+    overflow: hidden;
+  }
+
+  .c-odometer__ribbon {
+    display: flex;
+    flex-direction: column;
+    transform: translateY(calc(var(--digit, 0) * -1em));
+    transition: transform var(--odo-dur, 2.4s) var(--ease-out-expo) var(--odo-delay, 0s);
+  }
+
+  .c-odometer__num {
+    height: 1em;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .c-odometer__ribbon {
+      transition: none;
+    }
+  }
+}

@@ -1,0 +1,82 @@
+/* 풀페이지 틀(effects/fullpage.js가 is-enabled, 패널마다 is-active/is-past/is-future)
+   cover: 다음 화면이 아래에서 올라와 덮고, 이전 화면은 살짝 위로 물러나며 어두워진다(레퍼런스와 같은 넘김)
+   slide: 모든 화면이 한 줄로 함께 밀려 올라간다
+   푸터(data-fp-auto): 마지막 화면을 푸터 높이만큼만 밀어 올리고 푸터가 아래에서 나타난다
+   모바일·동작 줄이기: 일반 스크롤(패널이 위에서 아래로 쌓임) */
+@layer layout {
+  .l-fp__panel {
+    position: relative;
+    min-height: 100vh;
+    min-height: 100svh;
+    overflow: hidden;
+  }
+
+  .l-fp.is-enabled {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+  }
+
+  .l-fp.is-enabled .l-fp__panel {
+    position: absolute;
+    inset: 0;
+    height: 100vh;
+    height: 100svh;
+    will-change: transform;
+    transition:
+      transform 1000ms var(--ease-out-expo),
+      filter 1000ms var(--ease-out-expo);
+  }
+
+  /* cover */
+  .l-fp--cover.is-enabled .l-fp__panel.is-future {
+    transform: translate3d(0, 100%, 0);
+  }
+
+  .l-fp--cover.is-enabled .l-fp__panel.is-past {
+    transform: translate3d(0, -18%, 0);
+    filter: brightness(0.55);
+  }
+
+  .l-fp--cover.is-enabled .l-fp__panel.is-active {
+    transform: translate3d(0, calc(var(--fp-footer-shift, 0px) * -1), 0);
+  }
+
+  /* slide */
+  .l-fp--slide.is-enabled .l-fp__panel.is-future {
+    transform: translate3d(0, 100%, 0);
+  }
+
+  .l-fp--slide.is-enabled .l-fp__panel.is-past {
+    transform: translate3d(0, -100%, 0);
+  }
+
+  /* 푸터: 내용 높이만큼 */
+  .l-fp.is-enabled .l-fp__panel--auto {
+    inset: auto 0 0;
+    height: auto;
+    min-height: 0;
+    filter: none;
+  }
+
+  .l-fp--cover.is-enabled .l-fp__panel--auto.is-future,
+  .l-fp--slide.is-enabled .l-fp__panel--auto.is-future {
+    transform: translate3d(0, 100%, 0);
+  }
+
+  .l-fp.is-enabled .l-fp__panel--auto.is-active {
+    transform: none;
+  }
+
+  /* 푸터 단계에서 바로 앞 화면은 덮이지 않고 함께 밀려 올라간다 */
+  .l-fp--cover.is-enabled .l-fp__panel.is-lifted {
+    transform: translate3d(0, calc(var(--fp-footer-shift, 0px) * -1), 0);
+    filter: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .l-fp.is-enabled .l-fp__panel {
+      transition: none;
+    }
+  }
+}
