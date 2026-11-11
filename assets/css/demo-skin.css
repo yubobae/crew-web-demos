@@ -85,3 +85,77 @@ body {
   --fx-c2: oklch(0.62 0.22 290);
   --fx-c3: oklch(0.78 0.15 60);
 }
+
+/* ── 크루 사이트와 같은 모양 ─────────────────────────────── */
+
+/* 머리줄: 크루 사이트처럼 둥글게 뜬 알약 막대 + 구슬 로고 */
+.l-header {
+  inset: 0.75rem var(--gutter, 1rem) auto !important;
+  padding: 0.5rem 0.9rem 0.5rem 1.1rem !important;
+  border-radius: 999px;
+}
+
+.l-header::before {
+  opacity: 1 !important;
+  border: 1px solid var(--color-border, oklch(0.9 0.01 85)) !important;
+  border-radius: 999px;
+  background: color-mix(in oklch, var(--color-bg, white) 82%, transparent) !important;
+  backdrop-filter: blur(14px) saturate(1.4);
+}
+
+.l-header__logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-weight: 800 !important;
+  letter-spacing: -0.02em;
+  color: var(--color-fg) !important;
+}
+
+.l-header__logo::before {
+  content: "";
+  width: 1.2rem;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: conic-gradient(from 200deg, oklch(0.66 0.21 34), oklch(0.58 0.23 288), oklch(0.8 0.1 235), oklch(0.66 0.21 34));
+}
+
+/* 제목: 크루 사이트처럼 굵고 촘촘하게 */
+h1, h2 {
+  font-weight: 900;
+  letter-spacing: -0.04em;
+}
+
+/* 바탕: 크루 사이트 첫 화면 같은 은은한 주황·보라 번짐 (밝은 면에만) */
+:root:not([data-theme="dark"]) body {
+  background:
+    radial-gradient(60rem 40rem at -5% -10%, oklch(0.9 0.08 40 / 0.55), transparent 60%),
+    radial-gradient(50rem 40rem at 105% 30%, oklch(0.88 0.07 295 / 0.4), transparent 60%),
+    var(--color-bg);
+  background-attachment: fixed;
+}
+
+:root[data-theme="dark"] body {
+  background:
+    radial-gradient(60rem 40rem at -5% -10%, oklch(0.4 0.14 40 / 0.35), transparent 60%),
+    radial-gradient(50rem 40rem at 105% 30%, oklch(0.4 0.16 295 / 0.4), transparent 60%),
+    var(--color-bg);
+  background-attachment: fixed;
+}
+
+/* 역사관 구성 데모(--mu-*): 상아·남색·황금 대신 크루 색으로 */
+:root {
+  --mu-ink: oklch(0.2 0.02 280);
+  --mu-ink-soft: oklch(0.42 0.03 280);
+  --mu-ivory: oklch(0.975 0.006 85);
+  --mu-sand: oklch(0.95 0.02 70);
+  --mu-teal: oklch(0.5 0.2 290);
+  --mu-clay: oklch(0.66 0.21 34);
+  --mu-peach: oklch(0.9 0.06 50);
+  --mu-night: oklch(0.15 0.04 285);
+  --mu-gold: oklch(0.78 0.14 55);
+  --mu-hall-1: oklch(0.3 0.1 300);
+  --mu-hall-2: oklch(0.17 0.04 285);
+  --mu-veil: oklch(0.15 0.04 285 / 55%);
+  --mu-deep: oklch(0.12 0.03 285);
+}
