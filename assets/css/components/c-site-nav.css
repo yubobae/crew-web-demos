@@ -258,3 +258,11 @@
     border-color: var(--tr-night-line);
   }
 }
+
+/* 로고 이미지 표시 */
+@layer components {
+  .c-site-nav__mark {
+    background: none;
+    border-radius: var(--radius-md);
+  }
+}

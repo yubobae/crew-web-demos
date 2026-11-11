@@ -170,3 +170,44 @@
     }
   }
 }
+
+/* 첫 화면 양옆 일러스트(넓은 화면에서만, 둥실 떠다님) */
+@layer components {
+  .c-crew-hero__art {
+    position: absolute;
+    top: 20%;
+    z-index: -1;
+    width: clamp(12rem, 20vw, 20rem);
+    height: auto;
+    pointer-events: none;
+    animation: c-crew-hero-float 7s var(--ease-in-out) infinite alternate;
+  }
+
+  .c-crew-hero__art--l {
+    left: max(var(--gutter), 2vw);
+  }
+
+  .c-crew-hero__art--r {
+    right: max(var(--gutter), 2vw);
+    top: 26%;
+    animation-delay: -3s;
+  }
+
+  @keyframes c-crew-hero-float {
+    to {
+      transform: translateY(-1.25rem) rotate(2deg);
+    }
+  }
+
+  @media (max-width: 1099px) {
+    .c-crew-hero__art {
+      display: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .c-crew-hero__art {
+      animation: none;
+    }
+  }
+}

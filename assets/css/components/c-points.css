@@ -81,3 +81,13 @@
     }
   }
 }
+
+/* 만드는 것 카드 위 일러스트 */
+@layer components {
+  .c-points__art {
+    width: 100%;
+    max-width: 11rem;
+    height: auto;
+    margin-bottom: var(--space-3);
+  }
+}
