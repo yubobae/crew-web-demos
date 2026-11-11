@@ -466,3 +466,33 @@
     --tr-blur: 14px;
   }
 }
+
+/* ===================================================================
+   보람찬크루 브랜드(디스코드 로고 기준): 코발트 블루 + 크림, 제목은 Jua(OFL) 둥글고 두꺼운 글꼴
+   기존 --tr-* 팔레트의 포인트·어두운 면을 이 색으로 다시 이어 준다.
+   =================================================================== */
+@layer tokens {
+  :root {
+    --brand-blue: oklch(0.47 0.225 265);
+    --brand-blue-light: oklch(0.62 0.2 262);
+    --brand-blue-deep: oklch(0.36 0.19 266);
+    --brand-cream: oklch(0.972 0.022 85);
+    --brand-sun: oklch(0.9 0.15 95);
+    --font-display: "Jua", var(--font-sans);
+
+    --tr-paper: var(--brand-cream);
+    --tr-paper-2: oklch(0.94 0.03 82);
+    --tr-paper-3: oklch(0.89 0.04 78);
+    --tr-accent: var(--brand-blue);
+    --tr-accent-soft: oklch(0.47 0.225 265 / 10%);
+    --tr-accent-glow: oklch(0.55 0.2 265 / 40%);
+    --tr-violet: var(--brand-blue-light);
+    --tr-night: var(--brand-blue);
+    --tr-night-2: var(--brand-blue-deep);
+    --tr-night-3: oklch(0.55 0.2 264);
+    --tr-night-line: oklch(1 0 0 / 22%);
+    --tr-on-night: var(--brand-cream);
+    --tr-on-night-soft: oklch(0.9 0.04 250);
+    --tr-lime: var(--brand-sun);
+  }
+}

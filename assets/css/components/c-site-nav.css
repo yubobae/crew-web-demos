@@ -258,3 +258,45 @@
     border-color: var(--tr-night-line);
   }
 }
+
+/* 브랜드 표시: 코발트 둥근 네모 안에 크림색 '보' */
+@layer components {
+  .c-site-nav__mark {
+    display: grid;
+    place-items: center;
+    width: var(--space-6);
+    font-family: var(--font-display);
+    font-size: var(--text-base);
+    line-height: 1;
+    color: var(--brand-cream);
+    background: var(--brand-blue);
+    border-radius: var(--radius-lg);
+  }
+
+  .c-site-nav__logo {
+    font-family: var(--font-display);
+    font-size: var(--text-lg);
+    font-weight: var(--font-weight-normal);
+    letter-spacing: 0;
+  }
+
+  /* 파랑 첫 화면 위(줄어들기 전): 글자를 크림색으로 */
+  .c-site-nav--blue:not(.is-condensed) .c-site-nav__logo,
+  .c-site-nav--blue:not(.is-condensed) .c-site-nav__link {
+    color: var(--brand-cream);
+  }
+
+  .c-site-nav--blue:not(.is-condensed) .c-site-nav__mark {
+    color: var(--brand-blue);
+    background: var(--brand-cream);
+  }
+
+  .c-site-nav--blue:not(.is-condensed) .c-site-nav__glider {
+    background: oklch(1 0 0 / 18%);
+  }
+
+  .c-site-nav--blue:not(.is-condensed) .c-site-nav__menu {
+    color: var(--brand-blue);
+    background: var(--brand-cream);
+  }
+}
