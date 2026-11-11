@@ -88,3 +88,11 @@
     }
   }
 }
+
+/* 문의 블록 위 종이비행기 */
+@layer components {
+  .c-contact__art {
+    width: clamp(7rem, 14vw, 10rem);
+    height: auto;
+  }
+}

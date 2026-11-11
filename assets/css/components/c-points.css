@@ -91,3 +91,12 @@
     margin-bottom: var(--space-3);
   }
 }
+
+/* 네 장일 때는 넓은 화면에서 한 줄에 넷 */
+@layer components {
+  @media (min-width: 1100px) {
+    .c-points--four {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+}

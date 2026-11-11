@@ -124,3 +124,13 @@
     }
   }
 }
+
+/* 단계별 일러스트 */
+@layer components {
+  .c-steps__art {
+    width: 100%;
+    max-width: 8rem;
+    height: auto;
+    margin-bottom: var(--space-2);
+  }
+}

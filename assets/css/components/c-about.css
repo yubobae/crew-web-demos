@@ -64,3 +64,12 @@
     }
   }
 }
+
+/* 소개 문장 위 일러스트 */
+@layer components {
+  .c-about__art {
+    width: min(100%, 26rem);
+    height: auto;
+    margin-bottom: var(--space-8);
+  }
+}
