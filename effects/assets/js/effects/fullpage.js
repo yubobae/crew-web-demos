@@ -3,9 +3,10 @@
 // root: .l-fullpage (안에 .l-fullpage__track > .l-fullpage__section, .js-fp-dots)
 import { isDesktop, prefersReducedMotion } from "../utils/motion.js";
 import { lockScroll, unlockScroll } from "../utils/scroll-lock.js";
+import { createWheelIntent } from "../utils/wheel-intent.js";
 
-const LOCK_MS = 1100; // 넘어가는 동안 추가 입력 무시
-const WHEEL_MIN = 20;
+const LOCK_MS = 800;          // 넘어가는 동안 새 입력은 기다리게(하나만 예약)
+const QUEUE_AFTER_MS = 200;   // 넘김 직후 이 시간 안의 휠은 같은 동작의 연속으로 본다(트랙패드 쓸기의 가속 구간)
 
 export function init(root) {
   const track = root.querySelector(".l-fullpage__track");
@@ -15,6 +16,9 @@ export function init(root) {
 
   let index = 0;
   let busy = false;
+  let lastTriggerAt = 0;
+  let queued = 0;
+  const intent = createWheelIntent();
   let enabled = false;
   let touchY = null;
   const dots = [];
@@ -48,14 +52,26 @@ export function init(root) {
     busy = true;
     render();
     root.dispatchEvent(new CustomEvent("fullpage:change", { bubbles: true, detail: { index } }));
-    setTimeout(() => (busy = false), LOCK_MS);
+    lastTriggerAt = performance.now();
+    setTimeout(() => {
+      busy = false;
+      if (!queued) return;
+      const d = queued;
+      queued = 0;
+      go(index + d);
+    }, LOCK_MS);
   };
 
   const onWheel = (event) => {
     if (!enabled) return;
     event.preventDefault();
-    if (Math.abs(event.deltaY) < WHEEL_MIN) return;
-    go(index + (event.deltaY > 0 ? 1 : -1));
+    const dir = intent(event);
+    if (!dir) return;
+    if (busy) {
+      if (performance.now() - lastTriggerAt > QUEUE_AFTER_MS) queued = dir;
+      return;
+    }
+    go(index + dir);
   };
 
   const onKey = (event) => {

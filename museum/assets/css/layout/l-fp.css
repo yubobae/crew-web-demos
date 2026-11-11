@@ -24,8 +24,8 @@
     height: 100svh;
     will-change: transform;
     transition:
-      transform 1000ms var(--ease-out-expo),
-      filter 1000ms var(--ease-out-expo);
+      transform 850ms var(--ease-out-expo),
+      filter 850ms var(--ease-out-expo);
   }
 
   /* cover */

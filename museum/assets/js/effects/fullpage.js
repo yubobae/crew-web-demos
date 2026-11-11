@@ -7,10 +7,10 @@
 // 휠 한 번 = 한 화면. 넘어가는 동안(LOCK_MS)과 관성 휠(트랙패드)이 잦아들 때까지는 추가 입력 무시
 import { isDesktop, prefersReducedMotion } from "../utils/motion.js";
 import { lockScroll, unlockScroll } from "../utils/scroll-lock.js";
+import { createWheelIntent } from "../utils/wheel-intent.js";
 
-const LOCK_MS = 900;
-const WHEEL_MIN = 4;          // 아주 살짝 굴려도 넘어가게
-const WHEEL_QUIET_MS = 180;   // 트랙패드 관성 휠이 이만큼 멈춰야 다음 입력으로 인정
+const LOCK_MS = 750;          // 넘어가는 동안 새 입력은 기다리게(하나만 예약)
+const QUEUE_AFTER_MS = 200;   // 넘김 직후 이 시간 안의 휠은 같은 동작의 연속으로 본다(트랙패드 쓸기의 가속 구간)
 
 export function init(root) {
   const panels = [...root.querySelectorAll(".l-fp__panel")];
@@ -22,7 +22,10 @@ export function init(root) {
   let index = 0;
   let enabled = false;
   let busyUntil = 0;
-  let lastWheel = 0;
+  let lastTriggerAt = 0;
+  let queued = 0;
+  let queueTimer = 0;
+  const intent = createWheelIntent();
   let touchY = null;
   const ticks = [];
   const numbered = panels.filter((p) => !p.hasAttribute("data-fp-auto"));
@@ -79,18 +82,31 @@ export function init(root) {
     index = target;
     busyUntil = performance.now() + LOCK_MS;
     render();
+    // 넘어가는 동안 예약된 방향이 있으면 끝나자마자 이어서 한 화면 더
+    clearTimeout(queueTimer);
+    queueTimer = setTimeout(() => {
+      if (!queued) return;
+      const d = queued;
+      queued = 0;
+      lastTriggerAt = performance.now();
+      go(index + d);
+    }, LOCK_MS);
   };
 
+  // 휠: 새로 굴린 것만 한 화면 이동(관성은 무시). 넘어가는 중에 계속 굴리면 다음 한 화면을 예약
   const onWheel = (event) => {
     if (!enabled || event.ctrlKey) return;
     event.preventDefault();
+    const dir = intent(event);
+    if (!dir) return;
     const now = performance.now();
-    const quiet = now - lastWheel > WHEEL_QUIET_MS;
-    lastWheel = now;
-    if (Math.abs(event.deltaY) < WHEEL_MIN) return;
-    // 트랙패드의 긴 관성 휠은 한 번으로 친다: 잠시 조용했던 뒤의 첫 입력만
-    if (!quiet && now < busyUntil + 400) return;
-    go(index + (event.deltaY > 0 ? 1 : -1));
+    if (now < busyUntil) {
+      if (now - lastTriggerAt > QUEUE_AFTER_MS) queued = dir;
+      return;
+    }
+    queued = 0;
+    lastTriggerAt = now;
+    go(index + dir);
   };
 
   const onKey = (event) => {
@@ -148,6 +164,7 @@ export function init(root) {
 
   return {
     destroy() {
+      clearTimeout(queueTimer);
       removeEventListener("resize", update);
       removeEventListener("wheel", onWheel);
       removeEventListener("keydown", onKey);

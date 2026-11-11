@@ -4,6 +4,7 @@
 // - 키보드·스크롤바로 움직이면 그 위치를 그대로 따른다. 페이지 안 링크(#id)도 부드럽게 이동
 import { prefersReducedMotion } from "../utils/motion.js";
 import { isSmooth, isSnap, setSmooth } from "../utils/scroll-mode.js";
+import { createWheelIntent } from "../utils/wheel-intent.js";
 
 const DAMPING = 9;          // 따라가는 빠르기(초당). 화면 주사율(60·120·144Hz)과 상관없이 같은 느낌
 const WHEEL_SCALE = 1;      // 휠 한 칸 이동량 배율
@@ -58,9 +59,13 @@ export function init() {
   // ── 섹션 넘김(html.is-paged): 휠을 살짝만 굴려도 다음·이전 섹션 시작으로 이동 ──
   // 화면보다 훨씬 긴 섹션(고정 확대·가로 스크롤처럼 스크롤로 움직이는 구간)은 그 안에서는 평소처럼 흐르고,
   // 끝에 닿으면 다음 섹션으로 넘어간다.
-  const PAGE_LOCK_MS = 750;
+  const PAGE_LOCK_MS = 650;
+  const QUEUE_AFTER_MS = 200;
   let pageUntil = 0;
-  let lastWheelAt = 0;
+  let lastTriggerAt = 0;
+  let queued = 0;
+  let queueTimer = 0;
+  const intent = createWheelIntent();
   const paged = () => document.documentElement.classList.contains("is-paged");
   const stops = () =>
     [...document.querySelectorAll("[data-page]")].map((el) => {
@@ -68,9 +73,10 @@ export function init() {
       return { top, bottom: top + el.offsetHeight, tall: el.offsetHeight > innerHeight * 1.3 };
     });
 
+  // 기준 위치: 아직 이동 중이면 지금 위치가 아니라 "가고 있는 곳"(이전 단계의 목표)에서 다음 단계를 계산
   const pageStep = (dir) => {
     const list = stops();
-    const y = scrollY;
+    const y = animating ? target : scrollY;
     const here = list.findIndex((s) => y >= s.top - 2 && y < s.bottom - 2);
     const cur = list[here];
     // 긴 섹션 안에서는 한 화면 단위로 흐르다가 끝에서 넘어간다
@@ -94,14 +100,32 @@ export function init() {
       measure(); // 페이지 높이는 움직이기 시작할 때 한 번만 읽는다(매 프레임 읽으면 레이아웃 계산이 생김)
     }
     if (paged()) {
+      // 새로 굴린 것만 한 단계(관성 무시), 이동 중에 계속 굴리면 다음 한 단계를 예약
+      const dir = intent(event);
+      if (!dir) return;
       const now = performance.now();
-      const quiet = now - lastWheelAt > 180; // 트랙패드 관성 휠은 한 번으로
-      lastWheelAt = now;
-      if (now < pageUntil || !quiet || Math.abs(delta) < 2) return;
-      pageUntil = now + PAGE_LOCK_MS;
-      current = scrollY;
-      target = Math.max(0, Math.min(maxY, pageStep(delta > 0 ? 1 : -1)));
-      start();
+      if (now < pageUntil) {
+        if (now - lastTriggerAt > QUEUE_AFTER_MS) queued = dir;
+        return;
+      }
+      const step = (d) => {
+        pageUntil = performance.now() + PAGE_LOCK_MS;
+        lastTriggerAt = performance.now();
+        measure();
+        const next = Math.max(0, Math.min(maxY, pageStep(d)));
+        if (!animating) current = scrollY;
+        target = next;
+        start();
+        clearTimeout(queueTimer);
+        queueTimer = setTimeout(() => {
+          if (!queued) return;
+          const q = queued;
+          queued = 0;
+          step(q);
+        }, PAGE_LOCK_MS);
+      };
+      queued = 0;
+      step(dir);
       return;
     }
     target = Math.max(0, Math.min(maxY, target + delta * WHEEL_SCALE));
