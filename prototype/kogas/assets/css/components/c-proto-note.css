@@ -1,4 +1,5 @@
-/* 프로토타입 표시: 화면 왼쪽 아래에 작게 떠 있는 알약. 실제 사이트로 오해하지 않게 모든 쪽에 둔다. */
+/* 프로토타입 표시: 화면 왼쪽 아래에 떠 있는 알약. 실제 사이트로 오해하지 않게 모든 쪽에 두고,
+   오른쪽 버튼으로 보람찬크루 사이트(이 프로토타입 소개)로 돌아간다. 좁은 화면에서는 설명 글을 숨기고 표시·버튼만. */
 @layer components {
   .c-proto-note {
     position: fixed;
@@ -9,7 +10,7 @@
     align-items: center;
     gap: var(--space-2);
     max-width: calc(100% - var(--space-6));
-    padding: var(--space-1-5) var(--space-3) var(--space-1-5) var(--space-1-5);
+    padding: var(--space-1-5);
     font-size: var(--text-xs);
     color: var(--kg-ink);
     background: var(--kg-glass);
@@ -29,8 +30,46 @@
   }
 
   .c-proto-note__text {
+    min-width: 0;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+  }
+
+  .c-proto-note__back {
+    display: inline-flex;
+    flex: none;
+    align-items: center;
+    gap: var(--space-1);
+    min-height: 2rem;
+    padding: var(--space-1) var(--space-3);
+    font-weight: var(--font-weight-semibold);
+    color: var(--kg-white);
+    text-decoration: none;
+    background: var(--kg-ink);
+    border-radius: var(--radius-full);
+    transition: transform var(--tr-dur-fast) var(--tr-spring);
+  }
+
+  .c-proto-note__back:active {
+    transform: scale(0.95);
+  }
+
+  @media (hover: hover) {
+    .c-proto-note__back:hover {
+      background: var(--kg-blue);
+    }
+  }
+
+  @media (max-width: 599px) {
+    .c-proto-note__text {
+      display: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .c-proto-note__back {
+      transition: none;
+    }
   }
 }
