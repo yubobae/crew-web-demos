@@ -347,21 +347,28 @@
   }
 }
 
-/* 원본 사이트처럼 배경에 빛결 영상(소리 없이 반복)을 사진 위에 겹쳐(screen) 사진의 웅장함은 살리고 움직임을 더한다 */
+/* 원본 사이트처럼 대문 전체에 배경 영상(유튜브, 소리 없이 반복). 뜨기 전에는 아래 사진이 보이고, 뜨면 천천히 겹쳐 나타난다 */
 @layer components {
-  .c-gate__video {
+  .c-gate__yt {
     position: absolute;
-    inset: 0;
+    top: 50%;
+    left: 50%;
     z-index: -2;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    mix-blend-mode: screen;
-    opacity: 0.6;
+    width: max(100%, 177.78svh);
+    height: max(100%, 56.25vw);
+    border: 0;
+    opacity: 0;
+    transform: translate(-50%, -50%);
+    transition: opacity 1400ms var(--tr-ease, ease);
+    pointer-events: none;
+  }
+
+  .c-gate__yt.is-on {
+    opacity: 1;
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .c-gate__video {
+    .c-gate__yt {
       display: none;
     }
   }
