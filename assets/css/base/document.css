@@ -53,13 +53,3 @@
     outline-offset: 3px;
   }
 }
-
-@layer base {
-  h1,
-  h2,
-  h3 {
-    font-family: var(--font-display);
-    font-weight: var(--font-weight-normal);
-    letter-spacing: -0.01em;
-  }
-}

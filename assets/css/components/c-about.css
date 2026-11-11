@@ -64,12 +64,3 @@
     }
   }
 }
-
-/* 한눈에 보는 소개 문장도 둥근 제목 글꼴로 */
-@layer components {
-  .c-about__statement {
-    font-family: var(--font-display);
-    font-weight: var(--font-weight-normal);
-    letter-spacing: -0.01em;
-  }
-}

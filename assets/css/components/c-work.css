@@ -121,11 +121,3 @@
     }
   }
 }
-
-/* 제목을 둥근 외곽선으로 두껍게(로고 글자 느낌) */
-@layer components {
-  .c-work__title {
-    -webkit-text-stroke: 0.012em currentColor;
-    paint-order: stroke fill;
-  }
-}
