@@ -1,0 +1,26 @@
+@layer base {
+  :root {
+    interpolate-size: allow-keywords; /* 아코디언 높이 애니메이션(지원 브라우저만, 나머지는 즉시 열림) */
+  }
+
+  body {
+    font-family: var(--font-sans);
+    font-size: var(--text-base);
+    font-weight: var(--fw-regular);
+    line-height: var(--leading-normal);
+    color: var(--ui-foreground);
+    background: var(--ui-background);
+    font-synthesis: none;
+    word-break: keep-all;
+    overflow-wrap: break-word;
+  }
+
+  a {
+    text-underline-offset: 0.25em;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--ui-ring);
+    outline-offset: 2px;
+  }
+}

@@ -1,0 +1,130 @@
+/* 버튼 — shadcn/ui new-york-v4 button 기준 (MIT) */
+@layer components {
+  .c-button {
+    display: inline-flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    min-height: var(--ui-control-h);
+    padding-inline: var(--space-4);
+    border: 1px solid transparent;
+    border-radius: var(--ui-radius-md);
+    background: var(--ui-primary);
+    color: var(--ui-primary-foreground);
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-medium);
+    line-height: 1;
+    white-space: nowrap;
+    text-decoration: none;
+    cursor: pointer;
+    outline: none;
+    transition:
+      background-color var(--ui-duration) var(--ui-ease),
+      color var(--ui-duration) var(--ui-ease),
+      border-color var(--ui-duration) var(--ui-ease),
+      box-shadow var(--ui-duration) var(--ui-ease);
+  }
+
+  .c-button:focus-visible {
+    border-color: var(--ui-ring);
+    box-shadow: 0 0 0 var(--ui-ring-width) color-mix(in oklch, var(--ui-ring) 50%, transparent);
+  }
+
+  .c-button:disabled,
+  .c-button[aria-disabled="true"] {
+    pointer-events: none;
+    opacity: 0.5;
+  }
+
+  .c-button__icon {
+    flex-shrink: 0;
+    width: 1rem;
+    height: 1rem;
+    pointer-events: none;
+  }
+
+  /* 종류 */
+  .c-button--secondary {
+    background: var(--ui-secondary);
+    color: var(--ui-secondary-foreground);
+  }
+
+  .c-button--outline {
+    border-color: var(--ui-border);
+    background: var(--ui-background);
+    color: var(--ui-foreground);
+    box-shadow: var(--shadow-xs);
+  }
+
+  .c-button--ghost {
+    background: transparent;
+    color: var(--ui-foreground);
+  }
+
+  .c-button--destructive {
+    background: var(--ui-destructive);
+    color: var(--ui-destructive-foreground);
+  }
+
+  .c-button--link {
+    background: transparent;
+    color: var(--ui-primary);
+    text-underline-offset: 4px;
+  }
+
+  /* 크기 (터치 기기에서도 누르기 쉽게 최소 높이는 유지) */
+  .c-button--sm {
+    min-height: var(--ui-control-h-sm);
+    gap: var(--space-1-5);
+    padding-inline: var(--space-3);
+  }
+
+  .c-button--lg {
+    min-height: var(--ui-control-h-lg);
+    padding-inline: var(--space-6);
+  }
+
+  .c-button--icon {
+    width: var(--ui-control-h);
+    padding-inline: 0;
+  }
+
+  /* 마우스가 있는 기기에서만 hover */
+  @media (hover: hover) {
+    .c-button:hover {
+      background: color-mix(in oklch, var(--ui-primary) 90%, transparent);
+    }
+
+    .c-button--secondary:hover {
+      background: color-mix(in oklch, var(--ui-secondary) 80%, transparent);
+    }
+
+    .c-button--outline:hover,
+    .c-button--ghost:hover {
+      background: var(--ui-accent);
+      color: var(--ui-accent-foreground);
+    }
+
+    .c-button--destructive:hover {
+      background: color-mix(in oklch, var(--ui-destructive) 90%, transparent);
+    }
+
+    .c-button--link:hover {
+      background: transparent;
+      text-decoration: underline;
+    }
+  }
+
+  @media (pointer: coarse) {
+    .c-button--sm {
+      min-height: var(--tap-min);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .c-button {
+      transition: none;
+    }
+  }
+}

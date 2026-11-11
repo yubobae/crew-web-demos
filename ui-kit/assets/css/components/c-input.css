@@ -1,0 +1,51 @@
+/* 입력창 — shadcn/ui input 기준 (MIT) */
+@layer components {
+  .c-input {
+    width: 100%;
+    min-width: 0;
+    min-height: var(--ui-control-h);
+    padding: var(--space-1) var(--space-3);
+    border: 1px solid var(--ui-input);
+    border-radius: var(--ui-radius-md);
+    background: transparent;
+    color: var(--ui-foreground);
+    font-size: var(--text-base); /* 모바일 16px: 아이폰 사파리 입력 시 확대 방지 */
+    box-shadow: var(--shadow-xs);
+    outline: none;
+    transition:
+      color var(--ui-duration) var(--ui-ease),
+      border-color var(--ui-duration) var(--ui-ease),
+      box-shadow var(--ui-duration) var(--ui-ease);
+  }
+
+  .c-input::placeholder {
+    color: var(--ui-muted-foreground);
+  }
+
+  .c-input:focus-visible {
+    border-color: var(--ui-ring);
+    box-shadow: 0 0 0 var(--ui-ring-width) color-mix(in oklch, var(--ui-ring) 50%, transparent);
+  }
+
+  .c-input[aria-invalid="true"] {
+    border-color: var(--ui-destructive);
+    box-shadow: 0 0 0 var(--ui-ring-width) color-mix(in oklch, var(--ui-destructive) 20%, transparent);
+  }
+
+  .c-input:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+
+  @media (min-width: 820px) {
+    .c-input {
+      font-size: var(--text-sm);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .c-input {
+      transition: none;
+    }
+  }
+}

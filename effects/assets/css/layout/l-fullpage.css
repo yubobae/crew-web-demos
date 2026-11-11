@@ -1,0 +1,36 @@
+/* 풀페이지: PC(1025px 이상)에서 effects/fullpage.js가 is-enabled를 붙이면 섹션이 한 장씩 넘어간다.
+   모바일·동작 줄이기에서는 일반 스크롤. 트랙 이동 값은 --fp-index로 받는다. */
+@layer layout {
+  .l-fullpage__section {
+    position: relative;
+    min-height: 100vh;
+    min-height: 100svh;
+    overflow: hidden;
+  }
+
+  .l-fullpage.is-enabled {
+    height: 100vh;
+    height: 100svh;
+    overflow: hidden;
+  }
+
+  .l-fullpage__track {
+    transition: transform var(--dur-section) var(--ease-out-expo);
+  }
+
+  .l-fullpage.is-enabled .l-fullpage__track {
+    transform: translateY(calc(var(--fp-index, 0) * -100vh));
+    transform: translateY(calc(var(--fp-index, 0) * -100svh));
+  }
+
+  .l-fullpage.is-enabled .l-fullpage__section {
+    height: 100vh;
+    height: 100svh;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .l-fullpage__track {
+      transition: none;
+    }
+  }
+}

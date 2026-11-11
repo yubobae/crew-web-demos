@@ -1,0 +1,53 @@
+/* 카드 — shadcn/ui card 기준 (MIT) */
+@layer components {
+  .c-card {
+    container-type: inline-size;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+    padding-block: var(--space-6);
+    border: 1px solid var(--ui-border);
+    border-radius: var(--ui-radius-xl);
+    background: var(--ui-card);
+    color: var(--ui-card-foreground);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .c-card__header {
+    display: grid;
+    gap: var(--space-2);
+    padding-inline: var(--space-6);
+  }
+
+  .c-card__title {
+    font-size: var(--text-base);
+    font-weight: var(--font-weight-semibold);
+    line-height: 1;
+  }
+
+  .c-card__description {
+    font-size: var(--text-sm);
+    color: var(--ui-muted-foreground);
+  }
+
+  .c-card__content {
+    display: grid;
+    gap: var(--space-4);
+    padding-inline: var(--space-6);
+  }
+
+  .c-card__footer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-2);
+    padding-inline: var(--space-6);
+  }
+
+  /* 카드가 넓게 놓이면 아래 버튼을 오른쪽으로 */
+  @container (min-width: 32rem) {
+    .c-card__footer {
+      justify-content: flex-end;
+    }
+  }
+}

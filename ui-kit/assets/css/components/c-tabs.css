@@ -1,0 +1,75 @@
+/* 탭 — shadcn tabs 모양, 동작·키보드는 modules/tabs.js */
+@layer components {
+  .c-tabs {
+    display: grid;
+    gap: var(--space-2);
+  }
+
+  .c-tabs__list {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    min-height: var(--ui-control-h);
+    padding: var(--ui-tabs-pad);
+    border-radius: var(--ui-radius-lg);
+    background: var(--ui-muted);
+    color: var(--ui-muted-foreground);
+  }
+
+  .c-tabs__trigger {
+    display: inline-flex;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-1-5);
+    align-self: stretch;
+    padding: var(--space-1) var(--space-2);
+    border: 1px solid transparent;
+    border-radius: var(--ui-radius-md);
+    background: transparent;
+    color: color-mix(in oklch, var(--ui-foreground) 60%, transparent);
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-medium);
+    white-space: nowrap;
+    cursor: pointer;
+    outline: none;
+    transition:
+      color var(--ui-duration) var(--ui-ease),
+      background-color var(--ui-duration) var(--ui-ease),
+      box-shadow var(--ui-duration) var(--ui-ease);
+  }
+
+  .c-tabs__trigger[aria-selected="true"] {
+    background: var(--ui-background);
+    color: var(--ui-foreground);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .c-tabs__trigger:focus-visible {
+    border-color: var(--ui-ring);
+    box-shadow: 0 0 0 var(--ui-ring-width) color-mix(in oklch, var(--ui-ring) 50%, transparent);
+  }
+
+  .c-tabs__panel {
+    font-size: var(--text-sm);
+    outline: none;
+  }
+
+  .c-tabs__panel:focus-visible {
+    border-radius: var(--ui-radius-md);
+    box-shadow: 0 0 0 var(--ui-ring-width) color-mix(in oklch, var(--ui-ring) 50%, transparent);
+  }
+
+  @media (hover: hover) {
+    .c-tabs__trigger:hover {
+      color: var(--ui-foreground);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .c-tabs__trigger {
+      transition: none;
+    }
+  }
+}

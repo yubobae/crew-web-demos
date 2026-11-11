@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>크루 웹 데모</title>
+  <meta name="description" content="프레임워크 없이 HTML, CSS, 순수 JS 모듈로 만든 크루 공통 UI 컴포넌트와 인터랙션 효과 데모 모음입니다.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="크루 웹 데모">
+  <meta property="og:description" content="프레임워크 없이 만든 UI 컴포넌트와 인터랙션 효과 데모 모음">
+  <meta property="og:locale" content="ko_KR">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+  <link rel="stylesheet" href="assets/css/main.css">
+  <script type="module" src="assets/js/main.js"></script>
+</head>
+<body>
+  <header class="u-visually-hidden">크루 웹 데모</header>
+  <main class="l-hub" id="main">
+    <div class="l-hub__head">
+      <p class="l-hub__eyebrow">Crew Web Demos</p>
+      <h1 class="l-hub__title">크루 웹 데모</h1>
+      <p class="l-hub__lead">크루 웹 컨벤션으로 만든 부품과 인터랙션을 직접 눌러 보는 곳입니다. 모두 프레임워크 없이 HTML, CSS, 순수 JS 모듈로 만들었고, 키보드와 휴대폰, 동작 줄이기 설정까지 고려했습니다.</p>
+    </div>
+
+    <ul class="l-hub__list">
+      <li>
+        <a class="c-demo-card" href="ui-kit/">
+          <span class="c-demo-card__no">01</span>
+          <h2 class="c-demo-card__title">UI 키트 <span class="c-demo-card__arrow" aria-hidden="true">→</span></h2>
+          <p class="c-demo-card__desc">shadcn/ui의 디자인과 인터랙션을 옮긴 기본 부품 12종. 라이트·다크 모드.</p>
+          <ul class="c-demo-card__tags">
+            <li class="c-badge c-badge--outline">버튼</li>
+            <li class="c-badge c-badge--outline">입력·스위치</li>
+            <li class="c-badge c-badge--outline">모달</li>
+            <li class="c-badge c-badge--outline">드롭다운</li>
+            <li class="c-badge c-badge--outline">탭·아코디언</li>
+            <li class="c-badge c-badge--outline">토스트</li>
+          </ul>
+        </a>
+      </li>
+      <li>
+        <a class="c-demo-card" href="effects/">
+          <span class="c-demo-card__no">02</span>
+          <h2 class="c-demo-card__title">인터랙션 효과 <span class="c-demo-card__arrow" aria-hidden="true">→</span></h2>
+          <p class="c-demo-card__desc">마이크로 사이트용 화려한 효과. PC에서는 풀페이지로 한 장씩 넘어갑니다.</p>
+          <ul class="c-demo-card__tags">
+            <li class="c-badge c-badge--outline">숫자 회전</li>
+            <li class="c-badge c-badge--outline">풀페이지</li>
+            <li class="c-badge c-badge--outline">무한 슬라이더</li>
+            <li class="c-badge c-badge--outline">모션 탭 3종</li>
+            <li class="c-badge c-badge--outline">스포트라이트</li>
+            <li class="c-badge c-badge--outline">배경 초점</li>
+          </ul>
+        </a>
+      </li>
+    </ul>
+
+    <footer class="l-hub__footer">
+      <p>디자인·인터랙션 참고: shadcn/ui (MIT License, © 2023 shadcn). 값 체계: Tailwind CSS (MIT License, © Tailwind Labs, Inc.). 글꼴: Pretendard (SIL Open Font License).</p>
+    </footer>
+  </main>
+</body>
+</html>

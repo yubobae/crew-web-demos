@@ -1,0 +1,72 @@
+/* 데모 카드: 카드 전체가 링크. 마우스를 올리면 테두리가 짙어지고 살짝 떠오르며 화살표가 밀려 나간다 */
+@layer components {
+  .c-demo-card {
+    position: relative;
+    display: grid;
+    gap: var(--space-3);
+    height: 100%;
+    padding: var(--space-8);
+    border: 1px solid var(--ui-border);
+    border-radius: var(--ui-radius-xl);
+    background: var(--ui-card);
+    color: var(--ui-card-foreground);
+    text-decoration: none;
+    box-shadow: var(--shadow-xs);
+    transition:
+      border-color 300ms var(--ui-ease),
+      box-shadow 300ms var(--ui-ease),
+      translate 400ms var(--ease-out-expo);
+  }
+
+  .c-demo-card__no {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--ui-muted-foreground);
+  }
+
+  .c-demo-card__title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3);
+    font-size: var(--text-2xl);
+    line-height: var(--text-2xl--line-height);
+    letter-spacing: var(--tracking-tight);
+  }
+
+  .c-demo-card__arrow {
+    flex-shrink: 0;
+    transition: translate 400ms var(--ease-out-expo);
+  }
+
+  .c-demo-card__desc {
+    color: var(--ui-muted-foreground);
+  }
+
+  .c-demo-card__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-1-5);
+    padding: 0;
+    list-style: none;
+  }
+
+  @media (hover: hover) {
+    .c-demo-card:hover {
+      border-color: var(--ui-ring);
+      box-shadow: var(--shadow-lg);
+      translate: 0 calc(var(--space-1) * -1);
+    }
+
+    .c-demo-card:hover .c-demo-card__arrow {
+      translate: var(--space-1-5) 0;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .c-demo-card,
+    .c-demo-card__arrow {
+      transition: none;
+    }
+  }
+}

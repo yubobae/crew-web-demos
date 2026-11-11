@@ -1,0 +1,73 @@
+/* 스포트라이트 카드: 마우스를 따라 빛이 움직이고, 테두리도 그 자리만 빛나며, 카드가 살짝 기운다.
+   effects/spotlight.js가 --spot-x, --spot-y, --tilt-x, --tilt-y를 넣는다(마우스가 있는 기기에서만). */
+@layer components {
+  .c-spotlight-card {
+    position: relative;
+    display: grid;
+    gap: var(--space-3);
+    align-content: start;
+    padding: var(--space-8);
+    border: 1px solid var(--fx-line);
+    border-radius: var(--radius-2xl);
+    background: var(--fx-surface-2);
+    overflow: hidden;
+    transform: perspective(900px) rotateX(var(--tilt-y, 0deg)) rotateY(var(--tilt-x, 0deg));
+    transition: transform 400ms var(--ease-out-expo);
+  }
+
+  /* 안쪽 빛 */
+  .c-spotlight-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(28rem circle at var(--spot-x, 50%) var(--spot-y, 50%), var(--fx-spotlight), transparent 45%);
+    opacity: 0;
+    transition: opacity 400ms var(--ui-ease);
+    pointer-events: none;
+  }
+
+  /* 테두리 빛: 테두리 두께만 남기고 가린다 */
+  .c-spotlight-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    padding: 1px;
+    border-radius: inherit;
+    background: radial-gradient(16rem circle at var(--spot-x, 50%) var(--spot-y, 50%), var(--fx-c2), transparent 60%);
+    mask: linear-gradient(black 0 0) content-box exclude, linear-gradient(black 0 0);
+    opacity: 0;
+    transition: opacity 400ms var(--ui-ease);
+    pointer-events: none;
+  }
+
+  .c-spotlight-card.is-hover::before,
+  .c-spotlight-card.is-hover::after {
+    opacity: 1;
+  }
+
+  .c-spotlight-card__label {
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-widest);
+    text-transform: uppercase;
+    color: var(--fx-text-muted);
+  }
+
+  .c-spotlight-card__value {
+    font-size: var(--text-5xl);
+    font-weight: var(--font-weight-bold);
+    line-height: 1;
+  }
+
+  .c-spotlight-card__desc {
+    font-size: var(--text-sm);
+    color: var(--fx-text-muted);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .c-spotlight-card,
+    .c-spotlight-card::before,
+    .c-spotlight-card::after {
+      transition: none;
+    }
+  }
+}

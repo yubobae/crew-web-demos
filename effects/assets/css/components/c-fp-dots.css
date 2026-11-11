@@ -1,0 +1,42 @@
+/* 풀페이지 옆 점 내비게이션(PC에서만 보임) */
+@layer components {
+  .c-fp-dots {
+    position: fixed;
+    inset-inline-end: var(--space-6);
+    inset-block-start: 50%;
+    z-index: var(--z-header);
+    display: none;
+    flex-direction: column;
+    gap: var(--space-3);
+    translate: 0 -50%;
+  }
+
+  .c-fp-dots.is-enabled {
+    display: flex;
+  }
+
+  .c-fp-dots__dot {
+    width: 10px;
+    height: 10px;
+    padding: 0;
+    border: 1px solid var(--fx-text-muted);
+    border-radius: var(--radius-full);
+    background: transparent;
+    cursor: pointer;
+    transition:
+      height var(--ui-duration-dialog) var(--ease-out-expo),
+      background-color var(--ui-duration-dialog) var(--ui-ease);
+  }
+
+  .c-fp-dots__dot[aria-current="true"] {
+    height: 28px;
+    border-color: var(--fx-text);
+    background: var(--fx-text);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .c-fp-dots__dot {
+      transition: none;
+    }
+  }
+}

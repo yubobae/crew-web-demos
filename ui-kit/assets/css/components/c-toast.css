@@ -1,0 +1,55 @@
+/* 토스트 한 개 — 아래에서 올라오며 나타나고, 사라질 때 is-leaving */
+@layer components {
+  .c-toast {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-4);
+    border: 1px solid var(--ui-border);
+    border-radius: var(--ui-radius-lg);
+    background: var(--ui-popover);
+    color: var(--ui-popover-foreground);
+    box-shadow: var(--shadow-lg);
+    pointer-events: auto;
+    opacity: 1;
+    transform: none;
+    transition:
+      opacity var(--ui-duration-dialog) var(--ease-out),
+      transform var(--ui-duration-dialog) var(--ease-out);
+  }
+
+  @starting-style {
+    .c-toast {
+      opacity: 0;
+      transform: translateY(100%);
+    }
+  }
+
+  .c-toast.is-leaving {
+    opacity: 0;
+    transform: translateY(var(--space-2));
+  }
+
+  .c-toast__body {
+    display: grid;
+    gap: var(--space-1);
+    min-width: 0;
+  }
+
+  .c-toast__title {
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .c-toast__description {
+    font-size: var(--text-sm);
+    color: var(--ui-muted-foreground);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .c-toast {
+      transition: none;
+    }
+  }
+}

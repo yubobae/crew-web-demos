@@ -1,0 +1,110 @@
+/* 드롭다운 메뉴 — 브라우저 기본 Popover API + shadcn dropdown-menu 모양·동작
+   위치는 modules/menu.js가 --menu-x, --menu-y 변수로 정한다 */
+@layer components {
+  .c-menu {
+    position: fixed;
+    inset: auto;
+    inset-block-start: var(--menu-y, 0);
+    inset-inline-start: var(--menu-x, 0);
+    min-width: 8rem;
+    max-height: calc(100dvh - 2rem);
+    margin: 0;
+    padding: var(--space-1);
+    overflow-y: auto;
+    border: 1px solid var(--ui-border);
+    border-radius: var(--ui-radius-md);
+    background: var(--ui-popover);
+    color: var(--ui-popover-foreground);
+    box-shadow: var(--shadow-md);
+    opacity: 0;
+    transform: translateY(calc(var(--ui-enter-offset) * -1)) scale(var(--ui-enter-scale));
+    transform-origin: top left;
+    transition:
+      opacity var(--ui-duration) var(--ui-ease),
+      transform var(--ui-duration) var(--ui-ease),
+      overlay var(--ui-duration) var(--ui-ease) allow-discrete,
+      display var(--ui-duration) var(--ui-ease) allow-discrete;
+  }
+
+  .c-menu:popover-open {
+    opacity: 1;
+    transform: none;
+  }
+
+  @starting-style {
+    .c-menu:popover-open {
+      opacity: 0;
+      transform: translateY(calc(var(--ui-enter-offset) * -1)) scale(var(--ui-enter-scale));
+    }
+  }
+
+  .c-menu__label {
+    padding: var(--space-1-5) var(--space-2);
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-medium);
+  }
+
+  .c-menu__item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    width: 100%;
+    padding: var(--space-1-5) var(--space-2);
+    border: 0;
+    border-radius: var(--ui-radius-sm);
+    background: transparent;
+    color: inherit;
+    font-size: var(--text-sm);
+    text-align: start;
+    cursor: default;
+    outline: none;
+    user-select: none;
+  }
+
+  .c-menu__item:focus-visible {
+    background: var(--ui-accent);
+    color: var(--ui-accent-foreground);
+  }
+
+  .c-menu__item--destructive {
+    color: var(--ui-destructive);
+  }
+
+  .c-menu__item--destructive:focus-visible {
+    background: color-mix(in oklch, var(--ui-destructive) 10%, transparent);
+    color: var(--ui-destructive);
+  }
+
+  .c-menu__shortcut {
+    margin-inline-start: auto;
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-widest);
+    color: var(--ui-muted-foreground);
+  }
+
+  .c-menu__separator {
+    height: 1px;
+    margin-block: var(--space-1);
+    margin-inline: calc(var(--space-1) * -1);
+    border: 0;
+    background: var(--ui-border);
+  }
+
+  @media (hover: hover) {
+    .c-menu__item:hover {
+      background: var(--ui-accent);
+      color: var(--ui-accent-foreground);
+    }
+
+    .c-menu__item--destructive:hover {
+      background: color-mix(in oklch, var(--ui-destructive) 10%, transparent);
+      color: var(--ui-destructive);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .c-menu {
+      transition: none;
+    }
+  }
+}

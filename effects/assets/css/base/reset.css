@@ -1,0 +1,119 @@
+/*
+ * 크루 공통 reset (v0.1)
+ * 모든 사이트의 assets/css/base/reset.css 에 그대로 복사해서 쓴다. 사이트별로 고치지 않는다.
+ * 바꿀 필요가 있으면 crew-web-conventions 저장소에서 크루 확인 후 바꾼다.
+ *
+ * 원칙
+ * - 브라우저 기본값의 차이만 없앤다. 디자인(글꼴·색·크기)은 tokens.css와 base/document.css에서 정한다.
+ * - 가장 낮은 레이어(reset)에 있어서 다른 모든 파일이 덮어쓸 수 있다.
+ * - 컨벤션 검사를 통과한다(id 선택자, !important, 클래스 없음).
+ * - 반응형 기본: 모바일 주소창을 고려한 화면 높이(dvh), 미디어가 부모 폭을 넘지 않음,
+ *   가로 회전 시 글자 확대 방지, 긴 단어 줄바꿈으로 좁은 화면 가로 넘침 방지.
+ */
+@layer reset {
+  /* 1. 상자 크기 계산을 테두리 기준으로 통일 */
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  /* 2. 기본 바깥 여백 제거 (간격은 레이아웃의 gap과 토큰으로 준다) */
+  * {
+    margin: 0;
+  }
+
+  /* 3. 모바일 가로 회전 시 글자 크기 자동 확대 방지 */
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
+  /* 4. 본문: 화면 높이 확보, 읽기 좋은 기본 줄 간격, 글자 렌더링 */
+  body {
+    min-height: 100vh;
+    min-height: 100dvh;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* 5. 미디어: 줄 안 여백(인라인 틈) 제거, 부모 폭을 넘지 않게 */
+  img,
+  picture,
+  video,
+  canvas,
+  svg {
+    display: block;
+    max-width: 100%;
+  }
+
+  img,
+  video {
+    height: auto;
+  }
+
+  /* 6. 폼 요소가 주변 글꼴·색을 물려받게 */
+  input,
+  button,
+  textarea,
+  select {
+    font: inherit;
+    color: inherit;
+    letter-spacing: inherit;
+  }
+
+  button {
+    cursor: pointer;
+  }
+
+  textarea:not([rows]) {
+    min-height: 10em;
+  }
+
+  /* 7. 긴 단어·URL이 영역을 뚫고 나가지 않게, 제목 줄바꿈 균형 */
+  p,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    overflow-wrap: break-word;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  /* 8. role="list"를 붙인 목록만 점·들여쓰기 제거 (스크린리더가 목록으로 읽도록 유지) */
+  ul[role="list"],
+  ol[role="list"] {
+    list-style: none;
+    padding: 0;
+  }
+
+  /* 9. 링크·표 기본값 정리 */
+  a {
+    color: inherit;
+    text-decoration-skip-ink: auto;
+  }
+
+  table {
+    border-collapse: collapse;
+  }
+
+  /* 10. 앵커로 이동했을 때 고정 헤더에 가리지 않게 여유 */
+  :target {
+    scroll-margin-block: 5ex;
+  }
+}

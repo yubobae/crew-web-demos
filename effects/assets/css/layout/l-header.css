@@ -1,0 +1,28 @@
+@layer layout {
+  .l-header {
+    position: fixed;
+    inset: 0 0 auto;
+    z-index: var(--z-header);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-5) var(--gutter);
+    color: var(--fx-text);
+    mix-blend-mode: difference;
+    pointer-events: none;
+  }
+
+  .l-header__logo {
+    font-weight: var(--font-weight-bold);
+    letter-spacing: var(--tracking-wide);
+    text-decoration: none;
+    color: inherit;
+    pointer-events: auto;
+  }
+
+  .l-header__meta {
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-widest);
+    text-transform: uppercase;
+  }
+}

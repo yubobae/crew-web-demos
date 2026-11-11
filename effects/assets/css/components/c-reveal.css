@@ -1,0 +1,23 @@
+/* 아래에서 올라오는 마스크 리빌. effects/text-reveal.js가 화면에 들어오면 is-in을 붙인다. */
+@layer components {
+  .c-reveal {
+    overflow: hidden;
+  }
+
+  .c-reveal__inner {
+    display: inline-block;
+    transform: translateY(110%);
+    transition: transform var(--dur-reveal) var(--ease-reveal);
+  }
+
+  .c-reveal.is-in .c-reveal__inner {
+    transform: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .c-reveal__inner {
+      transform: none;
+      transition: none;
+    }
+  }
+}

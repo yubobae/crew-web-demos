@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>인터랙션 효과 | 크루 웹 컨벤션</title>
+  <meta name="description" content="숫자 회전 카운터, 풀페이지 전환, 무한 슬라이더, 모션 탭, 스포트라이트 카드처럼 요즘 마이크로 사이트에 쓰는 인터랙션을 프레임워크 없이 만든 효과 모듈 모음입니다.">
+  <meta name="theme-color" content="#16161d">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+  <link rel="stylesheet" href="assets/css/main.css">
+  <script type="module" src="assets/js/main.js"></script>
+</head>
+<body>
+  <a class="u-visually-hidden" href="#main">본문 바로가기</a>
+
+  <header class="l-header">
+    <a class="l-header__logo" href="#main">OO 50</a>
+    <span class="l-header__meta">Interaction Kit</span>
+  </header>
+
+  <div class="l-fullpage" data-effect="fullpage">
+    <nav class="c-fp-dots js-fp-dots" aria-label="화면 이동"></nav>
+
+    <main class="l-fullpage__track" id="main">
+      <!-- 1. 인트로: 숫자 회전 카운터 + 마스크 리빌 + 열리는 문구 + 회전 원 + 질감 -->
+      <section class="l-fullpage__section s-fx-intro" aria-label="인트로" data-module="intro" data-effect="odometer text-reveal">
+        <div class="c-grain" aria-hidden="true"></div>
+        <div class="c-rings" aria-hidden="true">
+          <span class="c-rings__ring"></span>
+          <span class="c-rings__ring c-rings__ring--2"></span>
+          <span class="c-rings__ring c-rings__ring--3"></span>
+        </div>
+        <div class="s-fx-intro__inner">
+          <span class="s-fx-intro__count c-odometer js-odometer" data-to="50" data-delay="400">50</span>
+          <h1 class="s-fx-intro__title c-reveal"><span class="c-reveal__inner">반세기를 넘어, 다음 장으로</span></h1>
+          <p class="s-fx-intro__lead">숫자가 굴러 올라가고, 문구가 열리듯 나타납니다</p>
+          <div class="s-fx-intro__actions">
+            <a class="c-shimmer-button c-shimmer-button--primary" href="#fx-tabs">시작하기</a>
+            <a class="c-shimmer-button" href="#fx-carousel">연대기 보기</a>
+          </div>
+        </div>
+        <p class="s-fx-intro__hint c-scroll-hint" aria-hidden="true">↓</p>
+      </section>
+
+      <!-- 2. 모션 탭 3종 -->
+      <section class="l-fullpage__section s-fx-tabs" id="fx-tabs" aria-label="모션 탭" data-effect="text-reveal">
+        <div class="s-fx-tabs__head">
+          <h2 class="s-fx-tabs__title c-reveal"><span class="c-reveal__inner">탭도 움직임으로 말합니다</span></h2>
+          <p class="s-fx-tabs__desc">같은 탭 동작에 표시자 모양만 셋. 선택 표시가 미끄러지고, 내용은 고른 방향에서 들어옵니다. ← → 키로도 됩니다.</p>
+        </div>
+        <div class="s-fx-tabs__grid">
+          <div class="c-mtabs c-mtabs--pill" data-module="tabs-motion">
+            <div class="c-mtabs__list" role="tablist" aria-label="알약형 탭">
+              <button class="c-mtabs__tab" type="button" role="tab" id="pill-t1" aria-controls="pill-p1" aria-selected="true">창립</button>
+              <button class="c-mtabs__tab" type="button" role="tab" id="pill-t2" aria-controls="pill-p2" aria-selected="false">도약기</button>
+              <button class="c-mtabs__tab" type="button" role="tab" id="pill-t3" aria-controls="pill-p3" aria-selected="false">현재</button>
+            </div>
+            <div class="c-mtabs__panel" role="tabpanel" id="pill-p1" aria-labelledby="pill-t1"><div class="s-fx-tabs__panel-body"><h3 class="s-fx-tabs__panel-title">1975</h3><p>작은 사무실 하나에서 시작했습니다.</p></div></div>
+            <div class="c-mtabs__panel" role="tabpanel" id="pill-p2" aria-labelledby="pill-t2" hidden><div class="s-fx-tabs__panel-body"><h3 class="s-fx-tabs__panel-title">1998</h3><p>위기를 넘기며 해외로 나갔습니다.</p></div></div>
+            <div class="c-mtabs__panel" role="tabpanel" id="pill-p3" aria-labelledby="pill-t3" hidden><div class="s-fx-tabs__panel-body"><h3 class="s-fx-tabs__panel-title">2025</h3><p>디지털과 지속가능성으로 다음 50년을 준비합니다.</p></div></div>
+          </div>
+
+          <div class="c-mtabs c-mtabs--line" data-module="tabs-motion">
+            <div class="c-mtabs__list" role="tablist" aria-label="밑줄형 탭">
+              <button class="c-mtabs__tab" type="button" role="tab" id="line-t1" aria-controls="line-p1" aria-selected="true">사람</button>
+              <button class="c-mtabs__tab" type="button" role="tab" id="line-t2" aria-controls="line-p2" aria-selected="false">기술</button>
+              <button class="c-mtabs__tab" type="button" role="tab" id="line-t3" aria-controls="line-p3" aria-selected="false">지역</button>
+            </div>
+            <div class="c-mtabs__panel" role="tabpanel" id="line-p1" aria-labelledby="line-t1"><div class="s-fx-tabs__panel-body"><h3 class="s-fx-tabs__panel-title">임직원 1,200명</h3><p>세 세대가 함께 일합니다.</p></div></div>
+            <div class="c-mtabs__panel" role="tabpanel" id="line-p2" aria-labelledby="line-t2" hidden><div class="s-fx-tabs__panel-body"><h3 class="s-fx-tabs__panel-title">특허 340건</h3><p>현장에서 나온 아이디어를 기술로 만들었습니다.</p></div></div>
+            <div class="c-mtabs__panel" role="tabpanel" id="line-p3" aria-labelledby="line-t3" hidden><div class="s-fx-tabs__panel-body"><h3 class="s-fx-tabs__panel-title">12개 도시</h3><p>지역과 함께 자랐습니다.</p></div></div>
+          </div>
+
+          <div class="c-mtabs c-mtabs--segment" data-module="tabs-motion">
+            <div class="c-mtabs__list" role="tablist" aria-label="세그먼트형 탭">
+              <button class="c-mtabs__tab" type="button" role="tab" id="seg-t1" aria-controls="seg-p1" aria-selected="true">연도순</button>
+              <button class="c-mtabs__tab" type="button" role="tab" id="seg-t2" aria-controls="seg-p2" aria-selected="false">주제별</button>
+            </div>
+            <div class="c-mtabs__panel" role="tabpanel" id="seg-p1" aria-labelledby="seg-t1"><div class="s-fx-tabs__panel-body"><h3 class="s-fx-tabs__panel-title">연도순 보기</h3><p>손잡이가 스프링처럼 살짝 튀며 옮겨 갑니다.</p></div></div>
+            <div class="c-mtabs__panel" role="tabpanel" id="seg-p2" aria-labelledby="seg-t2" hidden><div class="s-fx-tabs__panel-body"><h3 class="s-fx-tabs__panel-title">주제별 보기</h3><p>사람·기술·지역 세 갈래로 묶어 봅니다.</p></div></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. 가운데 정렬 무한 슬라이더 -->
+      <section class="l-fullpage__section s-fx-carousel" id="fx-carousel" aria-label="연대기 슬라이더" data-effect="text-reveal">
+        <div class="s-fx-carousel__head">
+          <h2 class="s-fx-carousel__title c-reveal"><span class="c-reveal__inner">50년의 장면들</span></h2>
+          <p class="s-fx-carousel__desc">가운데 장이 커지고 양옆이 물러납니다. 끌거나 밀어도, ← → 키로도 넘어갑니다.</p>
+        </div>
+        <div class="c-carousel" data-effect="carousel" aria-roledescription="슬라이더" aria-label="연대기">
+          <div class="c-carousel__viewport">
+            <figure class="c-carousel__slide"><div class="c-carousel__media c-carousel__media--a"><span class="c-carousel__year">1975</span><figcaption class="c-carousel__caption">창립, 첫 사무실</figcaption></div></figure>
+            <figure class="c-carousel__slide"><div class="c-carousel__media c-carousel__media--b"><span class="c-carousel__year">1988</span><figcaption class="c-carousel__caption">첫 해외 지사</figcaption></div></figure>
+            <figure class="c-carousel__slide"><div class="c-carousel__media c-carousel__media--c"><span class="c-carousel__year">1998</span><figcaption class="c-carousel__caption">위기를 넘어</figcaption></div></figure>
+            <figure class="c-carousel__slide"><div class="c-carousel__media c-carousel__media--d"><span class="c-carousel__year">2012</span><figcaption class="c-carousel__caption">새 본사 이전</figcaption></div></figure>
+            <figure class="c-carousel__slide"><div class="c-carousel__media c-carousel__media--e"><span class="c-carousel__year">2025</span><figcaption class="c-carousel__caption">다음 50년</figcaption></div></figure>
+          </div>
+          <div class="c-carousel__controls">
+            <button class="c-carousel__arrow" type="button" data-carousel="prev" aria-label="이전 장면">←</button>
+            <div class="c-carousel__dots js-carousel-dots"></div>
+            <button class="c-carousel__arrow" type="button" data-carousel="next" aria-label="다음 장면">→</button>
+          </div>
+          <p class="u-visually-hidden js-carousel-status" aria-live="polite"></p>
+        </div>
+      </section>
+
+      <!-- 4. 스포트라이트 카드 + 숫자 회전 -->
+      <section class="l-fullpage__section s-fx-cards" aria-label="숫자로 보는 50년" data-effect="text-reveal spotlight odometer">
+        <div class="s-fx-cards__head">
+          <h2 class="s-fx-cards__title c-reveal"><span class="c-reveal__inner">숫자로 보는 50년</span></h2>
+          <p class="s-fx-cards__desc">카드 위에서 마우스를 움직이면 빛이 따라오고 카드가 기울어집니다. 숫자는 화면에 들어올 때 굴러 올라갑니다.</p>
+        </div>
+        <div class="s-fx-cards__grid">
+          <article class="c-spotlight-card"><span class="c-spotlight-card__label">Employees</span><span class="c-spotlight-card__value c-odometer js-odometer" data-to="1200">1200</span><p class="c-spotlight-card__desc">함께 일하는 사람</p></article>
+          <article class="c-spotlight-card"><span class="c-spotlight-card__label">Patents</span><span class="c-spotlight-card__value c-odometer js-odometer" data-to="340" data-delay="150">340</span><p class="c-spotlight-card__desc">현장에서 나온 기술</p></article>
+          <article class="c-spotlight-card"><span class="c-spotlight-card__label">Cities</span><span class="c-spotlight-card__value c-odometer js-odometer" data-to="12" data-delay="300">12</span><p class="c-spotlight-card__desc">함께 자란 지역</p></article>
+        </div>
+      </section>
+
+      <!-- 5. 배경 초점 + 마무리 -->
+      <section class="l-fullpage__section s-fx-outro" aria-label="마무리" data-effect="bg-focus text-reveal">
+        <div class="c-bg-focus" aria-hidden="true"><div class="c-bg-focus__layer"></div></div>
+        <div class="c-grain" aria-hidden="true"></div>
+        <div class="s-fx-outro__inner">
+          <h2 class="s-fx-outro__title c-reveal"><span class="c-reveal__inner">Next 50</span></h2>
+          <a class="c-shimmer-button c-shimmer-button--primary" href="#main">처음으로</a>
+        </div>
+        <footer class="s-fx-outro__footer">효과 모듈 데모 · 프레임워크 없이 HTML, CSS, 순수 JS 모듈</footer>
+      </section>
+    </main>
+  </div>
+</body>
+</html>

@@ -1,0 +1,29 @@
+@layer sections {
+  .s-fx-cards {
+    display: grid;
+    align-content: center;
+    gap: var(--space-10);
+    padding: var(--section-pad) var(--gutter);
+    background: var(--fx-surface-2);
+  }
+
+  .s-fx-cards__head {
+    display: grid;
+    gap: var(--space-3);
+    max-width: 40rem;
+  }
+
+  .s-fx-cards__title {
+    font-size: var(--fs-h2);
+  }
+
+  .s-fx-cards__desc {
+    color: var(--fx-text-muted);
+  }
+
+  .s-fx-cards__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+    gap: var(--space-4);
+  }
+}

@@ -1,0 +1,62 @@
+@layer sections {
+  .s-fx-intro {
+    display: grid;
+    place-items: center;
+    padding: var(--section-pad) var(--gutter);
+    background:
+      radial-gradient(60% 50% at 50% 40%, color-mix(in oklch, var(--fx-c1) 22%, transparent), transparent 70%),
+      var(--fx-surface);
+    text-align: center;
+  }
+
+  .s-fx-intro__inner {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    justify-items: center;
+    gap: var(--space-6);
+  }
+
+  .s-fx-intro__count {
+    font-size: clamp(6rem, 22vw, 16rem);
+    font-weight: var(--font-weight-light);
+    letter-spacing: var(--tracking-tight);
+  }
+
+  .s-fx-intro__title {
+    font-size: var(--fs-h1);
+    font-weight: var(--font-weight-bold);
+  }
+
+  .s-fx-intro__lead {
+    color: var(--fx-c3);
+    clip-path: inset(0 100% 0 0);
+    transition: clip-path var(--dur-clip) var(--ease-out-expo) 0.6s;
+  }
+
+  .s-fx-intro.is-ready .s-fx-intro__lead {
+    clip-path: inset(0);
+  }
+
+  .s-fx-intro__actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-3);
+  }
+
+  .s-fx-intro__hint {
+    position: absolute;
+    inset-block-end: var(--space-8);
+    inset-inline-start: 50%;
+    z-index: 1;
+    translate: -50% 0;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .s-fx-intro__lead {
+      clip-path: none;
+      transition: none;
+    }
+  }
+}

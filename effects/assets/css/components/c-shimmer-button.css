@@ -1,0 +1,83 @@
+/* 빛나는 버튼: 테두리를 따라 빛줄기가 돌고(beam), 마우스를 올리면 반짝임이 지나가며, 누르면 살짝 눌린다 */
+@layer components {
+  @property --c-shimmer-angle {
+    syntax: "<angle>";
+    inherits: false;
+    initial-value: 0deg;
+  }
+
+  .c-shimmer-button {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    min-height: var(--tap-min);
+    padding-inline: var(--space-6);
+    border: 1px solid transparent;
+    border-radius: var(--radius-full);
+    background:
+      linear-gradient(var(--fx-surface-2), var(--fx-surface-2)) padding-box,
+      conic-gradient(from var(--c-shimmer-angle), transparent 70%, var(--fx-beam), transparent 85%) border-box,
+      linear-gradient(var(--fx-line), var(--fx-line)) border-box;
+    color: var(--fx-text);
+    font-weight: var(--font-weight-medium);
+    text-decoration: none;
+    overflow: hidden;
+    cursor: pointer;
+    animation: c-shimmer-spin var(--fx-dur-beam) linear infinite;
+    transition:
+      scale 200ms var(--fx-ease-spring),
+      box-shadow 300ms var(--ui-ease);
+  }
+
+  /* 지나가는 반짝임 */
+  .c-shimmer-button::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(110deg, transparent 35%, var(--fx-spotlight) 50%, transparent 65%);
+    translate: -100% 0;
+    pointer-events: none;
+  }
+
+  .c-shimmer-button:active {
+    scale: 0.96;
+  }
+
+  .c-shimmer-button--primary {
+    background:
+      linear-gradient(120deg, var(--fx-c1), var(--fx-c2)) padding-box,
+      conic-gradient(from var(--c-shimmer-angle), transparent 70%, var(--fx-text), transparent 85%) border-box;
+    box-shadow: 0 10px 30px var(--fx-glow);
+  }
+
+  @keyframes c-shimmer-spin {
+    to {
+      --c-shimmer-angle: 360deg;
+    }
+  }
+
+  @keyframes c-shimmer-sweep {
+    to {
+      translate: 100% 0;
+    }
+  }
+
+  @media (hover: hover) {
+    .c-shimmer-button:hover {
+      box-shadow: 0 0 0 1px var(--fx-line), 0 12px 36px var(--fx-glow);
+    }
+
+    .c-shimmer-button:hover::after {
+      animation: c-shimmer-sweep 900ms var(--ease-out-expo);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .c-shimmer-button,
+    .c-shimmer-button::after {
+      animation: none;
+      transition: none;
+    }
+  }
+}

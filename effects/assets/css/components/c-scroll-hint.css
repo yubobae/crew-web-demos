@@ -1,0 +1,18 @@
+@layer components {
+  .c-scroll-hint {
+    justify-self: start;
+    animation: c-scroll-hint-bob var(--dur-hint) var(--ease-sine-in-out) infinite;
+  }
+
+  @keyframes c-scroll-hint-bob {
+    50% {
+      transform: translateY(var(--space-2));
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .c-scroll-hint {
+      animation: none;
+    }
+  }
+}

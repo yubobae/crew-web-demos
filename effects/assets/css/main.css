@@ -1,0 +1,29 @@
+/* 진입점: 레이어 순서 선언 + 불러오기만 둔다 */
+@layer reset, tokens, base, layout, components, sections, utilities;
+
+@import "tokens.css";
+@import "base/reset.css";
+@import "base/document.css";
+
+@import "layout/l-header.css";
+@import "layout/l-fullpage.css";
+
+@import "components/c-reveal.css";
+@import "components/c-scroll-hint.css";
+@import "components/c-odometer.css";
+@import "components/c-rings.css";
+@import "components/c-grain.css";
+@import "components/c-fp-dots.css";
+@import "components/c-mtabs.css";
+@import "components/c-carousel.css";
+@import "components/c-spotlight-card.css";
+@import "components/c-shimmer-button.css";
+@import "components/c-bg-focus.css";
+
+@import "sections/s-fx-intro.css";
+@import "sections/s-fx-tabs.css";
+@import "sections/s-fx-carousel.css";
+@import "sections/s-fx-cards.css";
+@import "sections/s-fx-outro.css";
+
+@import "utilities/u-visually-hidden.css";

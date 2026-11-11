@@ -1,0 +1,99 @@
+/* 모달 — 브라우저 기본 <dialog> + shadcn dialog 모양·동작(페이드 + 95% 확대, 200ms) */
+@layer components {
+  .c-dialog {
+    position: fixed;
+    inset: 0;
+    width: min(calc(100% - 2rem), var(--ui-dialog-w));
+    max-height: calc(100dvh - 2rem);
+    margin: auto;
+    padding: var(--space-6);
+    border: 1px solid var(--ui-border);
+    border-radius: var(--ui-radius-lg);
+    background: var(--ui-background);
+    color: var(--ui-foreground);
+    box-shadow: var(--shadow-lg);
+    opacity: 0;
+    transform: scale(var(--ui-enter-scale));
+    transition:
+      opacity var(--ui-duration-dialog) var(--ui-ease),
+      transform var(--ui-duration-dialog) var(--ui-ease),
+      overlay var(--ui-duration-dialog) var(--ui-ease) allow-discrete,
+      display var(--ui-duration-dialog) var(--ui-ease) allow-discrete;
+  }
+
+  .c-dialog[open] {
+    display: grid;
+    gap: var(--space-4);
+    opacity: 1;
+    transform: none;
+  }
+
+  @starting-style {
+    .c-dialog[open] {
+      opacity: 0;
+      transform: scale(var(--ui-enter-scale));
+    }
+  }
+
+  .c-dialog::backdrop {
+    background: var(--ui-overlay);
+    opacity: 0;
+    transition:
+      opacity var(--ui-duration-dialog) var(--ui-ease),
+      overlay var(--ui-duration-dialog) var(--ui-ease) allow-discrete,
+      display var(--ui-duration-dialog) var(--ui-ease) allow-discrete;
+  }
+
+  .c-dialog[open]::backdrop {
+    opacity: 1;
+  }
+
+  @starting-style {
+    .c-dialog[open]::backdrop {
+      opacity: 0;
+    }
+  }
+
+  .c-dialog__header {
+    display: grid;
+    gap: var(--space-2);
+    padding-inline-end: var(--space-8);
+  }
+
+  .c-dialog__title {
+    font-size: var(--text-lg);
+    font-weight: var(--font-weight-semibold);
+    line-height: 1;
+  }
+
+  .c-dialog__description {
+    font-size: var(--text-sm);
+    color: var(--ui-muted-foreground);
+  }
+
+  .c-dialog__footer {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: var(--space-2);
+  }
+
+  .c-dialog__close {
+    position: absolute;
+    inset-block-start: var(--space-4);
+    inset-inline-end: var(--space-4);
+  }
+
+  @media (min-width: 500px) {
+    .c-dialog__footer {
+      flex-direction: row;
+      justify-content: flex-end;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .c-dialog,
+    .c-dialog::backdrop {
+      transition: none;
+    }
+  }
+}

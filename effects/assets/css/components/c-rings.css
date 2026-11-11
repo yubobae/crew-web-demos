@@ -1,0 +1,53 @@
+/* 장식용 회전 원: 지름과 속도가 다른 점선 원 3개가 천천히 돈다 */
+@layer components {
+  .c-rings {
+    position: absolute;
+    inset: 50% auto auto 50%;
+    width: min(90vmin, 52rem);
+    aspect-ratio: 1;
+    translate: -50% -50%;
+    pointer-events: none;
+  }
+
+  .c-rings__ring {
+    position: absolute;
+    inset: calc(var(--i, 0) * 9%);
+    border: 1px dashed var(--fx-line);
+    border-radius: var(--radius-full);
+    animation: c-rings-spin calc(var(--fx-dur-aurora) + var(--i, 0) * 4s) linear infinite;
+    animation-direction: var(--dir, normal);
+  }
+
+  .c-rings__ring--2 {
+    --i: 1;
+    --dir: reverse;
+  }
+
+  .c-rings__ring--3 {
+    --i: 2;
+  }
+
+  .c-rings__ring::after {
+    content: "";
+    position: absolute;
+    inset-block-start: calc(var(--space-1) * -1);
+    inset-inline-start: 50%;
+    width: 8px;
+    height: 8px;
+    border-radius: var(--radius-full);
+    background: var(--fx-c2);
+    box-shadow: 0 0 16px var(--fx-c2);
+  }
+
+  @keyframes c-rings-spin {
+    to {
+      rotate: 1turn;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .c-rings__ring {
+      animation: none;
+    }
+  }
+}

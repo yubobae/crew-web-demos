@@ -1,0 +1,39 @@
+/* 배경 초점: 흐리고 크게(blur 10px, 1.5배) 있다가 화면에 들어오면 5초 동안 선명해지며 제자리로.
+   effects/text-reveal.js와 같은 방식으로 is-in이 붙는다(data-effect="bg-focus"). */
+@layer components {
+  .c-bg-focus {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+  }
+
+  .c-bg-focus__layer {
+    position: absolute;
+    inset: -10%;
+    background:
+      radial-gradient(40% 50% at 25% 35%, var(--fx-c4), transparent 70%),
+      radial-gradient(45% 55% at 75% 65%, var(--fx-c1), transparent 70%),
+      radial-gradient(35% 45% at 60% 20%, var(--fx-c3), transparent 70%),
+      var(--fx-surface);
+    filter: blur(var(--bg-blur-from, 10px));
+    scale: var(--bg-scale-from, 1.5);
+    opacity: 0.55;
+    transition:
+      filter var(--dur-bg-focus) var(--ease-out-expo),
+      scale var(--dur-bg-focus) var(--ease-out-expo);
+  }
+
+  .c-bg-focus.is-in .c-bg-focus__layer {
+    filter: blur(0);
+    scale: 1;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .c-bg-focus__layer {
+      filter: none;
+      scale: 1;
+      transition: none;
+    }
+  }
+}

@@ -1,0 +1,47 @@
+@layer sections {
+  .s-fx-tabs {
+    display: grid;
+    align-content: center;
+    gap: var(--space-10);
+    padding: var(--section-pad) var(--gutter);
+    background: var(--fx-surface-2);
+  }
+
+  .s-fx-tabs__head {
+    display: grid;
+    gap: var(--space-3);
+    max-width: 40rem;
+  }
+
+  .s-fx-tabs__title {
+    font-size: var(--fs-h2);
+  }
+
+  .s-fx-tabs__desc {
+    color: var(--fx-text-muted);
+  }
+
+  .s-fx-tabs__grid {
+    display: grid;
+    gap: var(--space-10);
+  }
+
+  .s-fx-tabs__panel-body {
+    display: grid;
+    gap: var(--space-2);
+    max-width: 36rem;
+    min-height: 5rem;
+    color: var(--fx-text-muted);
+  }
+
+  .s-fx-tabs__panel-title {
+    font-size: var(--text-xl);
+    color: var(--fx-text);
+  }
+
+  @media (min-width: 1024px) {
+    .s-fx-tabs__grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+}

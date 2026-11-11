@@ -1,0 +1,27 @@
+@layer sections {
+  .s-fx-carousel {
+    display: grid;
+    align-content: center;
+    gap: var(--space-10);
+    padding: var(--section-pad) 0;
+    background:
+      radial-gradient(50% 40% at 50% 100%, color-mix(in oklch, var(--fx-c2) 18%, transparent), transparent 70%),
+      var(--fx-surface);
+  }
+
+  .s-fx-carousel__head {
+    display: grid;
+    justify-items: center;
+    gap: var(--space-3);
+    padding-inline: var(--gutter);
+    text-align: center;
+  }
+
+  .s-fx-carousel__title {
+    font-size: var(--fs-h2);
+  }
+
+  .s-fx-carousel__desc {
+    color: var(--fx-text-muted);
+  }
+}

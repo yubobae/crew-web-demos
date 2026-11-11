@@ -1,0 +1,29 @@
+@layer base {
+  html.is-locked,
+  html.is-locked body {
+    overflow: hidden;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    font-size: var(--fs-body);
+    line-height: var(--lh-body);
+    color: var(--fx-text);
+    background: var(--fx-surface);
+    font-synthesis: none;
+    word-break: keep-all;
+    overflow-wrap: break-word;
+  }
+
+  h1,
+  h2,
+  h3 {
+    line-height: var(--lh-tight);
+    letter-spacing: var(--ls-display);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--fx-beam);
+    outline-offset: 3px;
+  }
+}

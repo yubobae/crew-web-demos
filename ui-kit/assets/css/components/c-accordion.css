@@ -1,0 +1,76 @@
+/* 아코디언 — 브라우저 기본 <details>/<summary> + shadcn accordion 모양
+   name 속성이 같은 <details>끼리는 하나만 열린다. 높이 애니메이션은 지원 브라우저에서만(나머지는 즉시 열림) */
+@layer components {
+  .c-accordion {
+    display: grid;
+  }
+
+  .c-accordion__item {
+    border-bottom: 1px solid var(--ui-border);
+  }
+
+  .c-accordion__item::details-content {
+    block-size: 0;
+    overflow: clip;
+    transition:
+      block-size var(--ui-duration-accordion) var(--ease-out),
+      content-visibility var(--ui-duration-accordion) var(--ease-out) allow-discrete;
+  }
+
+  .c-accordion__item[open]::details-content {
+    block-size: auto;
+  }
+
+  .c-accordion__trigger {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--space-4);
+    padding-block: var(--space-4);
+    border-radius: var(--ui-radius-md);
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-medium);
+    list-style: none;
+    cursor: pointer;
+    outline: none;
+  }
+
+  .c-accordion__trigger::-webkit-details-marker {
+    display: none;
+  }
+
+  .c-accordion__trigger:focus-visible {
+    box-shadow: 0 0 0 var(--ui-ring-width) color-mix(in oklch, var(--ui-ring) 50%, transparent);
+  }
+
+  .c-accordion__icon {
+    flex-shrink: 0;
+    width: 1rem;
+    height: 1rem;
+    color: var(--ui-muted-foreground);
+    translate: 0 var(--space-0-5);
+    transition: rotate var(--ui-duration-accordion) var(--ui-ease);
+  }
+
+  .c-accordion__item[open] .c-accordion__icon {
+    rotate: 180deg;
+  }
+
+  .c-accordion__content {
+    padding-block-end: var(--space-4);
+    font-size: var(--text-sm);
+  }
+
+  @media (hover: hover) {
+    .c-accordion__trigger:hover {
+      text-decoration: underline;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .c-accordion__item::details-content,
+    .c-accordion__icon {
+      transition: none;
+    }
+  }
+}

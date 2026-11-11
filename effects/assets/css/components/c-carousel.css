@@ -1,0 +1,135 @@
+/* 가운데 정렬 무한 슬라이더: 가운데 장은 크게, 양옆은 작고 흐리게 보인다.
+   effects/carousel.js가 장마다 --offset(가운데 0, 왼쪽 -1, 오른쪽 1…)을 넣는다. 복제 없이 무한 반복. */
+@layer components {
+  .c-carousel {
+    position: relative;
+    display: grid;
+    gap: var(--space-8);
+  }
+
+  .c-carousel__viewport {
+    position: relative;
+    height: clamp(16rem, 42vw, 30rem);
+    overflow: hidden;
+    touch-action: pan-y;
+    user-select: none;
+  }
+
+  .c-carousel__slide {
+    --abs: max(var(--offset, 0), calc(var(--offset, 0) * -1));
+    position: absolute;
+    inset-block: 0;
+    inset-inline-start: 50%;
+    width: min(70vw, 34rem);
+    margin: 0;
+    border-radius: var(--radius-2xl);
+    overflow: hidden;
+    translate: calc(-50% + var(--offset, 0) * 78%) 0;
+    scale: calc(1 - min(var(--abs), 2) * 0.16);
+    opacity: calc(1 - min(var(--abs), 2) * 0.45);
+    filter: saturate(calc(1 - min(var(--abs), 1) * 0.6));
+    z-index: calc(10 - var(--abs));
+    transition:
+      translate 1000ms var(--ease-out-expo),
+      scale 1000ms var(--ease-out-expo),
+      opacity 1000ms var(--ease-out-expo),
+      filter 1000ms var(--ease-out-expo);
+  }
+
+  .c-carousel__slide.is-far {
+    visibility: hidden;
+  }
+
+  .c-carousel__media {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    align-content: end;
+    padding: var(--space-6);
+    background:
+      radial-gradient(120% 80% at 20% 10%, var(--slide-c1, var(--fx-c1)), transparent 60%),
+      radial-gradient(100% 90% at 90% 90%, var(--slide-c2, var(--fx-c2)), transparent 55%),
+      var(--fx-surface-2);
+  }
+
+  .c-carousel__media--a { --slide-c1: var(--fx-c1); --slide-c2: var(--fx-c2); }
+  .c-carousel__media--b { --slide-c1: var(--fx-c2); --slide-c2: var(--fx-c3); }
+  .c-carousel__media--c { --slide-c1: var(--fx-c3); --slide-c2: var(--fx-c4); }
+  .c-carousel__media--d { --slide-c1: var(--fx-c4); --slide-c2: var(--fx-c1); }
+  .c-carousel__media--e { --slide-c1: var(--fx-c1); --slide-c2: var(--fx-c3); }
+
+  .c-carousel__year {
+    font-size: var(--text-4xl);
+    font-weight: var(--font-weight-bold);
+    line-height: 1;
+  }
+
+  .c-carousel__caption {
+    font-size: var(--text-sm);
+    color: var(--fx-text);
+    opacity: 0.85;
+  }
+
+  .c-carousel__controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-4);
+  }
+
+  .c-carousel__arrow {
+    display: grid;
+    place-items: center;
+    width: var(--tap-min);
+    height: var(--tap-min);
+    border: 1px solid var(--fx-line);
+    border-radius: var(--radius-full);
+    background: transparent;
+    color: var(--fx-text);
+    cursor: pointer;
+    transition:
+      background-color var(--ui-duration) var(--ui-ease),
+      scale 200ms var(--fx-ease-spring);
+  }
+
+  .c-carousel__arrow:active {
+    scale: 0.9;
+  }
+
+  .c-carousel__dots {
+    display: flex;
+    gap: var(--space-2);
+  }
+
+  .c-carousel__dot {
+    width: 8px;
+    height: 8px;
+    padding: 0;
+    border: 0;
+    border-radius: var(--radius-full);
+    background: var(--fx-line);
+    cursor: pointer;
+    transition:
+      width 400ms var(--ease-out-expo),
+      background-color 400ms var(--ui-ease);
+  }
+
+  .c-carousel__dot[aria-current="true"] {
+    width: 28px;
+    background: var(--fx-text);
+  }
+
+  @media (hover: hover) {
+    .c-carousel__arrow:hover {
+      background: var(--fx-surface-2);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .c-carousel__slide,
+    .c-carousel__arrow,
+    .c-carousel__dot {
+      transition: none;
+    }
+  }
+}
