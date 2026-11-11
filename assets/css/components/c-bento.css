@@ -1,0 +1,143 @@
+/* 벤토 그리드(한눈에 보는 크루): 크기가 다른 칸이 한 판에 모인다. 큰 소개 칸(일러스트 패럴랙스) · 숫자 칸 넷(굴러 오름) ·
+   설명 칸 · 어두운 띠 칸(칩이 흐름). 칸마다 카드 공통 기울기·빛. 넓은 화면 4열 → 태블릿 2열 → 휴대폰 1~2열. */
+@layer components {
+  .c-bento {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-areas:
+      "lead lead n1 n2"
+      "lead lead text text"
+      "night night n3 n4";
+    gap: var(--cl-gap);
+  }
+
+  .c-bento__tile {
+    display: grid;
+    align-content: space-between;
+    gap: var(--space-3);
+    padding: var(--cl-pad);
+    overflow: hidden;
+  }
+
+  .c-bento__tile--lead { grid-area: lead; align-content: end; min-height: 26rem; }
+  .c-bento__tile--n1 { grid-area: n1; }
+  .c-bento__tile--n2 { grid-area: n2; }
+  .c-bento__tile--n3 { grid-area: n3; }
+  .c-bento__tile--n4 { grid-area: n4; }
+  .c-bento__tile--text { grid-area: text; align-content: center; }
+  .c-bento__tile--night { grid-area: night; align-content: center; color: var(--tr-on-night); background: var(--tr-night); border-color: var(--tr-night-line); }
+
+  .c-bento__art-wrap {
+    position: absolute;
+    top: 0;
+    right: 4%;
+    width: min(82%, 27rem);
+    transform: translate3d(0, var(--py, 0px), 0);
+  }
+
+  .c-bento__art {
+    width: 100%;
+    height: auto;
+    animation: c-bento-float 6s var(--ease-in-out) infinite alternate;
+  }
+
+  .c-bento__statement {
+    position: relative;
+    font-size: clamp(var(--text-2xl), 1rem + 1.8vw, var(--text-4xl));
+    font-weight: var(--cl-fw-h2);
+    letter-spacing: var(--cl-ls-h2);
+    line-height: 1.2;
+    text-wrap: balance;
+  }
+
+  .c-bento__mark {
+    color: var(--tr-accent);
+  }
+
+  .c-bento__value {
+    font-size: clamp(var(--text-4xl), 2rem + 2vw, var(--text-6xl));
+    font-weight: var(--cl-fw-h1);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: var(--cl-ls-h1);
+    line-height: 1;
+  }
+
+  .c-bento__unit {
+    font-size: 0.4em;
+    color: var(--tr-accent);
+  }
+
+  .c-bento__label {
+    font-size: var(--text-sm);
+    color: var(--tr-ink-soft);
+  }
+
+  .c-bento__text {
+    color: var(--tr-ink-soft);
+  }
+
+  .c-bento__chips {
+    display: flex;
+    gap: var(--space-2);
+    width: max-content;
+    animation: c-bento-chips 30s linear infinite;
+  }
+
+  .c-bento__chip {
+    padding: var(--space-2) var(--space-4);
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-semibold);
+    white-space: nowrap;
+    border: 1px solid var(--tr-night-line);
+    border-radius: var(--radius-full);
+  }
+
+  .c-bento__chip:nth-child(3n) { color: var(--tr-lime); }
+  .c-bento__chip:nth-child(3n + 1) { color: var(--tr-on-night); }
+
+  .c-bento__strip {
+    overflow: hidden;
+    mask-image: linear-gradient(90deg, transparent, var(--tr-white) 8%, var(--tr-white) 92%, transparent);
+  }
+
+  .c-bento__strip-title {
+    margin-bottom: var(--space-4);
+    font-size: var(--cl-fs-h3);
+    font-weight: var(--cl-fw-h3);
+  }
+
+  @keyframes c-bento-float {
+    to {
+      transform: translateY(-0.75rem) rotate(3deg);
+    }
+  }
+
+  @keyframes c-bento-chips {
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  @media (max-width: 1023px) {
+    .c-bento {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-areas:
+        "lead lead"
+        "n1 n2"
+        "text text"
+        "n3 n4"
+        "night night";
+    }
+
+    .c-bento__tile--lead {
+      min-height: 22rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .c-bento__art,
+    .c-bento__chips {
+      animation: none;
+    }
+  }
+}

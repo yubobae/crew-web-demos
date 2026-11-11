@@ -466,3 +466,48 @@
     --tr-blur: 14px;
   }
 }
+
+/* ===================================================================
+   크루 사이트 룩 규칙 (--cl-*) — 홈·작업·프로토타입 상세·실험실이 한 사이트로 보이게 하는 공통 값.
+   이 값만 바꾸면 네 쪽이 같이 바뀐다. 컴포넌트는 새 숫자를 만들지 말고 여기 값을 쓴다.
+     글자  : 머리말(eyebrow) · h1 · 섹션 제목(h2) · 카드 제목(h3) · 본문 — 굵기·자간까지 한 벌
+     간격  : 섹션 위아래 · 카드 사이 · 카드 안쪽
+     모양  : 카드 반경 3xl · 큰 판 반경 4xl · 버튼 알약, 그림자는 평소 hairline → 올리면 float → 누르면 pop
+     모션  : 등장 900ms · 마이크로 220ms · 스프링은 버튼·카드 올림만
+   =================================================================== */
+@layer tokens {
+  :root {
+    --cl-fs-eyebrow: var(--text-xs);
+    --cl-fs-h1: clamp(var(--text-5xl), 1.6rem + 6vw, 8rem);
+    --cl-fs-h2: clamp(var(--text-3xl), 1.3rem + 2.6vw, var(--text-6xl));
+    --cl-fs-h3: var(--text-xl);
+    --cl-fs-lead: var(--text-lg);
+    --cl-fw-h1: var(--font-weight-black);
+    --cl-fw-h2: var(--font-weight-extrabold);
+    --cl-fw-h3: var(--font-weight-bold);
+    --cl-ls-h1: var(--tracking-tighter);
+    --cl-ls-h2: var(--tracking-tight);
+    --cl-ls-eyebrow: var(--tracking-wider);
+
+    --cl-section-y: clamp(var(--space-16), 9vw, var(--space-32));
+    --cl-gap: var(--space-4);
+    --cl-pad: clamp(var(--space-5), 2.4vw, var(--space-8));
+
+    --cl-radius-card: var(--radius-3xl);
+    --cl-radius-panel: var(--radius-4xl);
+    --cl-card-bg: var(--tr-white);
+    --cl-card-line: 1px solid var(--tr-line);
+    --cl-shadow-rest: 0 1px 2px oklch(0.2 0.012 270 / 5%);
+    --cl-shadow-lift: var(--tr-shadow-float);
+    --cl-shadow-pop: var(--tr-shadow-pop);
+
+    --cl-btn-h: 3rem;
+    --cl-btn-pad: 0 var(--space-6);
+
+    --cl-dur-in: 900ms;
+    --cl-dur-micro: var(--tr-dur-fast);
+    --cl-ease: var(--tr-ease);
+    --cl-spring: var(--tr-spring);
+    --cl-grad: linear-gradient(120deg, var(--tr-accent), var(--tr-violet));
+  }
+}

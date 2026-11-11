@@ -1,0 +1,189 @@
+/* 스크롤 연동 고정 구역(일하는 방식): 구역이 길게 늘어나 있고 무대가 화면에 붙어 있는 동안
+   스크롤 진행에 따라 다섯 단계가 하나씩 바뀐다(scroll-flow.js가 is-active, --p). 큰 번호는 단계마다 갈아 끼워지고
+   일러스트는 아래에서 떠오른다. 넓지 않은 화면(820 미만)은 고정을 풀고 다섯 단계를 위아래로 펼친다. */
+@layer components {
+  .c-flow {
+    position: relative;
+    height: calc(var(--n, 5) * 80vh);
+  }
+
+  .c-flow__sticky {
+    position: sticky;
+    top: 0;
+    display: grid;
+    height: 100svh;
+    padding-block: calc(var(--tr-nav-h) + var(--space-6)) var(--space-10);
+    align-content: center;
+    gap: var(--space-8);
+  }
+
+  .c-flow__list {
+    display: grid;
+    list-style: none;
+  }
+
+  .c-flow__item {
+    grid-area: 1 / 1;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-items: center;
+    gap: var(--space-8);
+    padding: var(--cl-pad);
+    background: var(--cl-card-bg);
+    border: var(--cl-card-line);
+    border-radius: var(--cl-radius-panel);
+    box-shadow: var(--cl-shadow-lift);
+    opacity: 0;
+    transform: translate3d(0, var(--space-8), 0) scale(0.98);
+    transition:
+      opacity 500ms var(--cl-ease),
+      transform 700ms var(--cl-ease);
+    pointer-events: none;
+  }
+
+  .c-flow__item.is-active {
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+  }
+
+  .c-flow__text {
+    display: grid;
+    align-content: center;
+    gap: var(--space-3);
+  }
+
+  .c-flow__no {
+    font-size: clamp(var(--text-6xl), 3rem + 6vw, 9rem);
+    font-weight: var(--cl-fw-h1);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: var(--cl-ls-h1);
+    line-height: 0.9;
+    background: var(--cl-grad);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .c-flow__when {
+    font-size: var(--cl-fs-eyebrow);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: var(--cl-ls-eyebrow);
+    color: var(--tr-accent);
+  }
+
+  .c-flow__title {
+    font-size: var(--cl-fs-h2);
+    font-weight: var(--cl-fw-h2);
+    letter-spacing: var(--cl-ls-h2);
+    line-height: 1.1;
+  }
+
+  .c-flow__desc {
+    max-width: 38ch;
+    font-size: var(--cl-fs-lead);
+    color: var(--tr-ink-soft);
+  }
+
+  .c-flow__out {
+    justify-self: start;
+    padding: var(--space-1) var(--space-4);
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-semibold);
+    background: var(--tr-paper-2);
+    border-radius: var(--radius-full);
+  }
+
+  .c-flow__art {
+    justify-self: center;
+    width: min(100%, 22rem);
+    height: auto;
+    transform: translate3d(0, var(--space-8), 0) scale(0.92) rotate(-4deg);
+    transition: transform 900ms var(--cl-spring) 120ms;
+  }
+
+  .c-flow__item.is-active .c-flow__art {
+    transform: none;
+  }
+
+  /* 아래 진행 막대와 단계 점 */
+  .c-flow__rail {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(var(--n, 5), minmax(0, 1fr));
+    gap: var(--space-2);
+  }
+
+  .c-flow__rail::before {
+    content: "";
+    position: absolute;
+    top: calc(var(--space-3) * -1);
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: var(--cl-grad);
+    border-radius: var(--radius-full);
+    transform: scaleX(var(--p, 0));
+    transform-origin: left;
+  }
+
+  .c-flow__dot {
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--tr-ink-soft);
+    opacity: 0.45;
+    transition: opacity var(--cl-dur-micro) var(--cl-ease), color var(--cl-dur-micro) var(--cl-ease);
+  }
+
+  .c-flow__dot.is-active {
+    color: var(--tr-accent);
+    opacity: 1;
+  }
+
+  @media (max-width: 819px), (prefers-reduced-motion: reduce) {
+    .c-flow {
+      height: auto;
+    }
+
+    .c-flow__sticky {
+      position: static;
+      height: auto;
+      padding-block: 0;
+    }
+
+    .c-flow__list {
+      gap: var(--cl-gap);
+    }
+
+    .c-flow__item {
+      grid-area: auto;
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-4);
+      opacity: 1;
+      transform: none;
+      pointer-events: auto;
+    }
+
+    .c-flow__art {
+      width: min(60%, 12rem);
+      justify-self: start;
+      transform: none;
+    }
+
+    .c-flow__no {
+      font-size: var(--text-6xl);
+    }
+
+    .c-flow__rail {
+      display: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .c-flow__item,
+    .c-flow__art,
+    .c-flow__dot {
+      transition: none;
+    }
+  }
+}

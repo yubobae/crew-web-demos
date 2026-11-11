@@ -7,15 +7,16 @@
     align-items: center;
     gap: clamp(var(--space-8), 5vw, var(--space-16));
     padding: clamp(var(--space-6), 4vw, var(--space-12));
-    background: var(--tr-white);
-    border: 1px solid var(--tr-line);
-    border-radius: var(--radius-4xl);
+    background: var(--cl-card-bg);
+    border: var(--cl-card-line);
+    border-radius: var(--cl-radius-panel);
+    box-shadow: var(--cl-shadow-rest);
   }
 
   .c-work__media {
     transition:
-      opacity 900ms var(--tr-ease),
-      transform 1000ms var(--tr-ease);
+      opacity var(--cl-dur-in) var(--cl-ease),
+      transform 1000ms var(--cl-ease);
   }
 
   .c-work.is-ready:not(.is-in) .c-work__media {
@@ -26,16 +27,17 @@
   .c-work__tag {
     display: inline-flex;
     gap: var(--space-2);
-    font-size: var(--text-sm);
+    font-size: var(--cl-fs-eyebrow);
     font-weight: var(--font-weight-bold);
+    letter-spacing: var(--cl-ls-eyebrow);
     color: var(--tr-accent);
   }
 
   .c-work__title {
     margin-top: var(--space-3);
-    font-size: clamp(var(--text-2xl), 1rem + 2vw, var(--text-4xl));
-    font-weight: var(--font-weight-extrabold);
-    letter-spacing: var(--tracking-tight);
+    font-size: var(--cl-fs-h2);
+    font-weight: var(--cl-fw-h2);
+    letter-spacing: var(--cl-ls-h2);
   }
 
   .c-work__desc {
@@ -72,35 +74,13 @@
     margin-top: var(--space-8);
   }
 
-  .c-work__btn {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--space-2);
-    padding: var(--space-3) var(--space-5);
-    font-weight: var(--font-weight-semibold);
-    color: var(--tr-white);
-    text-decoration: none;
-    background: var(--tr-ink);
-    border-radius: var(--radius-full);
-    transition: transform var(--tr-dur-fast) var(--tr-spring);
-  }
-
-  .c-work__btn--line {
-    color: var(--tr-ink);
-    background: none;
-    border: 1px solid var(--tr-line);
-  }
-
-  .c-work__btn:active {
-    transform: scale(0.96);
-  }
-
   .c-work--soon {
     grid-template-columns: minmax(0, 1fr);
     gap: var(--space-2);
     padding: var(--space-6);
     background: var(--tr-paper-2);
     border-style: dashed;
+    box-shadow: none;
   }
 
   .c-work--soon .c-work__title {
@@ -115,8 +95,7 @@
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .c-work__media,
-    .c-work__btn {
+    .c-work__media {
       transition: none;
     }
   }

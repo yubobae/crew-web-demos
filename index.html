@@ -15,10 +15,10 @@
   <link rel="icon" href="favicon.ico" sizes="48x48">
   <link rel="icon" type="image/png" sizes="32x32" href="assets/media/icons/favicon-32.png">
   <link rel="apple-touch-icon" href="assets/media/icons/apple-touch-icon.png">
-  <link rel="stylesheet" href="assets/css/main.css?v=202611120037">
-  <script type="module" src="assets/js/main.js?v=202611120037"></script>
+  <link rel="stylesheet" href="assets/css/main.css?v=202611120058">
+  <script type="module" src="assets/js/main.js?v=202611120058"></script>
 </head>
-<body>
+<body data-effect="cursor scroll-progress">
   <a class="u-visually-hidden" href="#main">본문 바로가기</a>
   <header class="c-site-nav" data-module="site-nav">
     <div class="c-site-nav__bar">
@@ -52,9 +52,10 @@
 
   <div class="l-curtain">
   <main class="l-curtain__main" id="main">
-    <section class="c-crew-hero" aria-labelledby="hero-title">
-      <img class="c-crew-hero__art c-crew-hero__art--l" src="assets/media/art/hero-left.webp" width="440" height="480" alt="" decoding="async">
-      <img class="c-crew-hero__art c-crew-hero__art--r" src="assets/media/art/hero-right.webp" width="440" height="480" alt="" decoding="async">
+    <section class="c-crew-hero" aria-labelledby="hero-title" data-effect="spotlight parallax">
+      <span class="c-crew-hero__spot" aria-hidden="true"></span>
+      <div class="c-crew-hero__art-wrap c-crew-hero__art-wrap--l js-par" data-speed="0.12"><img class="c-crew-hero__art c-crew-hero__art--l" src="assets/media/art/hero-left.webp" width="440" height="480" alt="" decoding="async"></div>
+      <div class="c-crew-hero__art-wrap c-crew-hero__art-wrap--r js-par" data-speed="-0.1"><img class="c-crew-hero__art c-crew-hero__art--r" src="assets/media/art/hero-right.webp" width="440" height="480" alt="" decoding="async"></div>
       <div class="c-crew-hero__copy">
         <p class="c-crew-hero__eyebrow"><span class="c-crew-hero__dot" aria-hidden="true"></span>보람찬크루 · 마이크로 웹사이트 제작 · 개발</p>
         <h1 class="c-crew-hero__title" id="hero-title">
@@ -63,9 +64,9 @@
           <span class="c-crew-hero__line"><span class="c-crew-hero__in">빚는 크루</span></span>
         </h1>
         <p class="c-crew-hero__lead">기획의 의도를 살린 화면 설계부터 프레임워크 없는 가벼운 코드, 정교한 인터랙션까지. 보람찬크루가 만든 웹사이트와 UI 실험을 직접 눌러 보세요.</p>
-        <div class="c-crew-hero__actions">
-          <a class="c-crew-hero__btn" href="#work">작업 보기 <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-          <a class="c-crew-hero__btn c-crew-hero__btn--ghost" href="#about">크루 소개</a>
+        <div class="c-crew-hero__actions" data-effect="magnetic">
+          <a class="c-btn" href="#work">작업 보기 <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <a class="c-btn c-btn--line" href="#about">크루 소개</a>
         </div>
       </div>
       <div class="c-crew-hero__reel c-reel" aria-hidden="true">
@@ -74,24 +75,31 @@
       </div>
     </section>
 
+    <div class="c-marquee" aria-hidden="true" data-effect="marquee-drift">
+      <div class="c-marquee__row js-drift" data-speed="0.5"><span>작은 웹사이트</span><span class="c-marquee__sep">●</span><span class="c-marquee__accent">가장 매끄럽게</span><span class="c-marquee__sep">●</span><span>작은 웹사이트</span><span class="c-marquee__sep">●</span><span class="c-marquee__accent">가장 매끄럽게</span><span class="c-marquee__sep">●</span><span>작은 웹사이트</span><span class="c-marquee__sep">●</span><span class="c-marquee__accent">가장 매끄럽게</span><span class="c-marquee__sep">●</span></div>
+      <div class="c-marquee__row c-marquee__row--outline js-drift" data-speed="-0.5"><span>NO FRAMEWORK</span><span class="c-marquee__sep">●</span><span>60 FPS</span><span class="c-marquee__sep">●</span><span>5 WIDTHS</span><span class="c-marquee__sep">●</span><span>NO FRAMEWORK</span><span class="c-marquee__sep">●</span><span>60 FPS</span><span class="c-marquee__sep">●</span><span>5 WIDTHS</span><span class="c-marquee__sep">●</span></div>
+    </div>
+
     <section class="l-section" id="about" aria-labelledby="about-title">
       <div class="l-section__head" data-effect="reveal">
         <span class="l-section__num">01</span>
         <h2 class="l-section__title" id="about-title">한눈에 보는 보람찬크루</h2>
-        <p class="l-section__desc"></p>
+        <p class="l-section__desc">작게 만들수록 더 정교하게. 보람찬크루가 지키는 것들이에요.</p>
       </div>
-      <div class="c-about" data-effect="count-up">
-        <div>
-          <img class="c-about__art" src="assets/media/art/about-art.webp" width="420" height="240" alt="" loading="lazy" decoding="async">
-          <p class="c-about__statement">본질에 집중한 <span class="c-about__mark">가벼운 웹</span>을 만듭니다.</p>
-          <p class="c-about__text">불필요한 무거움을 덜어내고, 어떤 기기에서 열어도 흔들리지 않는 단단한 구조와 매끄러운 움직임을 구현합니다. 프레임워크 없이 순수 HTML·CSS·JS 모듈로 만들어, 어느 서버에 올려도 그대로 가볍게 돌아갑니다.</p>
+      <div class="c-bento" data-effect="reveal tilt-grid count-up parallax">
+        <article class="c-bento__tile c-bento__tile--lead c-card js-reveal js-tilt">
+          <div class="c-bento__art-wrap js-par" data-speed="0.08"><img class="c-bento__art" src="assets/media/art/about-art.webp" width="840" height="480" alt="" loading="lazy" decoding="async"></div>
+          <p class="c-bento__statement">본질에 집중한 <span class="c-bento__mark">가벼운 웹</span>을 만듭니다.</p>
+        </article>
+        <p class="c-bento__tile c-bento__tile--n1 c-card js-reveal js-tilt"><span class="c-bento__value"><span class="js-count" data-to="5">5</span><span class="c-bento__unit">폭</span></span><span class="c-bento__label">휴대폰부터 넓은 화면까지 검사하는 화면 폭</span></p>
+        <p class="c-bento__tile c-bento__tile--n2 c-card js-reveal js-tilt"><span class="c-bento__value"><span class="js-count" data-to="60">60</span><span class="c-bento__unit">fps</span></span><span class="c-bento__label">실제 브라우저에서 잰 움직임</span></p>
+        <div class="c-bento__tile c-bento__tile--text c-card js-reveal js-tilt"><p class="c-bento__text">불필요한 무거움을 덜어내고, 어떤 기기에서 열어도 흔들리지 않는 단단한 구조와 매끄러운 움직임을 구현합니다. 프레임워크 없이 순수 HTML·CSS·JS 모듈로 만들어, 어느 서버에 올려도 그대로 가볍게 돌아갑니다.</p></div>
+        <div class="c-bento__tile c-bento__tile--night c-card js-reveal js-tilt">
+          <p class="c-bento__strip-title">쓰는 것</p>
+          <div class="c-bento__strip" aria-hidden="true"><div class="c-bento__chips"><span class="c-bento__chip">HTML</span><span class="c-bento__chip">CSS @layer</span><span class="c-bento__chip">순수 JS 모듈</span><span class="c-bento__chip">BEM</span><span class="c-bento__chip">oklch 토큰</span><span class="c-bento__chip">WebP</span><span class="c-bento__chip">IntersectionObserver</span><span class="c-bento__chip">clip-path</span><span class="c-bento__chip">popover</span><span class="c-bento__chip">HTML</span><span class="c-bento__chip">CSS @layer</span><span class="c-bento__chip">순수 JS 모듈</span><span class="c-bento__chip">BEM</span><span class="c-bento__chip">oklch 토큰</span><span class="c-bento__chip">WebP</span><span class="c-bento__chip">IntersectionObserver</span><span class="c-bento__chip">clip-path</span><span class="c-bento__chip">popover</span></div></div>
         </div>
-        <div class="c-about__nums">
-          <p class="c-about__num"><span class="c-about__value"><span class="js-count" data-to="5">5</span><span class="c-about__unit">폭</span></span><span class="c-about__label">휴대폰부터 넓은 화면까지 검사하는 화면 폭</span></p>
-          <p class="c-about__num"><span class="c-about__value"><span class="js-count" data-to="60">60</span><span class="c-about__unit">fps</span></span><span class="c-about__label">실제 브라우저에서 잰 움직임</span></p>
-          <p class="c-about__num"><span class="c-about__value"><span class="js-count" data-to="6">6</span><span class="c-about__unit">개</span></span><span class="c-about__label">직접 눌러 보는 작업·데모</span></p>
-          <p class="c-about__num"><span class="c-about__value"><span class="js-count" data-to="0">0</span><span class="c-about__unit">개</span></span><span class="c-about__label">프레임워크 — 순수 HTML·CSS·JS</span></p>
-        </div>
+        <p class="c-bento__tile c-bento__tile--n3 c-card js-reveal js-tilt"><span class="c-bento__value"><span class="js-count" data-to="6">6</span><span class="c-bento__unit">개</span></span><span class="c-bento__label">직접 눌러 보는 작업·데모</span></p>
+        <p class="c-bento__tile c-bento__tile--n4 c-card js-reveal js-tilt"><span class="c-bento__value"><span class="js-count" data-to="0">0</span><span class="c-bento__unit">개</span></span><span class="c-bento__label">프레임워크 — 순수 HTML·CSS·JS</span></p>
       </div>
     </section>
 
@@ -101,11 +109,11 @@
         <h2 class="l-section__title" id="svc-title">만드는 것</h2>
         <p class="l-section__desc">화면 설계에서 코드, 움직임까지 한 크루가 끝까지 이어서 만듭니다.</p>
       </div>
-      <div class="c-points c-points--four" data-effect="reveal">
-        <article class="c-points__item js-reveal"><img class="c-points__art" src="assets/media/art/art-design.webp" width="200" height="140" alt="" loading="lazy" decoding="async"><p class="c-points__no">DESIGN</p><h3 class="c-points__title">화면 설계 · 디자인</h3><p class="c-points__desc">기획의 의도를 살린 구조와 시안. 사진과 글이 가장 잘 읽히는 첫 화면.</p></article>
-        <article class="c-points__item js-reveal"><img class="c-points__art" src="assets/media/art/art-build.webp" width="200" height="140" alt="" loading="lazy" decoding="async"><p class="c-points__no">BUILD</p><h3 class="c-points__title">퍼블리싱 · 개발</h3><p class="c-points__desc">반응형 사이트를 프레임워크 없이. HTML·CSS·순수 JS 모듈, 2단계 이내 구조.</p></article>
-        <article class="c-points__item js-reveal"><img class="c-points__art" src="assets/media/art/art-motion.webp" width="200" height="140" alt="" loading="lazy" decoding="async"><p class="c-points__no">MOTION</p><h3 class="c-points__title">인터랙션 · 모션</h3><p class="c-points__desc">사진 교차, 숫자 굴리기, 스크롤 스토리텔링. 60fps로 부드럽게.</p></article>
-        <article class="c-points__item js-reveal"><img class="c-points__art" src="assets/media/art/art-handover.webp" width="200" height="140" alt="" loading="lazy" decoding="async"><p class="c-points__no">HANDOVER</p><h3 class="c-points__title">검수 · 인계</h3><p class="c-points__desc">다섯 화면 폭 검수와 호환성 확인을 거쳐, 어느 서버에도 올릴 수 있는 결과물로 전달.</p></article>
+      <div class="c-points c-points--four" data-effect="reveal tilt-grid parallax">
+        <article class="c-points__item c-card js-reveal js-tilt"><span class="c-points__art-wrap js-par" data-speed="0.05"><img class="c-points__art" src="assets/media/art/art-design.webp" width="400" height="280" alt="" loading="lazy" decoding="async"></span><p class="c-points__no">DESIGN</p><h3 class="c-points__title">화면 설계 · 디자인</h3><p class="c-points__desc">기획의 의도를 살린 구조와 시안. 사진과 글이 가장 잘 읽히는 첫 화면.</p></article>
+        <article class="c-points__item c-card js-reveal js-tilt"><span class="c-points__art-wrap js-par" data-speed="-0.05"><img class="c-points__art" src="assets/media/art/art-build.webp" width="400" height="280" alt="" loading="lazy" decoding="async"></span><p class="c-points__no">BUILD</p><h3 class="c-points__title">퍼블리싱 · 개발</h3><p class="c-points__desc">반응형 사이트를 프레임워크 없이. HTML·CSS·순수 JS 모듈, 2단계 이내 구조.</p></article>
+        <article class="c-points__item c-card js-reveal js-tilt"><span class="c-points__art-wrap js-par" data-speed="0.05"><img class="c-points__art" src="assets/media/art/art-motion.webp" width="400" height="280" alt="" loading="lazy" decoding="async"></span><p class="c-points__no">MOTION</p><h3 class="c-points__title">인터랙션 · 모션</h3><p class="c-points__desc">사진 교차, 숫자 굴리기, 스크롤 스토리텔링. 60fps로 부드럽게.</p></article>
+        <article class="c-points__item c-card js-reveal js-tilt"><span class="c-points__art-wrap js-par" data-speed="-0.05"><img class="c-points__art" src="assets/media/art/art-handover.webp" width="400" height="280" alt="" loading="lazy" decoding="async"></span><p class="c-points__no">HANDOVER</p><h3 class="c-points__title">검수 · 인계</h3><p class="c-points__desc">다섯 화면 폭 검수와 호환성 확인을 거쳐, 어느 서버에도 올릴 수 있는 결과물로 전달.</p></article>
       </div>
     </section>
 
@@ -125,28 +133,33 @@
             <p><span class="c-work__num js-count" data-to="6">6</span><span class="c-work__label">페이지</span></p>
             <p><span class="c-work__num js-count" data-to="218">218</span><span class="c-work__label">연대기 장면</span></p>
           </div>
-          <div class="c-work__actions">
-            <a class="c-work__btn" href="prototype-kogas.html">상세 보기 <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-            <a class="c-work__btn c-work__btn--line" href="prototype/kogas/" rel="nofollow noopener" target="_blank">데모 보기 <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M19 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5"/></svg></a>
+          <div class="c-btn-row" data-effect="magnetic">
+            <a class="c-btn c-btn--accent" href="prototype-kogas.html">상세 보기 <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+            <a class="c-btn c-btn--line" href="prototype/kogas/" rel="nofollow noopener" target="_blank">데모 보기 <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M19 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5"/></svg></a>
           </div>
         </div>
       </article>
-      <div class="c-work__actions"><a class="c-work__btn c-work__btn--line" href="prototypes.html">작업 전체 보기 <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+      <div class="c-btn-row" data-effect="magnetic"><a class="c-btn c-btn--line" href="prototypes.html">작업 전체 보기 <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
     </section>
 
     <section class="l-section" id="process" aria-labelledby="proc-title">
       <div class="l-section__head" data-effect="reveal">
         <span class="l-section__num">04</span>
         <h2 class="l-section__title" id="proc-title">일하는 방식</h2>
-        <p class="l-section__desc">구성이 정해지면 다섯 단계로 흘러갑니다.</p>
+        <p class="l-section__desc">구성이 정해지면 다섯 단계로 흘러갑니다. 스크롤을 내려 보세요.</p>
       </div>
-      <ol class="c-steps" data-effect="reveal">
-        <li class="c-steps__item"><img class="c-steps__art" src="assets/media/art/step-1.webp" width="200" height="140" alt="" loading="lazy" decoding="async"><span class="c-steps__when">1개월 차</span><h3 class="c-steps__title">구성 확정</h3><p class="c-steps__desc">메뉴 구성과 참고 사이트를 함께 보며 표현 방식을 맞춥니다.</p><span class="c-steps__out">제작 범위</span></li>
-        <li class="c-steps__item"><img class="c-steps__art" src="assets/media/art/step-2.webp" width="200" height="140" alt="" loading="lazy" decoding="async"><span class="c-steps__when">2개월 차</span><h3 class="c-steps__title">디자인</h3><p class="c-steps__desc">컨셉과 색 톤에 맞춘 시안. 사진이 주인공인 첫 화면.</p><span class="c-steps__out">디자인 시안</span></li>
-        <li class="c-steps__item"><img class="c-steps__art" src="assets/media/art/step-3.webp" width="200" height="140" alt="" loading="lazy" decoding="async"><span class="c-steps__when">3개월 차</span><h3 class="c-steps__title">개발</h3><p class="c-steps__desc">받은 원고·사진을 순서대로 넣고 인터랙션을 붙여요.</p><span class="c-steps__out">가개설 사이트</span></li>
-        <li class="c-steps__item"><img class="c-steps__art" src="assets/media/art/step-4.webp" width="200" height="140" alt="" loading="lazy" decoding="async"><span class="c-steps__when">4개월 차</span><h3 class="c-steps__title">검수</h3><p class="c-steps__desc">화면 폭 다섯 가지, 60fps, 키보드·접근성, 브라우저 호환성.</p><span class="c-steps__out">검수 보고</span></li>
-        <li class="c-steps__item"><img class="c-steps__art" src="assets/media/art/step-5.webp" width="200" height="140" alt="" loading="lazy" decoding="async"><span class="c-steps__when">5개월 차</span><h3 class="c-steps__title">오픈 · 인계</h3><p class="c-steps__desc">도메인 연결과 서버 인계까지 마무리합니다.</p><span class="c-steps__out">최종 납품</span></li>
-      </ol>
+      <div class="c-flow" data-effect="scroll-flow">
+        <div class="c-flow__sticky">
+          <ol class="c-flow__list">
+            <li class="c-flow__item js-flow-item"><div class="c-flow__text"><span class="c-flow__no">01</span><span class="c-flow__when">1개월 차</span><h3 class="c-flow__title">구성 확정</h3><p class="c-flow__desc">메뉴 구성과 참고 사이트를 함께 보며 표현 방식을 맞춥니다.</p><span class="c-flow__out">제작 범위</span></div><img class="c-flow__art" src="assets/media/art/step-1.webp" width="400" height="280" alt="" loading="lazy" decoding="async"></li>
+            <li class="c-flow__item js-flow-item"><div class="c-flow__text"><span class="c-flow__no">02</span><span class="c-flow__when">2개월 차</span><h3 class="c-flow__title">디자인</h3><p class="c-flow__desc">컨셉과 색 톤에 맞춘 시안. 사진이 주인공인 첫 화면.</p><span class="c-flow__out">디자인 시안</span></div><img class="c-flow__art" src="assets/media/art/step-2.webp" width="400" height="280" alt="" loading="lazy" decoding="async"></li>
+            <li class="c-flow__item js-flow-item"><div class="c-flow__text"><span class="c-flow__no">03</span><span class="c-flow__when">3개월 차</span><h3 class="c-flow__title">개발</h3><p class="c-flow__desc">받은 원고·사진을 순서대로 넣고 인터랙션을 붙여요.</p><span class="c-flow__out">가개설 사이트</span></div><img class="c-flow__art" src="assets/media/art/step-3.webp" width="400" height="280" alt="" loading="lazy" decoding="async"></li>
+            <li class="c-flow__item js-flow-item"><div class="c-flow__text"><span class="c-flow__no">04</span><span class="c-flow__when">4개월 차</span><h3 class="c-flow__title">검수</h3><p class="c-flow__desc">화면 폭 다섯 가지, 60fps, 키보드·접근성, 브라우저 호환성.</p><span class="c-flow__out">검수 보고</span></div><img class="c-flow__art" src="assets/media/art/step-4.webp" width="400" height="280" alt="" loading="lazy" decoding="async"></li>
+            <li class="c-flow__item js-flow-item"><div class="c-flow__text"><span class="c-flow__no">05</span><span class="c-flow__when">5개월 차</span><h3 class="c-flow__title">오픈 · 인계</h3><p class="c-flow__desc">도메인 연결과 서버 인계까지 마무리합니다.</p><span class="c-flow__out">최종 납품</span></div><img class="c-flow__art" src="assets/media/art/step-5.webp" width="400" height="280" alt="" loading="lazy" decoding="async"></li>
+          </ol>
+          <div class="c-flow__rail" aria-hidden="true"><span class="c-flow__dot js-flow-dot">구성 확정</span><span class="c-flow__dot js-flow-dot">디자인</span><span class="c-flow__dot js-flow-dot">개발</span><span class="c-flow__dot js-flow-dot">검수</span><span class="c-flow__dot js-flow-dot">오픈 · 인계</span></div>
+        </div>
+      </div>
     </section>
 
     <section class="l-section" id="lab" aria-labelledby="lab-title">
@@ -155,27 +168,27 @@
         <h2 class="l-section__title" id="lab-title">실험실</h2>
         <p class="l-section__desc">새 작업에 쓸 부품과 움직임을 먼저 만들어 보는 곳. 직접 눌러 볼 수 있어요.</p>
       </div>
-      <div class="c-showcase" data-effect="reveal">
-        <a class="c-showcase__card js-reveal" href="trends/">
+      <div class="c-showcase" data-effect="reveal tilt-grid">
+        <a class="c-showcase__card c-card js-reveal js-tilt" href="trends/">
           <span class="c-showcase__media" aria-hidden="true"><img class="c-showcase__pc" src="assets/media/shots/demo-trends-pc.webp" width="1200" height="750" alt="" loading="lazy" decoding="async"><img class="c-showcase__mo" src="assets/media/shots/demo-trends-mo.webp" width="600" height="1298" alt="" loading="lazy" decoding="async"></span>
           <span class="c-showcase__no">LAB 05</span>
           <span class="c-showcase__title">요즘 UI</span>
           <span class="c-showcase__desc">디자인 갤러리에서 자주 보이는 패턴을 8쪽으로. 내비게이션·CTA·벤토·푸터·마이크로·히어로·섹션·폼.</span>
         </a>
-        <a class="c-showcase__card js-reveal" href="museum/">
+        <a class="c-showcase__card c-card js-reveal js-tilt" href="museum/">
           <span class="c-showcase__media" aria-hidden="true"><img class="c-showcase__pc" src="assets/media/shots/demo-museum-pc.webp" width="1200" height="750" alt="" loading="lazy" decoding="async"><img class="c-showcase__mo" src="assets/media/shots/demo-museum-mo.webp" width="600" height="1298" alt="" loading="lazy" decoding="async"></span>
           <span class="c-showcase__no">LAB 04</span>
           <span class="c-showcase__title">디지털 역사관 구성</span>
           <span class="c-showcase__desc">풀페이지 메인과 연대기 하위 페이지. 효과 재생 방식(한 번·매번·되감기·스크롤)을 골라 봅니다.</span>
         </a>
-        <a class="c-showcase__card js-reveal" href="scroll/">
+        <a class="c-showcase__card c-card js-reveal js-tilt" href="scroll/">
           <span class="c-showcase__media" aria-hidden="true"><img class="c-showcase__pc" src="assets/media/shots/demo-scroll-pc.webp" width="1200" height="750" alt="" loading="lazy" decoding="async"><img class="c-showcase__mo" src="assets/media/shots/demo-scroll-mo.webp" width="600" height="1298" alt="" loading="lazy" decoding="async"></span>
           <span class="c-showcase__no">LAB 03</span>
           <span class="c-showcase__title">스크롤 인터랙션</span>
           <span class="c-showcase__desc">GNB와 푸터가 있는 실제 페이지 구조에서 부드러운 스크롤·섹션 넘김·패럴랙스를 봅니다.</span>
         </a>
       </div>
-      <div class="c-work__actions"><a class="c-work__btn c-work__btn--line" href="lab.html">실험실 전체 보기 <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+      <div class="c-btn-row" data-effect="magnetic"><a class="c-btn c-btn--line" href="lab.html">실험실 전체 보기 <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
     </section>
 
     <section class="l-section" id="standards" aria-labelledby="std-title">
@@ -184,31 +197,32 @@
         <h2 class="l-section__title" id="std-title">우리가 지키는 기준</h2>
         <p class="l-section__desc">모든 사이트는 같은 컨벤션과 검사를 거쳐요.</p>
       </div>
-      <div class="c-points" data-effect="reveal count-up">
-        <article class="c-points__item js-reveal"><img class="c-points__art" src="assets/media/art/std-fps.webp" width="200" height="140" alt="" loading="lazy" decoding="async"><p class="c-points__big"><span class="js-count" data-to="60">60</span>fps</p><h3 class="c-points__title">끊기지 않는 움직임</h3><p class="c-points__desc">transform·opacity 위주로 움직이고 실제 브라우저에서 프레임을 재요.</p></article>
-        <article class="c-points__item js-reveal"><img class="c-points__art" src="assets/media/art/std-width.webp" width="200" height="140" alt="" loading="lazy" decoding="async"><p class="c-points__big"><span class="js-count" data-to="5">5</span>폭</p><h3 class="c-points__title">모든 화면 크기</h3><p class="c-points__desc">360~1440px에서 끝까지 스크롤하며 가로 넘침을 검사해요.</p></article>
-        <article class="c-points__item js-reveal"><img class="c-points__art" src="assets/media/art/std-zero.webp" width="200" height="140" alt="" loading="lazy" decoding="async"><p class="c-points__big"><span class="js-count" data-to="0">0</span>개</p><h3 class="c-points__title">프레임워크 없음</h3><p class="c-points__desc">HTML·CSS·순수 JS 모듈. 어느 서버에서도 가볍게.</p></article>
-        <article class="c-points__item js-reveal"><img class="c-points__art" src="assets/media/art/std-webp.webp" width="200" height="140" alt="" loading="lazy" decoding="async"><p class="c-points__big">WebP</p><h3 class="c-points__title">사진은 크게, 파일은 작게</h3><p class="c-points__desc">WebP로 줄이고 한 장 200KB 이하, 화면 밖 사진은 나중에.</p></article>
-        <article class="c-points__item js-reveal"><img class="c-points__art" src="assets/media/art/std-a11y.webp" width="200" height="140" alt="" loading="lazy" decoding="async"><p class="c-points__big">A11y</p><h3 class="c-points__title">누구나 쓰는 사이트</h3><p class="c-points__desc">키보드 이동, 동작 줄이기 존중, 그림 대체 글.</p></article>
-        <article class="c-points__item js-reveal"><img class="c-points__art" src="assets/media/art/std-ofl.webp" width="200" height="140" alt="" loading="lazy" decoding="async"><p class="c-points__big">OFL</p><h3 class="c-points__title">저작권 걱정 없는 글꼴·사진</h3><p class="c-points__desc">무료 공개 글꼴만, 사진은 받은 자료만 써요.</p></article>
+      <div class="c-points" data-effect="reveal tilt-grid count-up parallax">
+        <article class="c-points__item c-card js-reveal js-tilt"><span class="c-points__art-wrap js-par" data-speed="0.05"><img class="c-points__art" src="assets/media/art/std-fps.webp" width="400" height="280" alt="" loading="lazy" decoding="async"></span><p class="c-points__big"><span class="js-count" data-to="60">60</span>fps</p><h3 class="c-points__title">끊기지 않는 움직임</h3><p class="c-points__desc">transform·opacity 위주로 움직이고 실제 브라우저에서 프레임을 재요.</p></article>
+        <article class="c-points__item c-card js-reveal js-tilt"><span class="c-points__art-wrap js-par" data-speed="-0.05"><img class="c-points__art" src="assets/media/art/std-width.webp" width="400" height="280" alt="" loading="lazy" decoding="async"></span><p class="c-points__big"><span class="js-count" data-to="5">5</span>폭</p><h3 class="c-points__title">모든 화면 크기</h3><p class="c-points__desc">360~1440px에서 끝까지 스크롤하며 가로 넘침을 검사해요.</p></article>
+        <article class="c-points__item c-card js-reveal js-tilt"><span class="c-points__art-wrap js-par" data-speed="0.05"><img class="c-points__art" src="assets/media/art/std-zero.webp" width="400" height="280" alt="" loading="lazy" decoding="async"></span><p class="c-points__big"><span class="js-count" data-to="0">0</span>개</p><h3 class="c-points__title">프레임워크 없음</h3><p class="c-points__desc">HTML·CSS·순수 JS 모듈. 어느 서버에서도 가볍게.</p></article>
+        <article class="c-points__item c-card js-reveal js-tilt"><span class="c-points__art-wrap js-par" data-speed="-0.05"><img class="c-points__art" src="assets/media/art/std-webp.webp" width="400" height="280" alt="" loading="lazy" decoding="async"></span><p class="c-points__big">WebP</p><h3 class="c-points__title">사진은 크게, 파일은 작게</h3><p class="c-points__desc">WebP로 줄이고 한 장 200KB 이하, 화면 밖 사진은 나중에.</p></article>
+        <article class="c-points__item c-card js-reveal js-tilt"><span class="c-points__art-wrap js-par" data-speed="0.05"><img class="c-points__art" src="assets/media/art/std-a11y.webp" width="400" height="280" alt="" loading="lazy" decoding="async"></span><p class="c-points__big">A11y</p><h3 class="c-points__title">누구나 쓰는 사이트</h3><p class="c-points__desc">키보드 이동, 동작 줄이기 존중, 그림 대체 글.</p></article>
+        <article class="c-points__item c-card js-reveal js-tilt"><span class="c-points__art-wrap js-par" data-speed="-0.05"><img class="c-points__art" src="assets/media/art/std-ofl.webp" width="400" height="280" alt="" loading="lazy" decoding="async"></span><p class="c-points__big">OFL</p><h3 class="c-points__title">저작권 걱정 없는 글꼴·사진</h3><p class="c-points__desc">무료 공개 글꼴만, 사진은 받은 자료만 써요.</p></article>
       </div>
     </section>
 
     <section class="l-section" id="contact" aria-labelledby="contact-title">
-      <div class="c-contact">
-        <img class="c-contact__art" src="assets/media/art/contact-art.webp" width="200" height="140" alt="" loading="lazy" decoding="async">
+      <div class="c-contact" data-effect="spotlight magnetic">
+        <img class="c-contact__art" src="assets/media/art/contact-art.webp" width="400" height="280" alt="" loading="lazy" decoding="async">
         <p class="c-contact__eyebrow">CONTACT</p>
         <h2 class="c-contact__title" id="contact-title">다음 작업을 함께 이야기해요</h2>
         <p class="c-contact__text">보람찬크루의 작업과 실험은 계속 이어집니다. 프로젝트 협업이나 작업물에 대한 이야기가 궁금하다면 언제든 편하게 연락해 주세요.</p>
         <div class="c-contact__actions">
-          <a class="c-contact__btn" href="prototypes.html">작업 보기 <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-          <a class="c-contact__btn c-contact__btn--line" href="lab.html">실험실 둘러보기</a>
+          <a class="c-btn c-btn--lime" href="prototypes.html">작업 보기 <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <a class="c-btn c-btn--ghost-night" href="lab.html">실험실 둘러보기</a>
         </div>
       </div>
     </section>
   </main>
 
   <footer class="l-curtain__foot c-curtain-footer">
+    <p class="c-curtain-footer__word" aria-hidden="true">보람찬크루</p>
     <div>
       <p class="c-curtain-footer__label">다음으로</p>
       <a class="c-curtain-footer__next" href="prototypes.html">작업 보기 <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>

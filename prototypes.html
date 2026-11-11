@@ -15,10 +15,10 @@
   <link rel="icon" href="favicon.ico" sizes="48x48">
   <link rel="icon" type="image/png" sizes="32x32" href="assets/media/icons/favicon-32.png">
   <link rel="apple-touch-icon" href="assets/media/icons/apple-touch-icon.png">
-  <link rel="stylesheet" href="assets/css/main.css?v=202611120037">
-  <script type="module" src="assets/js/main.js?v=202611120037"></script>
+  <link rel="stylesheet" href="assets/css/main.css?v=202611120058">
+  <script type="module" src="assets/js/main.js?v=202611120058"></script>
 </head>
-<body>
+<body data-effect="cursor scroll-progress">
   <a class="u-visually-hidden" href="#main">본문 바로가기</a>
   <header class="c-site-nav" data-module="site-nav">
     <div class="c-site-nav__bar">
@@ -52,7 +52,8 @@
 
   <div class="l-curtain">
   <main class="l-curtain__main" id="main">
-    <div class="c-page-intro">
+    <div class="c-page-intro" data-effect="parallax magnetic">
+      <div class="c-page-intro__art-wrap js-par" data-speed="0.12"><img class="c-page-intro__art" src="assets/media/art/hero-left.webp" width="880" height="960" alt="" decoding="async"></div>
       <p class="c-page-intro__eyebrow"><span class="c-page-intro__badge">P</span>보람찬크루 · 프로토타입</p>
       <h1 class="c-page-intro__title">
         <span class="c-page-intro__line"><span class="c-page-intro__line-inner">같은 재료로,</span></span>
@@ -67,13 +68,13 @@
         <h2 class="l-section__title" id="why-title">만드는 순서</h2>
         <p class="l-section__desc">모든 프로토타입은 같은 네 단계를 거쳐요.</p>
       </div>
-      <div class="c-points" data-effect="reveal">
-        <article class="c-points__item js-reveal"><p class="c-points__no">STEP 01</p><h3 class="c-points__title">공개 자료 모으기</h3><p class="c-points__desc">원본 사이트의 글·사진·영상·숫자를 구조째 모으고, 사진은 WebP로 줄여요.</p></article>
-        <article class="c-points__item js-reveal"><p class="c-points__no">STEP 02</p><h3 class="c-points__title">5메뉴로 다시 짜기</h3><p class="c-points__desc">연대기·사업·숫자·갤러리·아카이브, 2단계 이내 구조로 다시 나눠요.</p></article>
-        <article class="c-points__item js-reveal"><p class="c-points__no">STEP 03</p><h3 class="c-points__title">요즘 UI 입히기</h3><p class="c-points__desc">밝은 톤, 시그니처 움직임 하나, 마이크로 인터랙션, 가벼운 영상.</p></article>
-        <article class="c-points__item js-reveal"><p class="c-points__no">STEP 04</p><h3 class="c-points__title">검수</h3><p class="c-points__desc">컨벤션 자동 검사, 다섯 화면 폭 넘침 검사, 실제 브라우저 프레임 측정.</p></article>
-        <article class="c-points__item js-reveal"><p class="c-points__no">NOTE</p><h3 class="c-points__title">검색엔진 제외</h3><p class="c-points__desc">프로토타입은 실제 서비스가 아니라서 검색에 걸리지 않게 했어요(noindex).</p></article>
-        <article class="c-points__item js-reveal"><p class="c-points__no">NOTE</p><h3 class="c-points__title">저작권</h3><p class="c-points__desc">원본 글·사진·영상의 저작권은 각 기관에 있어요. 기관 로고는 쓰지 않아요.</p></article>
+      <div class="c-points" data-effect="reveal tilt-grid">
+        <article class="c-points__item c-card js-reveal js-tilt"><p class="c-points__no">STEP 01</p><h3 class="c-points__title">공개 자료 모으기</h3><p class="c-points__desc">원본 사이트의 글·사진·영상·숫자를 구조째 모으고, 사진은 WebP로 줄여요.</p></article>
+        <article class="c-points__item c-card js-reveal js-tilt"><p class="c-points__no">STEP 02</p><h3 class="c-points__title">5메뉴로 다시 짜기</h3><p class="c-points__desc">연대기·사업·숫자·갤러리·아카이브, 2단계 이내 구조로 다시 나눠요.</p></article>
+        <article class="c-points__item c-card js-reveal js-tilt"><p class="c-points__no">STEP 03</p><h3 class="c-points__title">요즘 UI 입히기</h3><p class="c-points__desc">밝은 톤, 시그니처 움직임 하나, 마이크로 인터랙션, 가벼운 영상.</p></article>
+        <article class="c-points__item c-card js-reveal js-tilt"><p class="c-points__no">STEP 04</p><h3 class="c-points__title">검수</h3><p class="c-points__desc">컨벤션 자동 검사, 다섯 화면 폭 넘침 검사, 실제 브라우저 프레임 측정.</p></article>
+        <article class="c-points__item c-card js-reveal js-tilt"><p class="c-points__no">NOTE</p><h3 class="c-points__title">검색엔진 제외</h3><p class="c-points__desc">프로토타입은 실제 서비스가 아니라서 검색에 걸리지 않게 했어요(noindex).</p></article>
+        <article class="c-points__item c-card js-reveal js-tilt"><p class="c-points__no">NOTE</p><h3 class="c-points__title">저작권</h3><p class="c-points__desc">원본 글·사진·영상의 저작권은 각 기관에 있어요. 기관 로고는 쓰지 않아요.</p></article>
       </div>
     </section>
 
@@ -89,20 +90,21 @@
           <p class="c-work__tag">PROTOTYPE 01 · 완성</p>
           <h3 class="c-work__title">KOGAS 40 디지털 역사관</h3>
           <p class="c-work__desc">원본: 한국가스공사 40주년 온라인 역사관(2023). 메인 + 5메뉴, 6쪽.</p>
-          <div class="c-work__actions">
-            <a class="c-work__btn" href="prototype-kogas.html">상세 보기 <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-            <a class="c-work__btn c-work__btn--line" href="prototype/kogas/" rel="nofollow noopener" target="_blank">데모 보기 <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M19 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5"/></svg></a>
+          <div class="c-btn-row" data-effect="magnetic">
+            <a class="c-btn" href="prototype-kogas.html">상세 보기 <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+            <a class="c-btn c-btn--line" href="prototype/kogas/" rel="nofollow noopener" target="_blank">데모 보기 <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M19 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5"/></svg></a>
           </div>
         </div>
       </article>
-      <div class="c-points c-points--2" data-effect="reveal">
-        <article class="c-work c-work--soon c-points__item js-reveal"><p class="c-work__tag">PROTOTYPE 02 · 준비 중</p><h3 class="c-work__title">승가원 30주년 디지털 역사관</h3></article>
-        <article class="c-work c-work--soon c-points__item js-reveal"><p class="c-work__tag">PROTOTYPE 03 · 준비 중</p><h3 class="c-work__title">예금보험공사 30주년 역사관</h3></article>
+      <div class="c-points c-points--2 c-points--stacked" data-effect="reveal tilt-grid">
+        <article class="c-work c-work--soon c-points__item c-card js-reveal js-tilt"><p class="c-work__tag">PROTOTYPE 02 · 준비 중</p><h3 class="c-work__title">승가원 30주년 디지털 역사관</h3></article>
+        <article class="c-work c-work--soon c-points__item c-card js-reveal js-tilt"><p class="c-work__tag">PROTOTYPE 03 · 준비 중</p><h3 class="c-work__title">예금보험공사 30주년 역사관</h3></article>
       </div>
     </section>
   </main>
 
   <footer class="l-curtain__foot c-curtain-footer">
+    <p class="c-curtain-footer__word" aria-hidden="true">보람찬크루</p>
     <div>
       <p class="c-curtain-footer__label">다음으로</p>
       <a class="c-curtain-footer__next" href="prototype-kogas.html">KOGAS 40 역사관 상세 <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>

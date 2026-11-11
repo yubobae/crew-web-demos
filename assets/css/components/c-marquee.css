@@ -1,0 +1,38 @@
+/* 큰 글자 띠: 화면 폭보다 큰 글자 두 줄이 스크롤을 내릴 때 서로 반대로 흐른다(marquee-drift.js가 --dx).
+   한 줄은 먹색 꽉 찬 글자, 다른 줄은 윤곽선 글자. 줄을 세 번 이어 어느 폭에서도 끊기지 않는다. */
+@layer components {
+  .c-marquee {
+    padding-block: clamp(var(--space-8), 5vw, var(--space-16));
+    overflow: hidden;
+    border-top: 1px solid var(--tr-line);
+  }
+
+  .c-marquee__row {
+    display: flex;
+    gap: 0.3em;
+    width: max-content;
+    margin-left: -30vw;
+    font-size: clamp(var(--text-6xl), 3rem + 9vw, 12rem);
+    font-weight: var(--cl-fw-h1);
+    letter-spacing: var(--cl-ls-h1);
+    line-height: 1.02;
+    white-space: nowrap;
+    transform: translate3d(var(--dx, 0px), 0, 0);
+  }
+
+  .c-marquee__row--outline {
+    margin-left: -60vw;
+    color: transparent;
+    -webkit-text-stroke: 2px var(--tr-ink);
+  }
+
+  .c-marquee__accent {
+    color: var(--tr-accent);
+    -webkit-text-stroke: 0;
+  }
+
+  .c-marquee__sep {
+    color: var(--tr-violet);
+    -webkit-text-stroke: 0;
+  }
+}

@@ -1,0 +1,39 @@
+/* 커서 링(cursor.js가 만든다): 기본 커서 뒤를 따라오고, 링크·버튼 위에서 커지며 주황으로 물든다. 마우스 기기에서만 생긴다. */
+@layer components {
+  .c-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 300;
+    width: 2rem;
+    height: 2rem;
+    margin: -1rem 0 0 -1rem;
+    border: 1.5px solid var(--tr-accent);
+    border-radius: var(--radius-full);
+    opacity: 0;
+    pointer-events: none;
+    transition:
+      opacity var(--tr-dur) var(--cl-ease),
+      width var(--cl-dur-micro) var(--cl-spring),
+      height var(--cl-dur-micro) var(--cl-spring),
+      margin var(--cl-dur-micro) var(--cl-spring),
+      background-color var(--cl-dur-micro) var(--cl-ease);
+  }
+
+  .c-cursor.is-on {
+    opacity: 0.8;
+  }
+
+  .c-cursor.is-hot {
+    width: 3.5rem;
+    height: 3.5rem;
+    margin: -1.75rem 0 0 -1.75rem;
+    background: var(--tr-accent-soft);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .c-cursor {
+      transition: none;
+    }
+  }
+}

@@ -66,9 +66,9 @@
 
   .c-crew-hero__title {
     margin-top: var(--space-6);
-    font-size: clamp(var(--text-5xl), 1.6rem + 6vw, 8.5rem);
-    font-weight: var(--font-weight-black);
-    letter-spacing: var(--tracking-tighter);
+    font-size: clamp(var(--text-5xl), 1.6rem + 6.4vw, 9rem);
+    font-weight: var(--cl-fw-h1);
+    letter-spacing: var(--cl-ls-h1);
     line-height: 1;
   }
 
@@ -108,29 +108,6 @@
     animation: c-crew-hero-up 900ms 500ms var(--tr-ease) both;
   }
 
-  .c-crew-hero__btn {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--space-2);
-    padding: var(--space-3) var(--space-6);
-    font-weight: var(--font-weight-semibold);
-    color: var(--tr-white);
-    text-decoration: none;
-    background: var(--tr-ink);
-    border-radius: var(--radius-full);
-    transition: transform var(--tr-dur-fast) var(--tr-spring);
-  }
-
-  .c-crew-hero__btn--ghost {
-    color: var(--tr-ink);
-    background: var(--tr-white);
-    border: 1px solid var(--tr-line);
-  }
-
-  .c-crew-hero__btn:active {
-    transform: scale(0.96);
-  }
-
   .c-crew-hero__reel {
     animation: c-crew-hero-up 1200ms 600ms var(--tr-ease) both;
   }
@@ -163,10 +140,6 @@
     .c-crew-hero__actions,
     .c-crew-hero__reel {
       animation: none;
-    }
-
-    .c-crew-hero__btn {
-      transition: none;
     }
   }
 }
@@ -208,6 +181,47 @@
   @media (prefers-reduced-motion: reduce) {
     .c-crew-hero__art {
       animation: none;
+    }
+  }
+}
+
+/* 첫 화면 포인터 빛(spotlight.js가 --sx --sy를 준다) + 일러스트 패럴랙스 래퍼 */
+@layer components {
+  .c-crew-hero__spot {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: radial-gradient(22rem circle at var(--sx, 50%) var(--sy, 40%), var(--tr-accent-glow), transparent 70%);
+    opacity: 0.35;
+    pointer-events: none;
+  }
+
+  .c-crew-hero__art-wrap {
+    position: absolute;
+    top: 20%;
+    z-index: -1;
+    width: clamp(15rem, 27vw, 27rem);
+    transform: translate3d(0, var(--py, 0px), 0);
+    pointer-events: none;
+  }
+
+  .c-crew-hero__art-wrap--l {
+    left: max(var(--gutter), 2vw);
+  }
+
+  .c-crew-hero__art-wrap--r {
+    right: max(var(--gutter), 2vw);
+    top: 26%;
+  }
+
+  .c-crew-hero__art-wrap .c-crew-hero__art {
+    position: static;
+    width: 100%;
+  }
+
+  @media (max-width: 1099px) {
+    .c-crew-hero__art-wrap {
+      display: none;
     }
   }
 }

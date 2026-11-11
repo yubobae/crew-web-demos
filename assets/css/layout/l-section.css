@@ -1,9 +1,9 @@
-/* 데모 한 구역: 번호·제목·설명 머리 + 본문(무대) */
+/* 크루 사이트 한 구역: 번호 알약 + 큰 제목 + 설명 머리(모든 쪽 같은 모양) + 본문 */
 @layer layout {
   .l-section {
     width: min(100% - var(--gutter) * 2, var(--content-max));
     margin-inline: auto;
-    padding-block: clamp(var(--space-12), 7vw, var(--space-24));
+    padding-block: var(--cl-section-y);
     border-top: 1px solid var(--tr-line);
   }
 
@@ -11,24 +11,35 @@
     display: grid;
     grid-template-columns: minmax(0, 1fr);
     gap: var(--space-3);
-    margin-bottom: var(--space-8);
+    margin-bottom: clamp(var(--space-8), 4vw, var(--space-12));
   }
 
   .l-section__num {
-    font-size: var(--text-sm);
-    font-weight: var(--font-weight-semibold);
+    justify-self: start;
+    padding: var(--space-0-5) var(--space-3);
+    font-size: var(--cl-fs-eyebrow);
+    font-weight: var(--font-weight-bold);
     font-variant-numeric: tabular-nums;
+    letter-spacing: var(--cl-ls-eyebrow);
     color: var(--tr-accent);
+    background: var(--tr-accent-soft);
+    border-radius: var(--radius-full);
   }
 
   .l-section__title {
-    font-size: clamp(var(--text-2xl), 1.4rem + 1.6vw, var(--text-4xl));
-    font-weight: var(--font-weight-bold);
+    font-size: var(--cl-fs-h2);
+    font-weight: var(--cl-fw-h2);
+    letter-spacing: var(--cl-ls-h2);
   }
 
   .l-section__desc {
-    max-width: 60ch;
+    max-width: 52ch;
+    font-size: var(--cl-fs-lead);
     color: var(--tr-ink-soft);
+  }
+
+  .l-section__desc:empty {
+    display: none;
   }
 
   .l-section--night {
@@ -41,8 +52,13 @@
 
   @media (min-width: 1024px) {
     .l-section__head {
-      grid-template-columns: 6rem minmax(0, 1fr) minmax(0, 1fr);
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
       align-items: end;
+      column-gap: var(--space-12);
+    }
+
+    .l-section__num {
+      grid-column: 1 / -1;
     }
   }
 }

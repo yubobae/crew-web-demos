@@ -81,3 +81,19 @@
     }
   }
 }
+
+/* 푸터 커튼 안의 큰 글자: 본문이 걷히면 그라디언트 큰 글자가 드러난다 */
+@layer components {
+  .c-curtain-footer__word {
+    font-size: clamp(var(--text-5xl), 17vw, 15rem);
+    font-weight: var(--cl-fw-h1);
+    letter-spacing: var(--cl-ls-h1);
+    line-height: 0.95;
+    white-space: nowrap;
+    background: linear-gradient(120deg, var(--tr-accent), var(--tr-violet) 60%, var(--tr-lime));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    user-select: none;
+  }
+}

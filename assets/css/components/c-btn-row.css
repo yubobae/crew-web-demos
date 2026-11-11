@@ -1,0 +1,12 @@
+/* 버튼 줄: 크루 공통 버튼(c-btn)을 한 줄로 늘어놓는다. 좁으면 줄바꿈. */
+@layer components {
+  .c-btn-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    margin-top: var(--space-8);
+  }
+
+  .c-btn-row--center {
+    justify-content: center;
+  }}

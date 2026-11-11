@@ -1,55 +1,50 @@
-/* 기준·특징 목록: 번호(또는 큰 숫자) + 제목 + 설명 카드 묶음. 큰 숫자는 굴러 오른다(count-up.js). 3칸 → 2칸 → 1칸. */
+/* 기준·특징 목록: 번호(또는 큰 숫자) + 제목 + 설명 카드 묶음. 카드 바탕·등장·기울기는 c-card가 맡는다.
+   큰 숫자는 굴러 오른다(count-up.js). 3칸 → 2칸 → 1칸. */
 @layer components {
   .c-points {
     display: grid;
     grid-template-columns: repeat(var(--cols, 3), minmax(0, 1fr));
-    gap: var(--space-3);
+    gap: var(--cl-gap);
   }
 
   .c-points--2 {
     --cols: 2;
   }
 
+  .c-points--stacked {
+    margin-top: var(--cl-gap);
+  }
+
+  .c-points--four {
+    --cols: 4;
+  }
+
   .c-points__item {
-    --i: 0;
     display: grid;
     align-content: start;
     gap: var(--space-2);
-    padding: var(--space-6);
-    background: var(--tr-white);
-    border: 1px solid var(--tr-line);
-    border-radius: var(--radius-3xl);
-    transition:
-      opacity 800ms calc(var(--i) * 70ms) var(--tr-ease),
-      transform 900ms calc(var(--i) * 70ms) var(--tr-ease);
+    padding: var(--cl-pad);
   }
-
-  .c-points.is-ready .c-points__item:not(.is-in) {
-    opacity: 0;
-    transform: translateY(var(--space-8));
-  }
-
-  .c-points__item:nth-child(3n + 2) { --i: 1; }
-  .c-points__item:nth-child(3n) { --i: 2; }
 
   .c-points__big {
-    font-size: var(--text-4xl);
-    font-weight: var(--font-weight-extrabold);
+    font-size: var(--text-5xl);
+    font-weight: var(--cl-fw-h1);
     font-variant-numeric: tabular-nums;
-    letter-spacing: var(--tracking-tighter);
+    letter-spacing: var(--cl-ls-h1);
     line-height: 1;
     color: var(--tr-accent);
   }
 
   .c-points__no {
-    font-size: var(--text-xs);
+    font-size: var(--cl-fs-eyebrow);
     font-weight: var(--font-weight-bold);
+    letter-spacing: var(--cl-ls-eyebrow);
     color: var(--tr-accent);
   }
 
   .c-points__title {
-    font-size: var(--text-lg);
-    font-weight: var(--font-weight-bold);
+    font-size: var(--cl-fs-h3);
+    font-weight: var(--cl-fw-h3);
   }
 
   .c-points__desc {
@@ -57,46 +52,30 @@
     color: var(--tr-ink-soft);
   }
 
-  .c-points__where {
-    font-size: var(--text-xs);
-    color: var(--tr-ink-soft);
-  }
-
-  @media (max-width: 1023px) {
-    .c-points {
-      --cols: 2;
-    }
-  }
-
-  @media (max-width: 599px) {
-    .c-points,
-    .c-points--2 {
-      --cols: 1;
-    }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .c-points__item {
-      transition: none;
-    }
-  }
-}
-
-/* 만드는 것 카드 위 일러스트 */
-@layer components {
   .c-points__art {
     width: 100%;
     max-width: 11rem;
     height: auto;
     margin-bottom: var(--space-3);
   }
-}
 
-/* 네 장일 때는 넓은 화면에서 한 줄에 넷 */
-@layer components {
-  @media (min-width: 1100px) {
+  .c-points__art-wrap {
+    display: block;
+    transform: translate3d(0, var(--py, 0px), 0);
+  }
+
+  @media (max-width: 1099px) {
+    .c-points,
     .c-points--four {
-      grid-template-columns: repeat(4, minmax(0, 1fr));
+      --cols: 2;
+    }
+  }
+
+  @media (max-width: 599px) {
+    .c-points,
+    .c-points--2,
+    .c-points--four {
+      --cols: 1;
     }
   }
 }

@@ -15,10 +15,10 @@
   <link rel="icon" href="favicon.ico" sizes="48x48">
   <link rel="icon" type="image/png" sizes="32x32" href="assets/media/icons/favicon-32.png">
   <link rel="apple-touch-icon" href="assets/media/icons/apple-touch-icon.png">
-  <link rel="stylesheet" href="assets/css/main.css?v=202611120037">
-  <script type="module" src="assets/js/main.js?v=202611120037"></script>
+  <link rel="stylesheet" href="assets/css/main.css?v=202611120058">
+  <script type="module" src="assets/js/main.js?v=202611120058"></script>
 </head>
-<body>
+<body data-effect="cursor scroll-progress">
   <a class="u-visually-hidden" href="#main">본문 바로가기</a>
   <header class="c-site-nav" data-module="site-nav">
     <div class="c-site-nav__bar">
@@ -52,7 +52,8 @@
 
   <div class="l-curtain">
   <main class="l-curtain__main" id="main">
-    <div class="c-page-intro">
+    <div class="c-page-intro" data-effect="parallax magnetic">
+      <div class="c-page-intro__art-wrap js-par" data-speed="0.12"><img class="c-page-intro__art" src="assets/media/art/about-art.webp" width="840" height="480" alt="" decoding="async"></div>
       <p class="c-page-intro__eyebrow"><span class="c-page-intro__badge">LAB</span>보람찬크루 · 실험실</p>
       <h1 class="c-page-intro__title">
         <span class="c-page-intro__line"><span class="c-page-intro__line-inner">먼저 만들어 보고,</span></span>
@@ -66,36 +67,36 @@
         <h2 class="l-section__title" id="demos-title">데모 다섯 개</h2>
         <p class="l-section__desc">카드를 누르면 데모가 열려요. 데모 안의 메뉴로 다른 데모나 크루 사이트로 돌아올 수 있어요.</p>
       </div>
-      <div class="c-showcase" data-effect="reveal">
-        <a class="c-showcase__card js-reveal" href="trends/">
+      <div class="c-showcase" data-effect="reveal tilt-grid">
+        <a class="c-showcase__card c-card js-reveal js-tilt" href="trends/">
           <span class="c-showcase__media" aria-hidden="true"><img class="c-showcase__pc" src="assets/media/shots/demo-trends-pc.webp" width="1200" height="750" alt="" loading="lazy" decoding="async"><img class="c-showcase__mo" src="assets/media/shots/demo-trends-mo.webp" width="600" height="1298" alt="" loading="lazy" decoding="async"></span>
           <span class="c-showcase__no">LAB 05</span>
           <span class="c-showcase__title">요즘 UI</span>
           <span class="c-showcase__desc">디자인 갤러리에서 자주 보이는 패턴을 8쪽으로. 내비게이션·CTA·벤토·푸터·마이크로·히어로·섹션·폼.</span>
           <span class="c-showcase__tags"><span class="c-showcase__tag">알약 헤더</span><span class="c-showcase__tag">명령 팔레트</span><span class="c-showcase__tag">벤토</span><span class="c-showcase__tag">쌓이는 카드</span><span class="c-showcase__tag">인증번호 칸</span></span>
         </a>
-        <a class="c-showcase__card js-reveal" href="museum/">
+        <a class="c-showcase__card c-card js-reveal js-tilt" href="museum/">
           <span class="c-showcase__media" aria-hidden="true"><img class="c-showcase__pc" src="assets/media/shots/demo-museum-pc.webp" width="1200" height="750" alt="" loading="lazy" decoding="async"><img class="c-showcase__mo" src="assets/media/shots/demo-museum-mo.webp" width="600" height="1298" alt="" loading="lazy" decoding="async"></span>
           <span class="c-showcase__no">LAB 04</span>
           <span class="c-showcase__title">디지털 역사관 구성</span>
           <span class="c-showcase__desc">풀페이지 메인과 연대기 하위 페이지. 효과 재생 방식(한 번·매번·되감기·스크롤)을 골라 봅니다.</span>
           <span class="c-showcase__tags"><span class="c-showcase__tag">풀페이지</span><span class="c-showcase__tag">연대기 추적</span><span class="c-showcase__tag">재생 방식 4종</span></span>
         </a>
-        <a class="c-showcase__card js-reveal" href="scroll/">
+        <a class="c-showcase__card c-card js-reveal js-tilt" href="scroll/">
           <span class="c-showcase__media" aria-hidden="true"><img class="c-showcase__pc" src="assets/media/shots/demo-scroll-pc.webp" width="1200" height="750" alt="" loading="lazy" decoding="async"><img class="c-showcase__mo" src="assets/media/shots/demo-scroll-mo.webp" width="600" height="1298" alt="" loading="lazy" decoding="async"></span>
           <span class="c-showcase__no">LAB 03</span>
           <span class="c-showcase__title">스크롤 인터랙션</span>
           <span class="c-showcase__desc">GNB와 푸터가 있는 실제 페이지 구조에서 부드러운 스크롤·섹션 넘김·패럴랙스를 봅니다.</span>
           <span class="c-showcase__tags"><span class="c-showcase__tag">섹션 넘김</span><span class="c-showcase__tag">고정 확대</span><span class="c-showcase__tag">가로 스크롤</span></span>
         </a>
-        <a class="c-showcase__card js-reveal" href="effects/">
+        <a class="c-showcase__card c-card js-reveal js-tilt" href="effects/">
           <span class="c-showcase__media" aria-hidden="true"><img class="c-showcase__pc" src="assets/media/shots/demo-effects-pc.webp" width="1200" height="750" alt="" loading="lazy" decoding="async"><img class="c-showcase__mo" src="assets/media/shots/demo-effects-mo.webp" width="600" height="1298" alt="" loading="lazy" decoding="async"></span>
           <span class="c-showcase__no">LAB 02</span>
           <span class="c-showcase__title">인터랙션 효과</span>
           <span class="c-showcase__desc">숫자 회전 카운터, 풀페이지, 무한 슬라이더, 모션 탭, 스포트라이트 카드.</span>
           <span class="c-showcase__tags"><span class="c-showcase__tag">카운터</span><span class="c-showcase__tag">모션 탭</span><span class="c-showcase__tag">스포트라이트</span></span>
         </a>
-        <a class="c-showcase__card js-reveal" href="ui-kit/">
+        <a class="c-showcase__card c-card js-reveal js-tilt" href="ui-kit/">
           <span class="c-showcase__media" aria-hidden="true"><img class="c-showcase__pc" src="assets/media/shots/demo-ui-kit-pc.webp" width="1200" height="750" alt="" loading="lazy" decoding="async"><img class="c-showcase__mo" src="assets/media/shots/demo-ui-kit-mo.webp" width="600" height="1298" alt="" loading="lazy" decoding="async"></span>
           <span class="c-showcase__no">LAB 01</span>
           <span class="c-showcase__title">UI 키트</span>
@@ -107,6 +108,7 @@
   </main>
 
   <footer class="l-curtain__foot c-curtain-footer">
+    <p class="c-curtain-footer__word" aria-hidden="true">보람찬크루</p>
     <div>
       <p class="c-curtain-footer__label">다음으로</p>
       <a class="c-curtain-footer__next" href="prototypes.html">작업 보기 <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>

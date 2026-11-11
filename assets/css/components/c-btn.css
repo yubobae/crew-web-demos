@@ -1,0 +1,70 @@
+/* 크루 공통 버튼: 먹색(기본) · 선(--line) · 주황(--accent) · 라임(--lime, 어두운 판 위). 모든 쪽이 이것만 쓴다.
+   data-effect="magnetic" 를 붙이면 포인터 쪽으로 살짝 끌려온다(magnetic.js). */
+@layer components {
+  .c-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    min-height: var(--cl-btn-h);
+    padding: var(--cl-btn-pad);
+    font-weight: var(--font-weight-semibold);
+    color: var(--tr-white);
+    text-decoration: none;
+    background: var(--tr-ink);
+    border: 1px solid transparent;
+    border-radius: var(--radius-full);
+    transform: translate(var(--mx, 0), var(--my, 0));
+    transition:
+      transform var(--cl-dur-micro) var(--cl-spring),
+      background-color var(--cl-dur-micro) var(--cl-ease),
+      box-shadow var(--cl-dur-micro) var(--cl-ease);
+  }
+
+  .c-btn svg {
+    transition: transform var(--cl-dur-micro) var(--cl-spring);
+  }
+
+  .c-btn--line {
+    color: var(--tr-ink);
+    background: var(--tr-white);
+    border-color: var(--tr-line);
+  }
+
+  .c-btn--accent {
+    background: var(--cl-grad);
+  }
+
+  .c-btn--lime {
+    color: var(--tr-ink);
+    background: var(--tr-lime);
+  }
+
+  .c-btn--ghost-night {
+    color: var(--tr-on-night);
+    background: none;
+    border-color: var(--tr-night-line);
+  }
+
+  .c-btn:active {
+    transform: translate(var(--mx, 0), var(--my, 0)) scale(0.96);
+  }
+
+  @media (hover: hover) {
+    .c-btn:hover {
+      box-shadow: var(--cl-shadow-lift);
+    }
+
+    .c-btn:hover svg {
+      transform: translateX(3px);
+    }
+  }
+
+
+  @media (prefers-reduced-motion: reduce) {
+    .c-btn,
+    .c-btn svg {
+      transition: none;
+    }
+  }
+}

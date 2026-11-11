@@ -1,0 +1,62 @@
+/* 크루 공통 카드 바탕: 모든 쪽의 카드가 같은 반경·테두리·그림자·기울기·빛·등장을 쓴다.
+   data-effect="reveal tilt-grid" 를 가진 묶음 안에서 .js-reveal .js-tilt 가 붙은 카드에 적용.
+   등장은 transform(--ty)·opacity, 기울기는 --rx --ry, 빛은 --gx --gy (tilt-grid.js, reveal.js). */
+@layer components {
+  .c-card {
+    --ty: 0px;
+    position: relative;
+    background: var(--cl-card-bg);
+    border: var(--cl-card-line);
+    border-radius: var(--cl-radius-card);
+    box-shadow: var(--cl-shadow-rest);
+    transform: perspective(900px) translate3d(0, var(--ty), 0) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+    transition:
+      opacity var(--cl-dur-in) var(--cl-ease),
+      transform 600ms var(--cl-spring),
+      box-shadow var(--tr-dur) var(--cl-ease);
+  }
+
+  .is-ready > .c-card:not(.is-in),
+  .is-ready .c-card:not(.is-in) {
+    --ty: var(--space-10);
+    opacity: 0;
+  }
+
+  .is-ready .c-card.is-in:not(.is-tilting) {
+    transition-delay: calc(var(--i, 0) * 70ms);
+  }
+
+  .c-card:nth-child(3n + 2) { --i: 1; }
+  .c-card:nth-child(3n) { --i: 2; }
+
+  /* 포인터 따라다니는 빛 */
+  .c-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: radial-gradient(18rem circle at var(--gx, 50%) var(--gy, 50%), var(--tr-accent-soft), transparent 70%);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--tr-dur) var(--cl-ease);
+  }
+
+  .c-card.is-tilting {
+    --ty: -4px;
+    box-shadow: var(--cl-shadow-pop);
+    transition:
+      transform 90ms linear,
+      box-shadow var(--tr-dur) var(--cl-ease);
+  }
+
+  .c-card.is-tilting::after {
+    opacity: 1;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .c-card,
+    .c-card::after {
+      transition: none;
+    }
+  }
+}

@@ -1,0 +1,15 @@
+/* 맨 위 스크롤 진행 막대(scroll-progress.js가 만든다): 주황→보라, 내린 만큼 왼쪽부터 찬다. */
+@layer components {
+  .c-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 200;
+    width: 100%;
+    height: 3px;
+    background: var(--cl-grad);
+    transform: scaleX(var(--p, 0));
+    transform-origin: left;
+    pointer-events: none;
+  }
+}

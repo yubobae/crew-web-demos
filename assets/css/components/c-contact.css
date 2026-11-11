@@ -11,7 +11,7 @@
     text-align: center;
     color: var(--tr-on-night);
     background: var(--tr-night);
-    border-radius: var(--radius-4xl);
+    border-radius: var(--cl-radius-panel);
   }
 
   .c-contact::before {
@@ -31,9 +31,9 @@
 
   .c-contact__title {
     max-width: 16ch;
-    font-size: clamp(var(--text-4xl), 1.4rem + 4vw, var(--text-7xl));
-    font-weight: var(--font-weight-black);
-    letter-spacing: var(--tracking-tighter);
+    font-size: var(--cl-fs-h1);
+    font-weight: var(--cl-fw-h1);
+    letter-spacing: var(--cl-ls-h1);
     line-height: 1.05;
   }
 
@@ -49,29 +49,6 @@
     gap: var(--space-3);
   }
 
-  .c-contact__btn {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--space-2);
-    padding: var(--space-3) var(--space-6);
-    font-weight: var(--font-weight-semibold);
-    color: var(--tr-ink);
-    text-decoration: none;
-    background: var(--tr-lime);
-    border-radius: var(--radius-full);
-    transition: transform var(--tr-dur-fast) var(--tr-spring);
-  }
-
-  .c-contact__btn--line {
-    color: var(--tr-on-night);
-    background: none;
-    border: 1px solid var(--tr-night-line);
-  }
-
-  .c-contact__btn:active {
-    transform: scale(0.96);
-  }
-
   @keyframes c-contact-glow {
     to {
       transform: translate(8%, -10%) scale(1.1);
@@ -81,10 +58,6 @@
   @media (prefers-reduced-motion: reduce) {
     .c-contact::before {
       animation: none;
-    }
-
-    .c-contact__btn {
-      transition: none;
     }
   }
 }
