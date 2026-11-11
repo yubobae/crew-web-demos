@@ -1,0 +1,76 @@
+/* 커서 스포트라이트 히어로: 어두운 화면에서 커서 둘레만 격자와 빛이 드러난다.
+   spotlight-mask.js가 root에 --mx, --my를 쓰고, 마우스가 없으면 가운데를 비춘다. */
+@layer components {
+  .c-hero-spot {
+    --mx: 50%;
+    --my: 45%;
+    position: relative;
+    display: grid;
+    place-content: center;
+    gap: var(--space-5);
+    min-height: 100%;
+    padding: var(--space-16) var(--space-6);
+    overflow: hidden;
+    text-align: center;
+    isolation: isolate;
+    color: var(--tr-on-night);
+    background: var(--tr-night);
+  }
+
+  .c-hero-spot__grid,
+  .c-hero-spot__glow {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+  }
+
+  .c-hero-spot__grid {
+    background:
+      linear-gradient(var(--tr-night-line) 1px, transparent 1px) 0 0 / 40px 40px,
+      linear-gradient(90deg, var(--tr-night-line) 1px, transparent 1px) 0 0 / 40px 40px;
+    mask-image: radial-gradient(16rem circle at var(--mx) var(--my), var(--tr-white), transparent);
+  }
+
+  .c-hero-spot__glow {
+    background: radial-gradient(24rem circle at var(--mx) var(--my), var(--tr-accent-soft), transparent 70%);
+  }
+
+  .c-hero-spot__eyebrow {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-widest);
+    color: var(--tr-lime);
+  }
+
+  .c-hero-spot__title {
+    max-width: 14ch;
+    margin-inline: auto;
+    font-size: clamp(var(--text-4xl), 1rem + 5vw, var(--text-7xl));
+    font-weight: var(--font-weight-extrabold);
+    letter-spacing: var(--tracking-tighter);
+    background: linear-gradient(180deg, var(--tr-on-night), var(--tr-on-night-soft));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .c-hero-spot__lead {
+    max-width: 42ch;
+    margin-inline: auto;
+    color: var(--tr-on-night-soft);
+  }
+
+  .c-hero-spot__cta {
+    justify-self: center;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-3) var(--space-5);
+    font-weight: var(--font-weight-semibold);
+    color: var(--tr-night);
+    text-decoration: none;
+    background: var(--tr-on-night);
+    border-radius: var(--radius-full);
+  }
+}

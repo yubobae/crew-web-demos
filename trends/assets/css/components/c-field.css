@@ -1,0 +1,94 @@
+/* 떠오르는 이름표 입력칸: 비어 있을 땐 이름표가 칸 안에, 누르거나 글자가 있으면 위로 작게 올라간다(JS 없음).
+   밑줄은 가운데서 양옆으로 그어지고, 잘못 입력한 뒤(:user-invalid)엔 빨갛게 바뀌며 안내가 나온다.
+   이름표가 움직이려면 input에 placeholder=" "(빈칸 하나)가 있어야 한다. */
+@layer components {
+  .c-field {
+    position: relative;
+    display: grid;
+    width: 100%;
+    padding-top: var(--space-4);
+  }
+
+  .c-field__input {
+    width: 100%;
+    padding: var(--space-3) 0 var(--space-2);
+    font-size: var(--text-lg);
+    color: var(--tr-ink);
+    background: none;
+    border: 0;
+    border-bottom: 1px solid var(--tr-line);
+    border-radius: 0;
+    outline: 0;
+    resize: none;
+  }
+
+  .c-field__label {
+    position: absolute;
+    top: calc(var(--space-4) + var(--space-3));
+    left: 0;
+    font-size: var(--text-lg);
+    color: var(--tr-ink-soft);
+    transform-origin: left top;
+    pointer-events: none;
+    transition:
+      transform var(--tr-dur) var(--tr-ease),
+      color var(--tr-dur-fast) var(--tr-ease);
+  }
+
+  .c-field__input:focus + .c-field__label,
+  .c-field__input:not(:placeholder-shown) + .c-field__label {
+    transform: translateY(calc(var(--space-6) * -1)) scale(0.75);
+  }
+
+  .c-field__input:focus + .c-field__label {
+    color: var(--tr-accent);
+  }
+
+  .c-field__line {
+    height: 2px;
+    margin-top: -1px;
+    background: var(--tr-accent);
+    transform: scaleX(0);
+    transition:
+      transform var(--tr-dur) var(--tr-ease),
+      background-color var(--tr-dur-fast) var(--tr-ease);
+  }
+
+  .c-field__input:focus ~ .c-field__line {
+    transform: scaleX(1);
+  }
+
+  .c-field__hint {
+    display: grid;
+    grid-template-rows: 0fr;
+    font-size: var(--text-sm);
+    color: var(--tr-danger);
+    transition: grid-template-rows var(--tr-dur) var(--tr-ease);
+  }
+
+  .c-field__hint-text {
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  .c-field__input:user-invalid ~ .c-field__line {
+    background: var(--tr-danger);
+    transform: scaleX(1);
+  }
+
+  .c-field__input:user-invalid ~ .c-field__hint {
+    grid-template-rows: 1fr;
+  }
+
+  .c-field__input:user-invalid + .c-field__label {
+    color: var(--tr-danger);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .c-field__label,
+    .c-field__line,
+    .c-field__hint {
+      transition: none;
+    }
+  }
+}

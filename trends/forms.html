@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>폼 | 보람찬크루 요즘 UI</title>
+  <meta name="description" content="떠오르는 이름표 입력, 비밀번호 강도, 인증번호 칸, 태그 입력, 파일 끌어 놓기, 단계별 폼 예시입니다.">
+  <meta name="theme-color" content="#f8f7f4">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+  <link rel="stylesheet" href="assets/css/main.css">
+  <script type="module" src="assets/js/main.js"></script>
+</head>
+<body>
+  <a class="u-visually-hidden" href="#main">본문 바로가기</a>
+
+  <header class="c-site-nav" data-module="site-nav">
+    <div class="c-site-nav__bar">
+      <a class="c-site-nav__logo" href="https://yubobae.github.io/crew-web-demos/"><span class="c-site-nav__mark" aria-hidden="true"></span>보람찬크루 데모</a>
+      <nav class="c-site-nav__links" aria-label="요즘 UI 데모 페이지" data-module="glider" data-glide="hover">
+        <span class="c-site-nav__glider js-glider" aria-hidden="true"></span>
+        <a class="c-site-nav__link js-glide-item" href="index.html">내비게이션</a>
+        <a class="c-site-nav__link js-glide-item" href="cta.html">CTA</a>
+        <a class="c-site-nav__link js-glide-item" href="bento.html">벤토</a>
+        <a class="c-site-nav__link js-glide-item" href="footer.html">푸터</a>
+        <a class="c-site-nav__link js-glide-item" href="motion.html">마이크로</a>
+        <a class="c-site-nav__link js-glide-item" href="hero.html">히어로</a>
+        <a class="c-site-nav__link js-glide-item" href="sections.html">섹션</a>
+        <a class="c-site-nav__link js-glide-item" href="forms.html" aria-current="page">폼</a>
+      </nav>
+      <button class="c-site-nav__menu" type="button" popovertarget="site-menu">메뉴 <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
+    </div>
+    <div class="c-site-nav__panel" id="site-menu" popover>
+      <div class="c-site-nav__group c-site-nav__group--pages">
+        <p class="c-site-nav__group-title">요즘 UI</p>
+        <a class="c-site-nav__item" href="index.html">내비게이션 <span class="c-site-nav__item-desc">알약 헤더·메가 메뉴·전체 메뉴</span></a>
+        <a class="c-site-nav__item" href="cta.html">CTA <span class="c-site-nav__item-desc">행동 유도 구역 다섯 가지</span></a>
+        <a class="c-site-nav__item" href="bento.html">벤토 <span class="c-site-nav__item-desc">어두운 벤토 그리드</span></a>
+        <a class="c-site-nav__item" href="footer.html">푸터 <span class="c-site-nav__item-desc">큰 글자·카드·커튼 푸터</span></a>
+        <a class="c-site-nav__item" href="motion.html">마이크로 <span class="c-site-nav__item-desc">작은 움직임 열 가지</span></a>
+        <a class="c-site-nav__item" href="hero.html">히어로 <span class="c-site-nav__item-desc">첫 화면 다섯 가지</span></a>
+        <a class="c-site-nav__item" href="sections.html">섹션 <span class="c-site-nav__item-desc">쌓이는 카드·스토리·FAQ</span></a>
+        <a class="c-site-nav__item" href="forms.html" aria-current="page">폼 <span class="c-site-nav__item-desc">입력 여섯 가지</span></a>
+      </div>
+      <div class="c-site-nav__group">
+        <p class="c-site-nav__group-title">다른 데모</p>
+        <a class="c-site-nav__item" href="https://yubobae.github.io/crew-web-demos/">데모 목록 <span class="c-site-nav__item-desc">처음으로</span></a>
+        <a class="c-site-nav__item" href="https://yubobae.github.io/crew-web-demos/ui-kit/">UI 키트 <span class="c-site-nav__item-desc">컴포넌트 12종</span></a>
+        <a class="c-site-nav__item" href="https://yubobae.github.io/crew-web-demos/effects/">인터랙션 효과 <span class="c-site-nav__item-desc">풀페이지·카운터</span></a>
+        <a class="c-site-nav__item" href="https://yubobae.github.io/crew-web-demos/scroll/">스크롤 <span class="c-site-nav__item-desc">GNB·패럴랙스</span></a>
+        <a class="c-site-nav__item" href="https://yubobae.github.io/crew-web-demos/museum/">디지털 역사관 <span class="c-site-nav__item-desc">풀페이지 사이트</span></a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="c-page-intro">
+      <p class="c-page-intro__eyebrow"><span class="c-page-intro__badge">08</span>요즘 UI · 폼</p>
+      <h1 class="c-page-intro__title">
+        <span class="c-page-intro__line"><span class="c-page-intro__line-inner">쓰는 사람이</span></span>
+        <span class="c-page-intro__line"><span class="c-page-intro__line-inner"><span class="c-page-intro__accent">덜 헤매는</span> 입력</span></span>
+      </h1>
+      <p class="c-page-intro__lead">입력칸은 가장 많이 만지는 부품이에요. 지금 무엇을 해야 하는지, 잘했는지를 움직임으로 바로 알려 주는 폼 여섯 가지입니다. 데모라 아무것도 보내지 않아요.</p>
+    </div>
+
+    <section class="l-section" aria-labelledby="forms-title">
+      <div class="l-section__head">
+        <span class="l-section__num">01</span>
+        <h2 class="l-section__title" id="forms-title">직접 써 보는 여섯 가지</h2>
+        <p class="l-section__desc">휴대폰에서는 한 줄로 쌓이고, 숫자 칸은 숫자 자판이 뜨게(inputmode) 했어요. 키보드만으로도 모두 쓸 수 있습니다.</p>
+      </div>
+
+      <div class="c-micro c-micro--two">
+        <!-- 1. 떠오르는 이름표 -->
+        <article class="c-micro__card">
+          <div class="c-micro__stage c-micro__stage--top">
+            <form class="c-micro__form" novalidate>
+              <div class="c-field">
+                <input class="c-field__input" id="f-name" type="text" placeholder=" " autocomplete="name" required>
+                <label class="c-field__label" for="f-name">이름</label>
+                <span class="c-field__line" aria-hidden="true"></span>
+                <span class="c-field__hint"><span class="c-field__hint-text">이름을 적어 주세요</span></span>
+              </div>
+              <div class="c-field">
+                <input class="c-field__input" id="f-mail" type="email" placeholder=" " autocomplete="email" required>
+                <label class="c-field__label" for="f-mail">이메일</label>
+                <span class="c-field__line" aria-hidden="true"></span>
+                <span class="c-field__hint"><span class="c-field__hint-text">이메일 주소 모양이 아니에요</span></span>
+              </div>
+            </form>
+          </div>
+          <div class="c-micro__body"><span class="c-micro__num">01</span><h3 class="c-micro__title">떠오르는 이름표</h3><p class="c-micro__desc">누르면 이름표가 위로 작게 올라가고 밑줄이 가운데서 그어집니다. 잘못 쓰고 나가면 빨간 안내가 펼쳐져요. JS 없이 CSS만.</p></div>
+        </article>
+
+        <!-- 2. 비밀번호 강도 -->
+        <article class="c-micro__card">
+          <div class="c-micro__stage c-micro__stage--top">
+            <div class="c-password" data-module="password-meter" data-score="0">
+              <label class="c-password__status js-pw-status" for="f-pw">비밀번호를 입력해 보세요</label>
+              <div class="c-password__box">
+                <input class="c-password__input js-pw-input" id="f-pw" type="password" autocomplete="new-password" aria-describedby="f-pw-rules">
+                <button class="c-password__eye js-pw-eye" type="button" aria-pressed="false" aria-label="비밀번호 보기">
+                  <span class="c-password__eye-icon c-password__eye-icon--show"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></span>
+                  <span class="c-password__eye-icon c-password__eye-icon--hide"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M3 3l18 18M10.6 5.1A10 10 0 0 1 12 5c6.5 0 10 7 10 7a17 17 0 0 1-3 3.8M6.6 6.6A17 17 0 0 0 2 12s3.5 7 10 7a9.6 9.6 0 0 0 5.4-1.6M9.9 9.9a3 3 0 0 0 4.2 4.2"/></svg></span>
+                </button>
+              </div>
+              <div class="c-password__meter" aria-hidden="true"><span class="c-password__bar js-pw-bar"></span><span class="c-password__bar js-pw-bar"></span><span class="c-password__bar js-pw-bar"></span><span class="c-password__bar js-pw-bar"></span></div>
+              <ul class="c-password__rules" id="f-pw-rules">
+                <li class="c-password__rule js-pw-rule" data-rule="length"><span class="c-password__tick"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg></span>8자 이상</li>
+                <li class="c-password__rule js-pw-rule" data-rule="number"><span class="c-password__tick"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg></span>숫자 포함</li>
+                <li class="c-password__rule js-pw-rule" data-rule="upper"><span class="c-password__tick"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg></span>영문 대문자</li>
+                <li class="c-password__rule js-pw-rule" data-rule="symbol"><span class="c-password__tick"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg></span>특수문자</li>
+              </ul>
+            </div>
+          </div>
+          <div class="c-micro__body"><span class="c-micro__num">02</span><h3 class="c-micro__title">비밀번호 강도</h3><p class="c-micro__desc">쓸수록 막대가 차오르며 색이 바뀌고, 조건이 하나씩 체크됩니다. 눈 버튼으로 보이기·숨기기.</p></div>
+        </article>
+
+        <!-- 3. 인증번호 -->
+        <article class="c-micro__card">
+          <div class="c-micro__stage">
+            <div class="c-otp" data-module="otp" data-code="123456" role="group" aria-labelledby="f-otp-label">
+              <p class="c-micro__desc" id="f-otp-label">문자로 받은 6자리 번호(데모: 123456)</p>
+              <div class="c-otp__boxes">
+                <input class="c-otp__box js-otp-box" type="text" inputmode="numeric" autocomplete="one-time-code" maxlength="6" placeholder=" " aria-label="1번째 숫자">
+                <input class="c-otp__box js-otp-box" type="text" inputmode="numeric" maxlength="6" placeholder=" " aria-label="2번째 숫자">
+                <input class="c-otp__box js-otp-box" type="text" inputmode="numeric" maxlength="6" placeholder=" " aria-label="3번째 숫자">
+                <input class="c-otp__box js-otp-box" type="text" inputmode="numeric" maxlength="6" placeholder=" " aria-label="4번째 숫자">
+                <input class="c-otp__box js-otp-box" type="text" inputmode="numeric" maxlength="6" placeholder=" " aria-label="5번째 숫자">
+                <input class="c-otp__box js-otp-box" type="text" inputmode="numeric" maxlength="6" placeholder=" " aria-label="6번째 숫자">
+              </div>
+              <p class="c-otp__msg js-otp-msg" role="status">3분 안에 입력해 주세요</p>
+              <button class="c-page-intro__chip js-otp-reset" type="button">다시 하기</button>
+            </div>
+          </div>
+          <div class="c-micro__body"><span class="c-micro__num">03</span><h3 class="c-micro__title">인증번호 칸</h3><p class="c-micro__desc">입력하면 다음 칸으로, 지우면 앞 칸으로, 붙여 넣으면 한 번에 채워요. 맞으면 칸이 차례로 초록으로 튀고, 틀리면 흔들립니다.</p></div>
+        </article>
+
+        <!-- 4. 태그 입력 -->
+        <article class="c-micro__card">
+          <div class="c-micro__stage c-micro__stage--top">
+            <div class="c-tags" data-module="tag-input" data-max="6" data-initial="브랜딩,웹">
+              <label class="c-micro__desc" for="f-tags">관심 분야 (Enter로 추가) <span class="c-tags__count js-tags-count"></span></label>
+              <div class="c-tags__box js-tags-box">
+                <input class="c-tags__input js-tags-input" id="f-tags" type="text" placeholder="예: 모션" enterkeyhint="done" autocomplete="off">
+              </div>
+              <div class="c-tags__suggest" aria-label="추천">
+                <button class="c-tags__option js-tags-option" type="button" data-value="모션">+ 모션</button>
+                <button class="c-tags__option js-tags-option" type="button" data-value="3D">+ 3D</button>
+                <button class="c-tags__option js-tags-option" type="button" data-value="편집">+ 편집</button>
+                <button class="c-tags__option js-tags-option" type="button" data-value="앱">+ 앱</button>
+              </div>
+              <template class="js-tags-tpl"><span class="c-tags__chip"><span class="js-tags-text"></span><button class="c-tags__remove js-tags-remove" type="button"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button></span></template>
+            </div>
+          </div>
+          <div class="c-micro__body"><span class="c-micro__num">04</span><h3 class="c-micro__title">태그 입력</h3><p class="c-micro__desc">Enter나 쉼표로 이름표가 튀어나오며 붙고, 빈 칸에서 지우기를 누르면 마지막 이름표가 빠져요. 아래 추천을 눌러도 됩니다.</p></div>
+        </article>
+
+        <!-- 5. 파일 끌어 놓기 -->
+        <article class="c-micro__card">
+          <div class="c-micro__stage c-micro__stage--top">
+            <div class="c-drop" data-module="dropzone">
+              <label class="c-drop__zone js-drop-zone">
+                <span class="c-drop__icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"/></svg></span>
+                <span class="c-drop__title">파일을 여기로 끌어 오세요</span>
+                <span class="c-drop__sub">또는 눌러서 고르기 · 데모라 올라가지 않아요</span>
+                <input class="u-visually-hidden js-drop-input" type="file" multiple>
+              </label>
+              <ul class="c-drop__files js-drop-files" aria-live="polite"></ul>
+              <template class="js-drop-tpl"><li class="c-drop__file"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3h7l5 5v13H7zM14 3v5h5"/></svg><span class="c-drop__name js-drop-name"></span><span class="c-drop__size js-drop-size"></span><span class="c-drop__bar" aria-hidden="true"></span></li></template>
+            </div>
+          </div>
+          <div class="c-micro__body"><span class="c-micro__num">05</span><h3 class="c-micro__title">파일 끌어 놓기</h3><p class="c-micro__desc">파일을 끌고 오면 점선 테두리가 흐르고 칸이 살짝 커지며 아이콘이 튀어요. 놓으면 목록에 줄이 생기고 막대가 차오릅니다.</p></div>
+        </article>
+
+        <!-- 6. 단계별 폼 -->
+        <article class="c-micro__card">
+          <div class="c-micro__stage c-micro__stage--top">
+            <div class="c-wizard" data-module="step-form">
+              <ol class="c-wizard__steps" aria-hidden="true">
+                <li class="c-wizard__dot js-step-dot"><span class="c-wizard__num">1</span>정보</li>
+                <li class="c-wizard__dot js-step-dot"><span class="c-wizard__num">2</span>분야</li>
+                <li class="c-wizard__dot js-step-dot"><span class="c-wizard__num">3</span>확인</li>
+              </ol>
+              <p class="u-visually-hidden js-step-live" aria-live="polite"></p>
+              <form class="c-wizard__viewport" novalidate>
+                <div class="c-wizard__track">
+                  <fieldset class="c-wizard__panel js-step-panel">
+                    <legend class="u-visually-hidden">기본 정보</legend>
+                    <div class="c-field"><input class="c-field__input" id="w-name" type="text" placeholder=" " autocomplete="name" required><label class="c-field__label" for="w-name">이름</label><span class="c-field__line" aria-hidden="true"></span></div>
+                    <div class="c-field"><input class="c-field__input" id="w-mail" type="email" placeholder=" " autocomplete="email" required><label class="c-field__label" for="w-mail">이메일</label><span class="c-field__line" aria-hidden="true"></span></div>
+                  </fieldset>
+                  <fieldset class="c-wizard__panel js-step-panel">
+                    <legend class="c-micro__desc">어떤 일이 필요하세요?</legend>
+                    <div class="c-wizard__choice">
+                      <label class="c-wizard__radio"><input class="u-visually-hidden" type="radio" name="w-kind" value="brand" required>브랜딩</label>
+                      <label class="c-wizard__radio"><input class="u-visually-hidden" type="radio" name="w-kind" value="web">웹사이트</label>
+                      <label class="c-wizard__radio"><input class="u-visually-hidden" type="radio" name="w-kind" value="app">앱</label>
+                      <label class="c-wizard__radio"><input class="u-visually-hidden" type="radio" name="w-kind" value="etc">아직 몰라요</label>
+                    </div>
+                  </fieldset>
+                  <fieldset class="c-wizard__panel js-step-panel">
+                    <legend class="u-visually-hidden">확인</legend>
+                    <div class="c-field"><textarea class="c-field__input" id="w-memo" rows="2" placeholder=" "></textarea><label class="c-field__label" for="w-memo">하고 싶은 말(선택)</label><span class="c-field__line" aria-hidden="true"></span></div>
+                    <label class="c-micro__desc"><input type="checkbox" required> 연락을 위해 이메일을 쓰는 데 동의해요</label>
+                  </fieldset>
+                  <div class="c-wizard__panel c-wizard__panel--done js-step-panel">
+                    <svg class="c-wizard__check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path pathLength="1" d="M12 2a10 10 0 1 1 0 20a10 10 0 1 1 0-20zM7 12.5l3.5 3.5L17 9"/></svg>
+                    <p class="c-wizard__done-title">신청을 받았어요</p>
+                    <p class="c-wizard__done-text">하루 안에 이메일로 연락드릴게요.</p>
+                    <button class="c-page-intro__chip js-step-restart" type="button">처음부터</button>
+                  </div>
+                </div>
+              </form>
+              <div class="c-wizard__nav">
+                <button class="c-wizard__btn c-wizard__btn--prev js-step-prev" type="button">이전</button>
+                <button class="c-wizard__btn c-wizard__btn--next js-step-next" type="button">다음</button>
+              </div>
+            </div>
+          </div>
+          <div class="c-micro__body"><span class="c-micro__num">06</span><h3 class="c-micro__title">단계별 폼</h3><p class="c-micro__desc">단계 점을 잇는 선이 차오르고 판은 옆으로 밀려 바뀝니다. 비운 칸이 있으면 넘어가지 않아요. 마지막엔 체크가 그려집니다.</p></div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="c-page-outro">
+    <p class="c-page-outro__text">처음으로</p>
+    <a class="c-page-outro__next" href="index.html">내비게이션 <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+  </footer>
+</body>
+</html>

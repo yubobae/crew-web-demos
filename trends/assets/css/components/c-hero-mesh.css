@@ -1,0 +1,140 @@
+/* 움직이는 그라디언트 히어로: 흐릿한 색 덩어리 셋이 천천히 떠돌고, 제목 가운데 단어가 위로 넘어가며 바뀐다.
+   단어 넘김은 CSS만(목록을 한 칸씩 올리는 steps 애니메이션 대신 칸마다 멈추는 keyframes). */
+@layer components {
+  .c-hero-mesh {
+    position: relative;
+    display: grid;
+    place-content: center;
+    justify-items: center;
+    gap: var(--space-6);
+    min-height: 100%;
+    padding: var(--space-16) var(--space-6);
+    overflow: hidden;
+    text-align: center;
+    isolation: isolate;
+    background: var(--tr-paper);
+  }
+
+  .c-hero-mesh__blob {
+    position: absolute;
+    z-index: -1;
+    width: 45%;
+    aspect-ratio: 1;
+    border-radius: var(--radius-full);
+    filter: blur(60px);
+    opacity: 0.75;
+    animation: c-hero-mesh-drift 14s var(--ease-in-out) infinite alternate;
+  }
+
+  .c-hero-mesh__blob--a {
+    top: -10%;
+    left: 5%;
+    background: var(--tr-accent);
+  }
+
+  .c-hero-mesh__blob--b {
+    top: 20%;
+    right: 0;
+    background: var(--tr-violet);
+    animation-duration: 18s;
+    animation-direction: alternate-reverse;
+  }
+
+  .c-hero-mesh__blob--c {
+    bottom: -25%;
+    left: 30%;
+    background: var(--tr-sky);
+    animation-duration: 22s;
+  }
+
+  .c-hero-mesh__pill {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-1) var(--space-3) var(--space-1) var(--space-1);
+    font-size: var(--text-sm);
+    background: var(--tr-glass);
+    border: 1px solid var(--tr-white);
+    border-radius: var(--radius-full);
+    backdrop-filter: blur(8px);
+  }
+
+  .c-hero-mesh__new {
+    padding: var(--space-0-5) var(--space-2);
+    font-size: var(--text-xs);
+    font-weight: var(--font-weight-bold);
+    color: var(--tr-white);
+    background: var(--tr-ink);
+    border-radius: var(--radius-full);
+  }
+
+  .c-hero-mesh__title {
+    font-size: clamp(var(--text-4xl), 1rem + 5vw, var(--text-7xl));
+    font-weight: var(--font-weight-extrabold);
+    letter-spacing: var(--tracking-tighter);
+    line-height: 1.08;
+  }
+
+  /* 바뀌는 단어 칸: 한 줄 높이만 보이고 안의 목록이 올라간다 */
+  .c-hero-mesh__ticker {
+    display: inline-block;
+    height: 1.08em;
+    overflow: hidden;
+    vertical-align: bottom;
+    color: var(--tr-accent);
+  }
+
+  .c-hero-mesh__words {
+    display: grid;
+    animation: c-hero-mesh-words 8s var(--tr-ease) infinite;
+  }
+
+  .c-hero-mesh__lead {
+    max-width: 40ch;
+    color: var(--tr-ink-soft);
+  }
+
+  .c-hero-mesh__actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-3);
+  }
+
+  .c-hero-mesh__btn {
+    padding: var(--space-3) var(--space-6);
+    font-weight: var(--font-weight-semibold);
+    color: var(--tr-white);
+    text-decoration: none;
+    background: var(--tr-ink);
+    border-radius: var(--radius-full);
+  }
+
+  .c-hero-mesh__btn--ghost {
+    color: var(--tr-ink);
+    background: var(--tr-glass);
+    border: 1px solid var(--tr-white);
+  }
+
+  /* 단어 4개(마지막은 첫 단어 복사본): 2초마다 한 칸 */
+  @keyframes c-hero-mesh-words {
+    0%, 20% { transform: translateY(0); }
+    25%, 45% { transform: translateY(-25%); }
+    50%, 70% { transform: translateY(-50%); }
+    75%, 95% { transform: translateY(-75%); }
+    100% { transform: translateY(-75%); }
+  }
+
+  @keyframes c-hero-mesh-drift {
+    to {
+      transform: translate(12%, 10%) scale(1.15);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .c-hero-mesh__blob,
+    .c-hero-mesh__words {
+      animation: none;
+    }
+  }
+}

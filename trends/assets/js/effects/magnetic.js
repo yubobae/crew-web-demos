@@ -18,6 +18,7 @@ export function init(root) {
 
   const apply = () => {
     frame = 0;
+    rect ??= btn.getBoundingClientRect();
     const cx = rect.left + rect.width / 2;
     const cy = rect.top + rect.height / 2;
     const dx = px - cx;

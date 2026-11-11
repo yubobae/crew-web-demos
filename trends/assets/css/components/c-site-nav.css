@@ -39,7 +39,7 @@
   }
 
   .c-site-nav.is-condensed .c-site-nav__bar {
-    width: min(100%, 50rem);
+    width: min(100%, 62rem);
   }
 
   .c-site-nav.is-condensed .c-site-nav__bar::before {
@@ -205,7 +205,8 @@
     }
   }
 
-  @media (min-width: 820px) {
+  /* 페이지 링크 8개가 한 줄에 들어가는 넓은 화면에서만 펼친다(좁으면 메뉴 판에) */
+  @media (min-width: 1280px) {
     .c-site-nav__links {
       display: flex;
     }

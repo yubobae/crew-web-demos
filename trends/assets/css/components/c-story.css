@@ -1,0 +1,147 @@
+/* 스크롤 스토리텔링: 왼쪽 글 단계를 스크롤하면, 오른쪽에 붙어 있는 화면이 그 단계의 모습으로 바뀐다.
+   story-steps.js가 화면 가운데에 온 단계에 is-active, 화면 묶음(root)에 data-step을 준다. */
+@layer components {
+  .c-story {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: clamp(var(--space-8), 6vw, var(--space-24));
+  }
+
+  .c-story__steps {
+    display: grid;
+  }
+
+  .c-story__step {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: var(--space-3);
+    min-height: 70vh;
+    opacity: 0.3;
+    transition: opacity var(--tr-dur) var(--tr-ease);
+  }
+
+  .c-story__step.is-active {
+    opacity: 1;
+  }
+
+  .c-story__num {
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-bold);
+    color: var(--tr-accent);
+  }
+
+  .c-story__title {
+    font-size: clamp(var(--text-2xl), 1rem + 2vw, var(--text-4xl));
+    font-weight: var(--font-weight-extrabold);
+    letter-spacing: var(--tracking-tight);
+  }
+
+  .c-story__text {
+    max-width: 38ch;
+    color: var(--tr-ink-soft);
+  }
+
+  .c-story__stage {
+    position: sticky;
+    top: calc(var(--tr-nav-h) + var(--space-10));
+    align-self: start;
+    height: min(70vh, 34rem);
+  }
+
+  .c-story__screen {
+    position: relative;
+    height: 100%;
+    overflow: hidden;
+    background: var(--tr-night);
+    border-radius: var(--radius-4xl);
+    box-shadow: var(--tr-shadow-pop);
+  }
+
+  .c-story__view {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    padding: var(--space-8);
+    font-size: var(--text-2xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--tr-white);
+    opacity: 0;
+    transform: scale(1.06);
+    transition:
+      opacity 600ms var(--tr-ease),
+      transform 900ms var(--tr-ease);
+  }
+
+  .c-story__view.is-active {
+    opacity: 1;
+    transform: none;
+  }
+
+  .c-story__view--1 {
+    background: radial-gradient(circle at 30% 30%, var(--tr-accent), transparent 60%), var(--tr-night-2);
+  }
+
+  .c-story__view--2 {
+    background: radial-gradient(circle at 70% 40%, var(--tr-violet), transparent 60%), var(--tr-night-2);
+  }
+
+  .c-story__view--3 {
+    background: radial-gradient(circle at 40% 70%, var(--tr-lime), transparent 55%), var(--tr-night-2);
+  }
+
+  .c-story__view--4 {
+    background: radial-gradient(circle at 60% 50%, var(--tr-sky), transparent 60%), var(--tr-night-2);
+  }
+
+  .c-story__dots {
+    position: absolute;
+    right: var(--space-5);
+    bottom: var(--space-5);
+    display: flex;
+    gap: var(--space-1-5);
+  }
+
+  .c-story__dot {
+    width: var(--space-2);
+    height: var(--space-2);
+    background: var(--tr-night-line);
+    border-radius: var(--radius-full);
+    transition:
+      width var(--tr-dur) var(--tr-ease),
+      background-color var(--tr-dur) var(--tr-ease);
+  }
+
+  .c-story__dot.is-active {
+    width: var(--space-6);
+    background: var(--tr-white);
+  }
+
+  /* 휴대폰: 화면을 위에 붙이고(작게) 글 단계가 그 아래로 지나간다 */
+  @media (max-width: 819px) {
+    .c-story {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 0;
+    }
+
+    .c-story__stage {
+      order: -1;
+      z-index: 1;
+      height: 38vh;
+      margin-bottom: var(--space-6);
+    }
+
+    .c-story__step {
+      min-height: 60vh;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .c-story__step,
+    .c-story__view,
+    .c-story__dot {
+      transition: none;
+    }
+  }
+}

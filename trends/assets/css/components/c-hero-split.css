@@ -1,0 +1,100 @@
+/* 반반 히어로 + 모양이 바뀌는 그림: 왼쪽 글, 오른쪽 그림 셋이 둥근 모양(border-radius)을 천천히 바꾸며 숨 쉰다. */
+@layer components {
+  .c-hero-split {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-items: center;
+    gap: var(--space-10);
+    min-height: 100%;
+    padding: var(--space-12) clamp(var(--space-6), 4vw, var(--space-16));
+    background: var(--tr-paper);
+  }
+
+  .c-hero-split__title {
+    font-size: clamp(var(--text-4xl), 1rem + 4vw, var(--text-6xl));
+    font-weight: var(--font-weight-extrabold);
+    letter-spacing: var(--tracking-tighter);
+  }
+
+  .c-hero-split__lead {
+    margin-top: var(--space-4);
+    color: var(--tr-ink-soft);
+  }
+
+  .c-hero-split__stats {
+    display: flex;
+    gap: var(--space-8);
+    margin-top: var(--space-8);
+  }
+
+  .c-hero-split__stat-num {
+    display: block;
+    font-size: var(--text-3xl);
+    font-weight: var(--font-weight-extrabold);
+  }
+
+  .c-hero-split__stat-label {
+    font-size: var(--text-sm);
+    color: var(--tr-ink-soft);
+  }
+
+  .c-hero-split__art {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: var(--space-3);
+    aspect-ratio: 1;
+  }
+
+  .c-hero-split__shape {
+    animation: c-hero-split-morph 9s var(--ease-in-out) infinite alternate;
+  }
+
+  .c-hero-split__shape--a {
+    grid-row: span 2;
+    background: linear-gradient(160deg, var(--tr-accent), var(--tr-rose));
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  }
+
+  .c-hero-split__shape--b {
+    background: linear-gradient(200deg, var(--tr-sky), var(--tr-violet));
+    border-radius: 50%;
+    animation-delay: -3s;
+  }
+
+  .c-hero-split__shape--c {
+    background: radial-gradient(circle at 30% 30%, var(--tr-lime), var(--tr-night-3));
+    border-radius: var(--radius-3xl) var(--radius-3xl) 50% 50%;
+    animation-delay: -6s;
+  }
+
+  @keyframes c-hero-split-morph {
+    33% {
+      border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+    }
+
+    66% {
+      border-radius: 50% 50% 20% 80% / 25% 80% 20% 75%;
+    }
+
+    100% {
+      border-radius: var(--radius-3xl);
+    }
+  }
+
+  @media (max-width: 819px) {
+    .c-hero-split {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .c-hero-split__art {
+      max-width: 22rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .c-hero-split__shape {
+      animation: none;
+    }
+  }
+}

@@ -1,0 +1,96 @@
+/* 쌓이는 카드: 카드마다 화면 위쪽에 붙고(sticky), 다음 카드가 올라와 덮을수록 앞 카드는 작아지고 어두워진다.
+   stack-cards.js가 카드마다 --cover(0~1, 덮인 정도)를 쓴다. 붙는 높이는 카드 순서(--i)만큼 조금씩 아래. */
+@layer components {
+  .c-stack {
+    display: grid;
+    gap: var(--space-6);
+    padding-bottom: var(--space-12);
+  }
+
+  .c-stack__card {
+    --i: 0;
+    --cover: 0;
+    position: sticky;
+    top: calc(var(--tr-nav-h) + var(--space-8) + var(--i) * var(--space-4));
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: var(--space-8);
+    min-height: min(70vh, 30rem);
+    padding: clamp(var(--space-6), 4vw, var(--space-12));
+    overflow: hidden;
+    border-radius: var(--radius-4xl);
+    transform: scale(calc(1 - var(--cover) * 0.06));
+    transform-origin: center top;
+    will-change: transform;
+  }
+
+  /* 덮일수록 어두워지는 막: filter 대신 투명도만 바꾼다(가벼움) */
+  .c-stack__card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--tr-night);
+    opacity: calc(var(--cover) * 0.45);
+    pointer-events: none;
+  }
+
+  .c-stack__card:nth-child(1) {
+    color: var(--tr-ink);
+    background: var(--tr-lime);
+  }
+
+  .c-stack__card:nth-child(2) {
+    --i: 1;
+    color: var(--tr-white);
+    background: var(--tr-violet);
+  }
+
+  .c-stack__card:nth-child(3) {
+    --i: 2;
+    color: var(--tr-ink);
+    background: var(--tr-sky);
+  }
+
+  .c-stack__card:nth-child(4) {
+    --i: 3;
+    color: var(--tr-on-night);
+    background: var(--tr-night);
+  }
+
+  .c-stack__num {
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-bold);
+    opacity: 0.7;
+  }
+
+  .c-stack__title {
+    margin-top: var(--space-3);
+    font-size: clamp(var(--text-3xl), 1rem + 3vw, var(--text-5xl));
+    font-weight: var(--font-weight-extrabold);
+    letter-spacing: var(--tracking-tighter);
+  }
+
+  .c-stack__text {
+    max-width: 36ch;
+    margin-top: var(--space-4);
+    opacity: 0.8;
+  }
+
+  .c-stack__art {
+    align-self: stretch;
+    min-height: 12rem;
+    background: var(--tr-glass);
+    border-radius: var(--radius-3xl);
+  }
+
+  @media (max-width: 819px) {
+    .c-stack__card {
+      grid-template-columns: minmax(0, 1fr);
+      min-height: 60vh;
+    }
+
+    .c-stack__art {
+      min-height: 8rem;
+    }
+  }
+}

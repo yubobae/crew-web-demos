@@ -17,6 +17,7 @@ export function init(root) {
   const far = tiles.map(() => false);
   const apply = () => {
     frame = 0;
+    if (!rects) measure(); // 스크롤로 비운 뒤라면 다시 잰다
     tiles.forEach((t, i) => {
       const r = rects[i];
       const dx = Math.max(r.left - x, 0, x - r.right);

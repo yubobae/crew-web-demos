@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>콘텐츠 섹션 | 보람찬크루 요즘 UI</title>
+  <meta name="description" content="쌓이는 카드, 스크롤 스토리텔링, 따라오는 미리 보기 목록, 펼쳐지는 갤러리, 후기 벽, FAQ 아코디언 예시입니다.">
+  <meta name="theme-color" content="#f8f7f4">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+  <link rel="stylesheet" href="assets/css/main.css">
+  <script type="module" src="assets/js/main.js"></script>
+</head>
+<body>
+  <a class="u-visually-hidden" href="#main">본문 바로가기</a>
+
+  <header class="c-site-nav" data-module="site-nav">
+    <div class="c-site-nav__bar">
+      <a class="c-site-nav__logo" href="https://yubobae.github.io/crew-web-demos/"><span class="c-site-nav__mark" aria-hidden="true"></span>보람찬크루 데모</a>
+      <nav class="c-site-nav__links" aria-label="요즘 UI 데모 페이지" data-module="glider" data-glide="hover">
+        <span class="c-site-nav__glider js-glider" aria-hidden="true"></span>
+        <a class="c-site-nav__link js-glide-item" href="index.html">내비게이션</a>
+        <a class="c-site-nav__link js-glide-item" href="cta.html">CTA</a>
+        <a class="c-site-nav__link js-glide-item" href="bento.html">벤토</a>
+        <a class="c-site-nav__link js-glide-item" href="footer.html">푸터</a>
+        <a class="c-site-nav__link js-glide-item" href="motion.html">마이크로</a>
+        <a class="c-site-nav__link js-glide-item" href="hero.html">히어로</a>
+        <a class="c-site-nav__link js-glide-item" href="sections.html" aria-current="page">섹션</a>
+        <a class="c-site-nav__link js-glide-item" href="forms.html">폼</a>
+      </nav>
+      <button class="c-site-nav__menu" type="button" popovertarget="site-menu">메뉴 <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
+    </div>
+    <div class="c-site-nav__panel" id="site-menu" popover>
+      <div class="c-site-nav__group c-site-nav__group--pages">
+        <p class="c-site-nav__group-title">요즘 UI</p>
+        <a class="c-site-nav__item" href="index.html">내비게이션 <span class="c-site-nav__item-desc">알약 헤더·메가 메뉴·전체 메뉴</span></a>
+        <a class="c-site-nav__item" href="cta.html">CTA <span class="c-site-nav__item-desc">행동 유도 구역 다섯 가지</span></a>
+        <a class="c-site-nav__item" href="bento.html">벤토 <span class="c-site-nav__item-desc">어두운 벤토 그리드</span></a>
+        <a class="c-site-nav__item" href="footer.html">푸터 <span class="c-site-nav__item-desc">큰 글자·카드·커튼 푸터</span></a>
+        <a class="c-site-nav__item" href="motion.html">마이크로 <span class="c-site-nav__item-desc">작은 움직임 열 가지</span></a>
+        <a class="c-site-nav__item" href="hero.html">히어로 <span class="c-site-nav__item-desc">첫 화면 다섯 가지</span></a>
+        <a class="c-site-nav__item" href="sections.html" aria-current="page">섹션 <span class="c-site-nav__item-desc">쌓이는 카드·스토리·FAQ</span></a>
+        <a class="c-site-nav__item" href="forms.html">폼 <span class="c-site-nav__item-desc">입력 여섯 가지</span></a>
+      </div>
+      <div class="c-site-nav__group">
+        <p class="c-site-nav__group-title">다른 데모</p>
+        <a class="c-site-nav__item" href="https://yubobae.github.io/crew-web-demos/">데모 목록 <span class="c-site-nav__item-desc">처음으로</span></a>
+        <a class="c-site-nav__item" href="https://yubobae.github.io/crew-web-demos/ui-kit/">UI 키트 <span class="c-site-nav__item-desc">컴포넌트 12종</span></a>
+        <a class="c-site-nav__item" href="https://yubobae.github.io/crew-web-demos/effects/">인터랙션 효과 <span class="c-site-nav__item-desc">풀페이지·카운터</span></a>
+        <a class="c-site-nav__item" href="https://yubobae.github.io/crew-web-demos/scroll/">스크롤 <span class="c-site-nav__item-desc">GNB·패럴랙스</span></a>
+        <a class="c-site-nav__item" href="https://yubobae.github.io/crew-web-demos/museum/">디지털 역사관 <span class="c-site-nav__item-desc">풀페이지 사이트</span></a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="c-page-intro">
+      <p class="c-page-intro__eyebrow"><span class="c-page-intro__badge">07</span>요즘 UI · 콘텐츠 섹션</p>
+      <h1 class="c-page-intro__title">
+        <span class="c-page-intro__line"><span class="c-page-intro__line-inner">끝까지 읽히는</span></span>
+        <span class="c-page-intro__line"><span class="c-page-intro__line-inner"><span class="c-page-intro__accent">섹션</span> 여섯 가지</span></span>
+      </h1>
+      <p class="c-page-intro__lead">첫 화면 다음부터가 진짜 이야기예요. 스크롤할 맛이 나게 내용을 보여 주는 요즘 섹션 패턴을 모았습니다.</p>
+      <nav class="c-page-intro__chips" aria-label="이 페이지 예시">
+        <a class="c-page-intro__chip" href="#sec-stack">쌓이는 카드</a>
+        <a class="c-page-intro__chip" href="#sec-story">스크롤 스토리텔링</a>
+        <a class="c-page-intro__chip" href="#sec-list">따라오는 미리 보기</a>
+        <a class="c-page-intro__chip" href="#sec-expand">펼쳐지는 갤러리</a>
+        <a class="c-page-intro__chip" href="#sec-wall">후기 벽</a>
+        <a class="c-page-intro__chip" href="#sec-faq">FAQ</a>
+      </nav>
+    </div>
+
+    <section class="l-section" id="sec-stack" aria-labelledby="sec-stack-title">
+      <div class="l-section__head">
+        <span class="l-section__num">01</span>
+        <h2 class="l-section__title" id="sec-stack-title">쌓이는 카드</h2>
+        <p class="l-section__desc">카드가 위에 붙은 채로 다음 카드가 올라와 덮습니다. 덮일수록 앞 카드는 작아지고 어두워져서 종이를 한 장씩 쌓는 느낌이에요.</p>
+      </div>
+      <div class="c-stack" data-effect="stack-cards">
+        <article class="c-stack__card js-stack-card"><div><p class="c-stack__num">01 / 04</p><h3 class="c-stack__title">모으기</h3><p class="c-stack__text">메일·메신저·문서에 흩어진 할 일을 한 판으로 가져와요.</p></div><span class="c-stack__art" aria-hidden="true"></span></article>
+        <article class="c-stack__card js-stack-card"><div><p class="c-stack__num">02 / 04</p><h3 class="c-stack__title">나누기</h3><p class="c-stack__text">큰 일을 작은 카드로 쪼개고 사람에게 맡겨요.</p></div><span class="c-stack__art" aria-hidden="true"></span></article>
+        <article class="c-stack__card js-stack-card"><div><p class="c-stack__num">03 / 04</p><h3 class="c-stack__title">흘려보내기</h3><p class="c-stack__text">끝난 카드는 다음 칸으로, 막힌 카드는 빨간 표시로.</p></div><span class="c-stack__art" aria-hidden="true"></span></article>
+        <article class="c-stack__card js-stack-card"><div><p class="c-stack__num">04 / 04</p><h3 class="c-stack__title">돌아보기</h3><p class="c-stack__text">한 주가 끝나면 보고서가 알아서 정리돼요.</p></div><span class="c-stack__art" aria-hidden="true"></span></article>
+      </div>
+    </section>
+
+    <section class="l-section" id="sec-story" aria-labelledby="sec-story-title">
+      <div class="l-section__head">
+        <span class="l-section__num">02</span>
+        <h2 class="l-section__title" id="sec-story-title">스크롤 스토리텔링</h2>
+        <p class="l-section__desc">왼쪽 글을 읽어 내려가면 오른쪽에 붙어 있는 화면이 그 단계의 모습으로 바뀝니다. 휴대폰에서는 화면이 위에 붙고 글이 그 아래로 지나가요.</p>
+      </div>
+      <div class="c-story" data-module="story-steps">
+        <div class="c-story__steps">
+          <div class="c-story__step js-story-step"><span class="c-story__num">단계 1</span><h3 class="c-story__title">아침, 오늘 할 일</h3><p class="c-story__text">출근하면 어제 남긴 일과 오늘 마감이 한 화면에 떠 있어요.</p></div>
+          <div class="c-story__step js-story-step"><span class="c-story__num">단계 2</span><h3 class="c-story__title">점심 전, 함께 편집</h3><p class="c-story__text">같은 문서를 여럿이 고쳐도 누가 무엇을 바꿨는지 바로 보여요.</p></div>
+          <div class="c-story__step js-story-step"><span class="c-story__num">단계 3</span><h3 class="c-story__title">오후, 자동으로 넘기기</h3><p class="c-story__text">검토가 끝나면 규칙대로 다음 사람에게 알아서 넘어가요.</p></div>
+          <div class="c-story__step js-story-step"><span class="c-story__num">단계 4</span><h3 class="c-story__title">저녁, 한 줄 보고</h3><p class="c-story__text">오늘 한 일이 한 줄 요약으로 팀에 공유돼요.</p></div>
+        </div>
+        <div class="c-story__stage" aria-hidden="true">
+          <div class="c-story__screen">
+            <span class="c-story__view c-story__view--1 js-story-view">오늘 할 일 8</span>
+            <span class="c-story__view c-story__view--2 js-story-view">3명이 편집 중</span>
+            <span class="c-story__view c-story__view--3 js-story-view">검토 → 디자인 팀</span>
+            <span class="c-story__view c-story__view--4 js-story-view">오늘 완료 12건</span>
+            <span class="c-story__dots"><span class="c-story__dot js-story-dot"></span><span class="c-story__dot js-story-dot"></span><span class="c-story__dot js-story-dot"></span><span class="c-story__dot js-story-dot"></span></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="l-section" id="sec-list" aria-labelledby="sec-list-title">
+      <div class="l-section__head">
+        <span class="l-section__num">03</span>
+        <h2 class="l-section__title" id="sec-list-title">따라오는 미리 보기 목록</h2>
+        <p class="l-section__desc">작업 목록 줄에 마우스를 올리면 그 작업의 그림 카드가 커서를 살짝 늦게 따라옵니다. 휴대폰에서는 깔끔한 목록으로 보여요(그림은 자리 표시).</p>
+      </div>
+      <div class="c-hover-list" data-effect="follow-preview">
+        <a class="c-hover-list__row js-follow-row" data-preview="0" href="#sec-list"><span class="c-hover-list__title">봄빛 브랜드</span><span class="c-hover-list__tag">브랜딩</span><span class="c-hover-list__year">2026</span></a>
+        <a class="c-hover-list__row js-follow-row" data-preview="1" href="#sec-list"><span class="c-hover-list__title">새벽 라디오 앱</span><span class="c-hover-list__tag">앱 디자인</span><span class="c-hover-list__year">2025</span></a>
+        <a class="c-hover-list__row js-follow-row" data-preview="2" href="#sec-list"><span class="c-hover-list__title">초록 정원 전시</span><span class="c-hover-list__tag">공간·웹</span><span class="c-hover-list__year">2025</span></a>
+        <a class="c-hover-list__row js-follow-row" data-preview="3" href="#sec-list"><span class="c-hover-list__title">회색 도시 책</span><span class="c-hover-list__tag">편집</span><span class="c-hover-list__year">2024</span></a>
+        <div class="c-hover-list__preview js-follow" aria-hidden="true">
+          <span class="c-hover-list__img c-hover-list__img--1 js-follow-img is-active"></span>
+          <span class="c-hover-list__img c-hover-list__img--2 js-follow-img"></span>
+          <span class="c-hover-list__img c-hover-list__img--3 js-follow-img"></span>
+          <span class="c-hover-list__img c-hover-list__img--4 js-follow-img"></span>
+        </div>
+      </div>
+    </section>
+
+    <section class="l-section" id="sec-expand" aria-labelledby="sec-expand-title">
+      <div class="l-section__head">
+        <span class="l-section__num">04</span>
+        <h2 class="l-section__title" id="sec-expand-title">펼쳐지는 갤러리</h2>
+        <p class="l-section__desc">판 다섯 장 중 올리거나 Tab으로 고른 판만 넓게 펼쳐지며 설명이 나옵니다. 휴대폰에서는 세로로 쌓이고, 누른 판이 길어져요. JS 없이 CSS만.</p>
+      </div>
+      <div class="c-expand">
+        <a class="c-expand__panel is-default" href="#sec-expand"><span class="c-expand__label">01</span><span class="c-expand__caption"><span class="c-expand__title">봄</span><span class="c-expand__text">새싹 같은 주황, 시작하는 브랜드에게</span></span></a>
+        <a class="c-expand__panel" href="#sec-expand"><span class="c-expand__label">02</span><span class="c-expand__caption"><span class="c-expand__title">밤</span><span class="c-expand__text">깊은 보라, 몰입하는 앱에게</span></span></a>
+        <a class="c-expand__panel" href="#sec-expand"><span class="c-expand__label">03</span><span class="c-expand__caption"><span class="c-expand__title">숲</span><span class="c-expand__text">연두와 그늘, 쉬어 가는 공간에게</span></span></a>
+        <a class="c-expand__panel" href="#sec-expand"><span class="c-expand__label">04</span><span class="c-expand__caption"><span class="c-expand__title">하늘</span><span class="c-expand__text">맑은 파랑, 믿음이 필요한 서비스에게</span></span></a>
+        <a class="c-expand__panel" href="#sec-expand"><span class="c-expand__label">05</span><span class="c-expand__caption"><span class="c-expand__title">노을</span><span class="c-expand__text">분홍빛, 따뜻한 커뮤니티에게</span></span></a>
+      </div>
+    </section>
+
+    <section class="l-section" id="sec-wall" aria-labelledby="sec-wall-title">
+      <div class="l-section__head">
+        <span class="l-section__num">05</span>
+        <h2 class="l-section__title" id="sec-wall-title">후기 벽</h2>
+        <p class="l-section__desc">후기 카드 두 줄이 서로 반대로 흐릅니다. 읽고 싶은 줄에 마우스를 올리면 멈춰요. 동작 줄이기를 켜면 흐르지 않고 쌓여 보입니다.</p>
+      </div>
+      <div class="c-wall">
+        <div class="c-wall__row">
+          <figure class="c-wall__card"><p class="c-wall__stars" aria-label="별 다섯 개">★★★★★</p><blockquote class="c-wall__quote">회의록 정리하던 시간이 통째로 사라졌어요.</blockquote><figcaption class="c-wall__who"><span class="c-wall__face" aria-hidden="true"></span><span><span class="c-wall__name">김하늘</span><br><span class="c-wall__role">디자인 스튜디오 대표</span></span></figcaption></figure>
+          <figure class="c-wall__card"><p class="c-wall__stars" aria-label="별 다섯 개">★★★★★</p><blockquote class="c-wall__quote">새로 온 팀원이 첫날부터 무슨 일을 해야 할지 알더라고요.</blockquote><figcaption class="c-wall__who"><span class="c-wall__face" aria-hidden="true"></span><span><span class="c-wall__name">박도윤</span><br><span class="c-wall__role">개발 팀장</span></span></figcaption></figure>
+          <figure class="c-wall__card"><p class="c-wall__stars" aria-label="별 네 개">★★★★☆</p><blockquote class="c-wall__quote">자동화 규칙 하나로 하루 30분을 아꼈어요.</blockquote><figcaption class="c-wall__who"><span class="c-wall__face" aria-hidden="true"></span><span><span class="c-wall__name">이서윤</span><br><span class="c-wall__role">마케터</span></span></figcaption></figure>
+          <figure class="c-wall__card"><p class="c-wall__stars" aria-label="별 다섯 개">★★★★★</p><blockquote class="c-wall__quote">고객사와 같은 보드를 보니까 메일이 반으로 줄었어요.</blockquote><figcaption class="c-wall__who"><span class="c-wall__face" aria-hidden="true"></span><span><span class="c-wall__name">최민준</span><br><span class="c-wall__role">에이전시 PM</span></span></figcaption></figure>
+          <figure class="c-wall__card" aria-hidden="true"><p class="c-wall__stars">★★★★★</p><blockquote class="c-wall__quote">회의록 정리하던 시간이 통째로 사라졌어요.</blockquote><figcaption class="c-wall__who"><span class="c-wall__face"></span><span><span class="c-wall__name">김하늘</span><br><span class="c-wall__role">디자인 스튜디오 대표</span></span></figcaption></figure>
+          <figure class="c-wall__card" aria-hidden="true"><p class="c-wall__stars">★★★★★</p><blockquote class="c-wall__quote">새로 온 팀원이 첫날부터 무슨 일을 해야 할지 알더라고요.</blockquote><figcaption class="c-wall__who"><span class="c-wall__face"></span><span><span class="c-wall__name">박도윤</span><br><span class="c-wall__role">개발 팀장</span></span></figcaption></figure>
+          <figure class="c-wall__card" aria-hidden="true"><p class="c-wall__stars">★★★★☆</p><blockquote class="c-wall__quote">자동화 규칙 하나로 하루 30분을 아꼈어요.</blockquote><figcaption class="c-wall__who"><span class="c-wall__face"></span><span><span class="c-wall__name">이서윤</span><br><span class="c-wall__role">마케터</span></span></figcaption></figure>
+          <figure class="c-wall__card" aria-hidden="true"><p class="c-wall__stars">★★★★★</p><blockquote class="c-wall__quote">고객사와 같은 보드를 보니까 메일이 반으로 줄었어요.</blockquote><figcaption class="c-wall__who"><span class="c-wall__face"></span><span><span class="c-wall__name">최민준</span><br><span class="c-wall__role">에이전시 PM</span></span></figcaption></figure>
+        </div>
+        <div class="c-wall__row c-wall__row--back">
+          <figure class="c-wall__card"><p class="c-wall__stars" aria-label="별 다섯 개">★★★★★</p><blockquote class="c-wall__quote">학생들 과제 확인이 한눈에 돼서 너무 편해요.</blockquote><figcaption class="c-wall__who"><span class="c-wall__face" aria-hidden="true"></span><span><span class="c-wall__name">정예린</span><br><span class="c-wall__role">대학 강사</span></span></figcaption></figure>
+          <figure class="c-wall__card"><p class="c-wall__stars" aria-label="별 다섯 개">★★★★★</p><blockquote class="c-wall__quote">보고서 버튼 하나로 월말이 조용해졌어요.</blockquote><figcaption class="c-wall__who"><span class="c-wall__face" aria-hidden="true"></span><span><span class="c-wall__name">한지호</span><br><span class="c-wall__role">운영 매니저</span></span></figcaption></figure>
+          <figure class="c-wall__card"><p class="c-wall__stars" aria-label="별 다섯 개">★★★★★</p><blockquote class="c-wall__quote">휴대폰에서도 똑같이 쓸 수 있어서 출장 중에도 문제없어요.</blockquote><figcaption class="c-wall__who"><span class="c-wall__face" aria-hidden="true"></span><span><span class="c-wall__name">오수아</span><br><span class="c-wall__role">영업 팀</span></span></figcaption></figure>
+          <figure class="c-wall__card" aria-hidden="true"><p class="c-wall__stars">★★★★★</p><blockquote class="c-wall__quote">학생들 과제 확인이 한눈에 돼서 너무 편해요.</blockquote><figcaption class="c-wall__who"><span class="c-wall__face"></span><span><span class="c-wall__name">정예린</span><br><span class="c-wall__role">대학 강사</span></span></figcaption></figure>
+          <figure class="c-wall__card" aria-hidden="true"><p class="c-wall__stars">★★★★★</p><blockquote class="c-wall__quote">보고서 버튼 하나로 월말이 조용해졌어요.</blockquote><figcaption class="c-wall__who"><span class="c-wall__face"></span><span><span class="c-wall__name">한지호</span><br><span class="c-wall__role">운영 매니저</span></span></figcaption></figure>
+          <figure class="c-wall__card" aria-hidden="true"><p class="c-wall__stars">★★★★★</p><blockquote class="c-wall__quote">휴대폰에서도 똑같이 쓸 수 있어서 출장 중에도 문제없어요.</blockquote><figcaption class="c-wall__who"><span class="c-wall__face"></span><span><span class="c-wall__name">오수아</span><br><span class="c-wall__role">영업 팀</span></span></figcaption></figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="l-section" id="sec-faq" aria-labelledby="sec-faq-title">
+      <div class="l-section__head">
+        <span class="l-section__num">06</span>
+        <h2 class="l-section__title" id="sec-faq-title">FAQ 아코디언</h2>
+        <p class="l-section__desc">하나를 열면 다른 하나는 닫힙니다(details name, JS 없음). 높이가 부드럽게 바뀌는 건 최신 크롬·엣지에서, 다른 브라우저는 바로 열려요.</p>
+      </div>
+      <div class="c-faq">
+        <details class="c-faq__item" name="faq" open><summary class="c-faq__q">무료로 얼마나 쓸 수 있나요?<span class="c-faq__icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></span></summary><p class="c-faq__a">보드 3개와 문서는 기간 제한 없이 무료예요. 팀 기능이 필요할 때만 바꾸면 됩니다.</p></details>
+        <details class="c-faq__item" name="faq"><summary class="c-faq__q">다른 도구에서 옮겨 올 수 있나요?<span class="c-faq__icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></span></summary><p class="c-faq__a">자주 쓰는 도구의 내보내기 파일을 그대로 올리면 보드와 카드로 바뀌어요.</p></details>
+        <details class="c-faq__item" name="faq"><summary class="c-faq__q">휴대폰에서도 되나요?<span class="c-faq__icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></span></summary><p class="c-faq__a">네. 같은 화면이 휴대폰 폭에 맞춰 바뀌고, 알림도 받을 수 있어요.</p></details>
+        <details class="c-faq__item" name="faq"><summary class="c-faq__q">자료는 안전한가요?<span class="c-faq__icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></span></summary><p class="c-faq__a">모든 자료는 암호화해 보관하고, 누가 언제 무엇을 봤는지 기록이 남아요.</p></details>
+      </div>
+    </section>
+  </main>
+
+  <footer class="c-page-outro">
+    <p class="c-page-outro__text">다음 예시</p>
+    <a class="c-page-outro__next" href="forms.html">폼 — 입력 <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+  </footer>
+</body>
+</html>

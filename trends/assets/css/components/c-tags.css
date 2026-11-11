@@ -1,0 +1,134 @@
+/* 태그 입력: 글자를 쓰고 Enter(또는 쉼표)를 누르면 이름표가 튀어나오며 붙는다. 빈 칸에서 지우기는 마지막 이름표 삭제,
+   이름표의 ×로도 삭제. 아래 추천 이름표를 누르면 추가(tag-input.js). */
+@layer components {
+  .c-tags {
+    display: grid;
+    gap: var(--space-3);
+    width: 100%;
+  }
+
+  .c-tags__box {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-1-5);
+    min-height: var(--space-12);
+    padding: var(--space-2);
+    background: var(--tr-white);
+    border: 1px solid var(--tr-line);
+    border-radius: var(--radius-xl);
+    cursor: text;
+    transition:
+      border-color var(--tr-dur-fast) var(--tr-ease),
+      box-shadow var(--tr-dur-fast) var(--tr-ease);
+  }
+
+  .c-tags__box:focus-within {
+    border-color: var(--tr-accent);
+    box-shadow: 0 0 0 4px var(--tr-accent-soft);
+  }
+
+  .c-tags__chip {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    padding: var(--space-1) var(--space-1) var(--space-1) var(--space-3);
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--tr-accent);
+    background: var(--tr-accent-soft);
+    border-radius: var(--radius-full);
+    animation: c-tags-in 350ms var(--tr-spring);
+  }
+
+  .c-tags__chip.is-leaving {
+    animation: c-tags-out 200ms var(--tr-ease) forwards;
+  }
+
+  .c-tags__remove {
+    display: grid;
+    place-items: center;
+    width: 1.375rem;
+    aspect-ratio: 1;
+    color: inherit;
+    border-radius: var(--radius-full);
+  }
+
+  .c-tags__remove svg {
+    width: 0.75rem;
+    height: 0.75rem;
+  }
+
+  .c-tags__input {
+    flex: 1;
+    min-width: 8rem;
+    padding: var(--space-1) var(--space-2);
+    background: none;
+    border: 0;
+    outline: 0;
+  }
+
+  .c-tags__suggest {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-1-5);
+  }
+
+  .c-tags__option {
+    padding: var(--space-1) var(--space-3);
+    font-size: var(--text-sm);
+    color: var(--tr-ink-soft);
+    border: 1px dashed var(--tr-paper-3);
+    border-radius: var(--radius-full);
+    transition:
+      color var(--tr-dur-fast) var(--tr-ease),
+      border-color var(--tr-dur-fast) var(--tr-ease);
+  }
+
+  .c-tags__option:disabled {
+    opacity: 0.35;
+    cursor: default;
+  }
+
+  .c-tags__count {
+    font-size: var(--text-xs);
+    color: var(--tr-ink-soft);
+  }
+
+  @keyframes c-tags-in {
+    from {
+      opacity: 0;
+      transform: scale(0.5);
+    }
+  }
+
+  @keyframes c-tags-out {
+    to {
+      opacity: 0;
+      transform: scale(0.5);
+    }
+  }
+
+  @media (hover: hover) {
+    .c-tags__remove:hover {
+      background: var(--tr-accent-soft);
+    }
+
+    .c-tags__option:not(:disabled):hover {
+      color: var(--tr-accent);
+      border-color: var(--tr-accent);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .c-tags__box,
+    .c-tags__option {
+      transition: none;
+    }
+
+    .c-tags__chip,
+    .c-tags__chip.is-leaving {
+      animation: none;
+    }
+  }
+}

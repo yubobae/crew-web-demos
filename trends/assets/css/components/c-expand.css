@@ -1,0 +1,92 @@
+/* 펼쳐지는 갤러리: 판 다섯 장이 나란히 있다가 올리거나(초점) 고른 판만 넓게 펼쳐지며 설명이 나온다.
+   휴대폰에서는 세로로 쌓이고 고른 판만 길어진다. JS 없이 :hover / :focus-within. */
+@layer components {
+  .c-expand {
+    display: flex;
+    gap: var(--space-2);
+    height: 28rem;
+  }
+
+  .c-expand__panel {
+    position: relative;
+    display: flex;
+    flex: 1;
+    align-items: flex-end;
+    min-width: 0;
+    padding: var(--space-5);
+    overflow: hidden;
+    color: var(--tr-white);
+    text-decoration: none;
+    border-radius: var(--radius-3xl);
+    transition: flex-grow 700ms var(--tr-ease);
+  }
+
+  .c-expand__panel:nth-child(1) { background: radial-gradient(circle at 30% 20%, var(--tr-accent), var(--tr-night-2)); }
+  .c-expand__panel:nth-child(2) { background: radial-gradient(circle at 70% 30%, var(--tr-violet), var(--tr-night-2)); }
+  .c-expand__panel:nth-child(3) { background: radial-gradient(circle at 40% 60%, var(--tr-lime), var(--tr-night-2)); }
+  .c-expand__panel:nth-child(4) { background: radial-gradient(circle at 60% 40%, var(--tr-sky), var(--tr-night-2)); }
+  .c-expand__panel:nth-child(5) { background: radial-gradient(circle at 50% 30%, var(--tr-rose), var(--tr-night-2)); }
+
+  /* --open(0/1): 펼친 판인지. 설명 글자도 이 값으로 나타난다 */
+  .c-expand__panel:hover,
+  .c-expand__panel:focus-visible,
+  .c-expand__panel.is-default {
+    --open: 1;
+    flex-grow: 5;
+  }
+
+  /* 다른 판에 올리면 기본으로 펼쳐 둔 판은 접는다 */
+  .c-expand:hover .c-expand__panel.is-default:not(:hover),
+  .c-expand:focus-within .c-expand__panel.is-default:not(:focus-visible) {
+    --open: 0;
+    flex-grow: 1;
+  }
+
+  .c-expand__label {
+    position: absolute;
+    top: var(--space-5);
+    left: var(--space-5);
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-bold);
+    writing-mode: vertical-rl;
+  }
+
+  .c-expand__caption {
+    display: grid;
+    gap: var(--space-1);
+    min-width: 16rem;
+    opacity: var(--open, 0);
+    transform: translateY(calc((1 - var(--open, 0)) * var(--space-4)));
+    transition:
+      opacity 300ms 150ms var(--tr-ease),
+      transform 500ms 150ms var(--tr-ease);
+  }
+
+  .c-expand__title {
+    font-size: var(--text-2xl);
+    font-weight: var(--font-weight-extrabold);
+  }
+
+  .c-expand__text {
+    font-size: var(--text-sm);
+    opacity: 0.85;
+  }
+
+  @media (max-width: 819px) {
+    .c-expand {
+      flex-direction: column;
+      height: 36rem;
+    }
+
+    .c-expand__label {
+      writing-mode: horizontal-tb;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .c-expand__panel,
+    .c-expand__caption {
+      transition: none;
+    }
+  }
+}

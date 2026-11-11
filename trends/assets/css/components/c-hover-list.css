@@ -1,0 +1,117 @@
+/* 따라오는 미리 보기 목록: 작업 목록 줄에 올리면 그 작업의 그림 카드가 커서를 살짝 늦게 따라온다.
+   follow-preview.js가 목록에 is-previewing, 카드에 transform을, 그림에 is-active를 준다.
+   마우스가 없는 기기에서는 카드 없이 줄 끝 화살표만. */
+@layer components {
+  .c-hover-list {
+    position: relative;
+    border-top: 1px solid var(--tr-line);
+  }
+
+  .c-hover-list__row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto auto;
+    align-items: center;
+    gap: var(--space-6);
+    padding-block: var(--space-6);
+    color: var(--tr-ink);
+    text-decoration: none;
+    border-bottom: 1px solid var(--tr-line);
+    transition:
+      color var(--tr-dur-fast) var(--tr-ease),
+      padding var(--tr-dur) var(--tr-ease);
+  }
+
+  .c-hover-list__title {
+    font-size: clamp(var(--text-2xl), 1rem + 2.4vw, var(--text-5xl));
+    font-weight: var(--font-weight-bold);
+    letter-spacing: var(--tracking-tighter);
+  }
+
+  .c-hover-list__tag,
+  .c-hover-list__year {
+    font-size: var(--text-sm);
+    color: var(--tr-ink-soft);
+  }
+
+  .c-hover-list__preview {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    width: 18rem;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    border-radius: var(--radius-2xl);
+    box-shadow: var(--tr-shadow-pop);
+    opacity: 0;
+    scale: 0.6;
+    pointer-events: none;
+    transition:
+      opacity var(--tr-dur-fast) var(--tr-ease),
+      scale var(--tr-dur) var(--tr-spring);
+    will-change: transform;
+  }
+
+  .c-hover-list.is-previewing .c-hover-list__preview {
+    opacity: 1;
+    scale: 1;
+  }
+
+  .c-hover-list__img {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity var(--tr-dur-fast) var(--tr-ease);
+  }
+
+  .c-hover-list__img.is-active {
+    opacity: 1;
+  }
+
+  .c-hover-list__img--1 {
+    background: radial-gradient(circle at 30% 30%, var(--tr-rose), var(--tr-accent));
+  }
+
+  .c-hover-list__img--2 {
+    background: linear-gradient(160deg, var(--tr-sky), var(--tr-violet));
+  }
+
+  .c-hover-list__img--3 {
+    background: radial-gradient(circle at 70% 30%, var(--tr-lime), var(--tr-night-3));
+  }
+
+  .c-hover-list__img--4 {
+    background: linear-gradient(200deg, var(--tr-paper-3), var(--tr-ink-soft));
+  }
+
+  @media (hover: hover) {
+    .c-hover-list:hover .c-hover-list__row {
+      color: var(--tr-ink-soft);
+    }
+
+    .c-hover-list .c-hover-list__row:hover {
+      padding-inline: var(--space-4);
+      color: var(--tr-ink);
+    }
+  }
+
+  @media (max-width: 819px) {
+    .c-hover-list__row {
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: var(--space-2) var(--space-4);
+    }
+
+    .c-hover-list__tag {
+      grid-column: 1;
+      grid-row: 2;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .c-hover-list__row,
+    .c-hover-list__preview,
+    .c-hover-list__img {
+      transition: none;
+    }
+  }
+}

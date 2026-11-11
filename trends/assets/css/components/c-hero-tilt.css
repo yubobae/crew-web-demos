@@ -1,0 +1,97 @@
+/* 스크롤에 펴지는 제품 화면: 처음엔 뒤로 누운 채 작게 있다가, 스크롤해 화면 가운데로 올수록 똑바로 서며 커진다.
+   scroll-progress.js가 root에 --sp(0~1)를 쓴다. 동작 줄이기면 처음부터 펴진 모습. */
+@layer components {
+  .c-hero-tilt {
+    --sp: 1;
+    display: grid;
+    justify-items: center;
+    gap: var(--space-6);
+    padding-block: var(--space-12) var(--space-24);
+    text-align: center;
+    perspective: 1200px;
+  }
+
+  .c-hero-tilt__title {
+    max-width: 18ch;
+    font-size: clamp(var(--text-3xl), 1rem + 3.5vw, var(--text-6xl));
+    font-weight: var(--font-weight-extrabold);
+    letter-spacing: var(--tracking-tighter);
+  }
+
+  .c-hero-tilt__lead {
+    max-width: 44ch;
+    color: var(--tr-ink-soft);
+  }
+
+  .c-hero-tilt__screen {
+    width: min(100%, 64rem);
+    margin-top: var(--space-6);
+    padding: var(--space-2);
+    background: var(--tr-ink);
+    border-radius: var(--radius-3xl);
+    box-shadow: var(--tr-shadow-pop);
+    transform: rotateX(calc((1 - var(--sp)) * 32deg)) scale(calc(0.86 + var(--sp) * 0.14));
+    transform-origin: center top;
+    will-change: transform;
+  }
+
+  .c-hero-tilt__ui {
+    display: grid;
+    grid-template-columns: 12rem 1fr;
+    gap: var(--space-2);
+    aspect-ratio: 16 / 9;
+    padding: var(--space-2);
+    background: var(--tr-paper);
+    border-radius: var(--radius-2xl);
+  }
+
+  .c-hero-tilt__side {
+    display: grid;
+    align-content: start;
+    gap: var(--space-2);
+    padding: var(--space-3);
+    background: var(--tr-white);
+    border-radius: var(--radius-xl);
+  }
+
+  .c-hero-tilt__row {
+    height: var(--space-3);
+    background: var(--tr-paper-2);
+    border-radius: var(--radius-full);
+  }
+
+  .c-hero-tilt__row--on {
+    background: var(--tr-accent-soft);
+  }
+
+  .c-hero-tilt__main {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-rows: auto 1fr;
+    gap: var(--space-2);
+  }
+
+  .c-hero-tilt__card {
+    min-height: 5rem;
+    background: var(--tr-white);
+    border-radius: var(--radius-xl);
+  }
+
+  .c-hero-tilt__card--big {
+    grid-column: 1 / -1;
+    background:
+      radial-gradient(circle at 80% 30%, var(--tr-accent-glow), transparent 55%),
+      radial-gradient(circle at 20% 80%, var(--tr-sky), transparent 55%),
+      var(--tr-white);
+  }
+
+  @media (max-width: 819px) {
+    .c-hero-tilt__ui {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .c-hero-tilt__side {
+      display: none;
+    }
+  }
+}

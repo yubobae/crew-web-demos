@@ -1,0 +1,99 @@
+/* 인증번호 칸: 한 칸에 한 숫자, 입력하면 다음 칸으로, 지우면 앞 칸으로, 붙여 넣으면 한 번에 채운다(otp.js).
+   다 채우면 맞으면 칸이 차례로 초록으로 튀고(is-ok), 틀리면 흔들린 뒤 비워진다(is-wrong). */
+@layer components {
+  .c-otp {
+    display: grid;
+    justify-items: center;
+    gap: var(--space-4);
+  }
+
+  .c-otp__boxes {
+    display: flex;
+    gap: var(--space-2);
+  }
+
+  .c-otp__box {
+    --i: 0;
+    width: clamp(2.5rem, 10vw, 3.25rem);
+    aspect-ratio: 4 / 5;
+    font-size: var(--text-2xl);
+    font-weight: var(--font-weight-bold);
+    text-align: center;
+    color: var(--tr-ink);
+    background: var(--tr-white);
+    border: 1.5px solid var(--tr-line);
+    border-radius: var(--radius-xl);
+    outline: 0;
+    caret-color: var(--tr-accent);
+    transition:
+      border-color var(--tr-dur-fast) var(--tr-ease),
+      box-shadow var(--tr-dur-fast) var(--tr-ease),
+      background-color var(--tr-dur) calc(var(--i) * 60ms) var(--tr-ease),
+      color var(--tr-dur) calc(var(--i) * 60ms) var(--tr-ease);
+  }
+
+  .c-otp__box:nth-child(2) { --i: 1; }
+  .c-otp__box:nth-child(3) { --i: 2; }
+  .c-otp__box:nth-child(4) { --i: 3; }
+  .c-otp__box:nth-child(5) { --i: 4; }
+  .c-otp__box:nth-child(6) { --i: 5; }
+
+  .c-otp__box:focus {
+    border-color: var(--tr-accent);
+    box-shadow: 0 0 0 4px var(--tr-accent-soft);
+  }
+
+  .c-otp__box:not(:placeholder-shown) {
+    border-color: var(--tr-ink-soft);
+  }
+
+  .c-otp.is-ok .c-otp__box {
+    color: var(--tr-white);
+    background: var(--tr-success);
+    border-color: var(--tr-success);
+    animation: c-otp-pop 400ms calc(var(--i) * 60ms) var(--tr-spring);
+  }
+
+  .c-otp.is-wrong .c-otp__boxes {
+    animation: c-otp-shake 400ms var(--tr-ease);
+  }
+
+  .c-otp.is-wrong .c-otp__box {
+    border-color: var(--tr-danger);
+  }
+
+  .c-otp__msg {
+    min-height: 1.5em;
+    font-size: var(--text-sm);
+    color: var(--tr-ink-soft);
+  }
+
+  @keyframes c-otp-pop {
+    50% {
+      transform: translateY(calc(var(--space-2) * -1)) scale(1.06);
+    }
+  }
+
+  @keyframes c-otp-shake {
+    20%,
+    60% {
+      transform: translateX(calc(var(--space-2) * -1));
+    }
+
+    40%,
+    80% {
+      transform: translateX(var(--space-2));
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .c-otp__box {
+      transition: none;
+    }
+
+    .c-otp.is-ok .c-otp__box,
+    .c-otp.is-wrong .c-otp__boxes {
+      animation: none;
+    }
+  }
+}

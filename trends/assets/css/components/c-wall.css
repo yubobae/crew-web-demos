@@ -1,0 +1,95 @@
+/* 후기 벽: 후기 카드 두 줄이 서로 반대로 흐르고, 마우스를 올리면 그 줄이 멈춘다. 양 끝은 흐리게 사라진다. */
+@layer components {
+  .c-wall {
+    display: grid;
+    gap: var(--space-4);
+    overflow: hidden;
+    mask-image: linear-gradient(90deg, transparent, var(--tr-white) 10%, var(--tr-white) 90%, transparent);
+  }
+
+  .c-wall__row {
+    display: flex;
+    gap: var(--space-4);
+    width: max-content;
+    animation: c-wall-slide 50s linear infinite;
+  }
+
+  .c-wall__row--back {
+    animation-direction: reverse;
+    animation-duration: 60s;
+  }
+
+  .c-wall__row:hover {
+    animation-play-state: paused;
+  }
+
+  .c-wall__card {
+    display: grid;
+    align-content: space-between;
+    gap: var(--space-5);
+    width: 20rem;
+    padding: var(--space-6);
+    background: var(--tr-white);
+    border: 1px solid var(--tr-line);
+    border-radius: var(--radius-3xl);
+  }
+
+  .c-wall__quote {
+    line-height: var(--leading-relaxed);
+  }
+
+  .c-wall__who {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    font-size: var(--text-sm);
+  }
+
+  .c-wall__face {
+    width: var(--space-10);
+    aspect-ratio: 1;
+    background: linear-gradient(135deg, var(--tr-accent), var(--tr-violet));
+    border-radius: var(--radius-full);
+  }
+
+  .c-wall__card:nth-child(3n+2) .c-wall__face {
+    background: linear-gradient(135deg, var(--tr-sky), var(--tr-lime));
+  }
+
+  .c-wall__card:nth-child(3n) .c-wall__face {
+    background: linear-gradient(135deg, var(--tr-rose), var(--tr-accent));
+  }
+
+  .c-wall__name {
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .c-wall__role {
+    color: var(--tr-ink-soft);
+  }
+
+  .c-wall__stars {
+    color: var(--tr-accent);
+    letter-spacing: var(--tracking-widest);
+  }
+
+  @keyframes c-wall-slide {
+    to {
+      transform: translateX(calc(-50% - var(--space-2)));
+    }
+  }
+
+  @media (max-width: 599px) {
+    .c-wall__card {
+      width: 16rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .c-wall__row {
+      flex-wrap: wrap;
+      width: auto;
+      animation: none;
+    }
+  }
+}

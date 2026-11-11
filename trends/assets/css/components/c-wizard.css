@@ -1,0 +1,207 @@
+/* 단계별 폼: 위 단계 점들이 선으로 이어져 차오르고, 판은 옆으로 밀려 바뀐다. 마지막엔 체크가 그려진다.
+   step-form.js가 root에 --step(0부터)과 --progress(0~1), 단계 점에 is-done/is-current를 쓴다. */
+@layer components {
+  .c-wizard {
+    --step: 0;
+    --progress: 0;
+    display: grid;
+    gap: var(--space-6);
+    width: 100%;
+  }
+
+  .c-wizard__steps {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  /* 점들을 잇는 선: 회색 바탕 위로 강조색이 --progress만큼 차오른다 */
+  .c-wizard__steps::before,
+  .c-wizard__steps::after {
+    content: "";
+    position: absolute;
+    top: calc(var(--space-8) / 2 - 1px);
+    right: var(--space-4);
+    left: var(--space-4);
+    height: 2px;
+    background: var(--tr-paper-3);
+  }
+
+  .c-wizard__steps::after {
+    background: var(--tr-accent);
+    transform: scaleX(var(--progress));
+    transform-origin: left;
+    transition: transform 600ms var(--tr-ease);
+  }
+
+  .c-wizard__dot {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    justify-items: center;
+    gap: var(--space-1);
+    font-size: var(--text-xs);
+    color: var(--tr-ink-soft);
+  }
+
+  .c-wizard__num {
+    display: grid;
+    place-items: center;
+    width: var(--space-8);
+    aspect-ratio: 1;
+    font-weight: var(--font-weight-bold);
+    background: var(--tr-white);
+    border: 2px solid var(--tr-paper-3);
+    border-radius: var(--radius-full);
+    transition:
+      color var(--tr-dur) var(--tr-ease),
+      background-color var(--tr-dur) var(--tr-ease),
+      border-color var(--tr-dur) var(--tr-ease),
+      transform var(--tr-dur) var(--tr-spring);
+  }
+
+  .c-wizard__dot.is-current {
+    color: var(--tr-ink);
+  }
+
+  .c-wizard__dot.is-current .c-wizard__num {
+    color: var(--tr-accent);
+    border-color: var(--tr-accent);
+    transform: scale(1.12);
+  }
+
+  .c-wizard__dot.is-done .c-wizard__num {
+    color: var(--tr-white);
+    background: var(--tr-accent);
+    border-color: var(--tr-accent);
+  }
+
+  .c-wizard__viewport {
+    overflow: hidden;
+  }
+
+  .c-wizard__track {
+    display: flex;
+    transform: translateX(calc(var(--step) * -100%));
+    transition: transform 600ms var(--tr-ease);
+  }
+
+  .c-wizard__panel {
+    display: grid;
+    flex: 0 0 100%;
+    align-content: start;
+    gap: var(--space-4);
+    min-width: 0;
+    padding: var(--space-1);
+  }
+
+  .c-wizard__panel--done {
+    justify-items: center;
+    padding-block: var(--space-6);
+    text-align: center;
+  }
+
+  .c-wizard__choice {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+
+  .c-wizard__radio {
+    position: relative;
+    padding: var(--space-2) var(--space-4);
+    font-size: var(--text-sm);
+    background: var(--tr-white);
+    border: 1px solid var(--tr-line);
+    border-radius: var(--radius-full);
+    cursor: pointer;
+    transition:
+      color var(--tr-dur-fast) var(--tr-ease),
+      background-color var(--tr-dur-fast) var(--tr-ease),
+      border-color var(--tr-dur-fast) var(--tr-ease);
+  }
+
+  .c-wizard__radio:has(:checked) {
+    color: var(--tr-white);
+    background: var(--tr-ink);
+    border-color: var(--tr-ink);
+  }
+
+  .c-wizard__radio:has(:focus-visible) {
+    outline: 2px solid var(--tr-accent);
+    outline-offset: 2px;
+  }
+
+  .c-wizard__nav {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-3);
+  }
+
+  .c-wizard__btn {
+    padding: var(--space-3) var(--space-5);
+    font-weight: var(--font-weight-semibold);
+    border-radius: var(--radius-full);
+    transition:
+      opacity var(--tr-dur-fast) var(--tr-ease),
+      transform var(--tr-dur-fast) var(--tr-spring);
+  }
+
+  .c-wizard__btn:active {
+    transform: scale(0.96);
+  }
+
+  .c-wizard__btn--prev {
+    color: var(--tr-ink-soft);
+    border: 1px solid var(--tr-line);
+  }
+
+  .c-wizard__btn--prev:disabled {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .c-wizard__btn--next {
+    margin-left: auto;
+    color: var(--tr-white);
+    background: var(--tr-ink);
+  }
+
+  .c-wizard__check {
+    width: var(--space-16);
+    height: var(--space-16);
+    color: var(--tr-success);
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    transition: stroke-dashoffset 700ms 400ms var(--tr-ease);
+  }
+
+  .c-wizard.is-complete .c-wizard__check {
+    stroke-dashoffset: 0;
+  }
+
+  .c-wizard.is-complete .c-wizard__nav {
+    visibility: hidden;
+  }
+
+  .c-wizard__done-title {
+    font-size: var(--text-xl);
+    font-weight: var(--font-weight-bold);
+  }
+
+  .c-wizard__done-text {
+    font-size: var(--text-sm);
+    color: var(--tr-ink-soft);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .c-wizard__steps::after,
+    .c-wizard__num,
+    .c-wizard__track,
+    .c-wizard__radio,
+    .c-wizard__btn,
+    .c-wizard__check {
+      transition: none;
+    }
+  }
+}

@@ -6,6 +6,21 @@
     gap: var(--space-3);
   }
 
+  /* 폼처럼 넓은 무대가 필요하면 두 칸 */
+  .c-micro--two {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .c-micro__stage--top {
+    place-items: start stretch;
+  }
+
+  .c-micro__form {
+    display: grid;
+    gap: var(--space-4);
+    width: 100%;
+  }
+
   .c-micro__card {
     display: flex;
     flex-direction: column;
@@ -64,6 +79,10 @@
   @media (max-width: 1023px) {
     .c-micro {
       grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .c-micro--two {
+      grid-template-columns: minmax(0, 1fr);
     }
   }
 
