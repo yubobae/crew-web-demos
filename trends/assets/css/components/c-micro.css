@@ -1,0 +1,79 @@
+/* 마이크로 인터랙션 카드: 위는 직접 만져 보는 무대, 아래는 이름과 설명 */
+@layer components {
+  .c-micro {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-3);
+  }
+
+  .c-micro__card {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background: var(--tr-white);
+    border: 1px solid var(--tr-line);
+    border-radius: var(--radius-3xl);
+  }
+
+  .c-micro__card--wide {
+    grid-column: span 2;
+  }
+
+  .c-micro__stage {
+    position: relative;
+    display: grid;
+    place-items: center;
+    min-height: 15rem;
+    padding: var(--space-6);
+    overflow: hidden;
+    background:
+      radial-gradient(circle, var(--tr-paper-3) 1px, transparent 1.5px) 0 0 / 14px 14px,
+      var(--tr-paper);
+  }
+
+  .c-micro__stage--night {
+    color: var(--tr-on-night);
+    background:
+      radial-gradient(circle, var(--tr-night-3) 1px, transparent 1.5px) 0 0 / 14px 14px,
+      var(--tr-night);
+  }
+
+  .c-micro__body {
+    display: grid;
+    gap: var(--space-1);
+    padding: var(--space-5) var(--space-6) var(--space-6);
+    border-top: 1px solid var(--tr-line);
+  }
+
+  .c-micro__num {
+    font-size: var(--text-xs);
+    font-weight: var(--font-weight-semibold);
+    color: var(--tr-accent);
+  }
+
+  .c-micro__title {
+    font-size: var(--text-lg);
+    font-weight: var(--font-weight-bold);
+  }
+
+  .c-micro__desc {
+    font-size: var(--text-sm);
+    color: var(--tr-ink-soft);
+  }
+
+  @media (max-width: 1023px) {
+    .c-micro {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 599px) {
+    .c-micro {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .c-micro__card--wide {
+      grid-column: auto;
+    }
+  }
+}

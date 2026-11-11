@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>마이크로 인터랙션 | 보람찬크루 요즘 UI</title>
+  <meta name="description" content="버튼 변신, 좋아요 터짐, 복사, 세그먼트, 기울기 카드, 숫자 굴리기, 토스트 묶음 등 작은 움직임 열 가지입니다.">
+  <meta name="theme-color" content="#f8f7f4">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+  <link rel="stylesheet" href="assets/css/main.css">
+  <script type="module" src="assets/js/main.js"></script>
+</head>
+<body>
+  <a class="u-visually-hidden" href="#main">본문 바로가기</a>
+
+  <header class="c-site-nav" data-module="site-nav">
+    <div class="c-site-nav__bar">
+      <a class="c-site-nav__logo" href="https://yubobae.github.io/crew-web-demos/"><span class="c-site-nav__mark" aria-hidden="true"></span>보람찬크루 데모</a>
+      <nav class="c-site-nav__links" aria-label="요즘 UI 데모 페이지" data-module="glider" data-glide="hover">
+        <span class="c-site-nav__glider js-glider" aria-hidden="true"></span>
+        <a class="c-site-nav__link js-glide-item" href="index.html">내비게이션</a>
+        <a class="c-site-nav__link js-glide-item" href="cta.html">CTA</a>
+        <a class="c-site-nav__link js-glide-item" href="bento.html">벤토</a>
+        <a class="c-site-nav__link js-glide-item" href="footer.html">푸터</a>
+        <a class="c-site-nav__link js-glide-item" href="motion.html" aria-current="page">마이크로</a>
+      </nav>
+      <button class="c-site-nav__menu" type="button" popovertarget="site-menu">메뉴 <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
+    </div>
+    <div class="c-site-nav__panel" id="site-menu" popover>
+      <div class="c-site-nav__group c-site-nav__group--pages">
+        <p class="c-site-nav__group-title">요즘 UI</p>
+        <a class="c-site-nav__item" href="index.html">내비게이션 <span class="c-site-nav__item-desc">알약 헤더·메가 메뉴·전체 메뉴</span></a>
+        <a class="c-site-nav__item" href="cta.html">CTA <span class="c-site-nav__item-desc">행동 유도 구역 다섯 가지</span></a>
+        <a class="c-site-nav__item" href="bento.html">벤토 <span class="c-site-nav__item-desc">어두운 벤토 그리드</span></a>
+        <a class="c-site-nav__item" href="footer.html">푸터 <span class="c-site-nav__item-desc">큰 글자·카드·커튼 푸터</span></a>
+        <a class="c-site-nav__item" href="motion.html" aria-current="page">마이크로 <span class="c-site-nav__item-desc">작은 움직임 열 가지</span></a>
+      </div>
+      <div class="c-site-nav__group">
+        <p class="c-site-nav__group-title">다른 데모</p>
+        <a class="c-site-nav__item" href="https://yubobae.github.io/crew-web-demos/">데모 목록 <span class="c-site-nav__item-desc">처음으로</span></a>
+        <a class="c-site-nav__item" href="https://yubobae.github.io/crew-web-demos/ui-kit/">UI 키트 <span class="c-site-nav__item-desc">컴포넌트 12종</span></a>
+        <a class="c-site-nav__item" href="https://yubobae.github.io/crew-web-demos/effects/">인터랙션 효과 <span class="c-site-nav__item-desc">풀페이지·카운터</span></a>
+        <a class="c-site-nav__item" href="https://yubobae.github.io/crew-web-demos/scroll/">스크롤 <span class="c-site-nav__item-desc">GNB·패럴랙스</span></a>
+        <a class="c-site-nav__item" href="https://yubobae.github.io/crew-web-demos/museum/">디지털 역사관 <span class="c-site-nav__item-desc">풀페이지 사이트</span></a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="c-page-intro">
+      <p class="c-page-intro__eyebrow"><span class="c-page-intro__badge">05</span>요즘 UI · 마이크로 인터랙션</p>
+      <h1 class="c-page-intro__title">
+        <span class="c-page-intro__line"><span class="c-page-intro__line-inner">작은 움직임이</span></span>
+        <span class="c-page-intro__line"><span class="c-page-intro__line-inner"><span class="c-page-intro__accent">비싸</span> 보이게 한다</span></span>
+      </h1>
+      <p class="c-page-intro__lead">누르고, 올리고, 끌어 보세요. 상태가 바뀌는 순간마다 짧고 탄력 있는 움직임을 넣으면 같은 화면도 훨씬 정성 들여 보입니다. 모두 transform·opacity 위주로 만들어 부드럽게 돌아가요.</p>
+    </div>
+
+    <section class="l-section" aria-labelledby="micro-title">
+      <div class="l-section__head">
+        <span class="l-section__num">01</span>
+        <h2 class="l-section__title" id="micro-title">직접 만져 보는 열 가지</h2>
+        <p class="l-section__desc">동작 줄이기(접근성 설정)를 켠 사람에게는 움직임을 빼고 결과만 바로 보여 줍니다.</p>
+      </div>
+
+      <div class="c-micro">
+        <!-- 1 -->
+        <article class="c-micro__card">
+          <div class="c-micro__stage">
+            <button class="c-morph-btn" type="button" data-module="morph-button">
+              <span class="c-morph-btn__face c-morph-btn__face--idle">저장하기</span>
+              <span class="c-morph-btn__face c-morph-btn__face--spin" aria-hidden="true"><span class="c-morph-btn__ring"></span></span>
+              <span class="c-morph-btn__face c-morph-btn__face--done" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg> 저장됨</span>
+              <span class="u-visually-hidden js-morph-live" aria-live="polite"></span>
+            </button>
+          </div>
+          <div class="c-micro__body"><span class="c-micro__num">01</span><h3 class="c-micro__title">변신 버튼</h3><p class="c-micro__desc">누르면 동그라미로 줄며 돌다가, 초록 "저장됨"으로 펴집니다.</p></div>
+        </article>
+
+        <!-- 2 -->
+        <article class="c-micro__card">
+          <div class="c-micro__stage">
+            <button class="c-like" type="button" aria-pressed="false" aria-label="좋아요" data-module="like-burst">
+              <span class="c-like__heart">
+                <span class="c-like__spark"></span><span class="c-like__spark"></span><span class="c-like__spark"></span><span class="c-like__spark"></span><span class="c-like__spark"></span><span class="c-like__spark"></span>
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-4.5-9.5-9A5.5 5.5 0 0 1 12 6a5.5 5.5 0 0 1 9.5 6c-2.5 4.5-9.5 9-9.5 9z"/></svg>
+              </span>
+              <span class="c-like__count js-like-count" data-count="128"><span class="c-like__num">128</span></span>
+            </button>
+          </div>
+          <div class="c-micro__body"><span class="c-micro__num">02</span><h3 class="c-micro__title">좋아요 터짐</h3><p class="c-micro__desc">하트가 움츠렸다 튀어 오르며 색이 차고, 작은 점이 사방으로 터져요. 숫자는 굴러 오릅니다.</p></div>
+        </article>
+
+        <!-- 3 -->
+        <article class="c-micro__card">
+          <div class="c-micro__stage">
+            <div class="c-copy" data-module="copy-button">
+              <span class="c-copy__prompt" aria-hidden="true">$</span>
+              <code class="js-copy-text">npm i onkyeol</code>
+              <button class="c-copy__btn js-copy-btn" type="button" aria-label="명령어 복사">
+                <span class="c-copy__icon c-copy__icon--copy"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg></span>
+                <span class="c-copy__icon c-copy__icon--done"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg></span>
+                <span class="c-copy__tip js-copy-tip" role="status">복사됨!</span>
+              </button>
+            </div>
+          </div>
+          <div class="c-micro__body"><span class="c-micro__num">03</span><h3 class="c-micro__title">복사 버튼</h3><p class="c-micro__desc">아이콘이 체크로 돌아 바뀌고 "복사됨" 말풍선이 튀어 오릅니다. 실제로 클립보드에 들어가요.</p></div>
+        </article>
+
+        <!-- 4 -->
+        <article class="c-micro__card">
+          <div class="c-micro__stage">
+            <div class="c-segment">
+              <div class="c-segment__control" role="group" aria-label="보기 방식" data-module="glider" data-glide="select">
+                <span class="c-segment__thumb js-glider" aria-hidden="true"></span>
+                <button class="c-segment__opt js-glide-item" type="button" aria-pressed="true" data-value="list"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h10"/></svg>목록</button>
+                <button class="c-segment__opt js-glide-item" type="button" aria-pressed="false" data-value="board"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>보드</button>
+                <button class="c-segment__opt js-glide-item" type="button" aria-pressed="false" data-value="chart"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M21 20H3"/></svg>차트</button>
+              </div>
+            </div>
+          </div>
+          <div class="c-micro__body"><span class="c-micro__num">04</span><h3 class="c-micro__title">세그먼트 컨트롤</h3><p class="c-micro__desc">흰 알약이 고른 칸으로 튕기듯 옮겨 갑니다. 칸마다 폭이 달라도 맞춰 늘고 줄어요.</p></div>
+        </article>
+
+        <!-- 5 -->
+        <article class="c-micro__card">
+          <div class="c-micro__stage c-tilt" data-effect="tilt">
+            <div class="c-tilt__card js-tilt-card" aria-hidden="true">
+              <span class="c-tilt__brand">온결 카드</span>
+              <span class="c-tilt__chip"></span>
+              <span class="c-tilt__no">0000 1234 5678 9012</span>
+            </div>
+          </div>
+          <div class="c-micro__body"><span class="c-micro__num">05</span><h3 class="c-micro__title">기울기 카드</h3><p class="c-micro__desc">마우스 쪽으로 카드가 3D로 기울고 반사광이 따라 움직여요. 놓으면 튕기듯 제자리.</p></div>
+        </article>
+
+        <!-- 6 -->
+        <article class="c-micro__card">
+          <div class="c-micro__stage">
+            <div class="c-stepper" role="group" aria-label="인원" data-module="stepper" data-min="1" data-max="12" data-value="2">
+              <button class="c-stepper__btn js-step" type="button" data-step="-1" aria-label="한 명 빼기"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/></svg></button>
+              <span class="c-stepper__value js-step-value" role="status" aria-live="polite"></span>
+              <button class="c-stepper__btn js-step" type="button" data-step="1" aria-label="한 명 더하기"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button>
+            </div>
+          </div>
+          <div class="c-micro__body"><span class="c-micro__num">06</span><h3 class="c-micro__title">숫자 스테퍼</h3><p class="c-micro__desc">더하면 아래에서 올라오고, 빼면 위에서 내려옵니다. 1~12 끝에 닿으면 버튼이 흐려져요.</p></div>
+        </article>
+
+        <!-- 7 -->
+        <article class="c-micro__card">
+          <div class="c-micro__stage">
+            <div class="c-toast-stack" data-module="toast-stack">
+              <button class="c-toast-stack__send js-toast-send" type="button">알림 보내기</button>
+              <div class="c-toast-stack__list js-toast-list" role="region" aria-label="알림" aria-live="polite" tabindex="0"></div>
+              <template class="js-toast-tpl">
+                <div class="c-toast-stack__toast">
+                  <span class="c-toast-stack__icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 8a6 6 0 1 1 12 0c0 7 3 9 3 9H3s3-2 3-9M10 21h4"/></svg></span>
+                  <span class="c-toast-stack__text"><span class="c-toast-stack__title js-toast-title"></span><span class="c-toast-stack__time js-toast-body"></span></span>
+                </div>
+              </template>
+            </div>
+          </div>
+          <div class="c-micro__body"><span class="c-micro__num">07</span><h3 class="c-micro__title">토스트 묶음</h3><p class="c-micro__desc">여러 번 눌러 보세요. 알림이 카드 더미처럼 쌓이고, 마우스를 올리면 목록으로 펼쳐져요. 4초 뒤 하나씩 사라집니다.</p></div>
+        </article>
+
+        <!-- 8 -->
+        <article class="c-micro__card">
+          <div class="c-micro__stage">
+            <div class="c-island" data-module="disclosure">
+              <button class="c-island__shell js-disclosure-toggle" type="button" aria-expanded="false" aria-label="통화 화면 펼치기">
+                <span class="c-island__mini" aria-hidden="true">
+                  <span class="c-island__dot"></span>
+                  <span class="c-island__wave"><span class="c-island__bar"></span><span class="c-island__bar"></span><span class="c-island__bar"></span><span class="c-island__bar"></span></span>
+                  <span class="c-island__time">03:12</span>
+                </span>
+                <span class="c-island__full" aria-hidden="true">
+                  <span class="c-island__who"><span class="c-island__avatar"></span><span><span class="c-island__name">하늘</span><br><span class="c-island__sub">통화 중 · 03:12</span></span></span>
+                  <span class="c-island__actions"><span class="c-island__action"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></span><span class="c-island__action c-island__action--end"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></span></span>
+                </span>
+              </button>
+              <p class="c-island__hint">알약을 눌러 보세요</p>
+            </div>
+          </div>
+          <div class="c-micro__body"><span class="c-micro__num">08</span><h3 class="c-micro__title">늘어나는 알약</h3><p class="c-micro__desc">작은 알약이 탄력 있게 부풀어 카드가 되고, 안의 내용은 흐림에서 또렷하게 바뀝니다.</p></div>
+        </article>
+
+        <!-- 9 -->
+        <article class="c-micro__card">
+          <div class="c-micro__stage c-micro__stage--night">
+            <div class="c-scramble" data-effect="scramble">
+              <a class="c-scramble__text js-scramble" href="#main">ONKYEOL STUDIO</a>
+              <a class="c-scramble__text js-scramble" href="#main">VIEW WORK</a>
+              <p class="c-scramble__hint">글자 위에 마우스를 올려 보세요</p>
+            </div>
+          </div>
+          <div class="c-micro__body"><span class="c-micro__num">09</span><h3 class="c-micro__title">글자 뒤섞기</h3><p class="c-micro__desc">글자가 기호로 흩어졌다 왼쪽부터 제자리를 찾아요. 화면 읽기 도구에는 원래 글자만 읽힙니다.</p></div>
+        </article>
+
+        <!-- 10 -->
+        <article class="c-micro__card c-micro__card--wide">
+          <div class="c-micro__stage">
+            <div class="c-range" data-module="range-bubble" data-suffix="%">
+              <label class="c-range__label" for="micro-range"><span>밝기</span><span>0 – 100</span></label>
+              <div class="c-range__track">
+                <span class="c-range__bubble js-range-bubble" aria-hidden="true">60%</span>
+                <input class="c-range__input js-range" id="micro-range" type="range" min="0" max="100" value="60">
+              </div>
+            </div>
+          </div>
+          <div class="c-micro__body"><span class="c-micro__num">10</span><h3 class="c-micro__title">값 풍선 슬라이더</h3><p class="c-micro__desc">손잡이 위 풍선이 값을 따라다니고, 잡는 동안 살짝 커집니다. 키보드 ← → 로도 움직여요.</p></div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="c-page-outro">
+    <p class="c-page-outro__text">처음으로</p>
+    <a class="c-page-outro__next" href="index.html">내비게이션 <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+  </footer>
+</body>
+</html>

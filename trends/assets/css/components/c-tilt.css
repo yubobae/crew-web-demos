@@ -1,0 +1,71 @@
+/* 기울기 카드: 마우스 쪽으로 카드가 3D로 기울고, 반사광(glare)이 따라 움직인다.
+   tilt.js가 --rx, --ry(각도)와 --gx, --gy(반사광 위치)를 쓰고, 움직이는 동안 is-tilting. */
+@layer components {
+  .c-tilt {
+    perspective: 900px;
+  }
+
+  .c-tilt__card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 15rem;
+    aspect-ratio: 1.586;
+    padding: var(--space-5);
+    overflow: hidden;
+    color: var(--tr-white);
+    background:
+      radial-gradient(circle at 20% 0%, var(--tr-violet), transparent 60%),
+      radial-gradient(circle at 100% 100%, var(--tr-accent), transparent 55%),
+      var(--tr-night);
+    border-radius: var(--radius-2xl);
+    box-shadow: var(--tr-shadow-pop);
+    transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+    transition: transform 600ms var(--tr-spring);
+    will-change: transform;
+  }
+
+  .c-tilt.is-tilting .c-tilt__card {
+    transition: transform 120ms linear;
+  }
+
+  .c-tilt__card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at var(--gx, 50%) var(--gy, 50%), var(--tr-glass), transparent 55%);
+    opacity: 0;
+    transition: opacity var(--tr-dur) var(--tr-ease);
+  }
+
+  /* 섞기 모드(mix-blend) 없이 옅은 빛만 얹는다: 섞기는 움직일 때마다 비싸게 다시 그린다 */
+  .c-tilt.is-tilting .c-tilt__card::after {
+    opacity: 0.35;
+  }
+
+  .c-tilt__brand {
+    font-weight: var(--font-weight-extrabold);
+    letter-spacing: var(--tracking-tight);
+  }
+
+  .c-tilt__chip {
+    width: 2.25rem;
+    height: 1.75rem;
+    background: linear-gradient(135deg, var(--tr-lime), var(--tr-sky));
+    border-radius: var(--radius-md);
+  }
+
+  .c-tilt__no {
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    letter-spacing: var(--tracking-widest);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .c-tilt__card,
+    .c-tilt__card::after {
+      transition: none;
+    }
+  }
+}

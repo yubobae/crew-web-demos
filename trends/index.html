@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>내비게이션 | 보람찬크루 요즘 UI</title>
+  <meta name="description" content="떠 있는 알약 헤더, 메가 메뉴, 전체 화면 메뉴, 사이드 드로어, 명령 팔레트, 모바일 탭 막대까지 요즘 웹사이트 내비게이션을 프레임워크 없이 만든 예시입니다.">
+  <meta name="theme-color" content="#f8f7f4">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+  <link rel="stylesheet" href="assets/css/main.css">
+  <script type="module" src="assets/js/main.js"></script>
+</head>
+<body>
+  <a class="u-visually-hidden" href="#main">본문 바로가기</a>
+
+  <header class="c-site-nav" data-module="site-nav">
+    <div class="c-site-nav__bar">
+      <a class="c-site-nav__logo" href="https://yubobae.github.io/crew-web-demos/"><span class="c-site-nav__mark" aria-hidden="true"></span>보람찬크루 데모</a>
+      <nav class="c-site-nav__links" aria-label="요즘 UI 데모 페이지" data-module="glider" data-glide="hover">
+        <span class="c-site-nav__glider js-glider" aria-hidden="true"></span>
+        <a class="c-site-nav__link js-glide-item" href="index.html" aria-current="page">내비게이션</a>
+        <a class="c-site-nav__link js-glide-item" href="cta.html">CTA</a>
+        <a class="c-site-nav__link js-glide-item" href="bento.html">벤토</a>
+        <a class="c-site-nav__link js-glide-item" href="footer.html">푸터</a>
+        <a class="c-site-nav__link js-glide-item" href="motion.html">마이크로</a>
+      </nav>
+      <button class="c-site-nav__menu" type="button" popovertarget="site-menu">메뉴 <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
+    </div>
+    <div class="c-site-nav__panel" id="site-menu" popover>
+      <div class="c-site-nav__group c-site-nav__group--pages">
+        <p class="c-site-nav__group-title">요즘 UI</p>
+        <a class="c-site-nav__item" href="index.html" aria-current="page">내비게이션 <span class="c-site-nav__item-desc">알약 헤더·메가 메뉴·전체 메뉴</span></a>
+        <a class="c-site-nav__item" href="cta.html">CTA <span class="c-site-nav__item-desc">행동 유도 구역 다섯 가지</span></a>
+        <a class="c-site-nav__item" href="bento.html">벤토 <span class="c-site-nav__item-desc">어두운 벤토 그리드</span></a>
+        <a class="c-site-nav__item" href="footer.html">푸터 <span class="c-site-nav__item-desc">큰 글자·카드·커튼 푸터</span></a>
+        <a class="c-site-nav__item" href="motion.html">마이크로 <span class="c-site-nav__item-desc">작은 움직임 열 가지</span></a>
+      </div>
+      <div class="c-site-nav__group">
+        <p class="c-site-nav__group-title">다른 데모</p>
+        <a class="c-site-nav__item" href="https://yubobae.github.io/crew-web-demos/">데모 목록 <span class="c-site-nav__item-desc">처음으로</span></a>
+        <a class="c-site-nav__item" href="https://yubobae.github.io/crew-web-demos/ui-kit/">UI 키트 <span class="c-site-nav__item-desc">컴포넌트 12종</span></a>
+        <a class="c-site-nav__item" href="https://yubobae.github.io/crew-web-demos/effects/">인터랙션 효과 <span class="c-site-nav__item-desc">풀페이지·카운터</span></a>
+        <a class="c-site-nav__item" href="https://yubobae.github.io/crew-web-demos/scroll/">스크롤 <span class="c-site-nav__item-desc">GNB·패럴랙스</span></a>
+        <a class="c-site-nav__item" href="https://yubobae.github.io/crew-web-demos/museum/">디지털 역사관 <span class="c-site-nav__item-desc">풀페이지 사이트</span></a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="c-page-intro">
+      <p class="c-page-intro__eyebrow"><span class="c-page-intro__badge">01</span>요즘 UI · 내비게이션</p>
+      <h1 class="c-page-intro__title">
+        <span class="c-page-intro__line"><span class="c-page-intro__line-inner">길을 안내하는</span></span>
+        <span class="c-page-intro__line"><span class="c-page-intro__line-inner"><span class="c-page-intro__accent">여섯 가지</span> 방법</span></span>
+      </h1>
+      <p class="c-page-intro__lead">맨 위 헤더부터 예시예요. 조금만 스크롤하면 넓던 헤더가 유리 알약으로 줄어들고, 메뉴 위를 지나가면 배경 알약이 따라옵니다.</p>
+      <nav class="c-page-intro__chips" aria-label="이 페이지 예시">
+        <a class="c-page-intro__chip" href="#nav-mega">메가 메뉴</a>
+        <a class="c-page-intro__chip" href="#nav-full">전체 화면 메뉴</a>
+        <a class="c-page-intro__chip" href="#nav-drawer">사이드 드로어</a>
+        <a class="c-page-intro__chip" href="#nav-search">공지 띠 + 명령 팔레트</a>
+        <a class="c-page-intro__chip" href="#nav-tabbar">모바일 탭 막대</a>
+      </nav>
+    </div>
+
+    <!-- 1. 메가 메뉴 -->
+    <section class="l-section" id="nav-mega" aria-labelledby="nav-mega-title">
+      <div class="l-section__head">
+        <span class="l-section__num">01</span>
+        <h2 class="l-section__title" id="nav-mega-title">메가 메뉴</h2>
+        <p class="l-section__desc">메뉴를 옮겨 다녀도 판이 닫혔다 열리지 않아요. 높이만 부드럽게 바뀌고 내용은 옮긴 방향에서 밀려 들어옵니다. 대각선으로 판에 들어가도 닫히지 않게 잠깐 기다려 줍니다.</p>
+      </div>
+      <figure class="c-stage">
+        <div class="c-stage__bar" aria-hidden="true"><span class="c-stage__dot"></span><span class="c-stage__dot"></span><span class="c-stage__dot"></span><span class="c-stage__url">onkyeol.app</span></div>
+        <div class="c-stage__view">
+          <div class="c-mega" data-module="mega-menu">
+            <div class="c-mega__bar">
+              <a class="c-mega__logo" href="#nav-mega">온결</a>
+              <nav class="c-mega__nav" aria-label="예시 메뉴" data-module="glider" data-glide="hover">
+                <span class="c-mega__glider js-glider" aria-hidden="true"></span>
+                <button class="c-mega__item js-glide-item js-mega-trigger" type="button" aria-expanded="false" aria-controls="mega-p1">제품 <svg class="c-mega__chev" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
+                <button class="c-mega__item js-glide-item js-mega-trigger" type="button" aria-expanded="false" aria-controls="mega-p2">활용 사례 <svg class="c-mega__chev" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
+                <a class="c-mega__item js-glide-item" href="#nav-mega">요금</a>
+                <a class="c-mega__item js-glide-item" href="#nav-mega">소식</a>
+              </nav>
+              <a class="c-mega__cta" href="#nav-mega">무료로 시작</a>
+            </div>
+            <div class="c-mega__drop js-mega-drop">
+              <div class="c-mega__panel c-mega__panel--grid" id="mega-p1">
+                <a class="c-mega__card" href="#nav-mega"><span class="c-mega__icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></span><span class="c-mega__card-title">보드</span><span class="c-mega__card-desc">할 일을 카드로 옮기며 관리</span></a>
+                <a class="c-mega__card" href="#nav-mega"><span class="c-mega__icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3h7l5 5v13H7zM14 3v5h5"/></svg></span><span class="c-mega__card-title">문서</span><span class="c-mega__card-desc">함께 쓰고 바로 공유</span></a>
+                <a class="c-mega__card" href="#nav-mega"><span class="c-mega__icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"/></svg></span><span class="c-mega__card-title">자동화</span><span class="c-mega__card-desc">반복 일은 규칙 하나로</span></a>
+                <a class="c-mega__feature" href="#nav-mega"><span class="c-mega__feature-tag">새 기능</span><span class="c-mega__feature-title">팀 보드 2.0</span><span>실시간 함께 편집</span></a>
+                <a class="c-mega__card" href="#nav-mega"><span class="c-mega__icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M21 20H3"/></svg></span><span class="c-mega__card-title">보고서</span><span class="c-mega__card-desc">진행률을 한눈에</span></a>
+                <a class="c-mega__card" href="#nav-mega"><span class="c-mega__icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span><span class="c-mega__card-title">보안</span><span class="c-mega__card-desc">권한과 기록 관리</span></a>
+                <a class="c-mega__card" href="#nav-mega"><span class="c-mega__icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3 20a6 6 0 0 1 12 0M16 5a3 3 0 0 1 0 6M21 20a6 6 0 0 0-4-5.6"/></svg></span><span class="c-mega__card-title">팀</span><span class="c-mega__card-desc">사람과 역할 정리</span></a>
+              </div>
+              <div class="c-mega__panel c-mega__panel--list" id="mega-p2">
+                <a class="c-mega__row" href="#nav-mega"><span class="c-mega__icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5 18 18M6 18l2.5-2.5M15.5 8.5 18 6"/></svg></span><span><span class="c-mega__card-title">스타트업</span><br><span class="c-mega__card-desc">작은 팀이 빠르게</span></span><span class="c-mega__row-arrow"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+                <a class="c-mega__row" href="#nav-mega"><span class="c-mega__icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3 20a6 6 0 0 1 12 0M16 5a3 3 0 0 1 0 6M21 20a6 6 0 0 0-4-5.6"/></svg></span><span><span class="c-mega__card-title">에이전시</span><br><span class="c-mega__card-desc">고객사 일을 한곳에</span></span><span class="c-mega__row-arrow"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+                <a class="c-mega__row" href="#nav-mega"><span class="c-mega__icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3h7l5 5v13H7zM14 3v5h5"/></svg></span><span><span class="c-mega__card-title">교육</span><br><span class="c-mega__card-desc">수업 자료와 과제</span></span><span class="c-mega__row-arrow"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+                <a class="c-mega__row" href="#nav-mega"><span class="c-mega__icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></span><span><span class="c-mega__card-title">공공기관</span><br><span class="c-mega__card-desc">기록이 남는 협업</span></span><span class="c-mega__row-arrow"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+              </div>
+            </div>
+          </div>
+          <div class="c-mini-hero">
+            <p class="c-mini-hero__title">일이 흐르는 곳</p>
+            <p class="c-mini-hero__text">메뉴 위에 마우스를 올려 보세요. 휴대폰에서는 메뉴가 접혀요.</p>
+          </div>
+        </div>
+        <figcaption class="c-stage__caption">PC에서 '제품' → '활용 사례'로 옮겨 보세요. 판 높이와 내용이 바뀝니다. 키보드: Tab으로 이동, Enter로 열기, Esc로 닫기.</figcaption>
+      </figure>
+    </section>
+
+    <!-- 2. 전체 화면 메뉴 -->
+    <section class="l-section" id="nav-full" aria-labelledby="nav-full-title">
+      <div class="l-section__head">
+        <span class="l-section__num">02</span>
+        <h2 class="l-section__title" id="nav-full-title">전체 화면 메뉴</h2>
+        <p class="l-section__desc">버튼 자리에서 원이 퍼지며 화면을 덮고, 큰 메뉴가 한 줄씩 올라옵니다. 한 메뉴에 올리면 나머지는 흐려져 고른 곳이 또렷해져요.</p>
+      </div>
+      <figure class="c-stage">
+        <div class="c-stage__bar" aria-hidden="true"><span class="c-stage__dot"></span><span class="c-stage__dot"></span><span class="c-stage__dot"></span><span class="c-stage__url">onkyeol.studio</span></div>
+        <div class="c-stage__view">
+          <div class="c-fullmenu" data-module="disclosure">
+            <div class="c-fullmenu__bar">
+              <a class="c-fullmenu__logo" href="#nav-full">온결 스튜디오</a>
+              <button class="c-fullmenu__toggle js-disclosure-toggle" type="button" aria-expanded="false" aria-controls="fullmenu-1">메뉴 <span class="c-fullmenu__burger" aria-hidden="true"><span class="c-fullmenu__line"></span><span class="c-fullmenu__line c-fullmenu__line--b"></span></span></button>
+            </div>
+            <div class="c-fullmenu__overlay js-disclosure-panel" id="fullmenu-1">
+              <ul class="c-fullmenu__list">
+                <li class="c-fullmenu__item"><a class="c-fullmenu__link" href="#nav-full"><span class="c-fullmenu__num">01</span>작업</a></li>
+                <li class="c-fullmenu__item"><a class="c-fullmenu__link" href="#nav-full"><span class="c-fullmenu__num">02</span>스튜디오</a></li>
+                <li class="c-fullmenu__item"><a class="c-fullmenu__link" href="#nav-full"><span class="c-fullmenu__num">03</span>기록</a></li>
+                <li class="c-fullmenu__item"><a class="c-fullmenu__link" href="#nav-full"><span class="c-fullmenu__num">04</span>연락</a></li>
+              </ul>
+              <a class="c-fullmenu__feature" href="#nav-full">
+                <span class="c-fullmenu__thumb" aria-hidden="true"></span>
+                <strong>최근 작업 · 봄빛 브랜드</strong>
+                <span class="c-fullmenu__feature-text">색 하나로 계절을 말하는 브랜드 작업</span>
+              </a>
+              <div class="c-fullmenu__meta"><span>hello@onkyeol.studio</span><span>서울 성수동</span><span>인스타그램 · 비핸스</span></div>
+            </div>
+          </div>
+          <div class="c-mini-hero">
+            <p class="c-mini-hero__title">조용히, 오래</p>
+            <p class="c-mini-hero__text">오른쪽 위 '메뉴'를 눌러 보세요.</p>
+          </div>
+        </div>
+        <figcaption class="c-stage__caption">열려 있을 때 Esc를 누르면 닫히고 초점이 메뉴 버튼으로 돌아옵니다. 닫힌 메뉴 안으로는 Tab이 들어가지 않아요.</figcaption>
+      </figure>
+    </section>
+
+    <!-- 3. 사이드 드로어 -->
+    <section class="l-section" id="nav-drawer" aria-labelledby="nav-drawer-title">
+      <div class="l-section__head">
+        <span class="l-section__num">03</span>
+        <h2 class="l-section__title" id="nav-drawer-title">사이드 드로어 + 미리 보기</h2>
+        <p class="l-section__desc">왼쪽에서 판이 밀려 나오고 뒤는 어두워집니다. 메뉴에 올리면 오른쪽 그림이 그 메뉴의 분위기로 바뀌어요.</p>
+      </div>
+      <figure class="c-stage">
+        <div class="c-stage__bar" aria-hidden="true"><span class="c-stage__dot"></span><span class="c-stage__dot"></span><span class="c-stage__dot"></span><span class="c-stage__url">onkyeol.house</span></div>
+        <div class="c-stage__view">
+          <div class="c-drawer" data-module="disclosure hover-preview">
+            <div class="c-drawer__bar">
+              <button class="c-drawer__toggle js-disclosure-toggle" type="button" aria-expanded="false" aria-controls="drawer-1"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h10"/></svg> 메뉴</button>
+              <a class="c-drawer__logo" href="#nav-drawer">온결 하우스</a>
+            </div>
+            <div class="c-drawer__scrim js-disclosure-close" aria-hidden="true"></div>
+            <div class="c-drawer__panel js-disclosure-panel" id="drawer-1" role="dialog" aria-label="사이트 메뉴">
+              <nav class="c-drawer__nav">
+                <button class="c-drawer__close js-disclosure-close" type="button">닫기</button>
+                <a class="c-drawer__link js-preview-link" data-preview="0" href="#nav-drawer">거실 <span class="c-drawer__link-arrow"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+                <a class="c-drawer__link js-preview-link" data-preview="1" href="#nav-drawer">침실 <span class="c-drawer__link-arrow"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+                <a class="c-drawer__link js-preview-link" data-preview="2" href="#nav-drawer">정원 <span class="c-drawer__link-arrow"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+                <a class="c-drawer__link js-preview-link" data-preview="3" href="#nav-drawer">작업실 <span class="c-drawer__link-arrow"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+                <p class="c-drawer__foot">예약 문의 02-000-0000</p>
+              </nav>
+              <div class="c-drawer__media" aria-hidden="true">
+                <span class="c-drawer__shot c-drawer__shot--1 js-preview-shot">따뜻한 오후</span>
+                <span class="c-drawer__shot c-drawer__shot--2 js-preview-shot">새벽 공기</span>
+                <span class="c-drawer__shot c-drawer__shot--3 js-preview-shot">초록 그늘</span>
+                <span class="c-drawer__shot c-drawer__shot--4 js-preview-shot">밤의 몰입</span>
+              </div>
+            </div>
+          </div>
+          <div class="c-mini-hero">
+            <p class="c-mini-hero__title">머무는 집</p>
+            <p class="c-mini-hero__text">왼쪽 위 '메뉴'를 눌러 보세요. 어두운 곳을 누르면 닫혀요.</p>
+          </div>
+        </div>
+        <figcaption class="c-stage__caption">그림 바꾸기는 마우스뿐 아니라 키보드 초점에도 반응합니다.</figcaption>
+      </figure>
+    </section>
+
+    <!-- 4. 공지 띠 + 명령 팔레트 -->
+    <section class="l-section" id="nav-search" aria-labelledby="nav-search-title">
+      <div class="l-section__head">
+        <span class="l-section__num">04</span>
+        <h2 class="l-section__title" id="nav-search-title">공지 띠 + 명령 팔레트</h2>
+        <p class="l-section__desc">공지 띠는 닫으면 높이가 접히며 사라져 아래 내용이 튀지 않아요. 검색은 Ctrl+K(맥은 ⌘K)로 어디서든 열리는 명령 팔레트로 띄웁니다.</p>
+      </div>
+      <figure class="c-stage">
+        <div class="c-stage__bar" aria-hidden="true"><span class="c-stage__dot"></span><span class="c-stage__dot"></span><span class="c-stage__dot"></span><span class="c-stage__url">onkyeol.docs</span></div>
+        <div class="c-stage__view">
+          <div class="c-announce" data-module="dismiss cmdk">
+            <div class="c-announce__strip js-dismiss-target" id="announce-1">
+              <div class="c-announce__inner">
+                <a class="c-announce__msg" href="#nav-search"><span class="c-announce__tag">새 소식</span>팀 보드 2.0이 나왔어요 <span class="c-announce__arrow"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+                <button class="c-announce__close js-dismiss" type="button" aria-label="공지 닫기"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+              </div>
+            </div>
+            <div class="c-announce__bar">
+              <a class="c-announce__logo" href="#nav-search">온결 문서</a>
+              <span class="c-announce__links"><span>시작하기</span><span>안내서</span><span>API</span></span>
+              <button class="c-announce__search js-cmdk-open" type="button" aria-haspopup="dialog"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg> 검색… <kbd class="c-announce__kbd">Ctrl K</kbd></button>
+            </div>
+            <dialog class="c-cmdk js-cmdk" aria-label="명령 팔레트">
+              <div class="c-cmdk__field">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+                <input class="c-cmdk__input js-cmdk-input" type="text" placeholder="무엇을 찾으세요?" aria-label="검색어" role="combobox" aria-expanded="true" aria-controls="cmdk-list" autocomplete="off">
+                <kbd class="c-cmdk__esc">Esc</kbd>
+              </div>
+              <ul class="c-cmdk__list" id="cmdk-list" role="listbox" aria-label="결과">
+                <li class="c-cmdk__group" role="presentation">바로가기</li>
+                <li class="c-cmdk__option" role="option" id="cmdk-o1" data-value="new" data-keywords="add create 새로">
+                  <span class="c-cmdk__icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></span>새 보드 만들기<span class="c-cmdk__hint">N</span></li>
+                <li class="c-cmdk__option" role="option" id="cmdk-o2" data-value="invite" data-keywords="team member 초대">
+                  <span class="c-cmdk__icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3 20a6 6 0 0 1 12 0M16 5a3 3 0 0 1 0 6M21 20a6 6 0 0 0-4-5.6"/></svg></span>팀원 초대<span class="c-cmdk__hint">I</span></li>
+                <li class="c-cmdk__option" role="option" id="cmdk-o3" data-value="alarm" data-keywords="notification 알림">
+                  <span class="c-cmdk__icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 8a6 6 0 1 1 12 0c0 7 3 9 3 9H3s3-2 3-9M10 21h4"/></svg></span>알림 설정</li>
+                <li class="c-cmdk__group" role="presentation">문서</li>
+                <li class="c-cmdk__option" role="option" id="cmdk-o4" data-value="start" data-keywords="guide 시작">
+                  <span class="c-cmdk__icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3h7l5 5v13H7zM14 3v5h5"/></svg></span>시작하기 안내</li>
+                <li class="c-cmdk__option" role="option" id="cmdk-o5" data-value="auto" data-keywords="automation rule 규칙">
+                  <span class="c-cmdk__icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"/></svg></span>자동화 규칙 만들기</li>
+                <li class="c-cmdk__option" role="option" id="cmdk-o6" data-value="report" data-keywords="chart 통계">
+                  <span class="c-cmdk__icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M21 20H3"/></svg></span>보고서 읽는 법</li>
+              </ul>
+              <p class="c-cmdk__empty js-cmdk-empty" hidden>찾는 결과가 없어요.</p>
+            </dialog>
+          </div>
+          <div class="c-mini-hero">
+            <p class="c-mini-hero__title">무엇이든 찾기</p>
+            <p class="c-mini-hero__text">'검색…'을 누르거나 Ctrl+K를 눌러 보세요. ↑↓로 고르고 Enter.</p>
+          </div>
+        </div>
+        <figcaption class="c-stage__caption">공지를 닫았다면 <button class="c-page-intro__chip js-dismiss-restore" type="button" aria-controls="announce-1" disabled>공지 다시 보기</button></figcaption>
+      </figure>
+    </section>
+
+    <!-- 5. 모바일 탭 막대 -->
+    <section class="l-section" id="nav-tabbar" aria-labelledby="nav-tabbar-title">
+      <div class="l-section__head">
+        <span class="l-section__num">05</span>
+        <h2 class="l-section__title" id="nav-tabbar-title">모바일 탭 막대</h2>
+        <p class="l-section__desc">휴대폰 화면 아래 떠 있는 알약 막대. 고른 탭만 이름이 펼쳐지며 커지고, 나머지는 아이콘만 남습니다.</p>
+      </div>
+      <figure class="c-stage">
+        <div class="c-stage__bar" aria-hidden="true"><span class="c-stage__dot"></span><span class="c-stage__dot"></span><span class="c-stage__dot"></span><span class="c-stage__url">onkyeol 앱</span></div>
+        <div class="c-stage__view">
+          <div class="c-tabbar">
+            <div class="c-tabbar__phone">
+              <div class="c-tabbar__screen" aria-hidden="true">
+                <p class="c-tabbar__title">오늘</p>
+                <div class="c-tabbar__card c-tabbar__card--accent"></div>
+                <div class="c-tabbar__card"></div>
+                <div class="c-tabbar__card"></div>
+              </div>
+              <nav class="c-tabbar__bar" aria-label="앱 탭" data-module="glider" data-glide="select">
+                <button class="c-tabbar__tab js-glide-item" type="button" aria-pressed="true"><svg class="c-tabbar__icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11 12 3l9 8v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg><span class="c-tabbar__label"><span class="c-tabbar__label-text">홈</span></span></button>
+                <button class="c-tabbar__tab js-glide-item" type="button" aria-pressed="false"><svg class="c-tabbar__icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><span class="c-tabbar__label"><span class="c-tabbar__label-text">탐색</span></span></button>
+                <button class="c-tabbar__tab js-glide-item" type="button" aria-pressed="false"><svg class="c-tabbar__icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 8a6 6 0 1 1 12 0c0 7 3 9 3 9H3s3-2 3-9M10 21h4"/></svg><span class="c-tabbar__label"><span class="c-tabbar__label-text">알림</span></span></button>
+                <button class="c-tabbar__tab js-glide-item" type="button" aria-pressed="false"><svg class="c-tabbar__icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg><span class="c-tabbar__label"><span class="c-tabbar__label-text">내 정보</span></span></button>
+              </nav>
+            </div>
+          </div>
+        </div>
+        <figcaption class="c-stage__caption">이름 칸은 글자 폭을 몰라도 0 → 제 폭으로 자연스럽게 펼쳐집니다(grid 0fr → 1fr).</figcaption>
+      </figure>
+    </section>
+  </main>
+
+  <footer class="c-page-outro">
+    <p class="c-page-outro__text">다음 예시</p>
+    <a class="c-page-outro__next" href="cta.html">CTA — 행동 유도 구역 <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+  </footer>
+</body>
+</html>

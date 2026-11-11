@@ -1,0 +1,165 @@
+/* 늘어나는 알약(다이내믹 아일랜드 같은): 작은 검은 알약이 누르면 큰 카드로 부풀고, 다시 누르면 줄어든다.
+   크기는 width·height 전환(스프링), 안의 내용은 바뀌는 크기에 맞춰 엇갈려 나타난다(disclosure.js의 is-open). */
+@layer components {
+  .c-island {
+    display: grid;
+    place-items: start center;
+    width: 100%;
+    height: 100%;
+    min-height: 12rem;
+  }
+
+  .c-island__shell {
+    position: relative;
+    width: 11rem;
+    height: 2.5rem;
+    overflow: hidden;
+    color: var(--tr-on-night);
+    text-align: start;
+    background: var(--tr-night);
+    border-radius: var(--radius-full);
+    box-shadow: var(--tr-shadow-float);
+    transition:
+      width 550ms var(--tr-spring),
+      height 550ms var(--tr-spring),
+      border-radius 550ms var(--tr-ease);
+  }
+
+  .c-island.is-open .c-island__shell {
+    width: min(100%, 20rem);
+    height: 9.5rem;
+    border-radius: var(--radius-3xl);
+  }
+
+  .c-island__mini,
+  .c-island__full {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding-inline: var(--space-3);
+    transition:
+      opacity 250ms var(--tr-ease),
+      filter 250ms var(--tr-ease);
+  }
+
+  .c-island__full {
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: space-between;
+    padding: var(--space-4);
+    opacity: 0;
+    filter: blur(6px);
+  }
+
+  .c-island.is-open .c-island__mini {
+    opacity: 0;
+    filter: blur(6px);
+  }
+
+  .c-island.is-open .c-island__full {
+    opacity: 1;
+    filter: none;
+    transition-delay: 180ms;
+  }
+
+  .c-island__dot {
+    width: var(--space-2);
+    aspect-ratio: 1;
+    background: var(--tr-success);
+    border-radius: var(--radius-full);
+  }
+
+  .c-island__time {
+    margin-left: auto;
+    font-size: var(--text-sm);
+    font-variant-numeric: tabular-nums;
+    color: var(--tr-success);
+  }
+
+  .c-island__wave {
+    display: flex;
+    align-items: center;
+    gap: var(--space-0-5);
+    height: 1rem;
+  }
+
+  .c-island__bar {
+    width: 3px;
+    height: 40%;
+    background: var(--tr-success);
+    border-radius: var(--radius-full);
+    animation: c-island-wave 900ms var(--ease-in-out) infinite alternate;
+  }
+
+  .c-island__bar:nth-child(2) { animation-delay: -300ms; }
+  .c-island__bar:nth-child(3) { animation-delay: -600ms; }
+  .c-island__bar:nth-child(4) { animation-delay: -150ms; }
+
+  .c-island__who {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+  }
+
+  .c-island__avatar {
+    width: var(--space-10);
+    aspect-ratio: 1;
+    background: linear-gradient(135deg, var(--tr-sky), var(--tr-violet));
+    border-radius: var(--radius-full);
+  }
+
+  .c-island__name {
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .c-island__sub {
+    font-size: var(--text-xs);
+    color: var(--tr-on-night-soft);
+  }
+
+  .c-island__actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: var(--space-2);
+  }
+
+  .c-island__action {
+    display: grid;
+    place-items: center;
+    width: var(--space-10);
+    aspect-ratio: 1;
+    color: var(--tr-on-night);
+    background: var(--tr-night-3);
+    border-radius: var(--radius-full);
+  }
+
+  .c-island__action--end {
+    background: var(--tr-danger);
+  }
+
+  .c-island__hint {
+    margin-top: var(--space-4);
+    font-size: var(--text-xs);
+    color: var(--tr-ink-soft);
+  }
+
+  @keyframes c-island-wave {
+    to {
+      height: 100%;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .c-island__shell,
+    .c-island__mini,
+    .c-island__full {
+      transition: none;
+    }
+
+    .c-island__bar {
+      animation: none;
+    }
+  }
+}

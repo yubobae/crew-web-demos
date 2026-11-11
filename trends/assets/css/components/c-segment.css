@@ -1,0 +1,59 @@
+/* 세그먼트 컨트롤: 고른 칸 뒤의 흰 알약이 튕기듯 옮겨 간다(glider.js select). 아래 미리보기 글자도 바뀐다. */
+@layer components {
+  .c-segment {
+    display: grid;
+    justify-items: center;
+    gap: var(--space-5);
+  }
+
+  .c-segment__control {
+    position: relative;
+    display: inline-flex;
+    padding: var(--space-1);
+    background: var(--tr-paper-3);
+    border-radius: var(--radius-xl);
+  }
+
+  .c-segment__thumb {
+    position: absolute;
+    inset-block: var(--space-1);
+    left: 0;
+    width: var(--gw, 0);
+    background: var(--tr-white);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    transform: translateX(var(--gx, 0));
+    transition:
+      transform var(--tr-dur) var(--tr-spring),
+      width var(--tr-dur) var(--tr-spring);
+  }
+
+  .c-segment__opt {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1-5);
+    padding: var(--space-2) var(--space-4);
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--tr-ink-soft);
+    border-radius: var(--radius-lg);
+    transition: color var(--tr-dur-fast) var(--tr-ease);
+  }
+
+  .c-segment__opt[aria-pressed="true"] {
+    color: var(--tr-ink);
+  }
+
+  .c-segment__view {
+    font-size: var(--text-sm);
+    color: var(--tr-ink-soft);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .c-segment__thumb,
+    .c-segment__opt {
+      transition: none;
+    }
+  }
+}

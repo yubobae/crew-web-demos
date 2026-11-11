@@ -1,0 +1,146 @@
+/* 꽉 찬 색 블록 CTA: 형광 바탕 + 아주 큰 글자 + 빙글 도는 원형 글자 스티커.
+   버튼에 올리면 화살표 원이 커지며 화살표가 비스듬히 선다. */
+@layer components {
+  .c-cta-bold {
+    position: relative;
+    display: grid;
+    gap: var(--space-6);
+    padding: clamp(var(--space-10), 6vw, var(--space-24));
+    overflow: hidden;
+    color: var(--tr-ink);
+    background: var(--tr-lime);
+    border-radius: var(--radius-4xl);
+  }
+
+  .c-cta-bold__eyebrow {
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .c-cta-bold__title {
+    max-width: 12ch;
+    font-size: clamp(var(--text-5xl), 1.5rem + 6vw, var(--text-9xl));
+    font-weight: var(--font-weight-black);
+    letter-spacing: var(--tracking-tighter);
+    line-height: 0.95;
+  }
+
+  .c-cta-bold__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-6);
+    margin-top: var(--space-4);
+  }
+
+  .c-cta-bold__btn {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-4);
+    padding: var(--space-2) var(--space-2) var(--space-2) var(--space-6);
+    font-weight: var(--font-weight-bold);
+    color: var(--tr-white);
+    text-decoration: none;
+    background: var(--tr-ink);
+    border-radius: var(--radius-full);
+    transition: transform var(--tr-dur-fast) var(--tr-spring);
+  }
+
+  .c-cta-bold__btn-icon {
+    display: grid;
+    place-items: center;
+    width: var(--space-12);
+    aspect-ratio: 1;
+    color: var(--tr-ink);
+    background: var(--tr-lime);
+    border-radius: var(--radius-full);
+    transition: transform var(--tr-dur) var(--tr-spring);
+  }
+
+  .c-cta-bold__btn-icon svg {
+    width: 1.25rem;
+    height: 1.25rem;
+    transition: transform var(--tr-dur) var(--tr-spring);
+  }
+
+  .c-cta-bold__btn:active {
+    transform: scale(0.97);
+  }
+
+  .c-cta-bold__link {
+    font-weight: var(--font-weight-semibold);
+    color: inherit;
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 6px;
+  }
+
+  .c-cta-bold__sticker {
+    position: absolute;
+    top: clamp(var(--space-6), 4vw, var(--space-16));
+    right: clamp(var(--space-6), 4vw, var(--space-16));
+    display: grid;
+    place-items: center;
+    width: clamp(7rem, 12vw, 10rem);
+    aspect-ratio: 1;
+  }
+
+  .c-cta-bold__ring {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    font-size: 9.5px;
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.18em;
+    fill: var(--tr-ink);
+    animation: c-cta-bold-spin 14s linear infinite;
+  }
+
+  .c-cta-bold__core {
+    display: grid;
+    place-items: center;
+    width: 42%;
+    aspect-ratio: 1;
+    color: var(--tr-lime);
+    background: var(--tr-ink);
+    border-radius: var(--radius-full);
+    transform: rotate(-45deg);
+  }
+
+  @keyframes c-cta-bold-spin {
+    to {
+      transform: rotate(1turn);
+    }
+  }
+
+  @media (hover: hover) {
+    .c-cta-bold__btn:hover .c-cta-bold__btn-icon {
+      transform: scale(1.12);
+    }
+
+    .c-cta-bold__btn:hover svg {
+      transform: rotate(-45deg);
+    }
+  }
+
+  @media (max-width: 819px) {
+    .c-cta-bold__sticker {
+      position: static;
+      order: -1;
+      justify-self: end;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .c-cta-bold__ring {
+      animation: none;
+    }
+
+    .c-cta-bold__btn,
+    .c-cta-bold__btn-icon,
+    .c-cta-bold__btn-icon svg {
+      transition: none;
+    }
+  }
+}

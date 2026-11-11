@@ -1,0 +1,198 @@
+/* 사이드 드로어: 왼쪽에서 판이 밀려 나오고 뒤는 어두워진다.
+   링크 위에 올리면(또는 초점) 오른쪽 그림이 바뀐다(hover-preview.js). 열고 닫기는 disclosure.js. */
+@layer components {
+  .c-drawer {
+    position: absolute;
+    inset: 0;
+  }
+
+  .c-drawer__bar {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    padding: var(--space-5) var(--space-6);
+  }
+
+  .c-drawer__toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-4);
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--tr-ink);
+    background: var(--tr-white);
+    border: 1px solid var(--tr-line);
+    border-radius: var(--radius-full);
+  }
+
+  .c-drawer__logo {
+    margin-inline: auto;
+    font-weight: var(--font-weight-extrabold);
+    color: var(--tr-ink);
+    text-decoration: none;
+  }
+
+  .c-drawer__scrim {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: var(--tr-veil);
+    opacity: 0;
+    visibility: hidden;
+    transition:
+      opacity var(--tr-dur) var(--tr-ease),
+      visibility 0s var(--tr-dur);
+  }
+
+  .c-drawer.is-open .c-drawer__scrim {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity var(--tr-dur) var(--tr-ease);
+  }
+
+  .c-drawer__panel {
+    position: absolute;
+    inset: var(--space-3) auto var(--space-3) var(--space-3);
+    z-index: 2;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+    width: min(100% - var(--space-6), 46rem);
+    overflow: hidden;
+    background: var(--tr-paper);
+    border-radius: var(--radius-3xl);
+    box-shadow: var(--tr-shadow-pop);
+    transform: translateX(calc(-100% - var(--space-6)));
+    visibility: hidden;
+    transition:
+      transform 650ms var(--tr-ease),
+      visibility 0s 650ms;
+  }
+
+  .c-drawer.is-open .c-drawer__panel {
+    transform: none;
+    visibility: visible;
+    transition: transform 650ms var(--tr-ease);
+  }
+
+  .c-drawer__nav {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    padding: var(--space-6);
+  }
+
+  .c-drawer__close {
+    align-self: flex-start;
+    margin-bottom: var(--space-6);
+    padding: var(--space-1-5) var(--space-3);
+    font-size: var(--text-xs);
+    font-weight: var(--font-weight-semibold);
+    color: var(--tr-ink-soft);
+    border: 1px solid var(--tr-line);
+    border-radius: var(--radius-full);
+  }
+
+  .c-drawer__link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-block: var(--space-2);
+    font-size: var(--text-2xl);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: var(--tracking-tight);
+    color: var(--tr-ink-soft);
+    text-decoration: none;
+    transition: color var(--tr-dur-fast) var(--tr-ease);
+  }
+
+  .c-drawer__link.is-active {
+    color: var(--tr-ink);
+  }
+
+  .c-drawer__link-arrow {
+    font-size: var(--text-base);
+    opacity: 0;
+    transform: translateX(calc(var(--space-2) * -1));
+    transition:
+      opacity var(--tr-dur-fast) var(--tr-ease),
+      transform var(--tr-dur) var(--tr-ease);
+  }
+
+  .c-drawer__link.is-active .c-drawer__link-arrow {
+    opacity: 1;
+    transform: none;
+  }
+
+  .c-drawer__foot {
+    margin-top: auto;
+    font-size: var(--text-xs);
+    color: var(--tr-ink-soft);
+  }
+
+  .c-drawer__media {
+    position: relative;
+    margin: var(--space-2);
+    overflow: hidden;
+    border-radius: var(--radius-2xl);
+  }
+
+  .c-drawer__shot {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: flex-end;
+    padding: var(--space-5);
+    font-size: var(--text-xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--tr-white);
+    opacity: 0;
+    transform: scale(1.08);
+    transition:
+      opacity 500ms var(--tr-ease),
+      transform 900ms var(--tr-ease);
+  }
+
+  .c-drawer__shot.is-active {
+    opacity: 1;
+    transform: none;
+  }
+
+  .c-drawer__shot--1 {
+    background: radial-gradient(circle at 30% 20%, var(--tr-accent), transparent 60%), var(--tr-night-2);
+  }
+
+  .c-drawer__shot--2 {
+    background: radial-gradient(circle at 70% 30%, var(--tr-sky), transparent 60%), var(--tr-night-2);
+  }
+
+  .c-drawer__shot--3 {
+    background: radial-gradient(circle at 40% 70%, var(--tr-lime), transparent 55%), var(--tr-night-2);
+  }
+
+  .c-drawer__shot--4 {
+    background: radial-gradient(circle at 60% 50%, var(--tr-violet), transparent 60%), var(--tr-night-2);
+  }
+
+  @media (max-width: 819px) {
+    .c-drawer__panel {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .c-drawer__media {
+      display: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .c-drawer__scrim,
+    .c-drawer.is-open .c-drawer__scrim,
+    .c-drawer__panel,
+    .c-drawer.is-open .c-drawer__panel,
+    .c-drawer__link,
+    .c-drawer__link-arrow,
+    .c-drawer__shot {
+      transition: none;
+    }
+  }
+}

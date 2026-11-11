@@ -1,0 +1,25 @@
+/* 커튼 푸터: 본문이 위로 걷히면서 밑에 깔린 푸터가 드러난다.
+   본문(.l-curtain__main)이 푸터 위를 덮고, 푸터는 화면 바닥에 붙어(sticky) 기다린다. */
+@layer layout {
+  .l-curtain {
+    position: relative;
+  }
+
+  .l-curtain__main {
+    position: relative;
+    z-index: 1;
+    background: var(--tr-paper);
+    border-radius: 0 0 var(--radius-4xl) var(--radius-4xl);
+    box-shadow: var(--tr-shadow-pop);
+  }
+
+  .l-curtain__foot {
+    position: sticky;
+    bottom: 0;
+    z-index: 0;
+  }
+
+  .l-curtain--night .l-curtain__main {
+    background: var(--tr-night);
+  }
+}

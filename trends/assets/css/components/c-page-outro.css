@@ -1,0 +1,56 @@
+/* 페이지 끝 "다음 예시" 링크: 큰 글자, 올리면 화살표가 밀려 나간다 */
+@layer components {
+  .c-page-outro {
+    width: min(100% - var(--gutter) * 2, var(--content-max));
+    margin-inline: auto;
+    padding-block: var(--space-16) var(--space-24);
+    border-top: 1px solid var(--tr-line);
+  }
+
+  .c-page-outro__text {
+    font-size: var(--text-sm);
+    color: var(--tr-ink-soft);
+  }
+
+  .c-page-outro__next {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-4);
+    margin-top: var(--space-3);
+    font-size: clamp(var(--text-2xl), 1rem + 3vw, var(--text-5xl));
+    font-weight: var(--font-weight-bold);
+    letter-spacing: var(--tracking-tight);
+    color: var(--tr-ink);
+    text-decoration: none;
+  }
+
+  .c-page-outro__next svg {
+    width: 0.8em;
+    height: 0.8em;
+    transition: transform var(--tr-dur) var(--tr-spring);
+  }
+
+  .c-page-outro--night {
+    border-top-color: var(--tr-night-line);
+  }
+
+  .c-page-outro--night .c-page-outro__text {
+    color: var(--tr-on-night-soft);
+  }
+
+  .c-page-outro--night .c-page-outro__next {
+    color: var(--tr-on-night);
+  }
+
+  @media (hover: hover) {
+    .c-page-outro__next:hover svg {
+      transform: translateX(var(--space-3));
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .c-page-outro__next svg {
+      transition: none;
+    }
+  }
+}

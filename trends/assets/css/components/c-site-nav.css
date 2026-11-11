@@ -1,0 +1,259 @@
+/* 떠 있는 알약 헤더: 맨 위에선 넓고 투명, 스크롤하면 좁은 유리 알약으로 줄어든다(site-nav.js가 is-condensed).
+   링크 위를 지나가면 배경 알약이 미끄러져 따라온다(glider.js). 메뉴 판은 popover. */
+@layer components {
+  .c-site-nav {
+    position: fixed;
+    inset: var(--space-3) 0 auto;
+    z-index: var(--z-header);
+    display: flex;
+    justify-content: center;
+    padding-inline: var(--space-3);
+    pointer-events: none;
+  }
+
+  .c-site-nav__bar {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    width: min(100%, 72rem);
+    height: var(--tr-nav-h);
+    padding-inline: var(--space-4) var(--space-1-5);
+    border-radius: var(--radius-full);
+    pointer-events: auto;
+    transition: width var(--tr-dur) var(--tr-ease);
+  }
+
+  /* 유리 배경은 가상 요소에: 막대 자체에 blur를 주면 안의 fixed 요소가 갇힌다 */
+  .c-site-nav__bar::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border: 1px solid transparent;
+    border-radius: inherit;
+    transition:
+      background-color var(--tr-dur) var(--tr-ease),
+      border-color var(--tr-dur) var(--tr-ease),
+      box-shadow var(--tr-dur) var(--tr-ease);
+  }
+
+  .c-site-nav.is-condensed .c-site-nav__bar {
+    width: min(100%, 50rem);
+  }
+
+  .c-site-nav.is-condensed .c-site-nav__bar::before {
+    background: var(--tr-glass);
+    border-color: var(--tr-line);
+    box-shadow: var(--tr-shadow-float);
+    backdrop-filter: blur(var(--tr-blur)) saturate(1.4);
+    -webkit-backdrop-filter: blur(var(--tr-blur)) saturate(1.4);
+  }
+
+  .c-site-nav__logo {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    margin-right: auto;
+    font-weight: var(--font-weight-bold);
+    letter-spacing: var(--tracking-tight);
+    color: var(--tr-ink);
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .c-site-nav__mark {
+    width: 1.25rem;
+    aspect-ratio: 1;
+    border-radius: var(--radius-full);
+    background: conic-gradient(from 200deg, var(--tr-accent), var(--tr-violet), var(--tr-sky), var(--tr-accent));
+  }
+
+  .c-site-nav__links {
+    position: relative;
+    display: none;
+    align-items: center;
+  }
+
+  .c-site-nav__link {
+    position: relative;
+    z-index: 1;
+    padding: var(--space-2) var(--space-3);
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--tr-ink-soft);
+    text-decoration: none;
+    white-space: nowrap;
+    border-radius: var(--radius-full);
+    transition: color var(--tr-dur-fast) var(--tr-ease);
+  }
+
+  .c-site-nav__link[aria-current="page"],
+  .c-site-nav__link.is-hovered {
+    color: var(--tr-ink);
+  }
+
+  .c-site-nav__glider {
+    position: absolute;
+    inset-block: 0;
+    left: 0;
+    width: var(--gw, 0);
+    border-radius: var(--radius-full);
+    background: var(--tr-paper-2);
+    opacity: 0;
+    transform: translateX(var(--gx, 0));
+    transition:
+      transform var(--tr-dur) var(--tr-ease),
+      width var(--tr-dur) var(--tr-ease),
+      opacity var(--tr-dur-fast) var(--tr-ease);
+  }
+
+  .c-site-nav__links.is-gliding .c-site-nav__glider {
+    opacity: 1;
+  }
+
+  .c-site-nav__menu {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    height: calc(var(--tr-nav-h) - var(--space-3));
+    padding-inline: var(--space-4);
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--tr-paper);
+    background: var(--tr-ink);
+    border-radius: var(--radius-full);
+    transition: transform var(--tr-dur-fast) var(--tr-spring);
+  }
+
+  .c-site-nav__menu:active {
+    transform: scale(0.96);
+  }
+
+  /* 메뉴 판(popover) */
+  .c-site-nav__panel {
+    position: fixed;
+    inset: calc(var(--tr-nav-h) + var(--space-5)) var(--space-3) auto auto;
+    width: min(100% - var(--space-6), 22rem);
+    margin: 0;
+    padding: var(--space-3);
+    color: var(--tr-ink);
+    background: var(--tr-paper);
+    border: 1px solid var(--tr-line);
+    border-radius: var(--radius-3xl);
+    box-shadow: var(--tr-shadow-pop);
+    opacity: 0;
+    transform: translateY(calc(var(--space-2) * -1)) scale(0.97);
+    transform-origin: top right;
+    transition:
+      opacity var(--tr-dur-fast) var(--tr-ease),
+      transform var(--tr-dur) var(--tr-ease),
+      overlay var(--tr-dur) allow-discrete,
+      display var(--tr-dur) allow-discrete;
+  }
+
+  .c-site-nav__panel:popover-open {
+    opacity: 1;
+    transform: none;
+  }
+
+  @starting-style {
+    .c-site-nav__panel:popover-open {
+      opacity: 0;
+      transform: translateY(calc(var(--space-2) * -1)) scale(0.97);
+    }
+  }
+
+  .c-site-nav__group + .c-site-nav__group {
+    margin-top: var(--space-2);
+    padding-top: var(--space-2);
+    border-top: 1px solid var(--tr-line);
+  }
+
+  .c-site-nav__group-title {
+    padding: var(--space-2) var(--space-3);
+    font-size: var(--text-xs);
+    font-weight: var(--font-weight-semibold);
+    color: var(--tr-ink-soft);
+  }
+
+  .c-site-nav__item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-3);
+    font-weight: var(--font-weight-medium);
+    color: var(--tr-ink);
+    text-decoration: none;
+    border-radius: var(--radius-xl);
+    transition: background-color var(--tr-dur-fast) var(--tr-ease);
+  }
+
+  .c-site-nav__item[aria-current="page"] {
+    background: var(--tr-accent-soft);
+    color: var(--tr-accent);
+  }
+
+  .c-site-nav__item-desc {
+    font-size: var(--text-xs);
+    color: var(--tr-ink-soft);
+  }
+
+  @media (hover: hover) {
+    .c-site-nav__item:hover {
+      background: var(--tr-paper-2);
+    }
+  }
+
+  @media (min-width: 820px) {
+    .c-site-nav__links {
+      display: flex;
+    }
+
+    .c-site-nav__group--pages {
+      display: none;
+    }
+
+    .c-site-nav__group--pages + .c-site-nav__group {
+      margin-top: 0;
+      padding-top: 0;
+      border-top: 0;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .c-site-nav__bar,
+    .c-site-nav__bar::before,
+    .c-site-nav__glider,
+    .c-site-nav__panel {
+      transition: none;
+    }
+  }
+}
+
+/* 어두운 페이지용: 글자는 밝게, 유리는 어둡게 */
+@layer components {
+  .c-site-nav--night .c-site-nav__logo,
+  .c-site-nav--night .c-site-nav__link[aria-current="page"],
+  .c-site-nav--night .c-site-nav__link.is-hovered {
+    color: var(--tr-on-night);
+  }
+
+  .c-site-nav--night .c-site-nav__link {
+    color: var(--tr-on-night-soft);
+  }
+
+  .c-site-nav--night .c-site-nav__glider {
+    background: var(--tr-night-3);
+  }
+
+  .c-site-nav--night .c-site-nav__menu {
+    color: var(--tr-ink);
+    background: var(--tr-on-night);
+  }
+
+  .c-site-nav--night.is-condensed .c-site-nav__bar::before {
+    background: var(--tr-glass-night);
+    border-color: var(--tr-night-line);
+  }
+}

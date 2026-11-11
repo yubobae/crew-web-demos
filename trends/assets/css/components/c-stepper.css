@@ -1,0 +1,55 @@
+/* 숫자 스테퍼: + 를 누르면 숫자가 아래에서 올라오고, − 를 누르면 위에서 내려온다(stepper.js). 끝에 닿으면 버튼이 흐려진다. */
+@layer components {
+  .c-stepper {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    padding: var(--space-1);
+    background: var(--tr-white);
+    border: 1px solid var(--tr-line);
+    border-radius: var(--radius-full);
+    box-shadow: var(--tr-shadow-float);
+  }
+
+  .c-stepper__btn {
+    display: grid;
+    place-items: center;
+    width: var(--space-10);
+    aspect-ratio: 1;
+    color: var(--tr-ink);
+    background: var(--tr-paper-2);
+    border-radius: var(--radius-full);
+    transition:
+      opacity var(--tr-dur-fast) var(--tr-ease),
+      transform var(--tr-dur-fast) var(--tr-spring);
+  }
+
+  .c-stepper__btn:active {
+    transform: scale(0.88);
+  }
+
+  .c-stepper__btn:disabled {
+    cursor: not-allowed;
+    opacity: 0.35;
+  }
+
+  .c-stepper__value {
+    display: inline-grid;
+    min-width: 3.5ch;
+    overflow: hidden;
+    font-size: var(--text-2xl);
+    font-weight: var(--font-weight-bold);
+    font-variant-numeric: tabular-nums;
+    text-align: center;
+  }
+
+  .c-stepper__num {
+    grid-area: 1 / 1;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .c-stepper__btn {
+      transition: none;
+    }
+  }
+}

@@ -1,0 +1,41 @@
+/* 무대 안의 가짜 첫 화면(메뉴 예시 뒤에 깔리는 내용) */
+@layer components {
+  .c-mini-hero {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    display: grid;
+    place-content: center;
+    gap: var(--space-4);
+    padding: var(--space-20) var(--space-6) var(--space-6);
+    text-align: center;
+  }
+
+  .c-mini-hero::before {
+    content: "";
+    position: absolute;
+    inset: 30% 15% -30%;
+    z-index: -1;
+    border-radius: var(--radius-full);
+    background: radial-gradient(closest-side, var(--tr-accent-glow), transparent),
+      radial-gradient(closest-side at 70% 40%, var(--tr-sky), transparent);
+    filter: blur(40px);
+    opacity: 0.6;
+  }
+
+  .c-mini-hero__title {
+    font-size: clamp(var(--text-3xl), 1.2rem + 3vw, var(--text-6xl));
+    font-weight: var(--font-weight-extrabold);
+    letter-spacing: var(--tracking-tighter);
+  }
+
+  .c-mini-hero__text {
+    max-width: 34ch;
+    margin-inline: auto;
+    color: var(--tr-ink-soft);
+  }
+
+  .c-mini-hero--night .c-mini-hero__text {
+    color: var(--tr-on-night-soft);
+  }
+}

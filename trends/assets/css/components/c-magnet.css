@@ -1,0 +1,78 @@
+/* 자석 버튼: 커서가 다가가면 버튼이 끌려오고 글자는 더 많이 끌려온다(magnetic.js가 transform을 직접 씀).
+   올리면 아래에서 색이 차오른다. */
+@layer components {
+  .c-magnet {
+    display: grid;
+    justify-items: center;
+    gap: var(--space-8);
+    padding: clamp(var(--space-12), 8vw, var(--space-32)) var(--space-6);
+    text-align: center;
+    background: var(--tr-white);
+    border: 1px solid var(--tr-line);
+    border-radius: var(--radius-4xl);
+  }
+
+  .c-magnet__lead {
+    font-size: clamp(var(--text-2xl), 1rem + 2.4vw, var(--text-5xl));
+    font-weight: var(--font-weight-bold);
+    letter-spacing: var(--tracking-tight);
+  }
+
+  .c-magnet__btn {
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: clamp(9rem, 16vw, 12rem);
+    aspect-ratio: 1;
+    overflow: hidden;
+    color: var(--tr-white);
+    text-decoration: none;
+    background: var(--tr-ink);
+    border-radius: var(--radius-full);
+    transition: transform 700ms var(--tr-spring);
+    will-change: transform;
+  }
+
+  .c-magnet__btn::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--tr-accent);
+    border-radius: 50%;
+    transform: translateY(101%) scale(1.4);
+    transition: transform var(--tr-dur) var(--tr-ease);
+  }
+
+  .c-magnet__btn.is-pulling {
+    transition: transform 150ms linear;
+  }
+
+  .c-magnet__label {
+    position: relative;
+    font-size: var(--text-lg);
+    font-weight: var(--font-weight-bold);
+    transition: transform 700ms var(--tr-spring);
+  }
+
+  .c-magnet__btn.is-pulling .c-magnet__label {
+    transition: transform 150ms linear;
+  }
+
+  .c-magnet__btn.is-pulling::before,
+  .c-magnet__btn:focus-visible::before {
+    transform: none;
+  }
+
+  .c-magnet__mail {
+    font-size: var(--text-sm);
+    color: var(--tr-ink-soft);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .c-magnet__btn,
+    .c-magnet__btn::before,
+    .c-magnet__label {
+      transition: none;
+    }
+  }
+}

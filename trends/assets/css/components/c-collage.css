@@ -1,0 +1,172 @@
+/* 사진 콜라주 CTA: 뒤에서 그림 기둥들이 위·아래로 번갈아 흐르고, 가운데 카드가 떠 있다.
+   기둥은 같은 그림 묶음을 두 번 이어 붙여 -50%까지 움직이면 이음매 없이 반복된다. */
+@layer components {
+  .c-collage {
+    position: relative;
+    display: grid;
+    place-items: center;
+    min-height: 34rem;
+    padding: var(--space-8) var(--space-4);
+    overflow: hidden;
+    background: var(--tr-paper-2);
+    border-radius: var(--radius-4xl);
+  }
+
+  .c-collage__cols {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: var(--space-3);
+    padding-inline: var(--space-3);
+    mask-image: linear-gradient(transparent, var(--tr-white) 20%, var(--tr-white) 80%, transparent);
+  }
+
+  .c-collage__col {
+    overflow: hidden;
+  }
+
+  .c-collage__track {
+    display: grid;
+    gap: var(--space-3);
+    animation: c-collage-up 36s linear infinite;
+  }
+
+  .c-collage__col:nth-child(even) .c-collage__track {
+    animation-direction: reverse;
+    animation-duration: 44s;
+  }
+
+  .c-collage__tile {
+    aspect-ratio: 4 / 5;
+    border-radius: var(--radius-2xl);
+  }
+
+  .c-collage__tile--1 {
+    background: radial-gradient(circle at 30% 30%, var(--tr-rose), var(--tr-accent));
+  }
+
+  .c-collage__tile--2 {
+    background: linear-gradient(160deg, var(--tr-sky), var(--tr-violet));
+  }
+
+  .c-collage__tile--3 {
+    aspect-ratio: 1;
+    background: radial-gradient(circle at 70% 20%, var(--tr-lime), var(--tr-night-3));
+  }
+
+  .c-collage__tile--4 {
+    background: linear-gradient(200deg, var(--tr-paper-3), var(--tr-ink-soft));
+  }
+
+  .c-collage__tile--5 {
+    aspect-ratio: 3 / 4;
+    background: radial-gradient(circle at 50% 80%, var(--tr-accent), var(--tr-night-2));
+  }
+
+  .c-collage__tile--6 {
+    background: linear-gradient(120deg, var(--tr-lime), var(--tr-sky));
+  }
+
+  .c-collage__card {
+    position: relative;
+    display: grid;
+    justify-items: center;
+    gap: var(--space-4);
+    width: min(100%, 30rem);
+    padding: var(--space-10) var(--space-8);
+    text-align: center;
+    background: var(--tr-glass);
+    border: 1px solid var(--tr-white);
+    border-radius: var(--radius-3xl);
+    box-shadow: var(--tr-shadow-pop);
+    backdrop-filter: blur(var(--tr-blur));
+    -webkit-backdrop-filter: blur(var(--tr-blur));
+  }
+
+  .c-collage__title {
+    font-size: clamp(var(--text-2xl), 1rem + 2vw, var(--text-4xl));
+    font-weight: var(--font-weight-extrabold);
+    letter-spacing: var(--tracking-tight);
+  }
+
+  .c-collage__desc {
+    color: var(--tr-ink-soft);
+  }
+
+  .c-collage__avatars {
+    display: flex;
+  }
+
+  .c-collage__avatar {
+    width: var(--space-10);
+    aspect-ratio: 1;
+    margin-left: calc(var(--space-3) * -1);
+    border: 3px solid var(--tr-paper);
+    border-radius: var(--radius-full);
+  }
+
+  .c-collage__avatar:first-child {
+    margin-left: 0;
+    background: var(--tr-accent);
+  }
+
+  .c-collage__avatar:nth-child(2) {
+    background: var(--tr-violet);
+  }
+
+  .c-collage__avatar:nth-child(3) {
+    background: var(--tr-sky);
+  }
+
+  .c-collage__avatar:nth-child(4) {
+    display: grid;
+    place-items: center;
+    font-size: var(--text-xs);
+    font-weight: var(--font-weight-bold);
+    color: var(--tr-paper);
+    background: var(--tr-ink);
+  }
+
+  .c-collage__btn {
+    padding: var(--space-3) var(--space-6);
+    font-weight: var(--font-weight-semibold);
+    color: var(--tr-white);
+    text-decoration: none;
+    background: var(--tr-ink);
+    border-radius: var(--radius-full);
+    transition: transform var(--tr-dur-fast) var(--tr-spring);
+  }
+
+  @keyframes c-collage-up {
+    to {
+      transform: translateY(calc(-50% - var(--space-3) / 2));
+    }
+  }
+
+  @media (hover: hover) {
+    .c-collage__btn:hover {
+      transform: translateY(-2px);
+    }
+  }
+
+  @media (max-width: 819px) {
+    .c-collage__cols {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .c-collage__col:nth-child(n + 3) {
+      display: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .c-collage__track {
+      animation: none;
+    }
+
+    .c-collage__btn {
+      transition: none;
+    }
+  }
+}

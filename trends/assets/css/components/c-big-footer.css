@@ -1,0 +1,132 @@
+/* 큰 워드마크 푸터: 위에는 구독·링크 묶음, 맨 아래에는 화면 폭을 꽉 채운 이름 글자가
+   바닥에 잘린 채 깔린다. 화면에 들어오면 글자가 한 자씩 솟아오른다(reveal.js가 is-in).
+   글자 크기는 푸터 폭 기준(cqi)이라 무대 안이든 전체 화면이든 꽉 찬다. */
+@layer components {
+  .c-big-footer {
+    container-type: inline-size;
+    display: grid;
+    gap: var(--space-12);
+    padding: var(--space-12) clamp(var(--space-6), 4vw, var(--space-12)) 0;
+    overflow: hidden;
+    color: var(--tr-on-night);
+    background: var(--tr-night);
+  }
+
+  .c-big-footer__top {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: var(--space-8);
+    align-items: end;
+  }
+
+  .c-big-footer__title {
+    font-size: clamp(var(--text-2xl), 1rem + 2vw, var(--text-4xl));
+    font-weight: var(--font-weight-bold);
+    letter-spacing: var(--tracking-tight);
+  }
+
+  .c-big-footer__desc {
+    margin-top: var(--space-2);
+    color: var(--tr-on-night-soft);
+  }
+
+  .c-big-footer__cols {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: var(--space-8);
+    padding-top: var(--space-8);
+    border-top: 1px solid var(--tr-night-line);
+  }
+
+  .c-big-footer__col-title {
+    margin-bottom: var(--space-4);
+    font-size: var(--text-xs);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: var(--tracking-wide);
+    color: var(--tr-on-night-soft);
+  }
+
+  .c-big-footer__list {
+    display: grid;
+    gap: var(--space-2);
+  }
+
+  /* 밑줄이 왼쪽에서 그어진다 */
+  .c-big-footer__link {
+    justify-self: start;
+    color: var(--tr-on-night);
+    text-decoration: none;
+    background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat;
+    transition: background-size var(--tr-dur) var(--tr-ease);
+  }
+
+  .c-big-footer__bottom {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: var(--space-4);
+    font-size: var(--text-sm);
+    color: var(--tr-on-night-soft);
+  }
+
+  .c-big-footer__legal {
+    display: flex;
+    gap: var(--space-4);
+  }
+
+  .c-big-footer__word {
+    display: flex;
+    justify-content: space-between;
+    margin-inline: calc(clamp(var(--space-6), 4vw, var(--space-12)) * -0.4);
+    font-size: 19.5cqi;
+    font-weight: var(--font-weight-black);
+    letter-spacing: var(--tracking-tighter);
+    line-height: 0.74;
+    overflow: hidden;
+    color: var(--tr-on-night);
+  }
+
+  .c-big-footer__char {
+    --i: 0;
+    display: block;
+    transition: transform 1100ms calc(var(--i) * 60ms) var(--tr-ease);
+  }
+
+  .c-big-footer.is-ready .c-big-footer__char {
+    transform: translateY(100%);
+  }
+
+  .c-big-footer.is-in .c-big-footer__char {
+    transform: none;
+  }
+
+  .c-big-footer__char:nth-child(2) { --i: 1; }
+  .c-big-footer__char:nth-child(3) { --i: 2; }
+  .c-big-footer__char:nth-child(4) { --i: 3; }
+  .c-big-footer__char:nth-child(5) { --i: 4; }
+  .c-big-footer__char:nth-child(6) { --i: 5; }
+  .c-big-footer__char:nth-child(7) { --i: 6; }
+
+  @media (hover: hover) {
+    .c-big-footer__link:hover {
+      background-size: 100% 1px;
+    }
+  }
+
+  @media (max-width: 819px) {
+    .c-big-footer__top {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .c-big-footer__cols {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .c-big-footer__link,
+    .c-big-footer__char {
+      transition: none;
+    }
+  }
+}

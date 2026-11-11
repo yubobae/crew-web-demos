@@ -1,0 +1,287 @@
+/* 메가 메뉴: 메뉴 위를 지나가면 배경 알약이 따라오고(glider), 아래 판이 열린다.
+   메뉴를 옮겨 가면 판은 닫히지 않고 높이만 바뀌며 내용이 옆으로 밀려 바뀐다(mega-menu.js). */
+@layer components {
+  .c-mega {
+    position: absolute;
+    inset: 0 0 auto;
+    padding: var(--space-4);
+  }
+
+  .c-mega__bar {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    padding: var(--space-2) var(--space-2) var(--space-2) var(--space-5);
+    background: var(--tr-white);
+    border: 1px solid var(--tr-line);
+    border-radius: var(--radius-full);
+    box-shadow: var(--tr-shadow-float);
+  }
+
+  .c-mega__logo {
+    font-weight: var(--font-weight-extrabold);
+    letter-spacing: var(--tracking-tight);
+    color: var(--tr-ink);
+    text-decoration: none;
+  }
+
+  .c-mega__nav {
+    position: relative;
+    display: flex;
+    margin-inline: auto;
+  }
+
+  .c-mega__item {
+    position: relative;
+    z-index: 1;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    padding: var(--space-2) var(--space-3);
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--tr-ink-soft);
+    text-decoration: none;
+    border-radius: var(--radius-full);
+    transition: color var(--tr-dur-fast) var(--tr-ease);
+  }
+
+  .c-mega__item.is-hovered,
+  .c-mega__item[aria-expanded="true"] {
+    color: var(--tr-ink);
+  }
+
+  .c-mega__chev {
+    width: 0.75rem;
+    transition: transform var(--tr-dur) var(--tr-ease);
+  }
+
+  .c-mega__item[aria-expanded="true"] .c-mega__chev {
+    transform: rotate(180deg);
+  }
+
+  .c-mega__glider {
+    position: absolute;
+    inset-block: 0;
+    left: 0;
+    width: var(--gw, 0);
+    background: var(--tr-paper-2);
+    border-radius: var(--radius-full);
+    opacity: 0;
+    transform: translateX(var(--gx, 0));
+    transition:
+      transform var(--tr-dur) var(--tr-ease),
+      width var(--tr-dur) var(--tr-ease),
+      opacity var(--tr-dur-fast) var(--tr-ease);
+  }
+
+  .c-mega__nav.is-gliding .c-mega__glider {
+    opacity: 1;
+  }
+
+  .c-mega__cta {
+    padding: var(--space-2) var(--space-4);
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--tr-white);
+    text-decoration: none;
+    background: var(--tr-ink);
+    border-radius: var(--radius-full);
+  }
+
+  /* 열리는 판: 높이(--drop-h)만 바뀌고, 안의 판들이 교체된다 */
+  .c-mega__drop {
+    position: relative;
+    height: var(--drop-h, 0);
+    margin-top: var(--space-2);
+    overflow: hidden;
+    background: var(--tr-white);
+    border: 1px solid var(--tr-line);
+    border-radius: var(--radius-3xl);
+    box-shadow: var(--tr-shadow-pop);
+    opacity: 0;
+    transform: translateY(calc(var(--space-2) * -1)) scale(0.98);
+    transform-origin: top center;
+    visibility: hidden;
+    transition:
+      height var(--tr-dur) var(--tr-ease),
+      opacity var(--tr-dur-fast) var(--tr-ease),
+      transform var(--tr-dur) var(--tr-ease),
+      visibility 0s var(--tr-dur);
+  }
+
+  .c-mega.is-open .c-mega__drop {
+    opacity: 1;
+    transform: none;
+    visibility: visible;
+    transition:
+      height var(--tr-dur) var(--tr-ease),
+      opacity var(--tr-dur-fast) var(--tr-ease),
+      transform var(--tr-dur) var(--tr-ease),
+      visibility 0s;
+  }
+
+  .c-mega__panel {
+    position: absolute;
+    inset: 0 0 auto;
+    display: grid;
+    gap: var(--space-2);
+    padding: var(--space-3);
+    opacity: 0;
+    transform: translateX(var(--from, 0));
+    pointer-events: none;
+    transition:
+      opacity var(--tr-dur-fast) var(--tr-ease),
+      transform var(--tr-dur) var(--tr-ease);
+  }
+
+  .c-mega__panel.is-before {
+    --from: calc(var(--space-8) * -1);
+  }
+
+  .c-mega__panel.is-after {
+    --from: var(--space-8);
+  }
+
+  .c-mega__panel.is-active {
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+  }
+
+  .c-mega__panel--grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) minmax(0, 1.2fr);
+  }
+
+  .c-mega__panel--list {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+
+  .c-mega__card {
+    display: grid;
+    align-content: start;
+    gap: var(--space-1);
+    padding: var(--space-4);
+    color: var(--tr-ink);
+    text-decoration: none;
+    background: var(--tr-paper);
+    border-radius: var(--radius-2xl);
+    transition:
+      background-color var(--tr-dur-fast) var(--tr-ease),
+      transform var(--tr-dur) var(--tr-spring);
+  }
+
+  .c-mega__icon {
+    display: grid;
+    place-items: center;
+    width: var(--space-8);
+    aspect-ratio: 1;
+    margin-bottom: var(--space-3);
+    color: var(--tr-accent);
+    background: var(--tr-white);
+    border: 1px solid var(--tr-line);
+    border-radius: var(--radius-lg);
+  }
+
+  .c-mega__card-title {
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .c-mega__card-desc {
+    font-size: var(--text-xs);
+    line-height: var(--leading-normal);
+    color: var(--tr-ink-soft);
+  }
+
+  .c-mega__feature {
+    grid-row: span 2;
+    grid-column: 4;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: var(--space-1);
+    min-height: 12rem;
+    padding: var(--space-5);
+    color: var(--tr-white);
+    text-decoration: none;
+    background:
+      radial-gradient(circle at 80% 10%, var(--tr-accent), transparent 55%),
+      radial-gradient(circle at 10% 90%, var(--tr-violet), transparent 60%),
+      var(--tr-night);
+    border-radius: var(--radius-2xl);
+  }
+
+  .c-mega__feature-tag {
+    align-self: flex-start;
+    margin-bottom: auto;
+    padding: var(--space-1) var(--space-2);
+    font-size: var(--text-xs);
+    background: var(--tr-veil);
+    border-radius: var(--radius-full);
+  }
+
+  .c-mega__feature-title {
+    font-size: var(--text-lg);
+    font-weight: var(--font-weight-bold);
+  }
+
+  .c-mega__row {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-3);
+    color: var(--tr-ink);
+    text-decoration: none;
+    border-radius: var(--radius-xl);
+    transition: background-color var(--tr-dur-fast) var(--tr-ease);
+  }
+
+  .c-mega__row-arrow {
+    margin-left: auto;
+    color: var(--tr-ink-soft);
+    opacity: 0;
+    transform: translateX(calc(var(--space-2) * -1));
+    transition:
+      opacity var(--tr-dur-fast) var(--tr-ease),
+      transform var(--tr-dur) var(--tr-ease);
+  }
+
+  @media (hover: hover) {
+    .c-mega__card:hover {
+      background: var(--tr-paper-2);
+      transform: translateY(-2px);
+    }
+
+    .c-mega__row:hover {
+      background: var(--tr-paper);
+    }
+
+    .c-mega__row:hover .c-mega__row-arrow {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @media (max-width: 819px) {
+    .c-mega__nav {
+      display: none;
+    }
+
+    .c-mega__cta {
+      margin-left: auto;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .c-mega__glider,
+    .c-mega__chev,
+    .c-mega__drop,
+    .c-mega.is-open .c-mega__drop,
+    .c-mega__panel,
+    .c-mega__card,
+    .c-mega__row-arrow {
+      transition: none;
+    }
+  }
+}

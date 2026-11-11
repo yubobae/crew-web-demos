@@ -1,0 +1,115 @@
+/* 좋아요 터짐: 누르면 하트가 쪼그라들었다 튀어 오르며 색이 차고, 작은 점 여섯 개가 사방으로 터진다.
+   숫자는 위로 굴러 하나 오른다(like-burst.js가 aria-pressed, is-burst). */
+@layer components {
+  .c-like {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-2) var(--space-5) var(--space-2) var(--space-2);
+    font-weight: var(--font-weight-semibold);
+    background: var(--tr-white);
+    border: 1px solid var(--tr-line);
+    border-radius: var(--radius-full);
+    box-shadow: var(--tr-shadow-float);
+  }
+
+  .c-like__heart {
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: var(--space-10);
+    aspect-ratio: 1;
+    color: var(--tr-ink-soft);
+    border-radius: var(--radius-full);
+    transition:
+      color var(--tr-dur-fast) var(--tr-ease),
+      background-color var(--tr-dur-fast) var(--tr-ease);
+  }
+
+  .c-like__heart svg {
+    width: 1.375rem;
+    height: 1.375rem;
+    transition: fill var(--tr-dur-fast) var(--tr-ease);
+  }
+
+  .c-like[aria-pressed="true"] .c-like__heart {
+    color: var(--tr-accent);
+    background: var(--tr-accent-soft);
+  }
+
+  .c-like[aria-pressed="true"] svg {
+    fill: currentColor;
+  }
+
+  .c-like.is-burst svg {
+    animation: c-like-pop 500ms var(--tr-spring);
+  }
+
+  .c-like__spark {
+    --a: 0deg;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 6px;
+    aspect-ratio: 1;
+    margin: -3px;
+    background: var(--tr-accent);
+    border-radius: var(--radius-full);
+    opacity: 0;
+  }
+
+  .c-like__spark:nth-child(2) { --a: 60deg; background: var(--tr-violet); }
+  .c-like__spark:nth-child(3) { --a: 120deg; background: var(--tr-lime); }
+  .c-like__spark:nth-child(4) { --a: 180deg; }
+  .c-like__spark:nth-child(5) { --a: 240deg; background: var(--tr-sky); }
+  .c-like__spark:nth-child(6) { --a: 300deg; background: var(--tr-violet); }
+
+  .c-like.is-burst .c-like__spark {
+    animation: c-like-spark 600ms var(--tr-ease) forwards;
+  }
+
+  .c-like__count {
+    display: inline-grid;
+    min-width: 3ch;
+    overflow: hidden;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .c-like__num {
+    grid-area: 1 / 1;
+  }
+
+  @keyframes c-like-pop {
+    30% {
+      transform: scale(0.6);
+    }
+
+    70% {
+      transform: scale(1.25);
+    }
+  }
+
+  @keyframes c-like-spark {
+    0% {
+      opacity: 1;
+      transform: rotate(var(--a)) translateY(0) scale(1);
+    }
+
+    100% {
+      opacity: 0;
+      transform: rotate(var(--a)) translateY(-1.75rem) scale(0.3);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .c-like__heart,
+    .c-like__heart svg {
+      transition: none;
+    }
+
+    .c-like.is-burst svg,
+    .c-like.is-burst .c-like__spark {
+      animation: none;
+    }
+  }
+}

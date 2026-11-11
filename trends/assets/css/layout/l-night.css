@@ -1,0 +1,7 @@
+/* 어두운 바탕 페이지 감싸개(벤토 페이지) */
+@layer layout {
+  .l-night {
+    color: var(--tr-on-night);
+    background: var(--tr-night);
+  }
+}

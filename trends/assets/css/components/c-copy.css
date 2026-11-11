@@ -1,0 +1,93 @@
+/* 복사 버튼: 누르면 아이콘이 체크로 바뀌고 위에 "복사됨" 말풍선이 튀어 오른다(copy-button.js가 is-copied). */
+@layer components {
+  .c-copy {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-1-5) var(--space-1-5) var(--space-1-5) var(--space-4);
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    color: var(--tr-on-night);
+    background: var(--tr-night);
+    border-radius: var(--radius-xl);
+  }
+
+  .c-copy__prompt {
+    color: var(--tr-on-night-soft);
+  }
+
+  .c-copy__btn {
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: var(--space-8);
+    aspect-ratio: 1;
+    color: var(--tr-on-night);
+    background: var(--tr-night-3);
+    border-radius: var(--radius-lg);
+    transition: background-color var(--tr-dur-fast) var(--tr-ease);
+  }
+
+  .c-copy__icon {
+    grid-area: 1 / 1;
+    display: grid;
+    transition:
+      opacity var(--tr-dur-fast) var(--tr-ease),
+      transform var(--tr-dur) var(--tr-spring);
+  }
+
+  .c-copy__icon--done {
+    color: var(--tr-lime);
+    opacity: 0;
+    transform: scale(0.4) rotate(-30deg);
+  }
+
+  .c-copy.is-copied .c-copy__icon--copy {
+    opacity: 0;
+    transform: scale(0.4);
+  }
+
+  .c-copy.is-copied .c-copy__icon--done {
+    opacity: 1;
+    transform: none;
+  }
+
+  .c-copy__tip {
+    position: absolute;
+    bottom: calc(100% + var(--space-2));
+    left: 50%;
+    padding: var(--space-1) var(--space-2);
+    font-family: var(--font-sans);
+    font-size: var(--text-xs);
+    font-weight: var(--font-weight-semibold);
+    white-space: nowrap;
+    color: var(--tr-ink);
+    background: var(--tr-lime);
+    border-radius: var(--radius-md);
+    opacity: 0;
+    transform: translate(-50%, var(--space-2)) scale(0.8);
+    transition:
+      opacity var(--tr-dur-fast) var(--tr-ease),
+      transform var(--tr-dur) var(--tr-spring);
+    pointer-events: none;
+  }
+
+  .c-copy.is-copied .c-copy__tip {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+
+  @media (hover: hover) {
+    .c-copy__btn:hover {
+      background: var(--tr-night-2);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .c-copy__btn,
+    .c-copy__icon,
+    .c-copy__tip {
+      transition: none;
+    }
+  }
+}

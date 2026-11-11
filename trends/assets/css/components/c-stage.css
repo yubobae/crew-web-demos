@@ -1,0 +1,100 @@
+/* 무대: 예시를 작은 브라우저 창 안에 띄운다. 안쪽(__view)은 자기만의 좌표계(position: relative)라
+   메뉴·드로어가 창 밖으로 나가지 않는다. 높이는 --tr-stage-h(수정자 --tall, --short). */
+@layer components {
+  .c-stage {
+    margin: 0;
+    overflow: hidden;
+    background: var(--tr-white);
+    border: 1px solid var(--tr-line);
+    border-radius: var(--radius-3xl);
+    box-shadow: var(--tr-shadow-float);
+  }
+
+  .c-stage__bar {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1-5);
+    height: var(--space-10);
+    padding-inline: var(--space-4);
+    background: var(--tr-paper-2);
+    border-bottom: 1px solid var(--tr-line);
+  }
+
+  .c-stage__dot {
+    width: var(--space-2);
+    aspect-ratio: 1;
+    border-radius: var(--radius-full);
+    background: var(--tr-paper-3);
+  }
+
+  .c-stage__url {
+    margin-inline: auto;
+    padding: var(--space-1) var(--space-4);
+    font-size: var(--text-xs);
+    color: var(--tr-ink-soft);
+    background: var(--tr-paper);
+    border-radius: var(--radius-full);
+  }
+
+  .c-stage__view {
+    position: relative;
+    height: var(--tr-stage-h);
+    overflow: hidden;
+    isolation: isolate;
+    background: var(--tr-paper);
+  }
+
+  .c-stage--tall .c-stage__view {
+    height: calc(var(--tr-stage-h) + var(--space-24));
+  }
+
+  .c-stage--auto .c-stage__view {
+    height: auto;
+  }
+
+  .c-stage--night {
+    background: var(--tr-night-2);
+    border-color: var(--tr-night-line);
+  }
+
+  .c-stage--night .c-stage__bar {
+    background: var(--tr-night-2);
+    border-bottom-color: var(--tr-night-line);
+  }
+
+  .c-stage--night .c-stage__dot {
+    background: var(--tr-night-3);
+  }
+
+  .c-stage--night .c-stage__url {
+    color: var(--tr-on-night-soft);
+    background: var(--tr-night);
+  }
+
+  .c-stage--night .c-stage__view {
+    color: var(--tr-on-night);
+    background: var(--tr-night);
+  }
+
+  .c-stage__caption {
+    padding: var(--space-4) var(--space-5);
+    font-size: var(--text-sm);
+    color: var(--tr-ink-soft);
+    border-top: 1px solid var(--tr-line);
+  }
+
+  .c-stage--night .c-stage__caption {
+    color: var(--tr-on-night-soft);
+    border-top-color: var(--tr-night-line);
+  }
+
+  @media (max-width: 819px) {
+    .c-stage {
+      border-radius: var(--radius-2xl);
+    }
+
+    .c-stage__view {
+      height: calc(var(--tr-stage-h) + var(--space-16));
+    }
+  }
+}

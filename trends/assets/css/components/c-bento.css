@@ -1,0 +1,515 @@
+/* 벤토 그리드(어두운 바탕): 크기가 다른 타일을 도시락처럼 맞춰 담는다.
+   - 포인터를 따라 타일 테두리가 빛난다(pointer-glow.js가 타일마다 --mx, --my)
+   - 화면에 들어오면 타일이 차례로 떠오르고(reveal.js가 is-ready·is-in), 막대·선 그래프가 그려진다
+   - 숫자는 굴러 올라간다(count-up.js) */
+@layer components {
+  @property --tr-wave {
+    syntax: "<percentage>";
+    inherits: false;
+    initial-value: 0%;
+  }
+
+  .c-bento {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-auto-rows: minmax(13rem, auto);
+    gap: var(--space-3);
+  }
+
+  .c-bento__tile {
+    --i: 0;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    padding: var(--space-6);
+    overflow: hidden;
+    color: var(--tr-on-night);
+    background: var(--tr-night-2);
+    border: 1px solid var(--tr-night-line);
+    border-radius: var(--radius-3xl);
+    transition:
+      opacity 800ms calc(var(--i) * 70ms) var(--tr-ease),
+      transform 900ms calc(var(--i) * 70ms) var(--tr-ease);
+  }
+
+  .c-bento.is-ready .c-bento__tile:not(.is-in) {
+    opacity: 0;
+    transform: translateY(var(--space-8)) scale(0.97);
+  }
+
+  .c-bento__tile:nth-child(2) { --i: 1; }
+  .c-bento__tile:nth-child(3) { --i: 2; }
+  .c-bento__tile:nth-child(4) { --i: 3; }
+  .c-bento__tile:nth-child(5) { --i: 4; }
+  .c-bento__tile:nth-child(6) { --i: 1; }
+  .c-bento__tile:nth-child(7) { --i: 2; }
+  .c-bento__tile:nth-child(8) { --i: 3; }
+  .c-bento__tile:nth-child(9) { --i: 4; }
+
+  /* 포인터 빛: 테두리(::before)와 안쪽 은은한 빛(::after) */
+  .c-bento__tile::before,
+  .c-bento__tile::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    opacity: 0;
+    transition: opacity var(--tr-dur) var(--tr-ease);
+    pointer-events: none;
+  }
+
+  .c-bento__tile::before {
+    padding: 1px;
+    background: radial-gradient(18rem circle at var(--mx, 50%) var(--my, 50%), var(--tr-accent), transparent 70%);
+    mask:
+      linear-gradient(var(--tr-white) 0 0) content-box exclude,
+      linear-gradient(var(--tr-white) 0 0);
+    -webkit-mask:
+      linear-gradient(var(--tr-white) 0 0) content-box,
+      linear-gradient(var(--tr-white) 0 0);
+    -webkit-mask-composite: xor;
+  }
+
+  .c-bento__tile::after {
+    background: radial-gradient(22rem circle at var(--mx, 50%) var(--my, 50%), var(--tr-accent-soft), transparent 70%);
+  }
+
+  .c-bento.is-glowing .c-bento__tile::before,
+  .c-bento.is-glowing .c-bento__tile::after {
+    opacity: 1;
+  }
+
+  .c-bento__tile--hero {
+    grid-column: span 2;
+    grid-row: span 2;
+    justify-content: flex-end;
+    min-height: 28rem;
+    background:
+      radial-gradient(60% 60% at 75% 25%, var(--tr-accent-glow), transparent 70%),
+      radial-gradient(50% 50% at 20% 80%, var(--tr-violet), transparent 70%),
+      var(--tr-night-2);
+  }
+
+  .c-bento__tile--wide {
+    grid-column: span 2;
+  }
+
+  .c-bento__eyebrow {
+    font-size: var(--text-xs);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: var(--tracking-wide);
+    color: var(--tr-on-night-soft);
+  }
+
+  .c-bento__title {
+    font-size: var(--text-xl);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: var(--tracking-tight);
+  }
+
+  .c-bento__tile--hero .c-bento__title {
+    max-width: 12ch;
+    font-size: clamp(var(--text-3xl), 1rem + 2.6vw, var(--text-5xl));
+    font-weight: var(--font-weight-extrabold);
+    letter-spacing: var(--tracking-tighter);
+  }
+
+  .c-bento__text {
+    font-size: var(--text-sm);
+    color: var(--tr-on-night-soft);
+  }
+
+  /* 첫 타일의 떠다니는 알약들 */
+  .c-bento__chips {
+    position: absolute;
+    inset: var(--space-6) var(--space-6) auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+
+  .c-bento__chip {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-3);
+    font-size: var(--text-sm);
+    background: var(--tr-glass-night);
+    border: 1px solid var(--tr-night-line);
+    border-radius: var(--radius-full);
+    animation: c-bento-float 6s var(--ease-in-out) infinite;
+  }
+
+  .c-bento__chip:nth-child(2) {
+    animation-delay: -2s;
+  }
+
+  .c-bento__chip:nth-child(3) {
+    animation-delay: -4s;
+  }
+
+  .c-bento__chip-dot {
+    width: var(--space-2);
+    aspect-ratio: 1;
+    background: var(--tr-lime);
+    border-radius: var(--radius-full);
+  }
+
+  /* 큰 숫자 */
+  .c-bento__num {
+    margin-top: auto;
+    font-size: var(--text-5xl);
+    font-weight: var(--font-weight-extrabold);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: var(--tracking-tighter);
+    line-height: 1;
+  }
+
+  /* 선 그래프: 화면에 들어오면 선이 그려진다 */
+  .c-bento__spark {
+    width: 100%;
+    height: 3rem;
+    color: var(--tr-lime);
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    transition: stroke-dashoffset 1600ms 300ms var(--tr-ease);
+  }
+
+  .c-bento__tile.is-in .c-bento__spark {
+    stroke-dashoffset: 0;
+  }
+
+  /* 스위치 타일 */
+  .c-bento__switch {
+    position: relative;
+    width: 3.5rem;
+    height: 2rem;
+    margin-top: auto;
+    background: var(--tr-night-3);
+    border-radius: var(--radius-full);
+    transition: background-color var(--tr-dur) var(--tr-ease);
+  }
+
+  .c-bento__switch::after {
+    content: "";
+    position: absolute;
+    top: var(--space-1);
+    left: var(--space-1);
+    width: 1.5rem;
+    aspect-ratio: 1;
+    background: var(--tr-on-night);
+    border-radius: var(--radius-full);
+    box-shadow: var(--shadow-md);
+    transition: transform var(--tr-dur) var(--tr-spring);
+  }
+
+  .c-bento__switch[aria-checked="true"] {
+    background: var(--tr-lime);
+  }
+
+  .c-bento__switch[aria-checked="true"]::after {
+    background: var(--tr-night);
+    transform: translateX(1.5rem);
+  }
+
+  .c-bento__state {
+    font-size: var(--text-sm);
+    color: var(--tr-on-night-soft);
+  }
+
+  /* 막대 그래프: 아래에서 차오르고, 올리면 값이 뜬다 */
+  .c-bento__bars {
+    display: flex;
+    align-items: flex-end;
+    gap: var(--space-2);
+    height: 7rem;
+    margin-top: auto;
+  }
+
+  .c-bento__bar {
+    --h: 40%;
+    --d: 0;
+    position: relative;
+    flex: 1;
+    height: var(--h);
+    background: var(--tr-night-3);
+    border-radius: var(--radius-md);
+    transform: scaleY(0);
+    transform-origin: bottom;
+    transition:
+      transform 900ms calc(300ms + var(--d) * 60ms) var(--tr-spring),
+      background-color var(--tr-dur-fast) var(--tr-ease);
+  }
+
+  .c-bento__tile.is-in .c-bento__bar {
+    transform: none;
+  }
+
+  .c-bento__bar:nth-child(1) { --h: 45%; }
+  .c-bento__bar:nth-child(2) { --h: 70%; --d: 1; }
+  .c-bento__bar:nth-child(3) { --h: 55%; --d: 2; }
+  .c-bento__bar:nth-child(4) { --h: 90%; --d: 3; }
+  .c-bento__bar:nth-child(5) { --h: 65%; --d: 4; }
+  .c-bento__bar:nth-child(6) { --h: 30%; --d: 5; }
+  .c-bento__bar:nth-child(7) { --h: 20%; --d: 6; }
+
+  .c-bento__bar--peak {
+    background: var(--tr-accent);
+  }
+
+  .c-bento__bar::after {
+    content: attr(data-v);
+    position: absolute;
+    bottom: calc(100% + var(--space-1));
+    left: 50%;
+    padding: var(--space-0-5) var(--space-1-5);
+    font-size: var(--text-xs);
+    white-space: nowrap;
+    color: var(--tr-night);
+    background: var(--tr-on-night);
+    border-radius: var(--radius-sm);
+    opacity: 0;
+    transform: translate(-50%, var(--space-1));
+    transition:
+      opacity var(--tr-dur-fast) var(--tr-ease),
+      transform var(--tr-dur-fast) var(--tr-ease);
+  }
+
+  .c-bento__days {
+    display: flex;
+    gap: var(--space-2);
+    font-size: var(--text-xs);
+    color: var(--tr-on-night-soft);
+  }
+
+  .c-bento__day {
+    flex: 1;
+    text-align: center;
+  }
+
+  /* 흐르는 이름표 두 줄 */
+  .c-bento__marquee {
+    display: grid;
+    gap: var(--space-2);
+    margin-top: auto;
+    margin-inline: calc(var(--space-6) * -1);
+    overflow: hidden;
+    mask-image: linear-gradient(90deg, transparent, var(--tr-white) 15%, var(--tr-white) 85%, transparent);
+  }
+
+  .c-bento__row {
+    display: flex;
+    gap: var(--space-2);
+    width: max-content;
+    animation: c-bento-slide 28s linear infinite;
+  }
+
+  .c-bento__row--back {
+    animation-direction: reverse;
+  }
+
+  .c-bento__tag {
+    padding: var(--space-2) var(--space-4);
+    font-size: var(--text-sm);
+    white-space: nowrap;
+    background: var(--tr-night-3);
+    border-radius: var(--radius-full);
+  }
+
+  /* 함께 편집 중 */
+  .c-bento__faces {
+    display: flex;
+    margin-top: auto;
+  }
+
+  .c-bento__face {
+    width: var(--space-10);
+    aspect-ratio: 1;
+    margin-left: calc(var(--space-3) * -1);
+    border: 3px solid var(--tr-night-2);
+    border-radius: var(--radius-full);
+  }
+
+  .c-bento__face:first-child {
+    margin-left: 0;
+    background: var(--tr-accent);
+  }
+
+  .c-bento__face:nth-child(2) {
+    background: var(--tr-sky);
+  }
+
+  .c-bento__face:nth-child(3) {
+    background: var(--tr-violet);
+  }
+
+  .c-bento__face:nth-child(4) {
+    background: var(--tr-lime);
+  }
+
+  .c-bento__live {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--text-sm);
+    color: var(--tr-on-night-soft);
+  }
+
+  .c-bento__pulse {
+    position: relative;
+    width: var(--space-2);
+    aspect-ratio: 1;
+    background: var(--tr-success);
+    border-radius: var(--radius-full);
+  }
+
+  .c-bento__pulse::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--tr-success);
+    border-radius: inherit;
+    animation: c-bento-ping 1.6s var(--tr-ease) infinite;
+  }
+
+  .c-bento__quote {
+    font-size: var(--text-lg);
+    font-weight: var(--font-weight-medium);
+    line-height: var(--leading-snug);
+  }
+
+  .c-bento__who {
+    margin-top: auto;
+    font-size: var(--text-sm);
+    color: var(--tr-on-night-soft);
+  }
+
+  /* 점 지도: 점 무늬 위로 강조색 점이 물결처럼 퍼진다 */
+  .c-bento__dots {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle, var(--tr-night-3) 1.5px, transparent 2px) 0 0 / 16px 16px;
+    mask-image: linear-gradient(transparent, var(--tr-white) 40%);
+  }
+
+  .c-bento__dots::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle, var(--tr-accent) 1.5px, transparent 2px) 0 0 / 16px 16px;
+    mask-image: radial-gradient(circle at 65% 60%, transparent calc(var(--tr-wave) - 12%), var(--tr-white) var(--tr-wave), transparent calc(var(--tr-wave) + 6%));
+    animation: c-bento-wave 3.2s var(--ease-out) infinite;
+  }
+
+  .c-bento__tile--map {
+    justify-content: flex-start;
+  }
+
+  .c-bento__tile--cta {
+    justify-content: space-between;
+    color: var(--tr-ink);
+    text-decoration: none;
+    background: var(--tr-lime);
+    border-color: transparent;
+  }
+
+  .c-bento__tile--cta .c-bento__text {
+    color: var(--tr-ink-soft);
+  }
+
+  .c-bento__go {
+    display: grid;
+    place-items: center;
+    align-self: flex-end;
+    width: var(--space-12);
+    aspect-ratio: 1;
+    color: var(--tr-lime);
+    background: var(--tr-ink);
+    border-radius: var(--radius-full);
+    transition: transform var(--tr-dur) var(--tr-spring);
+  }
+
+  @keyframes c-bento-float {
+    50% {
+      transform: translateY(calc(var(--space-2) * -1));
+    }
+  }
+
+  @keyframes c-bento-slide {
+    to {
+      transform: translateX(calc(-50% - var(--space-1)));
+    }
+  }
+
+  @keyframes c-bento-ping {
+    to {
+      opacity: 0;
+      transform: scale(3);
+    }
+  }
+
+  @keyframes c-bento-wave {
+    from {
+      --tr-wave: 0%;
+    }
+
+    to {
+      --tr-wave: 90%;
+    }
+  }
+
+  @media (hover: hover) {
+    .c-bento__bar:hover {
+      background: var(--tr-lime);
+    }
+
+    .c-bento__bar:hover::after {
+      opacity: 1;
+      transform: translate(-50%, 0);
+    }
+
+    .c-bento__tile--cta:hover .c-bento__go {
+      transform: rotate(-45deg) scale(1.08);
+    }
+  }
+
+  @media (max-width: 1023px) {
+    .c-bento {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 599px) {
+    .c-bento {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .c-bento__tile--hero,
+    .c-bento__tile--wide {
+      grid-column: auto;
+      grid-row: auto;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .c-bento__tile,
+    .c-bento__tile::before,
+    .c-bento__tile::after,
+    .c-bento__spark,
+    .c-bento__switch,
+    .c-bento__switch::after,
+    .c-bento__bar,
+    .c-bento__bar::after,
+    .c-bento__go {
+      transition: none;
+    }
+
+    .c-bento__chip,
+    .c-bento__row,
+    .c-bento__pulse::after,
+    .c-bento__dots::after {
+      animation: none;
+    }
+  }
+}

@@ -1,0 +1,144 @@
+/* 공지 띠 + 검색 막대: 맨 위 공지는 닫으면 높이가 접히며 사라지고(dismiss.js),
+   검색 버튼(또는 Ctrl/⌘+K)은 명령 팔레트를 연다(cmdk.js). */
+@layer components {
+  .c-announce {
+    position: absolute;
+    inset: 0 0 auto;
+  }
+
+  .c-announce__strip {
+    display: grid;
+    grid-template-rows: 1fr;
+    transition: grid-template-rows var(--tr-dur) var(--tr-ease);
+  }
+
+  .c-announce__strip.is-hidden {
+    grid-template-rows: 0fr;
+  }
+
+  .c-announce__inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-3);
+    min-height: 0;
+    overflow: hidden;
+    font-size: var(--text-sm);
+    color: var(--tr-white);
+    background: linear-gradient(90deg, var(--tr-violet), var(--tr-accent));
+  }
+
+  .c-announce__msg {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding-block: var(--space-3);
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .c-announce__tag {
+    padding: var(--space-0-5) var(--space-2);
+    font-size: var(--text-xs);
+    font-weight: var(--font-weight-bold);
+    color: var(--tr-violet);
+    background: var(--tr-white);
+    border-radius: var(--radius-full);
+  }
+
+  .c-announce__arrow {
+    transition: transform var(--tr-dur) var(--tr-spring);
+  }
+
+  .c-announce__close {
+    display: grid;
+    place-items: center;
+    width: var(--space-6);
+    aspect-ratio: 1;
+    color: inherit;
+    border-radius: var(--radius-full);
+    opacity: 0.8;
+  }
+
+  .c-announce__bar {
+    display: flex;
+    align-items: center;
+    gap: var(--space-6);
+    padding: var(--space-4) var(--space-6);
+    background: var(--tr-white);
+    border-bottom: 1px solid var(--tr-line);
+  }
+
+  .c-announce__logo {
+    font-weight: var(--font-weight-extrabold);
+    color: var(--tr-ink);
+    text-decoration: none;
+  }
+
+  .c-announce__links {
+    display: flex;
+    gap: var(--space-5);
+    font-size: var(--text-sm);
+    color: var(--tr-ink-soft);
+  }
+
+  .c-announce__search {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    min-width: 14rem;
+    margin-left: auto;
+    padding: var(--space-2) var(--space-2) var(--space-2) var(--space-3);
+    font-size: var(--text-sm);
+    color: var(--tr-ink-soft);
+    background: var(--tr-paper);
+    border: 1px solid var(--tr-line);
+    border-radius: var(--radius-full);
+    transition:
+      border-color var(--tr-dur-fast) var(--tr-ease),
+      box-shadow var(--tr-dur-fast) var(--tr-ease);
+  }
+
+  .c-announce__kbd {
+    margin-left: auto;
+    padding: var(--space-0-5) var(--space-1-5);
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    background: var(--tr-white);
+    border: 1px solid var(--tr-line);
+    border-radius: var(--radius-sm);
+  }
+
+  @media (hover: hover) {
+    .c-announce__msg:hover .c-announce__arrow {
+      transform: translateX(var(--space-1));
+    }
+
+    .c-announce__close:hover {
+      opacity: 1;
+    }
+
+    .c-announce__search:hover {
+      border-color: var(--tr-ink-soft);
+      box-shadow: 0 0 0 4px var(--tr-accent-soft);
+    }
+  }
+
+  @media (max-width: 819px) {
+    .c-announce__links {
+      display: none;
+    }
+
+    .c-announce__search {
+      min-width: 0;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .c-announce__strip,
+    .c-announce__arrow,
+    .c-announce__search {
+      transition: none;
+    }
+  }
+}

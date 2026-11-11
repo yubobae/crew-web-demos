@@ -1,0 +1,85 @@
+/* 변신 버튼: 누르면 동그라미로 줄며 돌고(is-loading), 초록 "저장됨"으로 펴진다(is-done). morph-button.js */
+@layer components {
+  .c-morph-btn {
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: 10rem;
+    height: var(--space-12);
+    font-weight: var(--font-weight-semibold);
+    color: var(--tr-white);
+    background: var(--tr-ink);
+    border-radius: var(--radius-full);
+    transition:
+      width var(--tr-dur) var(--tr-spring),
+      background-color var(--tr-dur) var(--tr-ease),
+      transform var(--tr-dur-fast) var(--tr-spring);
+  }
+
+  .c-morph-btn:active {
+    transform: scale(0.95);
+  }
+
+  .c-morph-btn.is-loading {
+    width: var(--space-12);
+  }
+
+  .c-morph-btn.is-done {
+    background: var(--tr-success);
+  }
+
+  .c-morph-btn__face {
+    grid-area: 1 / 1;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    white-space: nowrap;
+    transition:
+      opacity var(--tr-dur-fast) var(--tr-ease),
+      transform var(--tr-dur) var(--tr-spring);
+  }
+
+  .c-morph-btn__face--spin,
+  .c-morph-btn__face--done {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+
+  .c-morph-btn.is-loading .c-morph-btn__face--idle,
+  .c-morph-btn.is-done .c-morph-btn__face--idle {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+
+  .c-morph-btn.is-loading .c-morph-btn__face--spin,
+  .c-morph-btn.is-done .c-morph-btn__face--done {
+    opacity: 1;
+    transform: none;
+  }
+
+  .c-morph-btn__ring {
+    width: 1.25rem;
+    aspect-ratio: 1;
+    border: 2px solid var(--tr-white);
+    border-right-color: transparent;
+    border-radius: var(--radius-full);
+    animation: c-morph-btn-spin 700ms linear infinite;
+  }
+
+  @keyframes c-morph-btn-spin {
+    to {
+      transform: rotate(1turn);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .c-morph-btn,
+    .c-morph-btn__face {
+      transition: none;
+    }
+
+    .c-morph-btn__ring {
+      animation-duration: 2s;
+    }
+  }
+}

@@ -1,0 +1,83 @@
+/* 커튼 푸터(이 페이지의 진짜 푸터): l-curtain 안에서 본문 밑에 깔려 있다가 본문이 걷히면 드러난다. */
+@layer components {
+  .c-curtain-footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: var(--space-12);
+    min-height: 80vh;
+    min-height: 80svh;
+    padding: calc(var(--space-24) + var(--space-8)) var(--gutter) var(--space-8);
+    color: var(--tr-on-night);
+    background:
+      radial-gradient(50% 60% at 85% 100%, var(--tr-accent-glow), transparent),
+      var(--tr-night);
+  }
+
+  .c-curtain-footer__label {
+    font-size: var(--text-sm);
+    color: var(--tr-on-night-soft);
+  }
+
+  .c-curtain-footer__next {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-4);
+    margin-top: var(--space-3);
+    font-size: clamp(var(--text-4xl), 1rem + 6vw, var(--text-8xl));
+    font-weight: var(--font-weight-black);
+    letter-spacing: var(--tracking-tighter);
+    line-height: 1;
+    color: var(--tr-on-night);
+    text-decoration: none;
+  }
+
+  .c-curtain-footer__next svg {
+    width: 0.7em;
+    height: 0.7em;
+    color: var(--tr-lime);
+    transition: transform var(--tr-dur) var(--tr-spring);
+  }
+
+  .c-curtain-footer__demos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+
+  .c-curtain-footer__demo {
+    padding: var(--space-2) var(--space-4);
+    font-size: var(--text-sm);
+    color: var(--tr-on-night);
+    text-decoration: none;
+    border: 1px solid var(--tr-night-line);
+    border-radius: var(--radius-full);
+    transition: background-color var(--tr-dur-fast) var(--tr-ease);
+  }
+
+  .c-curtain-footer__bottom {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: var(--space-4);
+    font-size: var(--text-sm);
+    color: var(--tr-on-night-soft);
+  }
+
+  @media (hover: hover) {
+    .c-curtain-footer__next:hover svg {
+      transform: translateX(var(--space-4)) rotate(-45deg);
+    }
+
+    .c-curtain-footer__demo:hover {
+      background: var(--tr-night-3);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .c-curtain-footer__next svg,
+    .c-curtain-footer__demo {
+      transition: none;
+    }
+  }
+}

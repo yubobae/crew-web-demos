@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>벤토 그리드 | 보람찬크루 요즘 UI</title>
+  <meta name="description" content="포인터를 따라 테두리가 빛나는 어두운 벤토 그리드와 움직이는 타일 예시입니다.">
+  <meta name="theme-color" content="#f8f7f4">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+  <link rel="stylesheet" href="assets/css/main.css">
+  <script type="module" src="assets/js/main.js"></script>
+</head>
+<body>
+  <a class="u-visually-hidden" href="#main">본문 바로가기</a>
+
+  <header class="c-site-nav c-site-nav--night" data-module="site-nav">
+    <div class="c-site-nav__bar">
+      <a class="c-site-nav__logo" href="https://yubobae.github.io/crew-web-demos/"><span class="c-site-nav__mark" aria-hidden="true"></span>보람찬크루 데모</a>
+      <nav class="c-site-nav__links" aria-label="요즘 UI 데모 페이지" data-module="glider" data-glide="hover">
+        <span class="c-site-nav__glider js-glider" aria-hidden="true"></span>
+        <a class="c-site-nav__link js-glide-item" href="index.html">내비게이션</a>
+        <a class="c-site-nav__link js-glide-item" href="cta.html">CTA</a>
+        <a class="c-site-nav__link js-glide-item" href="bento.html" aria-current="page">벤토</a>
+        <a class="c-site-nav__link js-glide-item" href="footer.html">푸터</a>
+        <a class="c-site-nav__link js-glide-item" href="motion.html">마이크로</a>
+      </nav>
+      <button class="c-site-nav__menu" type="button" popovertarget="site-menu">메뉴 <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
+    </div>
+    <div class="c-site-nav__panel" id="site-menu" popover>
+      <div class="c-site-nav__group c-site-nav__group--pages">
+        <p class="c-site-nav__group-title">요즘 UI</p>
+        <a class="c-site-nav__item" href="index.html">내비게이션 <span class="c-site-nav__item-desc">알약 헤더·메가 메뉴·전체 메뉴</span></a>
+        <a class="c-site-nav__item" href="cta.html">CTA <span class="c-site-nav__item-desc">행동 유도 구역 다섯 가지</span></a>
+        <a class="c-site-nav__item" href="bento.html" aria-current="page">벤토 <span class="c-site-nav__item-desc">어두운 벤토 그리드</span></a>
+        <a class="c-site-nav__item" href="footer.html">푸터 <span class="c-site-nav__item-desc">큰 글자·카드·커튼 푸터</span></a>
+        <a class="c-site-nav__item" href="motion.html">마이크로 <span class="c-site-nav__item-desc">작은 움직임 열 가지</span></a>
+      </div>
+      <div class="c-site-nav__group">
+        <p class="c-site-nav__group-title">다른 데모</p>
+        <a class="c-site-nav__item" href="https://yubobae.github.io/crew-web-demos/">데모 목록 <span class="c-site-nav__item-desc">처음으로</span></a>
+        <a class="c-site-nav__item" href="https://yubobae.github.io/crew-web-demos/ui-kit/">UI 키트 <span class="c-site-nav__item-desc">컴포넌트 12종</span></a>
+        <a class="c-site-nav__item" href="https://yubobae.github.io/crew-web-demos/effects/">인터랙션 효과 <span class="c-site-nav__item-desc">풀페이지·카운터</span></a>
+        <a class="c-site-nav__item" href="https://yubobae.github.io/crew-web-demos/scroll/">스크롤 <span class="c-site-nav__item-desc">GNB·패럴랙스</span></a>
+        <a class="c-site-nav__item" href="https://yubobae.github.io/crew-web-demos/museum/">디지털 역사관 <span class="c-site-nav__item-desc">풀페이지 사이트</span></a>
+      </div>
+    </div>
+  </header>
+
+  <div class="l-night">
+  <main id="main">
+    <div class="c-page-intro c-page-intro--night">
+      <p class="c-page-intro__eyebrow"><span class="c-page-intro__badge">03</span>요즘 UI · 벤토 그리드</p>
+      <h1 class="c-page-intro__title">
+        <span class="c-page-intro__line"><span class="c-page-intro__line-inner">도시락처럼</span></span>
+        <span class="c-page-intro__line"><span class="c-page-intro__line-inner"><span class="c-page-intro__accent">꽉 맞춰</span> 담기</span></span>
+      </h1>
+      <p class="c-page-intro__lead">크기가 다른 타일을 한 판에 맞춰 담는 벤토 그리드. 마우스를 타일 위로 움직이면 한 줄기 빛이 그리드를 가로지르며 테두리를 비춥니다.</p>
+    </div>
+
+    <section class="l-section l-section--night" aria-labelledby="bento-title">
+      <div class="l-section__head">
+        <span class="l-section__num">01</span>
+        <h2 class="l-section__title" id="bento-title">움직이는 타일 아홉 개</h2>
+        <p class="l-section__desc">화면에 들어오면 차례로 떠오르고, 숫자는 굴러 오르고, 그래프는 그려집니다. 스위치는 눌러 볼 수 있고, 막대에 올리면 값이 보여요.</p>
+      </div>
+
+      <div class="c-bento" data-effect="reveal pointer-glow count-up">
+        <article class="c-bento__tile c-bento__tile--hero js-reveal js-glow">
+          <div class="c-bento__chips" aria-hidden="true">
+            <span class="c-bento__chip"><span class="c-bento__chip-dot"></span>보드 12</span>
+            <span class="c-bento__chip">완료 87%</span>
+            <span class="c-bento__chip">오늘 마감 3</span>
+          </div>
+          <p class="c-bento__eyebrow">온결 대시보드</p>
+          <h3 class="c-bento__title">한 화면에 모든 흐름</h3>
+          <p class="c-bento__text">보드, 문서, 보고서가 따로 놀지 않아요. 오늘 할 일부터 이번 분기 목표까지 한 판에.</p>
+        </article>
+
+        <article class="c-bento__tile js-reveal js-glow">
+          <p class="c-bento__eyebrow">이번 달 완료율</p>
+          <p class="c-bento__num js-count" data-to="38" data-prefix="+" data-suffix="%">+38%</p>
+          <svg class="c-bento__spark" viewBox="0 0 120 30" preserveAspectRatio="none" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path pathLength="1" d="M2 26 18 22 30 24 44 15 58 18 72 10 86 12 100 5 118 3"/></svg>
+        </article>
+
+        <article class="c-bento__tile js-reveal js-glow" data-module="switch">
+          <p class="c-bento__eyebrow">설정</p>
+          <h3 class="c-bento__title" id="bento-autosave">자동 저장</h3>
+          <p class="c-bento__state js-switch-state" data-on="켜짐 · 3초마다 저장해요" data-off="꺼짐 · 직접 저장해야 해요">켜짐 · 3초마다 저장해요</p>
+          <button class="c-bento__switch" type="button" role="switch" aria-checked="true" aria-labelledby="bento-autosave"></button>
+        </article>
+
+        <article class="c-bento__tile js-reveal js-glow">
+          <p class="c-bento__eyebrow">지금</p>
+          <h3 class="c-bento__title">함께 편집 중</h3>
+          <p class="c-bento__live"><span class="c-bento__pulse" aria-hidden="true"></span><span><span class="js-count" data-to="12" data-suffix="명" data-duration="1200">12명</span>이 보고 있어요</span></p>
+          <div class="c-bento__faces" aria-hidden="true"><span class="c-bento__face"></span><span class="c-bento__face"></span><span class="c-bento__face"></span><span class="c-bento__face"></span></div>
+        </article>
+
+        <article class="c-bento__tile js-reveal js-glow">
+          <p class="c-bento__quote">“회의 자료 만드는 시간이 반으로 줄었어요.”</p>
+          <p class="c-bento__who">김하늘 · 작은 디자인 스튜디오</p>
+        </article>
+
+        <article class="c-bento__tile c-bento__tile--wide js-reveal js-glow">
+          <p class="c-bento__eyebrow">주간 작업량</p>
+          <h3 class="c-bento__title">목요일에 가장 바빴어요</h3>
+          <div class="c-bento__bars" role="img" aria-label="월 45, 화 70, 수 55, 목 90, 금 65, 토 30, 일 20건">
+            <span class="c-bento__bar" data-v="45건"></span>
+            <span class="c-bento__bar" data-v="70건"></span>
+            <span class="c-bento__bar" data-v="55건"></span>
+            <span class="c-bento__bar c-bento__bar--peak" data-v="90건"></span>
+            <span class="c-bento__bar" data-v="65건"></span>
+            <span class="c-bento__bar" data-v="30건"></span>
+            <span class="c-bento__bar" data-v="20건"></span>
+          </div>
+          <div class="c-bento__days" aria-hidden="true"><span class="c-bento__day">월</span><span class="c-bento__day">화</span><span class="c-bento__day">수</span><span class="c-bento__day">목</span><span class="c-bento__day">금</span><span class="c-bento__day">토</span><span class="c-bento__day">일</span></div>
+        </article>
+
+        <article class="c-bento__tile c-bento__tile--wide js-reveal js-glow">
+          <p class="c-bento__eyebrow">연결</p>
+          <h3 class="c-bento__title">쓰던 도구와 그대로 이어져요</h3>
+          <div class="c-bento__marquee" aria-hidden="true">
+            <div class="c-bento__row">
+              <span class="c-bento__tag">메일</span><span class="c-bento__tag">캘린더</span><span class="c-bento__tag">메신저</span><span class="c-bento__tag">드라이브</span><span class="c-bento__tag">결제</span><span class="c-bento__tag">설문</span><span class="c-bento__tag">회의</span>
+              <span class="c-bento__tag">메일</span><span class="c-bento__tag">캘린더</span><span class="c-bento__tag">메신저</span><span class="c-bento__tag">드라이브</span><span class="c-bento__tag">결제</span><span class="c-bento__tag">설문</span><span class="c-bento__tag">회의</span>
+            </div>
+            <div class="c-bento__row c-bento__row--back">
+              <span class="c-bento__tag">디자인 툴</span><span class="c-bento__tag">코드 저장소</span><span class="c-bento__tag">고객 문의</span><span class="c-bento__tag">회계</span><span class="c-bento__tag">사진첩</span><span class="c-bento__tag">지도</span>
+              <span class="c-bento__tag">디자인 툴</span><span class="c-bento__tag">코드 저장소</span><span class="c-bento__tag">고객 문의</span><span class="c-bento__tag">회계</span><span class="c-bento__tag">사진첩</span><span class="c-bento__tag">지도</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="c-bento__tile c-bento__tile--wide c-bento__tile--map js-reveal js-glow">
+          <span class="c-bento__dots" aria-hidden="true"></span>
+          <p class="c-bento__eyebrow">어디서나</p>
+          <p class="c-bento__num"><span class="js-count" data-to="38" data-suffix="개 도시">38개 도시</span></p>
+          <p class="c-bento__text">서울에서 리스본까지, 시간대가 달라도 같은 판을 봐요.</p>
+        </article>
+
+        <a class="c-bento__tile c-bento__tile--wide c-bento__tile--cta js-reveal js-glow" href="cta.html">
+          <span>
+            <span class="c-bento__title">지금 써 보기</span><br>
+            <span class="c-bento__text">카드 없이 14일 무료</span>
+          </span>
+          <span class="c-bento__go" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="c-page-outro c-page-outro--night">
+    <p class="c-page-outro__text">다음 예시</p>
+    <a class="c-page-outro__next" href="footer.html">푸터 <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+  </footer>
+  </div>
+</body>
+</html>

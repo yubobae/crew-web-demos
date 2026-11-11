@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>CTA | 보람찬크루 요즘 UI</title>
+  <meta name="description" content="큰 글자 색 블록, 알약 이메일 입력, 사진 콜라주, 요금 전환, 자석 버튼까지 요즘 행동 유도 구역 예시입니다.">
+  <meta name="theme-color" content="#f8f7f4">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+  <link rel="stylesheet" href="assets/css/main.css">
+  <script type="module" src="assets/js/main.js"></script>
+</head>
+<body>
+  <a class="u-visually-hidden" href="#main">본문 바로가기</a>
+
+  <header class="c-site-nav" data-module="site-nav">
+    <div class="c-site-nav__bar">
+      <a class="c-site-nav__logo" href="https://yubobae.github.io/crew-web-demos/"><span class="c-site-nav__mark" aria-hidden="true"></span>보람찬크루 데모</a>
+      <nav class="c-site-nav__links" aria-label="요즘 UI 데모 페이지" data-module="glider" data-glide="hover">
+        <span class="c-site-nav__glider js-glider" aria-hidden="true"></span>
+        <a class="c-site-nav__link js-glide-item" href="index.html">내비게이션</a>
+        <a class="c-site-nav__link js-glide-item" href="cta.html" aria-current="page">CTA</a>
+        <a class="c-site-nav__link js-glide-item" href="bento.html">벤토</a>
+        <a class="c-site-nav__link js-glide-item" href="footer.html">푸터</a>
+        <a class="c-site-nav__link js-glide-item" href="motion.html">마이크로</a>
+      </nav>
+      <button class="c-site-nav__menu" type="button" popovertarget="site-menu">메뉴 <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
+    </div>
+    <div class="c-site-nav__panel" id="site-menu" popover>
+      <div class="c-site-nav__group c-site-nav__group--pages">
+        <p class="c-site-nav__group-title">요즘 UI</p>
+        <a class="c-site-nav__item" href="index.html">내비게이션 <span class="c-site-nav__item-desc">알약 헤더·메가 메뉴·전체 메뉴</span></a>
+        <a class="c-site-nav__item" href="cta.html" aria-current="page">CTA <span class="c-site-nav__item-desc">행동 유도 구역 다섯 가지</span></a>
+        <a class="c-site-nav__item" href="bento.html">벤토 <span class="c-site-nav__item-desc">어두운 벤토 그리드</span></a>
+        <a class="c-site-nav__item" href="footer.html">푸터 <span class="c-site-nav__item-desc">큰 글자·카드·커튼 푸터</span></a>
+        <a class="c-site-nav__item" href="motion.html">마이크로 <span class="c-site-nav__item-desc">작은 움직임 열 가지</span></a>
+      </div>
+      <div class="c-site-nav__group">
+        <p class="c-site-nav__group-title">다른 데모</p>
+        <a class="c-site-nav__item" href="https://yubobae.github.io/crew-web-demos/">데모 목록 <span class="c-site-nav__item-desc">처음으로</span></a>
+        <a class="c-site-nav__item" href="https://yubobae.github.io/crew-web-demos/ui-kit/">UI 키트 <span class="c-site-nav__item-desc">컴포넌트 12종</span></a>
+        <a class="c-site-nav__item" href="https://yubobae.github.io/crew-web-demos/effects/">인터랙션 효과 <span class="c-site-nav__item-desc">풀페이지·카운터</span></a>
+        <a class="c-site-nav__item" href="https://yubobae.github.io/crew-web-demos/scroll/">스크롤 <span class="c-site-nav__item-desc">GNB·패럴랙스</span></a>
+        <a class="c-site-nav__item" href="https://yubobae.github.io/crew-web-demos/museum/">디지털 역사관 <span class="c-site-nav__item-desc">풀페이지 사이트</span></a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="c-page-intro">
+      <p class="c-page-intro__eyebrow"><span class="c-page-intro__badge">02</span>요즘 UI · CTA</p>
+      <h1 class="c-page-intro__title">
+        <span class="c-page-intro__line"><span class="c-page-intro__line-inner">마지막 한 번,</span></span>
+        <span class="c-page-intro__line"><span class="c-page-intro__line-inner"><span class="c-page-intro__accent">누르게</span> 만드는 법</span></span>
+      </h1>
+      <p class="c-page-intro__lead">페이지 끝에서 행동을 부르는 구역(CTA)은 요즘 크게, 단순하게, 한 가지 행동만 말합니다. 다섯 가지 모양을 실제로 눌러 보세요.</p>
+      <nav class="c-page-intro__chips" aria-label="이 페이지 예시">
+        <a class="c-page-intro__chip" href="#cta-bold">큰 글자 색 블록</a>
+        <a class="c-page-intro__chip" href="#cta-email">알약 이메일 입력</a>
+        <a class="c-page-intro__chip" href="#cta-collage">그림 콜라주</a>
+        <a class="c-page-intro__chip" href="#cta-pricing">요금 전환</a>
+        <a class="c-page-intro__chip" href="#cta-magnet">자석 버튼</a>
+      </nav>
+    </div>
+
+    <!-- 1. 큰 글자 색 블록 -->
+    <section class="l-section" id="cta-bold" aria-labelledby="cta-bold-title">
+      <div class="l-section__head">
+        <span class="l-section__num">01</span>
+        <h2 class="l-section__title" id="cta-bold-title">큰 글자 색 블록</h2>
+        <p class="l-section__desc">화면을 꽉 채운 한 가지 색과 아주 큰 제목. 원형 글자 스티커가 천천히 돌며 시선을 붙잡고, 버튼은 단 하나만 강하게 둡니다.</p>
+      </div>
+      <div class="c-cta-bold">
+        <div class="c-cta-bold__sticker" aria-hidden="true">
+          <svg class="c-cta-bold__ring" viewBox="0 0 100 100">
+            <defs><path id="cta-ring-path" d="M50 50m-38 0a38 38 0 1 1 76 0a38 38 0 1 1-76 0"/></defs>
+            <text><textPath href="#cta-ring-path">지금 시작 · 보람찬크루 · 지금 시작 · 보람찬크루 ·</textPath></text>
+          </svg>
+          <span class="c-cta-bold__core"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </div>
+        <p class="c-cta-bold__eyebrow">함께 만들어요</p>
+        <h3 class="c-cta-bold__title">아이디어만 가져오세요</h3>
+        <div class="c-cta-bold__actions">
+          <a class="c-cta-bold__btn" href="#cta-bold">프로젝트 문의 <span class="c-cta-bold__btn-icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+          <a class="c-cta-bold__link" href="#cta-bold">작업 먼저 보기</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. 알약 이메일 입력 -->
+    <section class="l-section" id="cta-email" aria-labelledby="cta-email-title">
+      <div class="l-section__head">
+        <span class="l-section__num">02</span>
+        <h2 class="l-section__title" id="cta-email-title">알약 이메일 입력</h2>
+        <p class="l-section__desc">입력칸과 버튼을 한 알약에 담았습니다. 보내면 화살표가 도는 원으로, 다시 체크로 바뀌고, 틀린 주소면 알약이 고개를 젓습니다. 데모라서 실제로 보내지는 않아요.</p>
+      </div>
+      <div class="c-email-pill" data-module="email-pill">
+        <h3 class="c-email-pill__title">한 달에 한 번, 좋은 것만</h3>
+        <p class="c-email-pill__desc">이번 달 눈여겨본 웹 디자인과 인터랙션을 골라 보내 드려요.</p>
+        <form class="c-email-pill__form js-email-form" novalidate>
+          <label class="u-visually-hidden" for="cta-email-input">이메일 주소</label>
+          <input class="c-email-pill__input js-email-input" id="cta-email-input" type="email" placeholder="이메일 주소" autocomplete="email" required>
+          <button class="c-email-pill__submit" type="submit" aria-label="구독하기">
+            <span class="c-email-pill__glyph c-email-pill__glyph--arrow"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+            <span class="c-email-pill__glyph c-email-pill__glyph--spin"><span class="c-email-pill__ring"></span></span>
+            <span class="c-email-pill__glyph c-email-pill__glyph--check"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg></span>
+          </button>
+        </form>
+        <p class="c-email-pill__status js-email-status" role="status">스팸 없이, 언제든 해지할 수 있어요.</p>
+      </div>
+    </section>
+
+    <!-- 3. 그림 콜라주 -->
+    <section class="l-section" id="cta-collage" aria-labelledby="cta-collage-title">
+      <div class="l-section__head">
+        <span class="l-section__num">03</span>
+        <h2 class="l-section__title" id="cta-collage-title">그림 콜라주</h2>
+        <p class="l-section__desc">뒤에서 그림 기둥들이 위아래로 번갈아 흐르고, 가운데 유리 카드가 떠 있습니다. 작업이 많다는 걸 말 없이 보여 주는 방식이에요(그림은 자리 표시).</p>
+      </div>
+      <div class="c-collage">
+        <div class="c-collage__cols" aria-hidden="true">
+          <div class="c-collage__col"><div class="c-collage__track">
+            <span class="c-collage__tile c-collage__tile--1"></span><span class="c-collage__tile c-collage__tile--4"></span><span class="c-collage__tile c-collage__tile--3"></span>
+            <span class="c-collage__tile c-collage__tile--1"></span><span class="c-collage__tile c-collage__tile--4"></span><span class="c-collage__tile c-collage__tile--3"></span>
+          </div></div>
+          <div class="c-collage__col"><div class="c-collage__track">
+            <span class="c-collage__tile c-collage__tile--2"></span><span class="c-collage__tile c-collage__tile--5"></span><span class="c-collage__tile c-collage__tile--6"></span>
+            <span class="c-collage__tile c-collage__tile--2"></span><span class="c-collage__tile c-collage__tile--5"></span><span class="c-collage__tile c-collage__tile--6"></span>
+          </div></div>
+          <div class="c-collage__col"><div class="c-collage__track">
+            <span class="c-collage__tile c-collage__tile--6"></span><span class="c-collage__tile c-collage__tile--1"></span><span class="c-collage__tile c-collage__tile--5"></span>
+            <span class="c-collage__tile c-collage__tile--6"></span><span class="c-collage__tile c-collage__tile--1"></span><span class="c-collage__tile c-collage__tile--5"></span>
+          </div></div>
+          <div class="c-collage__col"><div class="c-collage__track">
+            <span class="c-collage__tile c-collage__tile--3"></span><span class="c-collage__tile c-collage__tile--2"></span><span class="c-collage__tile c-collage__tile--4"></span>
+            <span class="c-collage__tile c-collage__tile--3"></span><span class="c-collage__tile c-collage__tile--2"></span><span class="c-collage__tile c-collage__tile--4"></span>
+          </div></div>
+        </div>
+        <div class="c-collage__card">
+          <div class="c-collage__avatars" aria-hidden="true"><span class="c-collage__avatar"></span><span class="c-collage__avatar"></span><span class="c-collage__avatar"></span><span class="c-collage__avatar">+9</span></div>
+          <h3 class="c-collage__title">120개 팀이 여기서 만들어요</h3>
+          <p class="c-collage__desc">다음 작업은 여러분 차례예요. 첫 상담은 30분, 부담 없이.</p>
+          <a class="c-collage__btn" href="#cta-collage">상담 예약하기</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. 요금 전환 -->
+    <section class="l-section" id="cta-pricing" aria-labelledby="cta-pricing-title">
+      <div class="l-section__head">
+        <span class="l-section__num">04</span>
+        <h2 class="l-section__title" id="cta-pricing-title">요금 전환</h2>
+        <p class="l-section__desc">월간·연간 알약 스위치가 튕기듯 옮겨 가고, 가격 숫자는 위로 밀려 바뀝니다. 추천 요금은 테두리를 따라 빛이 돌아요.</p>
+      </div>
+      <div class="c-pricing" data-module="pricing">
+        <div class="c-pricing__head">
+          <h3 class="c-pricing__title">팀 크기에 맞게 고르세요</h3>
+          <div class="c-pricing__switch" role="group" aria-label="결제 주기" data-module="glider" data-glide="select">
+            <span class="c-pricing__thumb js-glider" aria-hidden="true"></span>
+            <button class="c-pricing__opt js-glide-item" type="button" aria-pressed="true" data-value="month">월간</button>
+            <button class="c-pricing__opt js-glide-item" type="button" aria-pressed="false" data-value="year">연간 <span class="c-pricing__save">2개월 무료</span></button>
+          </div>
+        </div>
+        <div class="c-pricing__plans">
+          <article class="c-pricing__plan">
+            <h4 class="c-pricing__name">기본</h4>
+            <p class="c-pricing__price"><span class="c-pricing__amount js-price" data-month="0" data-year="0"></span><span class="c-pricing__unit">원 / 월</span></p>
+            <p class="c-pricing__note">혼자 써 보기 좋아요</p>
+            <ul class="c-pricing__features">
+              <li class="c-pricing__feature"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg>보드 3개</li>
+              <li class="c-pricing__feature"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg>문서 무제한</li>
+              <li class="c-pricing__feature"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg>기본 자동화</li>
+            </ul>
+            <a class="c-pricing__btn" href="#cta-pricing">무료로 시작</a>
+          </article>
+          <article class="c-pricing__plan c-pricing__plan--featured">
+            <h4 class="c-pricing__name">프로 <span class="c-pricing__badge">추천</span></h4>
+            <p class="c-pricing__price"><span class="c-pricing__amount js-price" data-month="15000" data-year="12500"></span><span class="c-pricing__unit">원 / 월</span></p>
+            <p class="c-pricing__note js-price-note" data-month="매달 결제" data-year="연 150,000원 한 번에 결제">매달 결제</p>
+            <ul class="c-pricing__features">
+              <li class="c-pricing__feature"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg>보드 무제한</li>
+              <li class="c-pricing__feature"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg>고급 자동화 200회/월</li>
+              <li class="c-pricing__feature"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg>보고서와 내보내기</li>
+            </ul>
+            <a class="c-pricing__btn" href="#cta-pricing">프로 시작하기</a>
+          </article>
+          <article class="c-pricing__plan">
+            <h4 class="c-pricing__name">팀</h4>
+            <p class="c-pricing__price"><span class="c-pricing__amount js-price" data-month="29000" data-year="24000"></span><span class="c-pricing__unit">원 / 월</span></p>
+            <p class="c-pricing__note js-price-note" data-month="사람당 매달 결제" data-year="사람당 연 290,000원">사람당 매달 결제</p>
+            <ul class="c-pricing__features">
+              <li class="c-pricing__feature"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg>권한·기록 관리</li>
+              <li class="c-pricing__feature"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg>자동화 무제한</li>
+              <li class="c-pricing__feature"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg>전담 도움</li>
+            </ul>
+            <a class="c-pricing__btn" href="#cta-pricing">상담 받기</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. 자석 버튼 -->
+    <section class="l-section" id="cta-magnet" aria-labelledby="cta-magnet-title">
+      <div class="l-section__head">
+        <span class="l-section__num">05</span>
+        <h2 class="l-section__title" id="cta-magnet-title">자석 버튼</h2>
+        <p class="l-section__desc">마우스를 버튼 근처로 가져가 보세요. 버튼이 끌려오고 글자는 조금 더 끌려옵니다. 놓으면 튕기듯 제자리로 가요. 휴대폰·동작 줄이기에서는 그냥 버튼입니다.</p>
+      </div>
+      <div class="c-magnet" data-effect="magnetic">
+        <p class="c-magnet__lead">새 프로젝트를 시작할 때</p>
+        <a class="c-magnet__btn js-magnet" href="#cta-magnet"><span class="c-magnet__label js-magnet-label">이야기해요</span></a>
+        <p class="c-magnet__mail">hello@onkyeol.studio · 평일 하루 안에 답장</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="c-page-outro">
+    <p class="c-page-outro__text">다음 예시</p>
+    <a class="c-page-outro__next" href="bento.html">벤토 그리드 <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+  </footer>
+</body>
+</html>

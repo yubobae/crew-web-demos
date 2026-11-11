@@ -1,0 +1,95 @@
+/* 값 풍선 슬라이더: 손잡이 위에 값 풍선이 따라다니고, 잡는 동안 커진다. 채운 부분은 --p(0~100)로 칠한다(range-bubble.js). */
+@layer components {
+  .c-range {
+    --p: 50;
+    width: min(100%, 18rem);
+  }
+
+  .c-range__track {
+    position: relative;
+    padding-top: var(--space-10);
+  }
+
+  .c-range__label {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: var(--space-3);
+    font-size: var(--text-sm);
+    color: var(--tr-ink-soft);
+  }
+
+  .c-range__input {
+    width: 100%;
+    height: var(--space-6);
+    margin: 0;
+    background: transparent;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+  }
+
+  .c-range__input::-webkit-slider-runnable-track {
+    height: 6px;
+    background: linear-gradient(90deg, var(--tr-accent) calc(var(--p) * 1%), var(--tr-paper-3) 0);
+    border-radius: var(--radius-full);
+  }
+
+  .c-range__input::-moz-range-track {
+    height: 6px;
+    background: linear-gradient(90deg, var(--tr-accent) calc(var(--p) * 1%), var(--tr-paper-3) 0);
+    border-radius: var(--radius-full);
+  }
+
+  .c-range__input::-webkit-slider-thumb {
+    width: 1.375rem;
+    height: 1.375rem;
+    margin-top: -8px;
+    background: var(--tr-white);
+    border: 2px solid var(--tr-accent);
+    border-radius: var(--radius-full);
+    box-shadow: var(--shadow-md);
+    transition: transform var(--tr-dur-fast) var(--tr-spring);
+    appearance: none;
+    -webkit-appearance: none;
+  }
+
+  .c-range__input::-moz-range-thumb {
+    width: 1.125rem;
+    height: 1.125rem;
+    background: var(--tr-white);
+    border: 2px solid var(--tr-accent);
+    border-radius: var(--radius-full);
+    box-shadow: var(--shadow-md);
+  }
+
+  .c-range__input:active::-webkit-slider-thumb {
+    transform: scale(1.25);
+  }
+
+  /* 손잡이(지름 1.375rem) 가운데를 따라가도록 양 끝 여백을 뺀 폭에서 위치를 잡는다 */
+  .c-range__bubble {
+    position: absolute;
+    top: 0;
+    left: calc(0.6875rem + (100% - 1.375rem) * var(--p) / 100);
+    padding: var(--space-1) var(--space-2);
+    font-size: var(--text-xs);
+    font-weight: var(--font-weight-bold);
+    font-variant-numeric: tabular-nums;
+    color: var(--tr-white);
+    background: var(--tr-ink);
+    border-radius: var(--radius-md);
+    transform: translateX(-50%);
+    transition: transform var(--tr-dur-fast) var(--tr-spring);
+  }
+
+  .c-range.is-dragging .c-range__bubble {
+    transform: translateX(-50%) translateY(calc(var(--space-1) * -1)) scale(1.15);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .c-range__input::-webkit-slider-thumb,
+    .c-range__bubble {
+      transition: none;
+    }
+  }
+}
