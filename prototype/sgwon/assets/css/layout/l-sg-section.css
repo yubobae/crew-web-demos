@@ -1,0 +1,70 @@
+/* 구역 틀: 가운데 폭 + 머리(영문 작은 글, 명조 제목, 설명). 머리는 화면에 들어오면 떠오른다(reveal.js). 따뜻한 바탕색 수정자. */
+@layer layout {
+  .l-sg-section {
+    width: min(100% - var(--gutter) * 2, 78rem);
+    margin-inline: auto;
+    padding-block: clamp(var(--space-16), 9vw, var(--space-32));
+  }
+
+  .l-sg-section--tight {
+    padding-top: var(--space-8);
+  }
+
+  .l-sg-section--head {
+    padding-bottom: 0;
+  }
+
+  .l-sg-section--wide {
+    width: 100%;
+    padding-inline: 0;
+  }
+
+  .l-sg-section__head {
+    display: grid;
+    gap: var(--space-3);
+    max-width: 44rem;
+    margin-bottom: clamp(var(--space-8), 5vw, var(--space-16));
+    transition:
+      opacity 900ms var(--sg-ease),
+      transform 900ms var(--sg-ease);
+  }
+
+  .l-sg-section__head.is-ready:not(.is-in) {
+    opacity: 0;
+    transform: translateY(var(--space-8));
+  }
+
+  .l-sg-section__head--center {
+    justify-items: center;
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .l-sg-section__en {
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: var(--tracking-widest);
+    color: var(--sg-persimmon-deep);
+  }
+
+  .l-sg-section__title {
+    font-size: clamp(var(--text-3xl), 1.2rem + 2.6vw, var(--text-5xl));
+    font-weight: var(--font-weight-black);
+    letter-spacing: var(--tracking-tighter);
+  }
+
+  .l-sg-section__desc {
+    color: var(--sg-ink-soft);
+  }
+
+  .l-sg-section__desc--gap {
+    max-width: 60ch;
+    margin-bottom: var(--space-8);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .l-sg-section__head {
+      transition: none;
+    }
+  }
+}

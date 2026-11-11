@@ -1,0 +1,56 @@
+/* 엠블럼 설명: 해 노랑 바탕 큰 카드 안에 엠블럼 그림(왼쪽), 오른쪽에 의미 글. 휴대폰은 위아래. */
+@layer components {
+  .c-emblem {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: clamp(var(--space-6), 4vw, var(--space-12));
+    align-items: center;
+    padding: clamp(var(--space-5), 4vw, var(--space-12));
+    background: var(--sg-sun);
+    border-radius: var(--radius-4xl);
+  }
+
+  .c-emblem__figure {
+    overflow: hidden;
+    background: var(--sg-cream);
+    border-radius: var(--radius-3xl);
+  }
+
+  .c-emblem__img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+
+  .c-emblem__title {
+    font-size: clamp(var(--text-2xl), 1rem + 1.6vw, var(--text-4xl));
+    font-weight: var(--font-weight-black);
+    letter-spacing: var(--tracking-tighter);
+  }
+
+  .c-emblem__p {
+    margin-top: var(--space-4);
+    color: var(--sg-ink);
+  }
+
+  .c-emblem__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin-top: var(--space-6);
+  }
+
+  .c-emblem__tag {
+    padding: var(--space-1) var(--space-3);
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-semibold);
+    background: var(--sg-cream);
+    border-radius: var(--radius-full);
+  }
+
+  @media (max-width: 819px) {
+    .c-emblem {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+}

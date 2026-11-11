@@ -1,0 +1,49 @@
+/* 이사장스님 기념사: 넓은 사진 아래 종이 편지지. 첫 줄은 큰 명조 인사말, 본문은 읽기 좋은 폭, 맨 끝에 맺음 글. */
+@layer components {
+  .c-letter {
+    display: grid;
+    gap: var(--space-10);
+  }
+
+  .c-letter__photo {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 21 / 9;
+    object-fit: cover;
+    border-radius: var(--radius-4xl);
+    box-shadow: var(--sg-shadow);
+  }
+
+  .c-letter__paper {
+    width: min(100%, 46rem);
+    margin-inline: auto;
+    padding: clamp(var(--space-6), 5vw, var(--space-16));
+    background: var(--sg-cream);
+    border: 1px solid var(--sg-line);
+    border-radius: var(--radius-3xl);
+    box-shadow: var(--sg-shadow-float);
+  }
+
+  .c-letter__lead {
+    margin-bottom: var(--space-6);
+    font-family: var(--font-serif);
+    font-size: clamp(var(--text-3xl), 1rem + 2.4vw, var(--text-5xl));
+    font-weight: var(--font-weight-black);
+    letter-spacing: var(--tracking-tighter);
+    line-height: 1.2;
+    color: var(--sg-persimmon-deep);
+  }
+
+  .c-letter__p {
+    margin-top: var(--space-5);
+    line-height: var(--leading-loose);
+  }
+
+  .c-letter__sign {
+    margin-top: var(--space-8);
+    font-family: var(--font-serif);
+    font-size: var(--text-xl);
+    font-weight: var(--font-weight-bold);
+    text-align: end;
+  }
+}

@@ -1,0 +1,105 @@
+/* 동그라미 숫자: 숫자 하나가 큰 원 하나. 원마다 색이 다르고 올리면 살짝 돌며 커진다. 숫자는 굴러 오른다(count-up.js).
+   3열 → 2열 → 1열. 화면에 들어오면 하나씩 커지며 나타난다(reveal.js). */
+@layer components {
+  .c-stamps {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-4);
+  }
+
+  .c-stamps__item {
+    --i: 0;
+    display: grid;
+    place-content: center;
+    gap: var(--space-1);
+    aspect-ratio: 1;
+    padding: var(--space-6);
+    text-align: center;
+    color: var(--sg-ink);
+    background: var(--sg-paper-2);
+    border-radius: var(--radius-full);
+    transition:
+      opacity 800ms calc(var(--i) * 90ms) var(--sg-ease),
+      transform 900ms calc(var(--i) * 90ms) var(--sg-spring);
+  }
+
+  .c-stamps.is-ready .c-stamps__item:not(.is-in) {
+    opacity: 0;
+    transform: scale(0.7);
+  }
+
+  .c-stamps__item:nth-child(2) {
+    --i: 1;
+    background: var(--sg-persimmon);
+    color: var(--sg-white);
+  }
+
+  .c-stamps__item:nth-child(3) {
+    --i: 2;
+    background: var(--sg-leaf-soft);
+  }
+
+  .c-stamps__item:nth-child(4) {
+    --i: 3;
+    background: var(--sg-sun);
+  }
+
+  .c-stamps__item:nth-child(5) {
+    --i: 4;
+    background: var(--sg-ink);
+    color: var(--sg-cream);
+  }
+
+  .c-stamps__item:nth-child(6) {
+    --i: 5;
+    background: var(--sg-persimmon-soft);
+  }
+
+  .c-stamps__num {
+    font-family: var(--font-serif);
+    font-size: clamp(var(--text-4xl), 1.2rem + 3vw, var(--text-7xl));
+    font-weight: var(--font-weight-black);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: var(--tracking-tighter);
+    line-height: 1;
+  }
+
+  .c-stamps__unit {
+    font-size: 0.4em;
+    font-weight: var(--font-weight-bold);
+  }
+
+  .c-stamps__label {
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-semibold);
+    opacity: 0.85;
+  }
+
+  @media (hover: hover) {
+    .c-stamps__item:hover {
+      transform: rotate(-4deg) scale(1.04);
+    }
+  }
+
+  @media (max-width: 1023px) {
+    .c-stamps {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 499px) {
+    .c-stamps {
+      gap: var(--space-2);
+    }
+
+    .c-stamps__item {
+      padding: var(--space-3);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .c-stamps__item {
+      transition: none;
+    }
+  }
+}

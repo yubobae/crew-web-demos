@@ -1,0 +1,154 @@
+/* 가로 레일: 시대 카드가 옆으로 길게 늘어서 있고, 밀거나(휴대폰·트랙패드) 끌거나(마우스) 화살표로 넘긴다. 아래에 진행 막대.
+   스크롤 스냅으로 카드에 딱 멈춘다. rail.js가 --prog(0~1)를 쓴다. */
+@layer components {
+  .c-rail {
+    --prog: 0;
+  }
+
+  .c-rail__track {
+    display: flex;
+    gap: var(--space-4);
+    padding-inline: max(var(--gutter), calc((100% - 78rem) / 2));
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-padding-inline: max(var(--gutter), calc((100% - 78rem) / 2));
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    cursor: grab;
+  }
+
+  .c-rail__track::-webkit-scrollbar {
+    display: none;
+  }
+
+  .c-rail__track.is-dragging {
+    cursor: grabbing;
+    scroll-snap-type: none;
+  }
+
+  .c-rail__card {
+    position: relative;
+    display: flex;
+    flex: none;
+    flex-direction: column;
+    justify-content: flex-end;
+    width: min(82vw, 30rem);
+    min-height: min(70svh, 36rem);
+    padding: var(--space-8);
+    overflow: hidden;
+    isolation: isolate;
+    color: var(--sg-white);
+    text-decoration: none;
+    scroll-snap-align: start;
+    border-radius: var(--radius-4xl);
+    user-select: none;
+  }
+
+  .c-rail__img {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 1000ms var(--sg-ease);
+    -webkit-user-drag: none;
+  }
+
+  .c-rail__card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(to top, var(--sg-shade-strong) 0%, transparent 70%);
+  }
+
+  .c-rail__years {
+    font-family: var(--font-serif);
+    font-size: clamp(var(--text-4xl), 1.4rem + 2.4vw, var(--text-6xl));
+    font-weight: var(--font-weight-black);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: var(--tracking-tighter);
+    line-height: 1;
+  }
+
+  .c-rail__title {
+    margin-top: var(--space-3);
+    font-size: var(--text-xl);
+    font-weight: var(--font-weight-bold);
+  }
+
+  .c-rail__meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: var(--space-5);
+    padding-top: var(--space-4);
+    font-size: var(--text-sm);
+    border-top: 1px solid var(--sg-line-light);
+  }
+
+  .c-rail__ui {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    width: min(100% - var(--gutter) * 2, 78rem);
+    margin: var(--space-8) auto 0;
+  }
+
+  .c-rail__bar {
+    flex: 1;
+    height: 2px;
+    overflow: hidden;
+    background: var(--sg-line);
+  }
+
+  .c-rail__fill {
+    display: block;
+    height: 100%;
+    background: var(--sg-persimmon);
+    transform: scaleX(calc(0.25 + var(--prog) * 0.75));
+    transform-origin: left;
+  }
+
+  .c-rail__btns {
+    display: flex;
+    gap: var(--space-2);
+  }
+
+  .c-rail__btn {
+    display: grid;
+    place-items: center;
+    width: var(--space-12);
+    aspect-ratio: 1;
+    color: var(--sg-ink);
+    background: var(--sg-cream);
+    border: 1px solid var(--sg-line);
+    border-radius: var(--radius-full);
+    transition:
+      transform var(--sg-dur-fast) var(--sg-spring),
+      opacity var(--sg-dur-fast) var(--sg-ease);
+  }
+
+  .c-rail__btn:active {
+    transform: scale(0.92);
+  }
+
+  .c-rail__btn:disabled {
+    cursor: default;
+    opacity: 0.35;
+  }
+
+  @media (hover: hover) {
+    .c-rail__card:hover .c-rail__img {
+      transform: scale(1.06);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .c-rail__img,
+    .c-rail__btn {
+      transition: none;
+    }
+  }
+}

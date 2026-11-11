@@ -1,0 +1,60 @@
+/* 사진 모자이크: 크기가 다른 사진 칸이 빽빽하게(grid dense). 큰 칸은 일곱 칸마다. 올리면 사진이 당겨지고 누르면 크게 보기(viewer.js). */
+@layer components {
+  .c-mosaic {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-auto-flow: dense;
+    grid-auto-rows: clamp(8rem, 16vw, 13rem);
+    gap: var(--space-2);
+  }
+
+  .c-mosaic__item {
+    position: relative;
+    overflow: hidden;
+    background: var(--sg-paper-3);
+    border-radius: var(--radius-2xl);
+    transition:
+      opacity 800ms var(--sg-ease),
+      transform 900ms var(--sg-ease);
+  }
+
+  .c-mosaic.is-ready .c-mosaic__item:not(.is-in) {
+    opacity: 0;
+    transform: translateY(var(--space-6));
+  }
+
+  .c-mosaic__item:nth-child(7n + 1) {
+    grid-column: span 2;
+    grid-row: span 2;
+  }
+
+  .c-mosaic__item:nth-child(7n + 5) {
+    grid-column: span 2;
+  }
+
+  .c-mosaic__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 900ms var(--sg-ease);
+  }
+
+  @media (hover: hover) {
+    .c-mosaic__item:hover .c-mosaic__img {
+      transform: scale(1.07);
+    }
+  }
+
+  @media (max-width: 819px) {
+    .c-mosaic {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .c-mosaic__item,
+    .c-mosaic__img {
+      transition: none;
+    }
+  }
+}

@@ -1,0 +1,129 @@
+/* 이야기 카드 부채꼴: 세로로 긴 사진 카드가 번갈아 조금씩 기울어 흩어져 있다. 올리면 똑바로 서며 떠오른다. 2열 → 1열(기울기 약하게). */
+@layer components {
+  .c-fan {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: var(--space-4);
+    padding-block: var(--space-6);
+  }
+
+  .c-fan__card {
+    --r: -3deg;
+    --y: 0rem;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    aspect-ratio: 3 / 4;
+    padding: var(--space-6);
+    overflow: hidden;
+    isolation: isolate;
+    color: var(--sg-white);
+    text-decoration: none;
+    border-radius: var(--radius-3xl);
+    box-shadow: var(--sg-shadow-float);
+    transform: translateY(var(--y)) rotate(var(--r));
+    transition:
+      opacity 800ms var(--sg-ease),
+      transform 900ms var(--sg-spring);
+  }
+
+  .c-fan.is-ready .c-fan__card:not(.is-in) {
+    opacity: 0;
+    transform: translateY(var(--space-12)) rotate(0deg);
+  }
+
+  .c-fan__card:nth-child(2) {
+    --r: 2deg;
+    --y: 2rem;
+  }
+
+  .c-fan__card:nth-child(3) {
+    --r: -2deg;
+    --y: 0.5rem;
+  }
+
+  .c-fan__card:nth-child(4) {
+    --r: 3deg;
+    --y: 2.5rem;
+  }
+
+  .c-fan__img {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .c-fan__card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(to top, var(--sg-shade-strong) 0%, transparent 62%);
+  }
+
+  .c-fan__tag {
+    align-self: flex-start;
+    padding: var(--space-0-5) var(--space-3);
+    font-size: var(--text-xs);
+    font-weight: var(--font-weight-bold);
+    color: var(--sg-ink);
+    background: var(--sg-sun);
+    border-radius: var(--radius-full);
+  }
+
+  .c-fan__name {
+    margin-top: var(--space-3);
+    font-size: var(--text-2xl);
+    font-weight: var(--font-weight-bold);
+  }
+
+  .c-fan__sub {
+    font-size: var(--text-sm);
+    opacity: 0.9;
+  }
+
+  @media (hover: hover) {
+    .c-fan__card:hover {
+      transform: translateY(calc(var(--space-3) * -1)) rotate(0deg);
+    }
+  }
+
+  @media (max-width: 1023px) {
+    .c-fan {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .c-fan__card {
+      --r: -1.5deg;
+    }
+
+    .c-fan__card:nth-child(even) {
+      --r: 1.5deg;
+    }
+  }
+
+  @media (max-width: 499px) {
+    .c-fan {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .c-fan__card {
+      --y: 0rem;
+      aspect-ratio: 4 / 3;
+    }
+
+    .c-fan__card:nth-child(n) {
+      --y: 0rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .c-fan__card {
+      transition: none;
+    }
+  }
+}

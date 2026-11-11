@@ -1,0 +1,93 @@
+/* 하위 페이지 머리: 위는 넓은 사진, 그 아래 가장자리를 겹치는 크림색 종이 카드에 제목·설명. (가스공사의 "사진 위 글자"와 다른 구성)
+   사진은 천천히 당겨지고, 종이 카드는 아래에서 올라온다. */
+@layer components {
+  .c-sg-head {
+    position: relative;
+    padding-bottom: var(--space-12);
+  }
+
+  .c-sg-head__photo {
+    position: relative;
+    height: clamp(20rem, 62svh, 40rem);
+    overflow: hidden;
+    background: var(--sg-ink);
+  }
+
+  .c-sg-head__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    animation: c-sg-head-zoom 2600ms var(--sg-ease) both;
+  }
+
+  .c-sg-head__photo::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, var(--sg-shade) 0%, transparent 35%);
+  }
+
+  .c-sg-head__card {
+    position: relative;
+    z-index: 1;
+    width: min(100% - var(--gutter) * 2, 56rem);
+    margin: calc(var(--space-20) * -1) auto 0;
+    padding: clamp(var(--space-6), 4vw, var(--space-12));
+    text-align: center;
+    background: var(--sg-cream);
+    border: 1px solid var(--sg-line);
+    border-radius: var(--radius-4xl);
+    box-shadow: var(--sg-shadow);
+    animation: c-sg-head-up 1100ms 300ms var(--sg-ease) both;
+  }
+
+  .c-sg-head__crumb {
+    font-size: var(--text-sm);
+    color: var(--sg-ink-soft);
+  }
+
+  .c-sg-head__crumb a {
+    color: inherit;
+  }
+
+  .c-sg-head__en {
+    margin-top: var(--space-3);
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: var(--tracking-widest);
+    color: var(--sg-persimmon-deep);
+  }
+
+  .c-sg-head__title {
+    margin-top: var(--space-2);
+    font-size: clamp(var(--text-4xl), 1.6rem + 3.6vw, var(--text-7xl));
+    font-weight: var(--font-weight-black);
+    letter-spacing: var(--tracking-tighter);
+  }
+
+  .c-sg-head__desc {
+    max-width: 40ch;
+    margin: var(--space-4) auto 0;
+    color: var(--sg-ink-soft);
+  }
+
+  @keyframes c-sg-head-zoom {
+    from {
+      transform: scale(1.18);
+    }
+  }
+
+  @keyframes c-sg-head-up {
+    from {
+      opacity: 0;
+      transform: translateY(var(--space-12));
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .c-sg-head__img,
+    .c-sg-head__card {
+      animation: none;
+    }
+  }
+}

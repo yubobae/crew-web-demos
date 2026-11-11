@@ -1,0 +1,129 @@
+/* 아카이브 카드 격자: 썸네일 + 날짜 + 제목. 영상 카드는 재생 알약이 붙고 눌러 열면 영상(yt-lite)이 된다. 3열 → 2열 → 1열.
+   더 보기 버튼(show-more.js)으로 아홉 장씩 연다. */
+@layer components {
+  .c-arc {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-4);
+  }
+
+  .c-arc__item {
+    display: grid;
+    align-content: start;
+    gap: var(--space-3);
+    padding: var(--space-2) var(--space-2) var(--space-5);
+    background: var(--sg-cream);
+    border: 1px solid var(--sg-line);
+    border-radius: var(--radius-2xl);
+    transition:
+      box-shadow var(--sg-dur) var(--sg-ease),
+      transform var(--sg-dur) var(--sg-ease);
+  }
+
+  .c-arc__item[hidden] {
+    display: none;
+  }
+
+  .c-arc__thumb {
+    position: relative;
+    display: block;
+    width: 100%;
+    overflow: hidden;
+    border-radius: var(--radius-xl);
+  }
+
+  .c-arc__img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+    transition: transform 900ms var(--sg-ease);
+  }
+
+  .c-arc__badge {
+    position: absolute;
+    right: var(--space-3);
+    bottom: var(--space-3);
+    padding: var(--space-1) var(--space-3);
+    font-size: var(--text-xs);
+    font-weight: var(--font-weight-bold);
+    color: var(--sg-ink);
+    background: var(--sg-glass);
+    border-radius: var(--radius-full);
+  }
+
+  .c-arc__date {
+    padding-inline: var(--space-3);
+    font-family: var(--font-serif);
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-black);
+    font-variant-numeric: tabular-nums;
+    color: var(--sg-persimmon-deep);
+  }
+
+  .c-arc__title {
+    padding-inline: var(--space-3);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--leading-snug);
+  }
+
+  .c-arc__desc {
+    padding-inline: var(--space-3);
+    font-size: var(--text-sm);
+    color: var(--sg-ink-soft);
+  }
+
+  .c-arc__more {
+    display: flex;
+    justify-content: center;
+    margin-top: var(--space-8);
+  }
+
+  .c-arc__more[hidden] {
+    display: none;
+  }
+
+  .c-arc__more-btn {
+    padding: var(--space-3) var(--space-8);
+    font-weight: var(--font-weight-semibold);
+    color: var(--sg-white);
+    background: var(--sg-ink);
+    border-radius: var(--radius-full);
+    transition: transform var(--sg-dur-fast) var(--sg-spring);
+  }
+
+  .c-arc__more-btn:active {
+    transform: scale(0.96);
+  }
+
+  @media (hover: hover) {
+    .c-arc__item:hover {
+      box-shadow: var(--sg-shadow);
+      transform: translateY(calc(var(--space-1) * -1));
+    }
+
+    .c-arc__item:hover .c-arc__img {
+      transform: scale(1.06);
+    }
+  }
+
+  @media (max-width: 1023px) {
+    .c-arc {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 599px) {
+    .c-arc {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .c-arc__item,
+    .c-arc__img,
+    .c-arc__more-btn {
+      transition: none;
+    }
+  }
+}

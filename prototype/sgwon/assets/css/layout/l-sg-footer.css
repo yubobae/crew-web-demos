@@ -1,0 +1,88 @@
+/* 푸터: 따뜻한 모래색 바탕, 큰 명조 슬로건, 산하기관 알약, 연락처, 프로토타입 안내. 아래는 독 메뉴가 가리지 않게 비운다. */
+@layer layout {
+  .l-sg-footer {
+    padding: var(--space-16) var(--gutter) calc(var(--sg-dock-h) + var(--space-16));
+    background: var(--sg-paper-3);
+  }
+
+  .l-sg-footer__inner {
+    display: grid;
+    gap: var(--space-10);
+    width: min(100%, 78rem);
+    margin-inline: auto;
+  }
+
+  .l-sg-footer__slogan {
+    font-family: var(--font-serif);
+    font-size: clamp(var(--text-4xl), 1.4rem + 4vw, var(--text-8xl));
+    font-weight: var(--font-weight-black);
+    letter-spacing: var(--tracking-tighter);
+    line-height: 1.1;
+    color: var(--sg-ink);
+  }
+
+  .l-sg-footer__accent {
+    color: var(--sg-persimmon-deep);
+  }
+
+  .l-sg-footer__cols {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+    gap: var(--space-8);
+    padding-top: var(--space-8);
+    border-top: 1px solid var(--sg-line);
+  }
+
+  .l-sg-footer__title {
+    margin-bottom: var(--space-3);
+    font-family: var(--font-sans);
+    font-size: var(--text-xs);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: var(--tracking-wide);
+    color: var(--sg-ink-soft);
+  }
+
+  .l-sg-footer__chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+
+  .l-sg-footer__chip {
+    padding: var(--space-1) var(--space-3);
+    font-size: var(--text-sm);
+    background: var(--sg-cream);
+    border-radius: var(--radius-full);
+  }
+
+  .l-sg-footer__contact {
+    font-size: var(--text-sm);
+    font-style: normal;
+    color: var(--sg-ink-soft);
+  }
+
+  .l-sg-footer__note {
+    max-width: 70ch;
+    font-size: var(--text-xs);
+    color: var(--sg-ink-soft);
+  }
+
+  .l-sg-footer__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2) var(--space-5);
+    font-size: var(--text-sm);
+  }
+
+  .l-sg-footer__link {
+    color: var(--sg-ink);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+
+  @media (max-width: 819px) {
+    .l-sg-footer__cols {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+}

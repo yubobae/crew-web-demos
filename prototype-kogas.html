@@ -15,8 +15,8 @@
   <link rel="icon" href="favicon.ico" sizes="48x48">
   <link rel="icon" type="image/png" sizes="32x32" href="assets/media/icons/favicon-32.png">
   <link rel="apple-touch-icon" href="assets/media/icons/apple-touch-icon.png">
-  <link rel="stylesheet" href="assets/css/main.css?v=202611120058">
-  <script type="module" src="assets/js/main.js?v=202611120058"></script>
+  <link rel="stylesheet" href="assets/css/main.css?v=202611120130">
+  <script type="module" src="assets/js/main.js?v=202611120130"></script>
 </head>
 <body data-effect="cursor scroll-progress">
   <a class="u-visually-hidden" href="#main">본문 바로가기</a>
@@ -45,7 +45,9 @@
       <div class="c-site-nav__group">
         <p class="c-site-nav__group-title">바로 가기</p>
         <a class="c-site-nav__item" href="prototype-kogas.html">KOGAS 40 역사관 <span class="c-site-nav__item-desc">대표 작업</span></a>
-        <a class="c-site-nav__item" href="prototype/kogas/" rel="nofollow noopener" target="_blank">프로토타입 바로 보기 <span class="c-site-nav__item-desc">데모</span></a>
+        <a class="c-site-nav__item" href="prototype-sgwon.html">승가원 30주년 역사관 <span class="c-site-nav__item-desc">대표 작업</span></a>
+        <a class="c-site-nav__item" href="prototype/kogas/" rel="nofollow noopener" target="_blank">KOGAS 데모 바로 보기 <span class="c-site-nav__item-desc">데모</span></a>
+        <a class="c-site-nav__item" href="prototype/sgwon/" rel="nofollow noopener" target="_blank">승가원 데모 바로 보기 <span class="c-site-nav__item-desc">데모</span></a>
       </div>
     </div>
   </header>
@@ -192,8 +194,8 @@
       </div>
       <dl class="c-spec">
         <div class="c-spec__row"><dt class="c-spec__key">구조</dt><dd class="c-spec__val">정적 HTML 6쪽. 원본 사이트에서 모은 자료(JSON)로 Node 스크립트가 쪽을 조립해요. 서버 프로그램이 필요 없어 고객 서버 어디에나 올릴 수 있어요.</dd></div>
-        <div class="c-spec__row"><dt class="c-spec__key">CSS</dt><dd class="c-spec__val"><span class="c-spec__code">@layer</span> 7단계, BEM 이름, 블록 하나 = 파일 하나(부품 19개). 색은 <span class="c-spec__code">--kg-*</span> 토큰만 쓰고, 요즘 UI 부품은 <span class="c-spec__code">--tr-*</span> 별칭으로 같은 팔레트를 입혔어요. <span class="c-spec__code">clip-path</span> 대문·사진 머리, 사진 교차·켄 번스(CSS 애니메이션만), 패럴랙스 사진 띠, <span class="c-spec__code">stroke-dashoffset</span> 배관, CSS columns 갤러리, <span class="c-spec__code">@starting-style</span> 팝업.</dd></div>
-        <div class="c-spec__row"><dt class="c-spec__key">JS 모듈</dt><dd class="c-spec__val">프레임워크 없이 ES 모듈 10개를 <span class="c-spec__code">data-module</span>·<span class="c-spec__code">data-effect</span>로 연결: <span class="c-spec__code">bar-chart</span> <span class="c-spec__code">glider</span> <span class="c-spec__code">lightbox</span> <span class="c-spec__code">site-nav</span> <span class="c-spec__code">story-steps</span> <span class="c-spec__code">yt-lite</span> <span class="c-spec__code">count-up</span> <span class="c-spec__code">reveal</span> <span class="c-spec__code">scroll-progress</span> <span class="c-spec__code">tilt</span></dd></div>
+        <div class="c-spec__row"><dt class="c-spec__key">CSS</dt><dd class="c-spec__val"><span class="c-spec__code">@layer</span> 7단계, BEM 이름, 블록 하나 = 파일 하나(부품 20개). 색은 <span class="c-spec__code">--kg-*</span> 토큰만 쓰고, 요즘 UI 부품은 <span class="c-spec__code">--tr-*</span> 별칭으로 같은 팔레트를 입혔어요. <span class="c-spec__code">clip-path</span> 대문·사진 머리, 사진 교차·켄 번스(CSS 애니메이션만), 패럴랙스 사진 띠, <span class="c-spec__code">stroke-dashoffset</span> 배관, CSS columns 갤러리, <span class="c-spec__code">@starting-style</span> 팝업.</dd></div>
+        <div class="c-spec__row"><dt class="c-spec__key">JS 모듈</dt><dd class="c-spec__val">프레임워크 없이 ES 모듈 13개를 <span class="c-spec__code">data-module</span>·<span class="c-spec__code">data-effect</span>로 연결: <span class="c-spec__code">bar-chart</span> <span class="c-spec__code">glider</span> <span class="c-spec__code">lightbox</span> <span class="c-spec__code">site-nav</span> <span class="c-spec__code">story-steps</span> <span class="c-spec__code">yt-bg</span> <span class="c-spec__code">yt-lite</span> <span class="c-spec__code">count-up</span> <span class="c-spec__code">gate-snap</span> <span class="c-spec__code">pin-progress</span> <span class="c-spec__code">reveal</span> <span class="c-spec__code">scroll-progress</span> <span class="c-spec__code">tilt</span></dd></div>
         <div class="c-spec__row"><dt class="c-spec__key">사진·영상</dt><dd class="c-spec__val">원본 사진 106장을 WebP로 줄여 합계 8.7MB(한 장 200KB 이하). 모든 그림에 width·height, 화면 밖은 lazy. 유튜브는 누를 때만 불러오는 가벼운 방식(쿠키 줄인 주소).</dd></div>
         <div class="c-spec__row"><dt class="c-spec__key">반응형</dt><dd class="c-spec__val">휴대폰 우선. 360·390·820·1024·1280px에서 가로 넘침 0. 휴대폰은 메뉴를 판(popover)으로, 연대기 왼쪽 머리는 붙지 않게, 스토리텔링은 화면을 위에.</dd></div>
         <div class="c-spec__row"><dt class="c-spec__key">성능</dt><dd class="c-spec__val">움직임은 transform·opacity 위주, 스크롤·포인터 처리는 프레임당 한 번(rAF). 실제 브라우저에서 프레임을 재서 긴 프레임 0을 목표로 검수.</dd></div>

@@ -1,0 +1,46 @@
+/* 쪽 끝 "다음으로" 링크: 큰 명조 글자, 올리면 화살표가 밀려 나간다. */
+@layer components {
+  .c-next {
+    width: min(100% - var(--gutter) * 2, 78rem);
+    margin-inline: auto;
+    padding-block: var(--space-16) calc(var(--sg-dock-h) + var(--space-20));
+    border-top: 1px solid var(--sg-line);
+  }
+
+  .c-next__label {
+    font-size: var(--text-sm);
+    color: var(--sg-ink-soft);
+  }
+
+  .c-next__link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-4);
+    margin-top: var(--space-3);
+    font-family: var(--font-serif);
+    font-size: clamp(var(--text-3xl), 1rem + 3vw, var(--text-6xl));
+    font-weight: var(--font-weight-black);
+    letter-spacing: var(--tracking-tighter);
+    color: var(--sg-ink);
+    text-decoration: none;
+  }
+
+  .c-next__link svg {
+    width: 0.7em;
+    height: 0.7em;
+    color: var(--sg-persimmon);
+    transition: transform var(--sg-dur) var(--sg-spring);
+  }
+
+  @media (hover: hover) {
+    .c-next__link:hover svg {
+      transform: translateX(var(--space-3));
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .c-next__link svg {
+      transition: none;
+    }
+  }
+}

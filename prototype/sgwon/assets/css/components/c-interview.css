@@ -1,0 +1,107 @@
+/* 이사장스님 인터뷰: 왼쪽에 인물 사진(붙어 따라옴) + 큰 인용 문장, 오른쪽에 문답이 접이식(details name, 하나만 열림).
+   휴대폰은 사진이 위에. */
+@layer components {
+  .c-interview {
+    display: grid;
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+    gap: clamp(var(--space-8), 5vw, var(--space-16));
+    align-items: start;
+  }
+
+  .c-interview__side {
+    position: sticky;
+    top: calc(var(--sg-top-h) + var(--space-8));
+    display: grid;
+    gap: var(--space-5);
+  }
+
+  .c-interview__photo {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    object-position: top;
+    border-radius: var(--radius-3xl);
+    box-shadow: var(--sg-shadow);
+  }
+
+  .c-interview__role {
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-bold);
+    color: var(--sg-persimmon-deep);
+  }
+
+  .c-interview__quote {
+    font-size: clamp(var(--text-xl), 1rem + 1.2vw, var(--text-3xl));
+    font-weight: var(--font-weight-black);
+    letter-spacing: var(--tracking-tight);
+    line-height: 1.35;
+  }
+
+  .c-interview__qa {
+    display: grid;
+    gap: var(--space-2);
+  }
+
+  .c-interview__item {
+    background: var(--sg-cream);
+    border: 1px solid var(--sg-line);
+    border-radius: var(--radius-2xl);
+  }
+
+  .c-interview__q {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--space-4);
+    padding: var(--space-5) var(--space-6);
+    font-weight: var(--font-weight-semibold);
+    cursor: pointer;
+    list-style: none;
+  }
+
+  .c-interview__q::-webkit-details-marker {
+    display: none;
+  }
+
+  .c-interview__plus {
+    flex: none;
+    display: grid;
+    place-items: center;
+    width: var(--space-6);
+    aspect-ratio: 1;
+    color: var(--sg-white);
+    background: var(--sg-persimmon);
+    border-radius: var(--radius-full);
+    transition: transform var(--sg-dur) var(--sg-spring);
+  }
+
+  .c-interview__item[open] .c-interview__plus {
+    transform: rotate(135deg);
+  }
+
+  .c-interview__a {
+    padding: 0 var(--space-6) var(--space-6);
+    color: var(--sg-ink-soft);
+  }
+
+  @media (max-width: 819px) {
+    .c-interview {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .c-interview__side {
+      position: static;
+    }
+
+    .c-interview__photo {
+      aspect-ratio: 16 / 11;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .c-interview__plus {
+      transition: none;
+    }
+  }
+}

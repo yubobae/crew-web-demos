@@ -1,0 +1,52 @@
+/* 문장 속 사진: 큰 명조 문장 사이사이에 둥근 알약 사진이 끼어 있다. 화면에 들어오면 알약이 옆으로 열린다(is-in). */
+@layer components {
+  .c-statement {
+    font-family: var(--font-serif);
+    font-size: clamp(var(--text-3xl), 1rem + 3.6vw, var(--text-7xl));
+    font-weight: var(--font-weight-bold);
+    letter-spacing: var(--tracking-tighter);
+    line-height: 1.35;
+    text-wrap: balance;
+  }
+
+  .c-statement__mark {
+    color: var(--sg-persimmon-deep);
+  }
+
+  .c-statement__pic {
+    display: inline-block;
+    width: 3.4em;
+    height: 1.05em;
+    overflow: hidden;
+    vertical-align: -0.1em;
+    border-radius: var(--radius-full);
+    transition: width 1100ms var(--sg-ease);
+  }
+
+  .c-statement.is-ready:not(.is-in) .c-statement__pic {
+    width: 0;
+  }
+
+  .c-statement__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .c-statement__text {
+    max-width: 54ch;
+    margin-top: var(--space-8);
+    font-family: var(--font-sans);
+    font-size: var(--fs-body);
+    font-weight: var(--font-weight-normal);
+    letter-spacing: 0;
+    line-height: var(--lh-body);
+    color: var(--sg-ink-soft);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .c-statement__pic {
+      transition: none;
+    }
+  }
+}

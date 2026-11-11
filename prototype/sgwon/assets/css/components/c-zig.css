@@ -1,0 +1,148 @@
+/* 지그재그 연표: 가운데 세로선 양옆에 사건이 번갈아 놓인다(홀수 왼쪽·짝수 오른쪽). 사진 있는 사건은 큰 카드.
+   화면에 들어오면 바깥쪽에서 안쪽으로 밀려 들어온다(reveal.js). 휴대폰은 왼쪽 선 하나에 한 줄로. */
+@layer components {
+  .c-zig {
+    position: relative;
+    display: grid;
+    gap: var(--space-3);
+    padding-block: var(--space-8);
+    overflow-x: clip;
+  }
+
+  .c-zig::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    left: 50%;
+    width: 2px;
+    background: linear-gradient(var(--sg-persimmon-soft), var(--sg-persimmon), var(--sg-persimmon-soft));
+    transform: translateX(-50%);
+  }
+
+  .c-zig__item {
+    position: relative;
+    width: calc(50% - var(--space-8));
+    transition:
+      opacity 800ms var(--sg-ease),
+      transform 900ms var(--sg-ease);
+  }
+
+  .c-zig__item:nth-child(odd) {
+    justify-self: start;
+    text-align: end;
+  }
+
+  .c-zig__item:nth-child(even) {
+    justify-self: end;
+  }
+
+  .c-zig.is-ready .c-zig__item:nth-child(odd):not(.is-in) {
+    opacity: 0;
+    transform: translateX(calc(var(--space-12) * -1));
+  }
+
+  .c-zig.is-ready .c-zig__item:nth-child(even):not(.is-in) {
+    opacity: 0;
+    transform: translateX(var(--space-12));
+  }
+
+  /* 선 위의 점 */
+  .c-zig__item::after {
+    content: "";
+    position: absolute;
+    top: var(--space-4);
+    width: var(--space-3);
+    aspect-ratio: 1;
+    background: var(--sg-paper);
+    border: 3px solid var(--sg-persimmon);
+    border-radius: var(--radius-full);
+  }
+
+  .c-zig__item:nth-child(odd)::after {
+    right: calc(var(--space-8) * -1 - var(--space-1-5) - 1px);
+  }
+
+  .c-zig__item:nth-child(even)::after {
+    left: calc(var(--space-8) * -1 - var(--space-1-5) - 1px);
+  }
+
+  .c-zig__card {
+    display: grid;
+    gap: var(--space-1);
+    padding: var(--space-4) var(--space-5);
+    background: var(--sg-cream);
+    border: 1px solid var(--sg-line);
+    border-radius: var(--radius-2xl);
+  }
+
+  .c-zig__item--photo .c-zig__card {
+    padding: var(--space-2) var(--space-2) var(--space-5);
+    box-shadow: var(--sg-shadow-float);
+  }
+
+  .c-zig__photo {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    border-radius: var(--radius-xl);
+  }
+
+  .c-zig__date {
+    font-family: var(--font-serif);
+    font-size: var(--text-lg);
+    font-weight: var(--font-weight-black);
+    font-variant-numeric: tabular-nums;
+    color: var(--sg-persimmon-deep);
+  }
+
+  .c-zig__item--photo .c-zig__date,
+  .c-zig__item--photo .c-zig__what {
+    padding-inline: var(--space-3);
+  }
+
+  .c-zig__item--photo .c-zig__date {
+    padding-top: var(--space-3);
+  }
+
+  .c-zig__what {
+    color: var(--sg-ink);
+  }
+
+  .c-zig__desc {
+    font-size: var(--text-sm);
+    color: var(--sg-ink-soft);
+  }
+
+  @media (max-width: 819px) {
+    .c-zig::before {
+      left: var(--space-2);
+    }
+
+    .c-zig__item,
+    .c-zig__item:nth-child(odd),
+    .c-zig__item:nth-child(even) {
+      justify-self: stretch;
+      width: auto;
+      margin-left: var(--space-8);
+      text-align: start;
+    }
+
+    .c-zig__item:nth-child(odd)::after,
+    .c-zig__item:nth-child(even)::after {
+      right: auto;
+      left: calc(var(--space-8) * -1 + var(--space-1) + 1px);
+    }
+
+    .c-zig.is-ready .c-zig__item:nth-child(odd):not(.is-in),
+    .c-zig.is-ready .c-zig__item:nth-child(even):not(.is-in) {
+      transform: translateY(var(--space-6));
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .c-zig__item {
+      transition: none;
+    }
+  }
+}

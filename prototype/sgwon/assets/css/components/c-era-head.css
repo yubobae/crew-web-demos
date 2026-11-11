@@ -1,0 +1,71 @@
+/* 시대 머리(연혁 탭 안): 시대 배경 사진이 화면 폭으로 깔리고, 위에 큰 명조 연도와 시대 제목. 사진은 보일 때 천천히 당겨진다. */
+@layer components {
+  .c-era-head {
+    position: relative;
+    display: grid;
+    align-content: end;
+    min-height: min(60svh, 30rem);
+    padding: var(--space-12) var(--space-8);
+    overflow: hidden;
+    isolation: isolate;
+    color: var(--sg-white);
+    border-radius: var(--radius-4xl);
+    background: var(--sg-ink);
+  }
+
+  .c-era-head__img {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    animation: c-era-head-zoom 2400ms var(--sg-ease) both;
+  }
+
+  .c-era-head::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(to top, var(--sg-shade-strong) 0%, transparent 70%);
+  }
+
+  .c-era-head__years {
+    font-family: var(--font-serif);
+    font-size: clamp(var(--text-5xl), 2rem + 5vw, 8rem);
+    font-weight: var(--font-weight-black);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: var(--tracking-tighter);
+    line-height: 1;
+  }
+
+  .c-era-head__dash {
+    color: var(--sg-sun);
+  }
+
+  .c-era-head__title {
+    max-width: 24ch;
+    margin-top: var(--space-4);
+    font-size: clamp(var(--text-xl), 1rem + 1.2vw, var(--text-3xl));
+    font-weight: var(--font-weight-bold);
+  }
+
+  .c-era-head__count {
+    margin-top: var(--space-2);
+    font-size: var(--text-sm);
+    opacity: 0.9;
+  }
+
+  @keyframes c-era-head-zoom {
+    from {
+      transform: scale(1.15);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .c-era-head__img {
+      animation: none;
+    }
+  }
+}
