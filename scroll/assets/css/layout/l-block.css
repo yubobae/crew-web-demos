@@ -1,0 +1,53 @@
+/* 데모 섹션 공통 틀: 제목·설명·스냅 기준점 */
+@layer layout {
+  .l-block {
+    position: relative;
+    display: grid;
+    gap: var(--space-10);
+    padding: var(--section-pad) var(--gutter);
+    scroll-snap-align: start;
+  }
+
+  /* 그리드 칸이 안쪽 내용(가로 스크롤 줄 등) 너비만큼 늘어나 화면을 넘지 않게 */
+  .l-block > * {
+    min-width: 0;
+  }
+
+  .l-block--alt {
+    background: var(--fx-surface-2);
+  }
+
+  .l-block--flush {
+    padding-inline: 0;
+  }
+
+  .l-block__head {
+    display: grid;
+    gap: var(--space-3);
+    max-width: 42rem;
+  }
+
+  .l-block--flush .l-block__head {
+    padding-inline: var(--gutter);
+  }
+
+  .l-block__no {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--fx-c2);
+  }
+
+  .l-block__title {
+    font-size: var(--fs-h2);
+  }
+
+  .l-block__desc {
+    color: var(--fx-text-muted);
+  }
+
+  .l-block__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
+    gap: var(--space-4);
+  }
+}

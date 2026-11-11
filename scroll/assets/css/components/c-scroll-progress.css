@@ -1,0 +1,13 @@
+/* 읽기 진행 막대: 페이지를 얼마나 내려왔는지 위쪽 막대로 보여 준다(--progress: 0~1, effects/scroll-scrub.js) */
+@layer components {
+  .c-scroll-progress {
+    position: fixed;
+    inset: 0 0 auto;
+    z-index: calc(var(--z-header) + 1);
+    height: 3px;
+    background: linear-gradient(90deg, var(--fx-c1), var(--fx-c2), var(--fx-c3));
+    transform-origin: left center;
+    transform: scaleX(var(--progress, 0));
+    pointer-events: none;
+  }
+}

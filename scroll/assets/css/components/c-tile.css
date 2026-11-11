@@ -1,0 +1,17 @@
+/* 데모 타일: 스크롤 리빌 예시용 네모 카드 */
+@layer components {
+  .c-tile {
+    display: grid;
+    place-items: center;
+    min-height: 12rem;
+    padding: var(--space-6);
+    border: 1px solid var(--fx-line);
+    border-radius: var(--radius-2xl);
+    background:
+      radial-gradient(80% 80% at 20% 0%, color-mix(in oklch, var(--fx-c2) 30%, transparent), transparent 70%),
+      var(--fx-surface-2);
+    color: var(--fx-text);
+    font-weight: var(--font-weight-semibold);
+    text-align: center;
+  }
+}

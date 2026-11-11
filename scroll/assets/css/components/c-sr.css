@@ -1,0 +1,46 @@
+/* 스크롤 리빌(scroll reveal): 화면에 들어오면 나타난다. 종류 4가지 + 순서대로(--sr-i) 시차.
+   effects/scroll-reveal.js가 is-in과 --sr-i를 넣는다. 위로 다시 올라가면 되감긴다. */
+@layer components {
+  .c-sr {
+    opacity: 0;
+    transition:
+      opacity 900ms var(--ease-out-expo),
+      translate 900ms var(--ease-out-expo),
+      scale 900ms var(--ease-out-expo),
+      filter 900ms var(--ease-out-expo);
+    transition-delay: calc(var(--sr-i, 0) * 90ms);
+  }
+
+  .c-sr--up {
+    translate: 0 var(--space-12);
+  }
+
+  .c-sr--left {
+    translate: calc(var(--space-12) * -1) 0;
+  }
+
+  .c-sr--scale {
+    scale: 0.85;
+  }
+
+  .c-sr--blur {
+    filter: blur(12px);
+  }
+
+  .c-sr.is-in {
+    opacity: 1;
+    translate: 0 0;
+    scale: 1;
+    filter: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .c-sr {
+      opacity: 1;
+      translate: 0 0;
+      scale: 1;
+      filter: none;
+      transition: none;
+    }
+  }
+}

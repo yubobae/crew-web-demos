@@ -1,0 +1,44 @@
+@layer base {
+  /* 섹션 자석 스냅: 스크롤을 조금만 해도 가까운 섹션 시작점에 부드럽게 붙는다(proximity: 멀면 붙지 않음) */
+  html.is-snap {
+    scroll-snap-type: y proximity;
+  }
+
+  /* 부드러운(관성) 스크롤 중에는 브라우저 기본 smooth를 끈다(둘이 겹치면 끊겨 보임) */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  html.is-smooth {
+    scroll-behavior: auto;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    font-size: var(--fs-body);
+    line-height: var(--lh-body);
+    color: var(--fx-text);
+    background: var(--fx-surface);
+    font-synthesis: none;
+    word-break: keep-all;
+    overflow-wrap: break-word;
+  }
+
+  h1,
+  h2,
+  h3 {
+    line-height: var(--lh-tight);
+    letter-spacing: var(--ls-display);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--fx-beam);
+    outline-offset: 3px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+}

@@ -1,0 +1,29 @@
+/* 진입점: 레이어 순서 선언 + 불러오기만 둔다 */
+@layer reset, tokens, base, layout, components, sections, utilities;
+
+@import "tokens.css";
+@import "base/reset.css";
+@import "base/document.css";
+
+@import "layout/l-header.css";
+@import "layout/l-block.css";
+@import "layout/l-footer.css";
+
+@import "components/c-grain.css";
+@import "components/c-scroll-hint.css";
+@import "components/c-gnb.css";
+@import "components/c-field.css";
+@import "components/c-switch.css";
+@import "components/c-scroll-progress.css";
+@import "components/c-scroll-panel.css";
+@import "components/c-to-top.css";
+@import "components/c-sr.css";
+@import "components/c-parallax.css";
+@import "components/c-pin-zoom.css";
+@import "components/c-hscroll.css";
+@import "components/c-snap.css";
+@import "components/c-tile.css";
+
+@import "sections/s-sc-hero.css";
+
+@import "utilities/u-visually-hidden.css";

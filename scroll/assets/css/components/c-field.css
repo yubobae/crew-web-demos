@@ -1,0 +1,29 @@
+/* 폼 필드 묶음: 라벨 + 입력 + 도움말/오류 */
+@layer components {
+  .c-field {
+    display: grid;
+    gap: var(--space-2);
+  }
+
+  .c-field--inline {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+  }
+
+  .c-field__label {
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-medium);
+    line-height: 1;
+  }
+
+  .c-field__hint {
+    font-size: var(--text-sm);
+    color: var(--ui-muted-foreground);
+  }
+
+  .c-field__error {
+    font-size: var(--text-sm);
+    color: var(--ui-destructive);
+  }
+}

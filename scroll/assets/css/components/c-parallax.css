@@ -1,0 +1,49 @@
+/* 패럴랙스: 겹친 층이 스크롤에 따라 서로 다른 속도로 움직여 깊이가 생긴다(--progress: 0~1, 화면 통과 기준) */
+@layer components {
+  .c-parallax {
+    position: relative;
+    height: clamp(20rem, 60vh, 36rem);
+    overflow: hidden;
+    border-radius: var(--radius-3xl);
+    background: var(--fx-surface);
+  }
+
+  .c-parallax__layer {
+    position: absolute;
+    inset: -20% 0;
+    translate: 0 calc((var(--progress, 0.5) - 0.5) * var(--speed, 0) * 1%);
+  }
+
+  .c-parallax__layer--back {
+    --speed: -30;
+    background:
+      radial-gradient(30% 40% at 20% 30%, color-mix(in oklch, var(--fx-c1) 60%, transparent), transparent 70%),
+      radial-gradient(35% 45% at 80% 60%, color-mix(in oklch, var(--fx-c2) 50%, transparent), transparent 70%);
+  }
+
+  .c-parallax__layer--mid {
+    --speed: 15;
+    background:
+      radial-gradient(12% 16% at 35% 55%, var(--fx-c3), transparent 70%),
+      radial-gradient(9% 12% at 70% 35%, var(--fx-c4), transparent 70%);
+  }
+
+  .c-parallax__layer--front {
+    --speed: 45;
+    display: grid;
+    place-items: center;
+  }
+
+  .c-parallax__text {
+    font-size: clamp(var(--text-4xl), 8vw, var(--text-8xl));
+    font-weight: var(--font-weight-extrabold);
+    letter-spacing: var(--tracking-tighter);
+    text-align: center;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .c-parallax__layer {
+      translate: none;
+    }
+  }
+}

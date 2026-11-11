@@ -1,0 +1,77 @@
+/* 고정 + 확대(pin & scrub): 화면에 고정된 채 스크롤한 만큼 그림이 커지고 문구가 차례로 나타난다.
+   바깥 상자를 길게(300vh) 두고 안쪽을 sticky로 붙인다. --progress(0~1)는 고정 구간 진행률. */
+@layer components {
+  .c-pin-zoom {
+    position: relative;
+    height: 300vh;
+  }
+
+  .c-pin-zoom__stage {
+    position: sticky;
+    top: 0;
+    display: grid;
+    place-items: center;
+    height: 100vh;
+    height: 100svh;
+    overflow: hidden;
+  }
+
+  .c-pin-zoom__media {
+    width: min(90vw, 64rem);
+    aspect-ratio: 16 / 9;
+    border-radius: calc((1 - var(--progress, 0)) * var(--radius-3xl));
+    background:
+      radial-gradient(60% 70% at 30% 30%, var(--fx-c1), transparent 70%),
+      radial-gradient(60% 70% at 80% 80%, var(--fx-c3), transparent 70%),
+      var(--fx-surface-2);
+    scale: calc(0.5 + var(--progress, 0) * 1.1);
+    filter: brightness(calc(0.6 + var(--progress, 0) * 0.4));
+  }
+
+  .c-pin-zoom__lines {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-content: center;
+    gap: var(--space-2);
+    text-align: center;
+    pointer-events: none;
+  }
+
+  .c-pin-zoom__line {
+    font-size: clamp(var(--text-3xl), 5vw, var(--text-6xl));
+    font-weight: var(--font-weight-extrabold);
+    letter-spacing: var(--tracking-tight);
+    opacity: clamp(0, (var(--progress, 0) - var(--at, 0)) * 6, 1);
+    translate: 0 calc((1 - clamp(0, (var(--progress, 0) - var(--at, 0)) * 6, 1)) * 2rem);
+  }
+
+  .c-pin-zoom__line--2 {
+    --at: 0.3;
+  }
+
+  .c-pin-zoom__line--3 {
+    --at: 0.55;
+    color: var(--fx-c3);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .c-pin-zoom {
+      height: auto;
+    }
+
+    .c-pin-zoom__stage {
+      position: relative;
+    }
+
+    .c-pin-zoom__media {
+      scale: 1;
+      filter: none;
+    }
+
+    .c-pin-zoom__line {
+      opacity: 1;
+      translate: none;
+    }
+  }
+}

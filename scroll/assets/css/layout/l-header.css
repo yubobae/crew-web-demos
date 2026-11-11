@@ -1,0 +1,52 @@
+/* 헤더: 아래로 스크롤하면 숨고, 위로 조금만 올려도 다시 나타난다(modules/header-autohide.js가 is-hidden, is-scrolled).
+   흐린 배경은 ::before에 둔다. 헤더 자체에 filter·backdrop-filter를 주면 안의 전체 화면 메뉴(position: fixed)가 헤더 안에 갇힌다. */
+@layer layout {
+  .l-header {
+    position: fixed;
+    inset: 0 0 auto;
+    z-index: var(--z-header);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+    padding: var(--space-3) var(--gutter);
+    padding-top: max(var(--space-3), env(safe-area-inset-top, 0px));
+    color: var(--fx-text);
+    transition: translate 400ms var(--ease-out-expo);
+  }
+
+  .l-header::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-bottom: 1px solid var(--fx-line);
+    background: color-mix(in oklch, var(--fx-surface) 75%, transparent);
+    backdrop-filter: blur(12px);
+    opacity: 0;
+    transition: opacity 300ms var(--ui-ease);
+  }
+
+  .l-header.is-scrolled::before {
+    opacity: 1;
+  }
+
+  .l-header.is-hidden {
+    translate: 0 -100%;
+  }
+
+  .l-header__logo {
+    position: relative;
+    z-index: 2;
+    font-weight: var(--font-weight-bold);
+    color: inherit;
+    text-decoration: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .l-header,
+    .l-header::before {
+      transition: none;
+    }
+  }
+}

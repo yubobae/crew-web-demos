@@ -1,0 +1,94 @@
+/* 가로 스크롤: 세로로 스크롤하면 고정된 화면 안에서 카드 줄이 가로로 지나간다.
+   effects/scroll-scrub.js가 바깥 높이(--hs-height)와 이동 거리(--hs-distance)를 계산해 넣는다.
+   모바일(819px 이하)·동작 줄이기에서는 손가락으로 넘기는 일반 가로 스크롤 + 스냅. */
+@layer components {
+  .c-hscroll {
+    position: relative;
+    min-width: 0;
+    height: var(--hs-height, auto);
+  }
+
+  .c-hscroll__stage {
+    position: sticky;
+    top: 0;
+    display: grid;
+    align-content: center;
+    height: 100vh;
+    height: 100svh;
+    overflow: hidden;
+  }
+
+  .c-hscroll__track {
+    display: flex;
+    gap: var(--space-6);
+    width: max-content;
+    padding-inline: var(--gutter);
+    translate: calc(var(--progress, 0) * var(--hs-distance, 0px) * -1) 0;
+  }
+
+  .c-hscroll__card {
+    display: grid;
+    align-content: end;
+    gap: var(--space-2);
+    width: min(70vw, 28rem);
+    aspect-ratio: 4 / 5;
+    padding: var(--space-8);
+    border: 1px solid var(--fx-line);
+    border-radius: var(--radius-3xl);
+    background:
+      radial-gradient(90% 70% at 20% 10%, color-mix(in oklch, var(--card-c, var(--fx-c1)) 55%, transparent), transparent 70%),
+      var(--fx-surface-2);
+  }
+
+  .c-hscroll__card--b { --card-c: var(--fx-c2); }
+  .c-hscroll__card--c { --card-c: var(--fx-c3); }
+  .c-hscroll__card--d { --card-c: var(--fx-c4); }
+
+  .c-hscroll__year {
+    font-size: var(--text-5xl);
+    font-weight: var(--font-weight-bold);
+    line-height: 1;
+  }
+
+  .c-hscroll__text {
+    color: var(--fx-text-muted);
+  }
+
+  @media (max-width: 819px) {
+    .c-hscroll {
+      height: auto;
+    }
+
+    .c-hscroll__stage {
+      position: relative;
+      height: auto;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none;
+    }
+
+    .c-hscroll__track {
+      translate: none;
+    }
+
+    .c-hscroll__card {
+      scroll-snap-align: center;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .c-hscroll {
+      height: auto;
+    }
+
+    .c-hscroll__stage {
+      position: relative;
+      height: auto;
+      overflow-x: auto;
+    }
+
+    .c-hscroll__track {
+      translate: none;
+    }
+  }
+}

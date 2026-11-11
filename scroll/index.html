@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="ko" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>스크롤 인터랙션 | 보람찬크루 웹 컨벤션</title>
+  <meta name="description" content="GNB, 부드러운 관성 스크롤, 섹션 자석 스냅, 스크롤 리빌, 패럴랙스, 고정 확대, 가로 스크롤, 스냅 갤러리를 프레임워크 없이 만든 스크롤 인터랙션 데모입니다.">
+  <meta name="theme-color" content="#16161d">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+  <link rel="stylesheet" href="assets/css/main.css">
+  <script type="module" src="assets/js/main.js"></script>
+</head>
+<body data-effect="scroll-scrub scroll-reveal smooth-scroll">
+  <a class="u-visually-hidden" href="#main">본문 바로가기</a>
+  <div class="c-scroll-progress" data-scrub="page" aria-hidden="true"></div>
+
+  <header class="l-header" data-module="header-autohide">
+    <a class="l-header__logo" href="#top">보람찬크루</a>
+    <nav class="c-gnb" data-module="gnb" aria-label="주 메뉴">
+      <button class="c-gnb__toggle" type="button" aria-expanded="false" aria-controls="gnb-panel" aria-label="메뉴 열기">
+        <span class="c-gnb__bar c-gnb__bar--top"></span>
+        <span class="c-gnb__bar c-gnb__bar--mid"></span>
+        <span class="c-gnb__bar c-gnb__bar--bottom"></span>
+      </button>
+      <div class="c-gnb__panel" id="gnb-panel">
+        <ul class="c-gnb__list">
+          <li class="c-gnb__item"><a class="c-gnb__link" href="#top" aria-current="page">홈</a></li>
+          <li class="c-gnb__item">
+            <button class="c-gnb__link" type="button" aria-expanded="false" aria-controls="gnb-sub-1">
+              스크롤 효과
+              <svg class="c-gnb__chevron" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="m7 10 5 5 5-5z"/></svg>
+            </button>
+            <div class="c-gnb__sub" id="gnb-sub-1">
+              <ul class="c-gnb__sub-inner">
+                <li><a class="c-gnb__sub-link" href="#reveal">스크롤 리빌</a></li>
+                <li><a class="c-gnb__sub-link" href="#parallax">패럴랙스</a></li>
+                <li><a class="c-gnb__sub-link" href="#pin">고정 + 확대</a></li>
+              </ul>
+            </div>
+          </li>
+          <li class="c-gnb__item">
+            <button class="c-gnb__link" type="button" aria-expanded="false" aria-controls="gnb-sub-2">
+              넘겨 보기
+              <svg class="c-gnb__chevron" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="m7 10 5 5 5-5z"/></svg>
+            </button>
+            <div class="c-gnb__sub" id="gnb-sub-2">
+              <ul class="c-gnb__sub-inner">
+                <li><a class="c-gnb__sub-link" href="#horizontal">가로 스크롤</a></li>
+                <li><a class="c-gnb__sub-link" href="#snap">스냅 갤러리</a></li>
+              </ul>
+            </div>
+          </li>
+          <li class="c-gnb__item"><a class="c-gnb__link" href="#outro">마무리</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main">
+    <!-- 첫 화면 -->
+    <section class="s-sc-hero" id="top" aria-labelledby="sc-title">
+      <div class="c-grain" aria-hidden="true"></div>
+      <h1 class="s-sc-hero__title c-sr c-sr--blur" id="sc-title">스크롤이 이야기를 이끕니다</h1>
+      <p class="s-sc-hero__lead c-sr c-sr--up">휠을 조금만 굴려도 미끄러지듯 내려가고, 화면은 스크롤에 맞춰 움직입니다. 왼쪽 아래 스위치로 부드러운 스크롤과 섹션 스냅을 켜고 끄며 비교해 보세요.</p>
+      <p class="s-sc-hero__hint c-scroll-hint" aria-hidden="true">↓</p>
+    </section>
+
+    <!-- 01 스크롤 리빌 -->
+    <section class="l-block" id="reveal" aria-labelledby="sc-reveal">
+      <div class="l-block__head">
+        <span class="l-block__no">01</span>
+        <h2 class="l-block__title c-sr c-sr--up" id="sc-reveal">스크롤 리빌</h2>
+        <p class="l-block__desc">화면에 들어오면 나타납니다. 종류 4가지, 같은 줄은 순서대로 조금씩 늦게. 위로 다시 올리면 되감깁니다.</p>
+      </div>
+      <div class="l-block__grid" data-sr-group>
+        <div class="c-sr c-sr--up c-tile">아래에서 위로</div>
+        <div class="c-sr c-sr--left c-tile">왼쪽에서</div>
+        <div class="c-sr c-sr--scale c-tile">작게에서 크게</div>
+        <div class="c-sr c-sr--blur c-tile">흐림에서 선명하게</div>
+      </div>
+    </section>
+
+    <!-- 02 패럴랙스 -->
+    <section class="l-block l-block--alt" id="parallax" aria-labelledby="sc-parallax">
+      <div class="l-block__head">
+        <span class="l-block__no">02</span>
+        <h2 class="l-block__title c-sr c-sr--up" id="sc-parallax">패럴랙스</h2>
+        <p class="l-block__desc">겹친 층이 서로 다른 속도로 움직여 깊이가 생깁니다. 뒤는 천천히, 앞은 빠르게.</p>
+      </div>
+      <div class="c-parallax" data-scrub="view" aria-hidden="true">
+        <div class="c-parallax__layer c-parallax__layer--back"></div>
+        <div class="c-parallax__layer c-parallax__layer--mid"></div>
+        <div class="c-parallax__layer c-parallax__layer--front"><p class="c-parallax__text">Since 1975</p></div>
+      </div>
+    </section>
+
+    <!-- 03 고정 + 확대 -->
+    <section class="l-block l-block--flush" id="pin" aria-labelledby="sc-pin">
+      <div class="l-block__head">
+        <span class="l-block__no">03</span>
+        <h2 class="l-block__title c-sr c-sr--up" id="sc-pin">고정 + 확대</h2>
+        <p class="l-block__desc">화면이 멈춘 채, 스크롤한 만큼 그림이 커지고 문구가 차례로 나타납니다. 스크롤을 멈추면 그 자리에 멈춥니다.</p>
+      </div>
+      <div class="c-pin-zoom" data-scrub="pin">
+        <div class="c-pin-zoom__stage">
+          <div class="c-pin-zoom__media" role="img" aria-label="점점 커지는 그라디언트 장면"></div>
+          <div class="c-pin-zoom__lines">
+            <p class="c-pin-zoom__line">작은 사무실 하나에서</p>
+            <p class="c-pin-zoom__line c-pin-zoom__line--2">오십 년을 걸어</p>
+            <p class="c-pin-zoom__line c-pin-zoom__line--3">다음 장을 엽니다</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 04 가로 스크롤 -->
+    <section class="l-block l-block--flush l-block--alt" id="horizontal" aria-labelledby="sc-horizontal">
+      <div class="l-block__head">
+        <span class="l-block__no">04</span>
+        <h2 class="l-block__title c-sr c-sr--up" id="sc-horizontal">가로 스크롤</h2>
+        <p class="l-block__desc">세로로 내리면 카드 줄이 가로로 지나갑니다. 휴대폰에서는 손가락으로 넘기는 가로 목록이 됩니다.</p>
+      </div>
+      <div class="c-hscroll" data-scrub="hscroll">
+        <div class="c-hscroll__stage">
+          <ol class="c-hscroll__track">
+            <li class="c-hscroll__card"><span class="c-hscroll__year">1975</span><p class="c-hscroll__text">창립, 첫 사무실</p></li>
+            <li class="c-hscroll__card c-hscroll__card--b"><span class="c-hscroll__year">1988</span><p class="c-hscroll__text">첫 해외 지사</p></li>
+            <li class="c-hscroll__card c-hscroll__card--c"><span class="c-hscroll__year">1998</span><p class="c-hscroll__text">위기를 넘어</p></li>
+            <li class="c-hscroll__card c-hscroll__card--d"><span class="c-hscroll__year">2012</span><p class="c-hscroll__text">새 본사 이전</p></li>
+            <li class="c-hscroll__card"><span class="c-hscroll__year">2020</span><p class="c-hscroll__text">디지털 전환</p></li>
+            <li class="c-hscroll__card c-hscroll__card--b"><span class="c-hscroll__year">2025</span><p class="c-hscroll__text">다음 50년</p></li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- 05 스냅 갤러리 -->
+    <section class="l-block l-block--flush" id="snap" aria-labelledby="sc-snap">
+      <div class="l-block__head">
+        <span class="l-block__no">05</span>
+        <h2 class="l-block__title c-sr c-sr--up" id="sc-snap">스냅 갤러리</h2>
+        <p class="l-block__desc">옆으로 조금만 밀어도 다음 장이 가운데에 딱 맞춰 섭니다. JS 없이 CSS만으로.</p>
+      </div>
+      <ul class="c-snap" aria-label="스냅 갤러리" tabindex="0">
+        <li class="c-snap__item"><span class="c-snap__label">사람</span><span>세 세대가 함께</span></li>
+        <li class="c-snap__item c-snap__item--b"><span class="c-snap__label">기술</span><span>현장에서 나온 특허</span></li>
+        <li class="c-snap__item c-snap__item--c"><span class="c-snap__label">지역</span><span>열두 도시와 함께</span></li>
+        <li class="c-snap__item c-snap__item--d"><span class="c-snap__label">미래</span><span>다음 50년의 약속</span></li>
+      </ul>
+    </section>
+
+    <!-- 마무리 -->
+    <section class="l-block l-block--alt" id="outro" aria-labelledby="sc-outro">
+      <div class="l-block__head">
+        <h2 class="l-block__title c-sr c-sr--scale" id="sc-outro">끝까지 오셨네요</h2>
+        <p class="l-block__desc">오른쪽 아래 버튼의 원이 지금까지 읽은 만큼 채워져 있습니다. 누르면 맨 위로 돌아갑니다.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="l-footer">
+    <div class="l-footer__top">
+      <div class="l-footer__brand">
+        <a class="l-footer__logo" href="#top">보람찬크루</a>
+        <p>오십 년의 이야기를 다음 오십 년으로 잇는 디지털 역사관 데모입니다.</p>
+      </div>
+      <nav class="l-footer__nav" aria-label="푸터 메뉴">
+        <div>
+          <h2 class="l-footer__heading">스크롤 효과</h2>
+          <ul class="l-footer__links">
+            <li><a class="l-footer__link" href="#reveal">스크롤 리빌</a></li>
+            <li><a class="l-footer__link" href="#parallax">패럴랙스</a></li>
+            <li><a class="l-footer__link" href="#pin">고정 + 확대</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2 class="l-footer__heading">넘겨 보기</h2>
+          <ul class="l-footer__links">
+            <li><a class="l-footer__link" href="#horizontal">가로 스크롤</a></li>
+            <li><a class="l-footer__link" href="#snap">스냅 갤러리</a></li>
+            <li><a class="l-footer__link" href="#outro">마무리</a></li>
+          </ul>
+        </div>
+      </nav>
+      <details class="l-footer__family">
+        <summary class="l-footer__family-toggle">패밀리 사이트 <span class="l-footer__family-icon" aria-hidden="true">▴</span></summary>
+        <ul class="l-footer__family-list">
+          <li><a class="l-footer__family-link" href="../">데모 목록</a></li>
+          <li><a class="l-footer__family-link" href="../ui-kit/">UI 키트</a></li>
+          <li><a class="l-footer__family-link" href="../effects/">인터랙션 효과</a></li>
+        </ul>
+      </details>
+    </div>
+    <div class="l-footer__bottom">
+      <ul class="l-footer__legal">
+        <li><a class="l-footer__link l-footer__link--strong" href="#outro">개인정보처리방침</a></li>
+        <li><a class="l-footer__link" href="#outro">이용약관</a></li>
+        <li><a class="l-footer__link" href="#outro">이메일무단수집거부</a></li>
+      </ul>
+      <address class="l-footer__info">
+        <span>(주)OO기업</span><span>대표 홍길동</span><span>서울특별시 OO구 OO로 00</span><span>사업자등록번호 000-00-00000</span><span>대표전화 00-0000-0000</span>
+      </address>
+      <p class="l-footer__copy">© 2026 보람찬크루. 예시용 회사 정보입니다.</p>
+      <ul class="l-footer__sns" aria-label="SNS">
+        <li><a class="l-footer__sns-link" href="#outro" aria-label="인스타그램(예시)">IG</a></li>
+        <li><a class="l-footer__sns-link" href="#outro" aria-label="유튜브(예시)">YT</a></li>
+        <li><a class="l-footer__sns-link" href="#outro" aria-label="블로그(예시)">B</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <aside class="c-scroll-panel" data-module="scroll-settings" aria-label="스크롤 설정">
+    <p class="c-scroll-panel__title">스크롤 설정</p>
+    <div class="c-field c-field--inline">
+      <input class="c-switch js-smooth-toggle" id="sc-smooth" type="checkbox" role="switch" checked>
+      <label class="c-field__label" for="sc-smooth">부드러운 스크롤</label>
+    </div>
+    <div class="c-field c-field--inline">
+      <input class="c-switch js-snap-toggle" id="sc-snap-toggle" type="checkbox" role="switch">
+      <label class="c-field__label" for="sc-snap-toggle">섹션 자석 스냅</label>
+    </div>
+    <p class="c-field__hint js-smooth-hint" hidden>터치 기기·동작 줄이기에서는 기본 스크롤이 더 자연스러워 꺼 둡니다.</p>
+  </aside>
+
+  <div data-module="to-top">
+    <button class="c-to-top js-to-top" type="button" data-scrub="page" aria-label="맨 위로">↑</button>
+  </div>
+</body>
+</html>

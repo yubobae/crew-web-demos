@@ -1,0 +1,25 @@
+/* 스크롤 설정 패널: 부드러운 스크롤·섹션 스냅을 켜고 끄며 비교해 보는 작은 카드 */
+@layer components {
+  .c-scroll-panel {
+    position: fixed;
+    inset-block-end: max(var(--space-4), env(safe-area-inset-bottom, 0px));
+    inset-inline-start: max(var(--space-4), env(safe-area-inset-left, 0px));
+    z-index: calc(var(--z-header) - 1); /* 헤더·전체 메뉴보다 아래 */
+    display: grid;
+    gap: var(--space-3);
+    padding: var(--space-4);
+    border: 1px solid var(--fx-line);
+    border-radius: var(--radius-xl);
+    background: color-mix(in oklch, var(--fx-surface-2) 85%, transparent);
+    backdrop-filter: blur(12px);
+    box-shadow: var(--shadow-lg);
+    font-size: var(--text-sm);
+  }
+
+  .c-scroll-panel__title {
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-widest);
+    text-transform: uppercase;
+    color: var(--fx-text-muted);
+  }
+}
