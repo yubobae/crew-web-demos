@@ -1,0 +1,87 @@
+/* 데모 공통 옷: 크루 사이트와 같은 색·글꼴로 맞춘다(주황 포인트 + 보라, 따뜻한 종이색, 어두운 면은 밤보라).
+   각 데모의 토큰(--color-*)을 덮어쓰므로 데모 코드는 그대로 둔다. 데모의 main.css 뒤에 불러온다. */
+:root {
+  --font-sans: "Pretendard Variable", Pretendard, system-ui, sans-serif;
+  --font-display: var(--font-sans);
+  --color-accent: oklch(0.66 0.21 34);
+  --color-accent-hover: oklch(0.58 0.21 34);
+  --color-accent-2: oklch(0.58 0.23 288);
+  --color-focus: oklch(0.58 0.23 288);
+  --color-bg: oklch(0.975 0.006 85);
+  --color-bg-subtle: oklch(0.955 0.008 85);
+  --color-bg-1: oklch(0.955 0.008 85);
+  --color-bg-3: oklch(0.935 0.01 85);
+  --color-bg-5: oklch(0.995 0.003 85);
+  --color-bg-2: oklch(0.2 0.03 285);
+  --color-bg-4: oklch(0.27 0.04 285);
+  --color-fg: oklch(0.2 0.02 280);
+  --color-fg-muted: oklch(0.5 0.02 280);
+  --color-border: oklch(0.9 0.01 85);
+}
+
+:root[data-theme="dark"] {
+  --color-bg: oklch(0.15 0.04 285);
+  --color-bg-subtle: oklch(0.19 0.045 285);
+  --color-bg-1: oklch(0.19 0.045 285);
+  --color-bg-3: oklch(0.23 0.05 285);
+  --color-bg-5: oklch(0.21 0.05 285);
+  --color-bg-2: oklch(0.99 0.004 85);
+  --color-bg-4: oklch(0.93 0.01 85);
+  --color-fg: oklch(0.97 0.008 85);
+  --color-fg-muted: oklch(0.75 0.03 285);
+  --color-border: oklch(0.32 0.05 285);
+}
+
+body {
+  font-family: var(--font-sans);
+  letter-spacing: -0.01em;
+}
+
+/* 부품(--ui-*)도 같은 색: 밝은 면은 따뜻한 종이색, 눌림·포커스는 주황과 보라, 어두운 면은 밤보라 */
+:root {
+  --ui-background: oklch(0.975 0.006 85);
+  --ui-foreground: oklch(0.2 0.02 280);
+  --ui-card: oklch(0.995 0.003 85);
+  --ui-card-foreground: oklch(0.2 0.02 280);
+  --ui-popover: oklch(0.995 0.003 85);
+  --ui-popover-foreground: oklch(0.2 0.02 280);
+  --ui-primary: oklch(0.2 0.03 285);
+  --ui-primary-foreground: oklch(0.99 0.004 85);
+  --ui-secondary: oklch(0.955 0.01 85);
+  --ui-secondary-foreground: oklch(0.2 0.02 280);
+  --ui-muted: oklch(0.955 0.01 85);
+  --ui-muted-foreground: oklch(0.5 0.02 280);
+  --ui-accent: oklch(0.95 0.035 50);
+  --ui-accent-foreground: oklch(0.45 0.18 34);
+  --ui-border: oklch(0.9 0.012 85);
+  --ui-input: oklch(0.9 0.012 85);
+  --ui-ring: oklch(0.58 0.23 288);
+  --ui-radius: 0.875rem;
+}
+
+:root[data-theme="dark"] {
+  --ui-background: oklch(0.15 0.04 285);
+  --ui-foreground: oklch(0.97 0.008 85);
+  --ui-card: oklch(0.2 0.05 285);
+  --ui-card-foreground: oklch(0.97 0.008 85);
+  --ui-popover: oklch(0.2 0.05 285);
+  --ui-popover-foreground: oklch(0.97 0.008 85);
+  --ui-primary: oklch(0.97 0.008 85);
+  --ui-primary-foreground: oklch(0.2 0.03 285);
+  --ui-secondary: oklch(0.26 0.05 285);
+  --ui-secondary-foreground: oklch(0.97 0.008 85);
+  --ui-muted: oklch(0.26 0.05 285);
+  --ui-muted-foreground: oklch(0.75 0.03 285);
+  --ui-accent: oklch(0.3 0.08 300);
+  --ui-accent-foreground: oklch(0.95 0.03 60);
+  --ui-border: oklch(1 0 0 / 12%);
+  --ui-input: oklch(1 0 0 / 16%);
+  --ui-ring: oklch(0.72 0.17 295);
+}
+
+/* 효과 색(--fx-*): 하늘·민트 대신 크루의 보라·주황으로 */
+:root {
+  --fx-c1: oklch(0.66 0.21 34);
+  --fx-c2: oklch(0.62 0.22 290);
+  --fx-c3: oklch(0.78 0.15 60);
+}
