@@ -1,0 +1,126 @@
+/* 진행 인포그래픽: 다섯 단계가 한 줄로 이어지고, 스크롤에 맞춰 선이 채워지며 단계가 차례로 켜진다.
+   진행률(--p, 0~1)은 modules/process-line.js 가 넣는다. 넓은 화면은 가로, 좁은 화면은 세로. */
+@layer components {
+  .c-timeline {
+    --p: 0;
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: var(--space-6);
+    padding-top: var(--space-12);
+  }
+
+  /* 바탕 선 + 채워지는 선 */
+  .c-timeline::before,
+  .c-timeline::after {
+    content: "";
+    position: absolute;
+    top: 1.25rem;
+    left: 1.25rem;
+    right: 1.25rem;
+    height: 2px;
+    border-radius: 2px;
+    background: var(--tr-line);
+  }
+
+  .c-timeline::after {
+    background: linear-gradient(90deg, var(--tr-accent), oklch(0.64 0.22 292), #ff5fa8);
+    transform: scaleX(var(--p));
+    transform-origin: left;
+  }
+
+  .c-timeline__item {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    opacity: 0.38;
+    transform: translateY(10px);
+    transition: opacity 500ms var(--tr-ease), transform 600ms var(--tr-ease);
+  }
+
+  .c-timeline__item.is-on {
+    opacity: 1;
+    transform: none;
+  }
+
+  .c-timeline__dot {
+    position: absolute;
+    top: calc(var(--space-12) * -1);
+    left: 0;
+    z-index: 1;
+    display: grid;
+    place-items: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-bold);
+    font-variant-numeric: tabular-nums;
+    color: var(--tr-ink-soft);
+    background: var(--tr-paper);
+    border: 2px solid var(--tr-line);
+    border-radius: var(--radius-full);
+    transition: color 400ms, background-color 400ms, border-color 400ms, transform 500ms var(--tr-spring);
+  }
+
+  .c-timeline__item.is-on .c-timeline__dot {
+    color: #fff;
+    background: var(--tr-accent);
+    border-color: var(--tr-accent);
+    transform: scale(1.12);
+  }
+
+  .c-timeline__when {
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-bold);
+    color: var(--tr-accent);
+  }
+
+  .c-timeline__name {
+    font-size: var(--text-2xl);
+    font-weight: var(--font-weight-extrabold);
+    letter-spacing: var(--tracking-tight);
+    line-height: 1.2;
+  }
+
+  .c-timeline__desc {
+    font-size: var(--text-sm);
+    line-height: 1.65;
+    color: var(--tr-ink-soft);
+  }
+
+  @media (max-width: 820px) {
+    .c-timeline {
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-8);
+      padding-top: 0;
+      padding-left: var(--space-16);
+    }
+
+    .c-timeline::before,
+    .c-timeline::after {
+      top: 1.25rem;
+      bottom: 1.25rem;
+      left: 1.25rem;
+      right: auto;
+      width: 2px;
+      height: auto;
+    }
+
+    .c-timeline::after {
+      background: linear-gradient(180deg, var(--tr-accent), oklch(0.64 0.22 292), #ff5fa8);
+      transform: scaleY(var(--p));
+      transform-origin: top;
+    }
+
+    .c-timeline__dot {
+      top: 0;
+      left: calc(var(--space-16) * -1);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .c-timeline__item,
+    .c-timeline__dot { transition: none; }
+  }
+}

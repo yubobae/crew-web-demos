@@ -116,7 +116,6 @@
         <a class="d-nav__link" href="${u("prototypes.html")}">작업</a>
         <a class="d-nav__link" href="${u("lab.html")}" aria-current="page">쇼케이스</a>
         <a class="d-nav__link" href="${u("index.html#process")}">일하는 방식</a>
-        <a class="d-nav__link" href="${u("index.html#contact")}">문의</a>
       </nav>
       <span class="d-nav__extra"></span>
       <button class="d-nav__menu" type="button" popovertarget="d-menu" aria-label="메뉴 열기">메뉴 ${chevron}</button>
@@ -128,7 +127,6 @@
         <a class="d-nav__item" href="${u("prototypes.html")}">작업</a>
         <a class="d-nav__item" href="${u("lab.html")}">쇼케이스</a>
         <a class="d-nav__item" href="${u("index.html#process")}">일하는 방식</a>
-        <a class="d-nav__item" href="${u("index.html#contact")}">문의</a>
       </div>
       <div class="d-nav__group"${STANDALONE ? " hidden" : ""}>
         <p class="d-nav__group-title">바로 가기</p>
@@ -158,7 +156,7 @@
       if (labLink) {
         labLink.textContent = "쇼케이스 전체";
         const li = labLink.closest("li");
-        [["문의", "index.html#contact"], ["작업", "prototypes.html"], ["크루 소개", "index.html"]].forEach(([t, h]) => {
+        [["작업", "prototypes.html"], ["크루 소개", "index.html"]].forEach(([t, h]) => {
           const n = li.cloneNode(true);
           const a = n.querySelector("a");
           a.textContent = t;
@@ -222,7 +220,7 @@
   outro.dataset.demoFrame = "outro";
   outro.innerHTML = `
     <div class="d-outro__inner">
-      ${STANDALONE ? "" : `<div class="d-outro__cta"><p class="d-outro__cta-eyebrow">문의</p><h2 class="d-outro__cta-title">다음 작업을<br>함께 이야기해요</h2><p class="d-outro__cta-text">작은 사이트라도 기획의 의도가 살아 있게. 프로젝트 협업이나 작업물 이야기, 언제든 편하게.</p><div class="d-intro__actions"><a class="d-btn d-btn--lime" href="${u("index.html#contact")}">문의하기 ${arrow}</a><a class="d-btn d-btn--ghost" href="${u("prototypes.html")}">작업 보기</a></div></div>`}
+      
       <p class="d-outro__word" aria-hidden="true">보람찬크루</p>
       <div>
         <p class="d-outro__label">${esc(nextTarget.kind)}</p>
