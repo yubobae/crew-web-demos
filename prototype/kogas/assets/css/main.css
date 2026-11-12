@@ -1,30 +1,30 @@
 /* 진입점: 레이어 순서 선언 + 불러오기만 둔다 */
 @layer reset, tokens, base, layout, components, sections, utilities;
 
-@import "tokens.css?v=202611122047";
-@import "base/reset.css?v=202611122047";
-@import "base/document.css?v=202611122047";
+@import "tokens.css?v=202611122054";
+@import "base/reset.css?v=202611122054";
+@import "base/document.css?v=202611122054";
 
-@import "layout/l-block.css?v=202611122047";
-@import "layout/l-kg-footer.css?v=202611122047";
+@import "layout/l-block.css?v=202611122054";
+@import "layout/l-kg-footer.css?v=202611122054";
 
-@import "components/c-band.css?v=202611122047";
-@import "components/c-cat.css?v=202611122047";
-@import "components/c-era-nav.css?v=202611122047";
-@import "components/c-era.css?v=202611122047";
-@import "components/c-figure.css?v=202611122047";
-@import "components/c-gallery.css?v=202611122047";
-@import "components/c-gate.css?v=202611122047";
-@import "components/c-gate-scroll.css?v=202611122047";
-@import "components/c-lightbox.css?v=202611122047";
-@import "components/c-media-card.css?v=202611122047";
-@import "components/c-page-outro.css?v=202611122047";
-@import "components/c-pipe.css?v=202611122047";
-@import "components/c-proto-note.css?v=202611122047";
-@import "components/c-site-nav.css?v=202611122047";
-@import "components/c-stat.css?v=202611122047";
-@import "components/c-story.css?v=202611122047";
-@import "components/c-sub-hero.css?v=202611122047";
-@import "components/c-yt.css?v=202611122047";
+@import "components/c-band.css?v=202611122054";
+@import "components/c-cat.css?v=202611122054";
+@import "components/c-era-nav.css?v=202611122054";
+@import "components/c-era.css?v=202611122054";
+@import "components/c-figure.css?v=202611122054";
+@import "components/c-gallery.css?v=202611122054";
+@import "components/c-gate.css?v=202611122054";
+@import "components/c-gate-scroll.css?v=202611122054";
+@import "components/c-lightbox.css?v=202611122054";
+@import "components/c-media-card.css?v=202611122054";
+@import "components/c-page-outro.css?v=202611122054";
+@import "components/c-pipe.css?v=202611122054";
+@import "components/c-proto-note.css?v=202611122054";
+@import "components/c-site-nav.css?v=202611122054";
+@import "components/c-stat.css?v=202611122054";
+@import "components/c-story.css?v=202611122054";
+@import "components/c-sub-hero.css?v=202611122054";
+@import "components/c-yt.css?v=202611122054";
 
-@import "utilities/u-visually-hidden.css?v=202611122047";
+@import "utilities/u-visually-hidden.css?v=202611122054";

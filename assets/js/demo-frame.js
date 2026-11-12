@@ -20,6 +20,7 @@
     { id: "museum", no: "04", title: "디지털 역사관 구성", href: "museum/" },
     { id: "trends", no: "05", title: "요즘 UI", href: "trends/" },
     { id: "immersive", no: "06", title: "몰입형 3D 스크롤", href: "immersive/" },
+    { id: "micro", no: "07", title: "마이크로 모션 갤러리", href: "micro/" },
   ];
   /* 하위 페이지가 있는 데모 */
   const SUBS = {
@@ -58,6 +59,7 @@
     "immersive/ring": { demo: "immersive", art: "art-motion", title: ["돌아가는", "*링 갤러리*"], lead: "카드 링, 나선, 지구본, 부채꼴. 스크롤이 곧 회전이에요. 전부 CSS 3D입니다.", label: "쇼케이스", intro: { before: "main" }, outro: "body" },
     "immersive/flight": { demo: "immersive", art: "step-4", title: ["말과 빛 사이를", "*날아가는* 비행"], lead: "공중에 뜬 글자, 액자 복도, 워프, 착륙. 스크롤하는 만큼 앞으로 나아갑니다.", label: "쇼케이스", intro: { before: "main" }, outro: "body" },
     "immersive/room": { demo: "immersive", art: "art-build", title: ["방 한가운데서", "*둘러보는* 화면"], lead: "스크롤하면 방이 천천히 돌아 네 벽의 이야기를 차례로 보여 줘요.", label: "쇼케이스", intro: { before: "main" }, outro: "body" },
+    micro: { demo: "micro", art: "std-fps", title: ["작은 디테일이", "*앱을 앱답게*"], lead: "토글, 좋아요, 바텀시트, 스와이프, 당겨서 새로고침. 눌러 보고 끌어 보세요. 12가지 움직임이 화면에서 혼자서도 돌아가요.", label: "쇼케이스", intro: { before: "main" }, outro: "body" },
     "trends/index": { demo: "trends", art: "about-art", sub: "trends/index", header: ".c-site-nav", intro: { before: ".c-page-intro", replace: true }, outro: "body", drop: ".c-page-outro" },
     "trends/cta": { demo: "trends", art: "contact-art", sub: "trends/cta", header: ".c-site-nav", intro: { before: ".c-page-intro", replace: true }, outro: "body", drop: ".c-page-outro" },
     "trends/bento": { demo: "trends", art: "art-design", sub: "trends/bento", header: ".c-site-nav", intro: { before: ".c-page-intro", replace: true }, outro: "body", drop: ".c-page-outro" },
