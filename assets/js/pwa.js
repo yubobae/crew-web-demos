@@ -67,4 +67,78 @@
   };
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", showIos);
   else showIos();
+
+  /* 설치 안내 토스트: 설치할 수 있을 때 아래쪽에 한 번 띄운다. 닫기를 누르면 7일 동안 다시 안 띄운다.
+     (데모 쪽처럼 main.css 가 없는 쪽에서도 보이도록 스타일을 여기서 함께 넣는다) */
+  const KEY = "crew-pwa-toast-until";
+  const snoozed = () => {
+    try {
+      return Number(localStorage.getItem(KEY)) > Date.now();
+    } catch {
+      return false;
+    }
+  };
+  const snooze = () => {
+    try {
+      localStorage.setItem(KEY, String(Date.now() + 7 * 24 * 3600 * 1000));
+    } catch {
+      /* 저장이 막혀 있으면 이번 방문에서만 닫힌다 */
+    }
+  };
+  let toast = null;
+  const closeToast = (remember = true) => {
+    if (remember) snooze();
+    if (!toast) return;
+    const t = toast;
+    toast = null;
+    t.classList.remove("is-in");
+    setTimeout(() => t.remove(), 400);
+  };
+  const openToast = () => {
+    if (toast || standalone || snoozed()) return;
+    if (!document.getElementById("pwa-toast-css")) {
+      const s = document.createElement("style");
+      s.id = "pwa-toast-css";
+      s.textContent = `
+        .pwa-toast{position:fixed;z-index:2147483000;left:50%;bottom:max(16px,env(safe-area-inset-bottom));width:min(420px,calc(100vw - 32px));box-sizing:border-box;display:flex;align-items:center;gap:12px;padding:12px 12px 12px 16px;color:#eef1fa;background:#161a2b;border:1px solid #2b3250;border-radius:16px;box-shadow:0 12px 40px rgb(0 0 0/45%);font:500 14px/1.45 Pretendard,system-ui,sans-serif;transform:translate(-50%,24px);opacity:0;transition:transform 400ms cubic-bezier(.2,.9,.3,1.2),opacity 300ms}
+        .pwa-toast.is-in{transform:translate(-50%,0);opacity:1}
+        .pwa-toast__text{flex:1;min-width:0}
+        .pwa-toast__text b{display:block;font-weight:700}
+        .pwa-toast__text span{display:block;font-size:13px;color:#a9b1cf}
+        .pwa-toast button{font:inherit;cursor:pointer;border:0;border-radius:999px;-webkit-tap-highlight-color:transparent}
+        .pwa-toast__go{padding:8px 14px;font-weight:700;color:#fff;background:#3b6cff}
+        .pwa-toast__x{flex:none;width:32px;height:32px;font-size:20px;line-height:1;color:#a9b1cf;background:transparent}
+        .pwa-toast button:focus-visible{outline:3px solid #7fa0ff;outline-offset:2px}
+        @media (prefers-reduced-motion:reduce){.pwa-toast{transition:opacity 200ms;transform:translate(-50%,0)}}`;
+      document.head.append(s);
+    }
+    toast = document.createElement("div");
+    toast.className = "pwa-toast";
+    toast.setAttribute("role", "status");
+    toast.innerHTML =
+      '<div class="pwa-toast__text"><b>앱으로 설치할 수 있어요</b><span></span></div>' +
+      (deferred ? '<button type="button" class="pwa-toast__go">설치</button>' : "") +
+      '<button type="button" class="pwa-toast__x" aria-label="닫기">×</button>';
+    toast.querySelector("span").textContent = deferred ? "홈 화면에 두고 앱처럼 바로 열어 보세요." : '공유 버튼 → "홈 화면에 추가"를 눌러 주세요.';
+    toast.querySelector(".pwa-toast__x").addEventListener("click", () => closeToast());
+    const go = toast.querySelector(".pwa-toast__go");
+    if (go)
+      go.addEventListener("click", async () => {
+        if (!deferred) return;
+        deferred.prompt();
+        await deferred.userChoice;
+        deferred = null;
+        installButtons().forEach((b) => (b.hidden = true));
+        closeToast(false);
+      });
+    document.body.append(toast);
+    requestAnimationFrame(() => requestAnimationFrame(() => toast && toast.classList.add("is-in")));
+  };
+  const later = (fn) => setTimeout(fn, 2500); // 화면이 자리 잡은 뒤에 띄운다
+  addEventListener("beforeinstallprompt", () => later(openToast));
+  addEventListener("appinstalled", () => closeToast(false));
+  if (ios && !standalone) {
+    if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", () => later(openToast));
+    else later(openToast);
+  }
 })();
