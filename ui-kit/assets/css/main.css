@@ -6,6 +6,7 @@
 @import "base/document.css";
 
 @import "layout/l-kit.css";
+@import "layout/l-docs.css";
 
 @import "components/c-button.css";
 @import "components/c-field.css";
