@@ -158,6 +158,16 @@
     text-wrap: pretty;
   }
 
+  /* 사이트에 실제로 들어간 대표 문구는 진하게 */
+  .c-g-card__desc b {
+    display: block;
+    margin-bottom: var(--space-1);
+    font-size: var(--text-base);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: var(--tracking-tight);
+    color: var(--tr-ink);
+  }
+
   /* ── 대표 작업 3장 ── */
   .c-g-feature {
     display: grid;
