@@ -45,10 +45,10 @@ function decorate(root) {
     tunnel.append(cuboid(side * (150 + (i % 3) * 36), ((i * 53) % 120) - 60, -i * 260, 110, 80 + (i % 4) * 14, 150, a, b));
     if (i % 3 === 0) tunnel.append(cuboid(0, 150 - (i % 5) * 14, -i * 260 - 100, 90, 60, 120, a, b));
   }
-  for (let i = 0; i < 7; i++) {
+  for (let i = 0; i < 4; i++) {
     const c = document.createElement("div");
     c.className = "c-run-clouds__layer";
-    c.style.cssText = `--l:${i};--ox:${((i * 37) % 60) - 30}%;--oy:${((i * 23) % 40) - 20}%`;
+    c.style.cssText = `--l:${i * 2};--ox:${((i * 37) % 60) - 30}%;--oy:${((i * 23) % 40) - 20}%`;
     clouds.append(c);
   }
 }

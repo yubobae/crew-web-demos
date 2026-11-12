@@ -158,7 +158,7 @@
   .c-run-clouds__layer {
     --s: calc(0.35 + var(--k3) * (1.2 + var(--l) * 0.7));
     position: absolute;
-    inset: -20%;
+    inset: -5%;
     background:
       radial-gradient(ellipse 22% 14% at 30% 40%, oklch(1 0 0 / 0.9), transparent 70%),
       radial-gradient(ellipse 26% 16% at 68% 58%, oklch(1 0 0 / 0.85), transparent 70%),

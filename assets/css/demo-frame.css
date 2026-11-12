@@ -623,3 +623,26 @@
     padding-bottom: 9rem;
   }
 }
+
+/* 머리줄 자체가 데모인 쪽(스크롤 GNB): 공통 머리줄과 같은 종이색 알약으로 */
+@layer demo-frame {
+  .has-own-header .l-header {
+    --fx-text: var(--d-ink);
+    --fx-text-muted: var(--d-ink-soft);
+    --fx-surface: var(--d-paper);
+    --fx-surface-2: var(--d-paper-2);
+    --fx-line: var(--d-line);
+    --fx-c2: var(--d-accent);
+    color: var(--d-ink);
+  }
+
+  .has-own-header .l-header::before {
+    opacity: 1 !important;
+    background: color-mix(in oklch, var(--d-paper) 84%, transparent) !important;
+    border: 1px solid var(--d-line) !important;
+  }
+
+  .has-own-header .l-header__logo {
+    color: var(--d-ink) !important;
+  }
+}

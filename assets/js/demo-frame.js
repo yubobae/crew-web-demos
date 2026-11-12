@@ -179,13 +179,13 @@
     ref.before(intro);
     if (slot.replace) ref.remove();
   }
-  if ($("h1", document.body) && $("h1", document.body) !== $("h1", intro)) {
-    const h = $("h1", intro);
-    h.setAttribute("role", "presentation");
-    h.removeAttribute("id");
-    intro.removeAttribute("aria-labelledby");
-    intro.setAttribute("aria-label", "소개");
-  }
+  /* h1 은 소개 장면의 제목 하나만: 본문에 원래 있던 h1 은 모양은 그대로 두고 의미만 2단계로 낮춘다 */
+  document.querySelectorAll("h1").forEach((h) => {
+    if (!intro.contains(h)) {
+      h.setAttribute("role", "heading");
+      h.setAttribute("aria-level", "2");
+    }
+  });
 
   /* ── 푸터 ── */
   const outro = document.createElement("footer");
