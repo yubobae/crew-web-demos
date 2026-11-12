@@ -21,6 +21,7 @@
     { id: "trends", no: "05", title: "요즘 UI", href: "trends/" },
     { id: "immersive", no: "06", title: "몰입형 3D 스크롤", href: "immersive/" },
     { id: "micro", no: "07", title: "마이크로 모션 갤러리", href: "micro/" },
+    { id: "gallery", no: "08", title: "큐레이션 갤러리", href: "gallery/" },
   ];
   /* 하위 페이지가 있는 데모 */
   const SUBS = {
@@ -60,6 +61,7 @@
     "immersive/flight": { demo: "immersive", art: "step-4", title: ["말과 빛 사이를", "*날아가는* 비행"], lead: "공중에 뜬 글자, 액자 복도, 워프, 착륙. 스크롤하는 만큼 앞으로 나아갑니다.", label: "쇼케이스", intro: { before: "main" }, outro: "body" },
     "immersive/room": { demo: "immersive", art: "art-build", title: ["방 한가운데서", "*둘러보는* 화면"], lead: "스크롤하면 방이 천천히 돌아 네 벽의 이야기를 차례로 보여 줘요.", label: "쇼케이스", intro: { before: "main" }, outro: "body" },
     micro: { demo: "micro", art: "std-fps", title: ["작은 디테일이", "*앱을 앱답게*"], lead: "토글, 좋아요, 바텀시트, 스와이프, 당겨서 새로고침. 눌러 보고 끌어 보세요. 12가지 움직임이 화면에서 혼자서도 돌아가요.", label: "쇼케이스", intro: { before: "main" }, outro: "body" },
+    gallery: { demo: "gallery", art: "art-design", title: ["영감을 한곳에서","*골라 보는* 갤러리"], lead: "검색하고, 태그로 좁히고, 크게 열어 보세요. 카드 속 사이트는 전부 CSS로 그린 그림이에요.", label: "쇼케이스", intro: { before: "main" }, outro: "body" },
     "trends/index": { demo: "trends", art: "about-art", sub: "trends/index", header: ".c-site-nav", intro: { before: ".c-page-intro", replace: true }, outro: "body", drop: ".c-page-outro" },
     "trends/cta": { demo: "trends", art: "contact-art", sub: "trends/cta", header: ".c-site-nav", intro: { before: ".c-page-intro", replace: true }, outro: "body", drop: ".c-page-outro" },
     "trends/bento": { demo: "trends", art: "art-design", sub: "trends/bento", header: ".c-site-nav", intro: { before: ".c-page-intro", replace: true }, outro: "body", drop: ".c-page-outro" },
