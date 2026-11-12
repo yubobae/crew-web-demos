@@ -448,6 +448,9 @@
     --kd-red: oklch(0.57 0.225 27);
     --kd-red-deep: oklch(0.49 0.2 27);
     --kd-red-soft: oklch(0.57 0.225 27 / 12%);
+    --kd-blue: oklch(0.42 0.2 263);
+    --kd-violet: oklch(0.5 0.2 330);
+    --kd-grad: linear-gradient(90deg, var(--kd-blue), var(--kd-violet) 52%, var(--kd-red));
     --kd-steel: oklch(0.7 0.05 245);
     --kd-line: oklch(0.24 0.03 262 / 14%);
     --kd-line-strong: oklch(0.24 0.03 262 / 38%);

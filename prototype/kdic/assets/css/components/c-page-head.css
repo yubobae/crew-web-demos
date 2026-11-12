@@ -82,7 +82,7 @@
     width: var(--space-16);
     height: 3px;
     margin-top: var(--space-6);
-    background: var(--kd-red);
+    background: var(--kd-grad);
     transform-origin: left;
     animation: c-page-head-line 900ms var(--kd-ease) 200ms both;
   }

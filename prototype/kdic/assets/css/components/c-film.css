@@ -40,7 +40,7 @@
     content: "";
     width: var(--space-8);
     height: 2px;
-    background: var(--kd-red);
+    background: var(--kd-grad);
   }
 
   .c-film__years {
@@ -134,7 +134,7 @@
   .c-film__fill {
     display: block;
     height: 100%;
-    background: var(--kd-red);
+    background: var(--kd-grad);
     transform: scaleX(var(--hp, 0));
     transform-origin: left;
   }
