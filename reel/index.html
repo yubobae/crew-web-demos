@@ -3,109 +3,109 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>한 번에 재생되는 장면 | 보람찬크루 쇼케이스</title>
-  <meta name="description" content="스크롤로 내려오면 네 장면이 영상처럼 시간대로 이어서 재생되는 데모. 스크롤 위치를 따라가는 방식이 아니고, 스크롤을 막지도 않아요.">
+  <title>모션그래픽 섹션 | 보람찬크루 쇼케이스</title>
+  <meta name="description" content="스크롤로 내려오면 섹션 속 모션그래픽이 저절로 재생되는 데모. 영상 플레이어가 아니라 페이지의 일부로 녹아든 움직이는 그래픽이에요.">
   <meta name="robots" content="noindex, nofollow, noimageindex, noarchive">
   <meta name="theme-color" content="#0f1020">
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
   <link rel="icon" href="../favicon.ico" sizes="48x48">
-  <link rel="stylesheet" href="assets/css/main.css?v=202611122110">
-  <script type="module" src="assets/js/main.js?v=202611122110"></script>
-  <link rel="stylesheet" href="../assets/css/demo-frame.css?v=202611122110">
+  <link rel="stylesheet" href="assets/css/main.css?v=202611122113">
+  <script type="module" src="assets/js/main.js?v=202611122113"></script>
+  <link rel="stylesheet" href="../assets/css/demo-frame.css?v=202611122113">
 </head>
 <body>
   <a class="u-visually-hidden" href="#main">본문 바로가기</a>
 
-  <main id="main">
-    <section class="v-reel" data-module="reel" aria-label="한 번에 재생되는 장면">
-      <div class="v-stage">
-        <p class="v-label" aria-live="polite"><b class="js-no">00</b> <span class="js-name">READY</span></p>
+  <main id="main" data-module="motion">
+    <!-- 1. 글자가 솟아오르는 히어로 -->
+    <section class="v-hero v-sc v-sc--1" data-play aria-labelledby="h1">
+      <i class="v-burst" aria-hidden="true"></i>
+      <p class="v-kicker">MOTION GRAPHICS</p>
+      <h1 class="v-hello" id="h1" aria-label="HELLO">
+        <span style="--i:0">H</span><span style="--i:1">E</span><span style="--i:2">L</span><span style="--i:3">L</span><span style="--i:4">O</span>
+      </h1>
+      <p class="v-hello__sub">움직임이 그림 안에서 이야기를 해요</p>
+    </section>
 
-        <!-- 대기 화면 -->
-        <div class="v-idle js-idle">
-          <p class="v-idle__t">스크롤해서 내려오면<br>영상이 시작돼요</p>
-          <button class="v-play js-start" type="button">▶ 바로 재생</button>
-          <span class="v-mouse" aria-hidden="true"><i></i></span>
+    <!-- 2. 조립 -->
+    <section class="v-row" aria-labelledby="h2">
+      <div class="v-copy">
+        <p class="v-no">01</p>
+        <h2 id="h2">조각이 하나씩<br>제자리를 찾아요</h2>
+        <p>제목, 이미지, 카드가 차례로 날아와 화면이 완성돼요. 스크롤로 내려오면 그때 시작해요.</p>
+      </div>
+      <div class="v-panel v-sc v-sc--2" data-play aria-hidden="true">
+        <div class="v-win">
+          <div class="v-win__bar"><i></i><i></i><i></i></div>
+          <div class="v-win__body">
+            <div class="v-b v-b--nav"></div>
+            <div class="v-b v-b--title"></div>
+            <div class="v-b v-b--sub"></div>
+            <div class="v-b v-b--img"></div>
+            <div class="v-b v-b--c1"></div>
+            <div class="v-b v-b--c2"></div>
+            <div class="v-b v-b--c3"></div>
+            <div class="v-b v-b--btn"></div>
+          </div>
         </div>
+      </div>
+    </section>
 
-        <!-- 1. OPEN -->
-        <section class="v-sc v-sc--1" data-name="OPEN" aria-label="장면 1">
-          <i class="v-burst" aria-hidden="true"></i>
-          <h2 class="v-hello" aria-label="HELLO">
-            <span style="--i:0">H</span><span style="--i:1">E</span><span style="--i:2">L</span><span style="--i:3">L</span><span style="--i:4">O</span>
-          </h2>
-          <p class="v-hello__sub">작은 웹이 만들어지는 90초를 3초 만에</p>
-        </section>
-
-        <!-- 2. BUILD -->
-        <section class="v-sc v-sc--2" data-name="BUILD" aria-label="장면 2">
-          <div class="v-win">
-            <div class="v-win__bar"><i></i><i></i><i></i></div>
-            <div class="v-win__body">
-              <div class="v-b v-b--nav"></div>
-              <div class="v-b v-b--title"></div>
-              <div class="v-b v-b--sub"></div>
-              <div class="v-b v-b--img"></div>
-              <div class="v-b v-b--c1"></div>
-              <div class="v-b v-b--c2"></div>
-              <div class="v-b v-b--c3"></div>
-              <div class="v-b v-b--btn"></div>
-            </div>
+    <!-- 3. 반응 -->
+    <section class="v-row v-row--rev" aria-labelledby="h3">
+      <div class="v-copy">
+        <p class="v-no">02</p>
+        <h2 id="h3">누르면 바로<br>반응해요</h2>
+        <p>커서가 토글을 누르면 화면이 어두워지고, 버튼도 눌려요. 작은 반응이 화면을 살아 있게 해요.</p>
+      </div>
+      <div class="v-panel v-sc v-sc--3" data-play aria-hidden="true">
+        <div class="v-win v-win--theme">
+          <div class="v-win__bar"><i></i><i></i><i></i></div>
+          <div class="v-win__body v-win__body--ui">
+            <div class="v-ui__row"><span>어두운 화면</span><span class="v-tg"><i></i></span></div>
+            <div class="v-ui__btn">배포하기</div>
           </div>
-          <p class="v-cap">조각이 하나씩 제자리를 찾아요</p>
-        </section>
+        </div>
+        <svg class="v-cursor" viewBox="0 0 24 24"><path d="M5 3l14 7.500-6 1.800 3.500 6.200-2.800 1.600-3.500-6.200L5 18z"/></svg>
+        <i class="v-ripple v-ripple--a"></i>
+        <i class="v-ripple v-ripple--b"></i>
+      </div>
+    </section>
 
-        <!-- 3. MOVE -->
-        <section class="v-sc v-sc--3" data-name="MOVE" aria-label="장면 3">
-          <div class="v-win v-win--theme">
-            <div class="v-win__bar"><i></i><i></i><i></i></div>
-            <div class="v-win__body v-win__body--ui">
-              <div class="v-ui__row"><span>어두운 화면</span><span class="v-tg"><i></i></span></div>
-              <div class="v-ui__btn">배포하기</div>
-            </div>
-          </div>
-          <svg class="v-cursor" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3l14 7.500-6 1.800 3.500 6.200-2.800 1.600-3.500-6.200L5 18z"/></svg>
-          <i class="v-ripple v-ripple--a" aria-hidden="true"></i>
-          <i class="v-ripple v-ripple--b" aria-hidden="true"></i>
-          <p class="v-cap">누르면 바로 반응해요</p>
-        </section>
-
-        <!-- 4. SHIP -->
-        <section class="v-sc v-sc--4" data-name="SHIP" aria-label="장면 4">
-          <div class="v-ship">
-            <p class="v-ship__pct" aria-hidden="true"></p>
-            <div class="v-ship__track"><i></i></div>
-            <p class="v-ship__url"><span>crew-demo.app</span></p>
-          </div>
-          <p class="v-toast"><b>✓</b> 배포 완료</p>
-          <div class="v-confetti" aria-hidden="true">
-            <i style="--a:0;--c:0"></i><i style="--a:1;--c:1"></i><i style="--a:2;--c:2"></i><i style="--a:3;--c:3"></i>
-            <i style="--a:4;--c:4"></i><i style="--a:5;--c:0"></i><i style="--a:6;--c:1"></i><i style="--a:7;--c:2"></i>
-            <i style="--a:8;--c:3"></i><i style="--a:9;--c:4"></i><i style="--a:10;--c:0"></i><i style="--a:11;--c:1"></i>
-            <i style="--a:12;--c:2"></i><i style="--a:13;--c:3"></i><i style="--a:14;--c:4"></i><i style="--a:15;--c:0"></i>
-            <i style="--a:16;--c:1"></i><i style="--a:17;--c:2"></i><i style="--a:18;--c:3"></i><i style="--a:19;--c:4"></i>
-          </div>
-        </section>
-
-        <!-- 아래쪽 진행 표시 + 버튼 -->
-        <div class="v-foot">
-          <div class="v-time" aria-hidden="true"><i class="js-time"></i></div>
-          <button class="v-skip js-skip" type="button" hidden>건너뛰기 ⏭</button>
-          <button class="v-skip js-replay" type="button" hidden>↻ 다시 재생</button>
+    <!-- 4. 배포 -->
+    <section class="v-row" aria-labelledby="h4">
+      <div class="v-copy">
+        <p class="v-no">03</p>
+        <h2 id="h4">그리고 세상에<br>내보내요</h2>
+        <p>숫자가 차오르고, 주소가 쓰이고, 완료 알림과 함께 색종이가 터져요.</p>
+      </div>
+      <div class="v-panel v-sc v-sc--4" data-play aria-hidden="true">
+        <div class="v-ship">
+          <p class="v-ship__pct"></p>
+          <div class="v-ship__track"><i></i></div>
+          <p class="v-ship__url"><span>crew-demo.app</span></p>
+        </div>
+        <p class="v-toast"><b>✓</b> 배포 완료</p>
+        <div class="v-confetti">
+          <i style="--a:0;--c:0"></i><i style="--a:1;--c:1"></i><i style="--a:2;--c:2"></i><i style="--a:3;--c:3"></i>
+          <i style="--a:4;--c:4"></i><i style="--a:5;--c:0"></i><i style="--a:6;--c:1"></i><i style="--a:7;--c:2"></i>
+          <i style="--a:8;--c:3"></i><i style="--a:9;--c:4"></i><i style="--a:10;--c:0"></i><i style="--a:11;--c:1"></i>
+          <i style="--a:12;--c:2"></i><i style="--a:13;--c:3"></i><i style="--a:14;--c:4"></i><i style="--a:15;--c:0"></i>
+          <i style="--a:16;--c:1"></i><i style="--a:17;--c:2"></i><i style="--a:18;--c:3"></i><i style="--a:19;--c:4"></i>
         </div>
       </div>
     </section>
 
     <section class="v-after" aria-labelledby="a1">
-      <h2 id="a1">스크롤은 "재생 버튼"일 뿐, 막지 않아요</h2>
+      <h2 id="a1">보이는 순간, 움직여요</h2>
       <ul>
-        <li><b>보이면 시작</b>무대가 화면에 절반쯤 들어오면 타임라인이 시작돼요. 따로 누를 필요가 없어요.</li>
-        <li><b>시간으로 흐름</b>스크롤 위치가 아니라 시간으로 움직여요. 그래서 영상처럼 일정한 속도로 흘러요.</li>
-        <li><b>스크롤은 자유</b>재생 중에도 마음대로 스크롤해요. 화면을 벗어나면 영상처럼 일시정지, 돌아오면 이어서 재생돼요.</li>
+        <li><b>플레이어 없음</b>재생 버튼이나 진행 막대가 없어요. 움직임이 페이지의 일부로 들어가 있어요.</li>
+        <li><b>한 번 재생</b>섹션이 보이면 한 번 재생하고, 완전히 벗어났다가 돌아오면 다시 재생해요.</li>
+        <li><b>스크롤은 자유</b>위치를 따라가지도, 막지도 않아요. 시간으로 흘러가요.</li>
       </ul>
     </section>
   </main>
-  <script src="../assets/js/demo-frame.js?v=202611122110" data-demo="reel"></script>
+  <script src="../assets/js/demo-frame.js?v=202611122113" data-demo="reel"></script>
 </body>
 </html>

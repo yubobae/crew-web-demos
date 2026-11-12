@@ -1,5 +1,5 @@
-/* 한 번에 재생되는 장면 데모.
-   스크롤로 무대가 보이면(또는 버튼) 타임라인이 시작되고, 장면 4개가 시간 순서대로 영상처럼 흘러간다(스크롤 위치와 무관).
+/* 모션그래픽 섹션 데모. 영상 플레이어가 아니라 페이지의 일부로 들어간 움직이는 그래픽.
+   섹션이 화면에 보이면 그 안의 그래픽이 한 번 재생되고(시간으로 흐름), 장면 4개가 시간 순서대로 영상처럼 흘러간다(스크롤 위치와 무관).
    장면 안의 움직임은 전부 CSS animation(.is-play 가 붙으면 처음부터 재생)이고, main.js 는 장면 전환·진행 표시·일시정지만 맡는다(스크롤은 막지 않는다).
    동작 줄이기에서는 재생 없이 장면을 위에서 아래로 정지 화면으로 펼쳐 보여 준다. */
 @layer reset, tokens, base, layout, sections, utilities;
@@ -40,31 +40,20 @@
 }
 
 @layer sections {
-  /* ───── 무대 ───── */
-  .v-reel { position: relative; height: 100svh; min-height: 34rem; overflow: hidden; background: radial-gradient(ellipse at 50% 40%, oklch(0.24 0.08 280), var(--bg) 75%); }
-  .v-stage { position: absolute; inset: 0; display: grid; place-items: center; }
-  .v-label { position: absolute; top: 5.2rem; left: var(--gutter); z-index: 2; display: flex; gap: 0.6rem; align-items: baseline; font-size: 0.8rem; font-weight: 800; letter-spacing: 0.18em; color: var(--soft); }
-  .v-label b { font-size: 1.6rem; letter-spacing: -0.04em; color: var(--ink); font-variant-numeric: tabular-nums; }
-
-  .v-idle { position: absolute; inset: 0; display: grid; place-content: center; justify-items: center; gap: 1.5rem; text-align: center; transition: opacity 500ms var(--ease), transform 500ms var(--ease); }
-  .v-idle.is-gone { opacity: 0; transform: scale(1.06); pointer-events: none; }
-  .v-idle__t { font-size: clamp(1.8rem, 5vw, 3.4rem); font-weight: 900; line-height: 1.2; letter-spacing: -0.04em; }
-  .v-play { padding: 0.8rem 1.5rem; font-weight: 800; color: var(--bg); background: var(--ink); border-radius: 999px; transition: transform 300ms var(--spring); }
-  .v-play:active { transform: scale(0.94); }
-  .v-mouse { display: grid; justify-items: center; width: 1.7rem; height: 2.7rem; padding-top: 0.5rem; border: 2px solid var(--soft); border-radius: 999px; }
-  .v-mouse i { width: 0.28rem; height: 0.6rem; background: var(--soft); border-radius: 999px; animation: v-wheel 1.6s ease-in-out infinite; }
-  @keyframes v-wheel { 0% { transform: translateY(0); opacity: 1; } 70% { transform: translateY(0.9rem); opacity: 0; } 100% { opacity: 0; } }
-
-  /* 무대가 화면 밖에 있으면 영상처럼 일시정지(스크롤은 막지 않는다) */
-  .v-reel.is-paused .v-sc *, .v-reel.is-paused .v-sc *::before, .v-reel.is-paused .v-sc *::after { animation-play-state: paused !important; }
-
-  /* 장면 공통: 평소엔 숨김, .is-on 에서 보임, .is-out 에서 사라짐 */
-  .v-sc { position: absolute; inset: 0; display: grid; place-content: center; justify-items: center; gap: 1.2rem; opacity: 0; visibility: hidden; }
-  .v-sc.is-on { opacity: 1; visibility: visible; }
-  .v-sc.is-out { opacity: 0; visibility: visible; transform: scale(1.06); transition: opacity 450ms ease, transform 450ms ease; }
-  .v-cap { position: absolute; bottom: 6.5rem; font-size: 0.95rem; color: var(--soft); opacity: 0; }
-  .v-sc.is-play .v-cap { animation: v-fade 500ms 700ms both; }
-  @keyframes v-fade { from { opacity: 0; transform: translateY(0.6rem); } to { opacity: 1; transform: none; } }
+  /* ───── 페이지 구성: 히어로 + 글/그래픽 두 칸 섹션 ───── */
+  main { overflow-x: clip; }
+  .v-hero { position: relative; display: grid; place-content: center; justify-items: center; gap: 1rem; min-height: 100svh; padding: 6rem var(--gutter) 4rem; overflow: hidden; text-align: center; background: radial-gradient(ellipse at 50% 45%, oklch(0.24 0.08 280), var(--bg) 72%); }
+  .v-kicker { position: relative; font-size: 0.8rem; font-weight: 800; letter-spacing: 0.3em; color: var(--accent); }
+  .v-row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); align-items: center; gap: clamp(1.5rem, 5vw, 4rem); max-width: 76rem; margin-inline: auto; padding: clamp(3rem, 8vw, 6rem) var(--gutter); }
+  .v-row--rev .v-copy { order: 2; }
+  .v-copy .v-no { font-size: 0.85rem; font-weight: 800; letter-spacing: 0.2em; color: var(--accent); }
+  .v-copy h2 { margin-top: 0.6rem; font-size: clamp(1.9rem, 4.6vw, 3.4rem); font-weight: 900; line-height: 1.12; letter-spacing: -0.045em; }
+  .v-copy p:last-child { margin-top: 1rem; max-width: 26rem; font-size: 1rem; line-height: 1.7; color: var(--soft); text-wrap: pretty; }
+  .v-panel { position: relative; display: grid; place-items: center; aspect-ratio: 5 / 4; overflow: hidden; border-radius: 2rem; background: linear-gradient(150deg, oklch(0.24 0.07 280), oklch(0.19 0.05 270)); border: 1px solid oklch(0.32 0.05 275); }
+  .v-panel .v-win { width: min(24rem, 84%); }
+  .v-panel .v-ship { width: min(22rem, 80%); }
+  .v-panel .v-toast { bottom: 2rem; }
+  .v-panel .v-confetti { top: 52%; }
 
   /* 장면 1: HELLO */
   .v-burst { position: absolute; top: 50%; left: 50%; width: 60vmin; aspect-ratio: 1; margin: -30vmin 0 0 -30vmin; background: radial-gradient(circle, oklch(0.7 0.22 290 / 0.75), oklch(0.6 0.22 255 / 0.25) 45%, transparent 70%); border-radius: 50%; transform: scale(0); }
@@ -172,14 +161,6 @@
   .v-confetti i:nth-child(3n) { --d: 10rem; }
   .v-confetti i:nth-child(3n + 1) { --d: 17rem; }
 
-  /* 아래쪽 진행 표시 */
-  .v-foot { position: absolute; inset: auto var(--gutter) 2.2rem; display: flex; align-items: center; gap: 1rem; }
-  .v-time { flex: 1; height: 4px; background: oklch(1 0 0 / 0.14); border-radius: 999px; overflow: hidden; }
-  .v-time i { display: block; height: 100%; width: 100%; background: var(--ink); transform-origin: 0 50%; transform: scaleX(var(--prog, 0)); }
-  .v-skip { flex: none; padding: 0.5rem 1rem; font-size: 0.85rem; font-weight: 700; color: var(--ink); border: 1px solid oklch(1 0 0 / 0.25); border-radius: 999px; background: oklch(0 0 0 / 0.25); backdrop-filter: blur(6px); transition: transform 300ms var(--spring); }
-  .v-skip:active { transform: scale(0.94); }
-  .v-skip[hidden] { display: none; }
-
   /* ───── 아래 설명 ───── */
   .v-after { max-width: 64rem; margin: 0 auto; padding: 5rem var(--gutter) 6rem; }
   .v-after h2 { font-size: clamp(1.6rem, 4vw, 2.6rem); font-weight: 900; letter-spacing: -0.04em; }
@@ -188,20 +169,16 @@
   .v-after b { display: block; margin-bottom: 0.4rem; font-size: 1.15rem; color: var(--ink); }
 
   @media (max-width: 719px) {
-    .v-label { top: 4.6rem; }
-    .v-cap { bottom: 5.5rem; }
-    .v-toast { bottom: 6rem; }
+    .v-row { grid-template-columns: minmax(0, 1fr); }
+    .v-row--rev .v-copy { order: 0; }
+    .v-panel { aspect-ratio: 1 / 1; }
   }
 }
 
-/* 동작 줄이기: 재생 없이 장면을 정지 화면으로 위에서 아래로 펼친다 */
+/* 동작 줄이기: 움직임 없이 완성된 모습으로 보여 준다 */
 @media (prefers-reduced-motion: reduce) {
-  .v-reel { height: auto; overflow: visible; }
-  .v-stage { position: static; display: grid; gap: 3rem; padding: 6rem var(--gutter) 4rem; }
-  .v-idle, .v-foot, .v-label { display: none; }
-  .v-sc { position: relative; inset: auto; opacity: 1; visibility: visible; }
   .v-sc * { animation: none !important; }
-  .v-hello span, .v-b, .v-hello__sub, .v-cap, .v-toast { opacity: 1; transform: none; }
+  .v-hello span, .v-b, .v-hello__sub, .v-toast { opacity: 1; transform: none; }
   .v-ship__pct { --pct: 100; }
   .v-ship__track i { transform: none; }
   .v-ship__url span { max-width: none; border: 0; }

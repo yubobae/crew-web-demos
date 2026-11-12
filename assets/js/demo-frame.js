@@ -24,7 +24,7 @@
     { id: "gallery", no: "08", title: "큐레이션 갤러리", href: "gallery/" },
     { id: "float", no: "09", title: "떠다니는 오브젝트", href: "float/" },
     { id: "field", no: "10", title: "입자 밭과 분해도", href: "field/" },
-    { id: "reel", no: "11", title: "한 번에 재생되는 장면", href: "reel/" },
+    { id: "reel", no: "11", title: "모션그래픽 섹션", href: "reel/" },
   ];
   /* 하위 페이지가 있는 데모 */
   const SUBS = {
@@ -67,7 +67,7 @@
     gallery: { demo: "gallery", art: "art-design", title: ["영감을 한곳에서","*골라 보는* 갤러리"], lead: "검색하고, 태그로 좁히고, 크게 열어 보세요. 카드 속 사이트는 전부 CSS로 그린 그림이에요.", label: "쇼케이스", intro: { before: "main" }, outro: "body" },
     float: { demo: "float", art: "hero-right", title: ["글자 주위로","*떠다니는* 스티커"], lead: "마우스를 움직이면 깊이감이 생기고, 스티커는 끌었다 놓으면 출렁이며 돌아와요.", label: "쇼케이스", intro: { before: "main" }, outro: "body" },
     field: { demo: "field", art: "step-3", title: ["점이 숨 쉬고","*층이 벌어지는* 화면"], lead: "커서를 움직여 점 밭을 물결치게 하고, 아래로 내려 층이 벌어지는 분해도를 보세요.", label: "쇼케이스", intro: { before: "main" }, outro: "body" },
-    reel: { demo: "reel", art: "art-motion", title: ["스크롤하면","*영상처럼* 흘러가요"], lead: "스크롤로 내려오면 네 장면이 시간 순서대로 영상처럼 재생돼요. 스크롤은 막지 않아요.", label: "쇼케이스", intro: { before: "main" }, outro: "body" },
+    reel: { demo: "reel", art: "art-motion", title: ["글과 그림이","*함께 움직이는* 섹션"], lead: "스크롤로 내려오면 섹션 속 모션그래픽이 저절로 재생돼요. 영상 플레이어가 아니라 페이지의 일부예요.", label: "쇼케이스", intro: { before: "main" }, outro: "body" },
     "trends/index": { demo: "trends", art: "about-art", sub: "trends/index", header: ".c-site-nav", intro: { before: ".c-page-intro", replace: true }, outro: "body", drop: ".c-page-outro" },
     "trends/cta": { demo: "trends", art: "contact-art", sub: "trends/cta", header: ".c-site-nav", intro: { before: ".c-page-intro", replace: true }, outro: "body", drop: ".c-page-outro" },
     "trends/bento": { demo: "trends", art: "art-design", sub: "trends/bento", header: ".c-site-nav", intro: { before: ".c-page-intro", replace: true }, outro: "body", drop: ".c-page-outro" },
