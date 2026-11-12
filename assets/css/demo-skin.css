@@ -159,3 +159,37 @@ h1, h2 {
   --mu-veil: oklch(0.15 0.04 285 / 55%);
   --mu-deep: oklch(0.12 0.03 285);
 }
+
+/* UI 키트 첫머리: 크루 사이트·실험실처럼 알약 배지 + 아주 큰 제목 + 주황 강조 */
+.l-kit__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 1.25rem;
+  padding: 0.3rem 0.9rem 0.3rem 0.35rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  background: var(--color-bg-5);
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+}
+
+.l-kit__badge {
+  padding: 0.15rem 0.6rem;
+  font-size: 0.6875rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: #fff;
+  background: oklch(0.66 0.21 34);
+  border-radius: 999px;
+}
+
+.l-kit__title {
+  font-size: clamp(3rem, 1rem + 8vw, 7rem);
+  line-height: 0.98;
+  letter-spacing: -0.05em;
+}
+
+.u-accent {
+  color: oklch(0.66 0.21 34);
+}
