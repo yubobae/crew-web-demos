@@ -6,7 +6,11 @@
   const script = document.currentScript;
   const key = script?.dataset.demo;
   if (!key) return;
-  const ROOT = new URL("../../", script.src).href; // 데모 사이트 루트
+  /* 크루 데모 사이트에서는 assets/js/ 에 있고, 컨벤션 샘플(samples/_demo-frame/)에서는 data-standalone 으로 쓴다.
+     standalone 이면 크루 소개·작업·실험실 같은 사이트 링크는 빼고 데모끼리만 잇는다. */
+  const STANDALONE = script.dataset.standalone !== undefined;
+  const ROOT = new URL(STANDALONE ? "../" : "../../", script.src).href; // 데모 사이트 루트
+  const ART = STANDALONE ? new URL("art/", script.src).href : new URL("assets/media/art/", ROOT).href;
 
   /* 실험실 데모 순서(번호는 실험실 카드의 LAB 번호와 같다) */
   const DEMOS = [
@@ -95,7 +99,7 @@
     }
     const j = DEMOS.findIndex((d) => d.id === cfg.demo);
     const nx = DEMOS[j + 1];
-    return nx ? { title: nx.title, href: nx.href, kind: `다음 데모 · LAB ${nx.no}` } : { title: "실험실로 돌아가기", href: "lab.html", kind: "마지막 데모까지 보셨어요" };
+    return nx ? { title: nx.title, href: nx.href, kind: `다음 데모 · LAB ${nx.no}` } : STANDALONE ? { title: "처음부터 다시", href: "ui-kit/", kind: "마지막 데모까지 보셨어요" } : { title: "실험실로 돌아가기", href: "lab.html", kind: "마지막 데모까지 보셨어요" };
   })();
 
   /* ── 머리줄 ── */
@@ -106,8 +110,8 @@
   if (cfg.theme) nav.dataset.module = "theme-toggle";
   nav.innerHTML = `
     <div class="d-nav__bar">
-      <a class="d-nav__logo" href="${u("index.html")}"><span class="d-nav__mark" aria-hidden="true"></span>보람찬크루</a>
-      <nav class="d-nav__links" aria-label="주 메뉴">
+      <a class="d-nav__logo" href="${u(STANDALONE ? "ui-kit/" : "index.html")}"><span class="d-nav__mark" aria-hidden="true"></span>보람찬크루</a>
+      <nav class="d-nav__links" aria-label="주 메뉴"${STANDALONE ? " hidden" : ""}>
         <a class="d-nav__link" href="${u("index.html")}">크루 소개</a>
         <a class="d-nav__link" href="${u("prototypes.html")}">작업</a>
         <a class="d-nav__link" href="${u("lab.html")}" aria-current="page">실험실</a>
@@ -118,7 +122,7 @@
       <button class="d-nav__menu" type="button" popovertarget="d-menu" aria-label="메뉴 열기">메뉴 ${chevron}</button>
     </div>
     <div class="d-nav__panel" id="d-menu" popover>
-      <div class="d-nav__group">
+      <div class="d-nav__group"${STANDALONE ? " hidden" : ""}>
         <p class="d-nav__group-title">보람찬크루</p>
         <a class="d-nav__item" href="${u("index.html")}">크루 소개</a>
         <a class="d-nav__item" href="${u("prototypes.html")}">작업</a>
@@ -151,7 +155,7 @@
     el.dataset.demoFrame = "intro";
     el.setAttribute("aria-labelledby", "d-intro-title");
     el.innerHTML = `
-      <img class="d-intro__art" src="${u(`assets/media/art/${cfg.art}.webp`)}" width="420" height="420" alt="" decoding="async">
+      <img class="d-intro__art" src="${`${ART}${cfg.art}.webp`}" width="420" height="420" alt="" decoding="async">
       <div class="d-intro__inner">
         <p class="d-intro__eyebrow"><span class="d-intro__badge">LAB ${no}</span>보람찬크루 · ${esc(label ?? "실험실")}</p>
         <h1 class="d-intro__title" id="d-intro-title">${title}</h1>
@@ -179,11 +183,13 @@
     ref.before(intro);
     if (slot.replace) ref.remove();
   }
-  /* h1 은 소개 장면의 제목 하나만: 본문에 원래 있던 h1 은 모양은 그대로 두고 의미만 2단계로 낮춘다 */
+  /* h1 은 소개 장면의 제목 하나만: 본문에 원래 있던 h1 은 클래스·내용은 그대로 두고 h2 로 바꾼다 */
   document.querySelectorAll("h1").forEach((h) => {
     if (!intro.contains(h)) {
-      h.setAttribute("role", "heading");
-      h.setAttribute("aria-level", "2");
+      const h2 = document.createElement("h2");
+      for (const a of h.attributes) h2.setAttribute(a.name, a.value);
+      h2.innerHTML = h.innerHTML;
+      h.replaceWith(h2);
     }
   });
 
@@ -199,8 +205,7 @@
         <a class="d-outro__next" href="${u(nextTarget.href)}">${esc(nextTarget.title)} ${arrow}</a>
       </div>
       <nav class="d-outro__pills" aria-label="실험실 바로가기">
-        <a class="d-outro__pill d-outro__pill--main" href="${u("lab.html")}">← 실험실로 돌아가기</a>
-        <a class="d-outro__pill" href="${u("index.html")}">크루 소개</a>
+        ${STANDALONE ? "" : `<a class="d-outro__pill d-outro__pill--main" href="${u("lab.html")}">← 실험실로 돌아가기</a><a class="d-outro__pill" href="${u("index.html")}">크루 소개</a>`}
         ${DEMOS.map((d) => `<a class="d-outro__pill" href="${u(d.href)}"${d.id === cfg.demo ? ' aria-current="page"' : ""}>${esc(d.title)}</a>`).join("")}
       </nav>
     </div>
