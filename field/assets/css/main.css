@@ -1,0 +1,86 @@
+/* 입자 밭과 분해도 데모.
+   1) 점 입자 밭(canvas): 가운데 아주 작은 글자만 두고, 커서 주위로 점이 물결친다.
+   2) 분해도: 스크롤 진행률 --p(0~1)로 층 사이가 벌어지고, 층마다 설명선이 차례로 나타난다(CSS 3D).
+   동작 줄이기·좁은 화면에서는 입자는 멈추고, 분해도는 목록으로 바뀐다. */
+@layer reset, tokens, base, layout, sections, utilities;
+
+@layer reset {
+  *, *::before, *::after { box-sizing: border-box; }
+  body, h1, h2, p, ol { margin: 0; padding: 0; }
+  ol { list-style: none; }
+}
+
+@layer tokens {
+  :root {
+    --bg: oklch(0.13 0.015 230);
+    --ink: oklch(0.95 0.01 220);
+    --soft: oklch(0.68 0.03 225);
+    --dot: oklch(0.8 0.09 215);
+    --line: oklch(0.3 0.03 230);
+    --font: "Pretendard Variable", Pretendard, system-ui, sans-serif;
+    --gutter: clamp(1.25rem, 5vw, 4rem);
+  }
+}
+
+@layer base {
+  html { color-scheme: dark; }
+  body { font-family: var(--font); color: var(--ink); background: var(--bg); -webkit-font-smoothing: antialiased; overflow-x: clip; }
+  :focus-visible { outline: 3px solid var(--dot); outline-offset: 3px; }
+}
+
+@layer utilities {
+  .u-visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+}
+
+@layer sections {
+  /* ───── 입자 밭 ───── */
+  .n-dots { position: relative; display: grid; place-items: center; min-height: 100svh; overflow: hidden; background: radial-gradient(ellipse at center, oklch(0.17 0.025 225), var(--bg) 70%); }
+  .n-dots__cv { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .n-dots__mid { position: relative; display: grid; justify-items: center; gap: 0.9rem; padding: 2rem; text-align: center; pointer-events: none; }
+  .n-small { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.24em; color: var(--dot); }
+  .n-small--dim { color: var(--soft); letter-spacing: 0.1em; font-weight: 500; }
+  .n-tiny { font-size: clamp(1.1rem, 2.2vw, 1.5rem); font-weight: 600; letter-spacing: -0.01em; }
+  .n-pill { margin-top: 0.6rem; padding: 0.6rem 1.2rem; font-size: 0.8rem; font-weight: 700; color: var(--ink); text-decoration: none; border: 1px solid var(--line); border-radius: 999px; background: oklch(0.2 0.02 225 / 0.7); backdrop-filter: blur(6px); pointer-events: auto; transition: background-color 250ms, border-color 250ms, transform 300ms cubic-bezier(0.34, 1.56, 0.64, 1); }
+  .n-pill:hover { background: oklch(0.28 0.04 225); border-color: var(--dot); }
+  .n-pill:active { transform: scale(0.94); }
+
+  /* ───── 분해도 ───── */
+  .n-ex { --p: 0; position: relative; height: 320svh; background: linear-gradient(var(--bg), oklch(0.16 0.02 235)); }
+  .n-ex__pin { position: sticky; top: 0; display: grid; place-items: center; height: 100svh; overflow: hidden; }
+  .n-ex__title { position: absolute; left: var(--gutter); top: 50%; transform: translateY(-50%); font-size: clamp(2.2rem, 6.6vw, 5.6rem); font-weight: 900; line-height: 0.95; letter-spacing: -0.05em; opacity: calc(1 - var(--p) * 0.6); }
+  .n-ex__scene { position: absolute; inset: 0; perspective: 1400px; }
+  .n-ex__stack { position: absolute; left: 62%; top: 52%; width: min(26rem, 38vw); aspect-ratio: 1; transform-style: preserve-3d; transform: translate(-50%, -50%) rotateX(62deg) rotateZ(-38deg); }
+  .n-layer { position: absolute; inset: 0; border-radius: 8%; border: 1px solid oklch(1 0 0 / 0.35); box-shadow: 0 0 40px oklch(0.6 0.15 var(--hh) / 0.25); background: linear-gradient(135deg, oklch(0.6 0.14 var(--hh) / 0.55), oklch(0.35 0.08 var(--hh) / 0.5)); backdrop-filter: blur(3px); transform: translateZ(calc(var(--z) * (0.5rem + var(--p) * 7.5rem))); }
+  .n-layer::after { content: ""; position: absolute; inset: 12%; border: 1px dashed oklch(1 0 0 / 0.3); border-radius: 6%; }
+  .n-layer--1 { --z: 3; --hh: 200; }
+  .n-layer--2 { --z: 2; --hh: 240; }
+  .n-layer--3 { --z: 1; --hh: 285; }
+  .n-layer--4 { --z: 0; --hh: 330; }
+
+  .n-call { position: absolute; left: 70%; display: grid; gap: 0.15rem; padding-left: 3.2rem; font-size: clamp(0.8rem, 1.2vw, 1rem); font-weight: 800; opacity: clamp(0, calc((var(--p) - var(--s)) * 6), 1); transform: translateX(calc((1 - clamp(0, (var(--p) - var(--s)) * 6, 1)) * 1.5rem)); }
+  .n-call b { position: absolute; left: 0; top: 50%; display: grid; place-items: center; width: 2.2rem; aspect-ratio: 1; font-size: 0.7rem; color: var(--bg); background: var(--dot); border-radius: 50%; transform: translateY(-50%); }
+  .n-call::before { content: ""; position: absolute; right: 100%; top: 50%; width: var(--w); height: 1px; background: linear-gradient(90deg, transparent, var(--dot)); }
+  .n-call small { font-size: 0.75em; font-weight: 500; color: var(--soft); }
+  .n-call--1 { --s: 0.35; --w: 9vw; top: 24%; }
+  .n-call--2 { --s: 0.45; --w: 7vw; top: 40%; }
+  .n-call--3 { --s: 0.55; --w: 7vw; top: 58%; }
+  .n-call--4 { --s: 0.65; --w: 9vw; top: 74%; }
+  .n-ex__list { display: none; }
+
+  @media (max-width: 819px) {
+    .n-ex { height: 260svh; }
+    .n-ex__title { top: 14%; transform: none; font-size: clamp(1.9rem, 9vw, 3rem); opacity: 1; }
+    .n-ex__stack { left: 50%; top: 56%; width: min(17rem, 62vw); }
+    .n-call { display: none; }
+    .n-ex__list { display: grid; position: absolute; inset: auto var(--gutter) 6svh; gap: 0.5rem; font-size: 0.85rem; color: var(--soft); opacity: clamp(0, calc((var(--p) - 0.3) * 4), 1); }
+    .n-ex__list b { color: var(--dot); margin-right: 0.4rem; }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .n-ex { height: auto; }
+  .n-ex__pin { position: relative; height: auto; min-height: 100svh; padding-block: 4rem; }
+  .n-layer { transform: translateZ(calc(var(--z) * 4rem)); }
+  .n-call { opacity: 1; transform: none; }
+  .n-ex__title { opacity: 1; }
+}

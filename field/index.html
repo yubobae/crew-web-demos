@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>입자 밭과 분해도 | 보람찬크루 쇼케이스</title>
+  <meta name="description" content="커서에 물결치는 점 입자 밭, 그리고 스크롤하면 층이 벌어지며 설명선이 나타나는 분해도. 캔버스와 CSS 3D로 만든 데모.">
+  <meta name="robots" content="noindex, nofollow, noimageindex, noarchive">
+  <meta name="theme-color" content="#0a0e12">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+  <link rel="icon" href="../favicon.ico" sizes="48x48">
+  <link rel="stylesheet" href="assets/css/main.css?v=202611122110">
+  <script type="module" src="assets/js/main.js?v=202611122110"></script>
+  <link rel="stylesheet" href="../assets/css/demo-frame.css?v=202611122110">
+</head>
+<body>
+  <a class="u-visually-hidden" href="#main">본문 바로가기</a>
+
+  <main id="main">
+    <!-- 1. 점 입자 밭: 가운데엔 아주 작은 글자만 -->
+    <section class="n-dots" data-module="dots" aria-labelledby="n1">
+      <canvas class="n-dots__cv" aria-hidden="true"></canvas>
+      <div class="n-dots__mid">
+        <p class="n-small">BREATHE · LIVE DOTS</p>
+        <h1 class="n-tiny" id="n1">숨을 고르는 화면</h1>
+        <p class="n-small n-small--dim">커서를 움직이면 점이 물결쳐요</p>
+        <a class="n-pill" href="#explode">분해도 보기 ↓</a>
+      </div>
+    </section>
+
+    <!-- 2. 분해도: 스크롤하면 층이 벌어지고 설명선이 나온다 -->
+    <section class="n-ex" id="explode" data-module="explode" aria-labelledby="n2">
+      <div class="n-ex__pin">
+        <h2 class="n-ex__title" id="n2">BUILT<br>LAYER<br>BY LAYER</h2>
+        <div class="n-ex__scene" aria-hidden="true">
+          <div class="n-ex__stack">
+            <i class="n-layer n-layer--4"></i>
+            <i class="n-layer n-layer--3"></i>
+            <i class="n-layer n-layer--2"></i>
+            <i class="n-layer n-layer--1"></i>
+          </div>
+          <p class="n-call n-call--1"><b>01</b> 화면(HTML)<small>내용과 뜻을 먼저 적어요</small></p>
+          <p class="n-call n-call--2"><b>02</b> 모양(CSS)<small>색·간격·움직임을 입혀요</small></p>
+          <p class="n-call n-call--3"><b>03</b> 동작(JS)<small>누르면 반응하게 만들어요</small></p>
+          <p class="n-call n-call--4"><b>04</b> 배포(Pages)<small>주소 하나로 세상에 내보내요</small></p>
+        </div>
+        <ol class="n-ex__list">
+          <li><b>01</b> 화면(HTML) — 내용과 뜻을 먼저 적어요</li>
+          <li><b>02</b> 모양(CSS) — 색·간격·움직임을 입혀요</li>
+          <li><b>03</b> 동작(JS) — 누르면 반응하게 만들어요</li>
+          <li><b>04</b> 배포(Pages) — 주소 하나로 세상에 내보내요</li>
+        </ol>
+      </div>
+    </section>
+  </main>
+  <script src="../assets/js/demo-frame.js?v=202611122110" data-demo="field"></script>
+</body>
+</html>
