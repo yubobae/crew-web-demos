@@ -7,12 +7,12 @@
   const key = script?.dataset.demo;
   if (!key) return;
   /* 크루 데모 사이트에서는 assets/js/ 에 있고, 컨벤션 샘플(samples/_demo-frame/)에서는 data-standalone 으로 쓴다.
-     standalone 이면 크루 소개·작업·실험실 같은 사이트 링크는 빼고 데모끼리만 잇는다. */
+     standalone 이면 크루 소개·작업·쇼케이스 같은 사이트 링크는 빼고 데모끼리만 잇는다. */
   const STANDALONE = script.dataset.standalone !== undefined;
   const ROOT = new URL(STANDALONE ? "../" : "../../", script.src).href; // 데모 사이트 루트
   const ART = STANDALONE ? new URL("art/", script.src).href : new URL("assets/media/art/", ROOT).href;
 
-  /* 실험실 데모 순서(번호는 실험실 카드의 LAB 번호와 같다) */
+  /* 쇼케이스 데모 순서(번호는 쇼케이스 카드의 DEMO 번호와 같다) */
   const DEMOS = [
     { id: "ui-kit", no: "01", title: "UI 키트", href: "ui-kit/" },
     { id: "effects", no: "02", title: "인터랙션 효과", href: "effects/" },
@@ -43,12 +43,12 @@
      demo: DEMOS id / title: ["첫 줄", "*주황 강조* 둘째 줄"] / art: assets/media/art 파일 / lead: 소개 문구(없으면 본문의 것을 가져옴)
      header: 지울 기존 머리줄 선택자 / intro: 소개 장면을 넣는 자리 / outro: 푸터를 넣는 자리 / drop: 같이 지울 것 */
   const PAGES = {
-    "ui-kit": { demo: "ui-kit", art: "art-build", title: ["보람찬크루", "*UI 키트*"], label: "실험실", header: ".l-kit__header", intro: { before: ".l-kit__intro", replace: true }, outro: "body", theme: true },
-    effects: { demo: "effects", art: "art-motion", title: ["움직임으로", "*말하는* 화면"], lead: "숫자가 구르고, 문구가 열리고, 화면이 넘어가요. 아래로 스크롤하거나 키보드 ↑ ↓ 로 구간을 넘겨 보세요.", label: "실험실", header: ".l-header", intro: { track: ".l-fullpage__track" }, outro: { track: ".l-fullpage__track" } },
-    scroll: { demo: "scroll", art: "std-width", title: ["스크롤이", "*이야기*를 이끕니다"], lead: "스크롤 연동, 부드러운 이동, 패럴랙스, 가로 넘김과 스냅. 머리줄의 메뉴로 구간을 오가 보세요.", label: "실험실", keepHeader: true, intro: { before: "main" }, outro: "body" },
+    "ui-kit": { demo: "ui-kit", art: "art-build", title: ["보람찬크루", "*UI 키트*"], label: "쇼케이스", header: ".l-kit__header", intro: { before: ".l-kit__intro", replace: true }, outro: "body", theme: true },
+    effects: { demo: "effects", art: "art-motion", title: ["움직임으로", "*말하는* 화면"], lead: "숫자가 구르고, 문구가 열리고, 화면이 넘어가요. 아래로 스크롤하거나 키보드 ↑ ↓ 로 구간을 넘겨 보세요.", label: "쇼케이스", header: ".l-header", intro: { track: ".l-fullpage__track" }, outro: { track: ".l-fullpage__track" } },
+    scroll: { demo: "scroll", art: "std-width", title: ["스크롤이", "*이야기*를 이끕니다"], lead: "스크롤 연동, 부드러운 이동, 패럴랙스, 가로 넘김과 스냅. 머리줄의 메뉴로 구간을 오가 보세요.", label: "쇼케이스", keepHeader: true, intro: { before: "main" }, outro: "body" },
     "museum/index": { demo: "museum", art: "art-handover", title: ["50년의 믿음,", "*다음 100년*의 약속"], lead: "OO 50 디지털 역사관 구성 데모. 구간이 한 장씩 덮이며 넘어가고, 효과 재생 방식을 골라 볼 수 있어요.", label: "OO 50 · 가상 고객", keepHeader: true, intro: { track: ".l-fp" }, outro: { fpPanel: true } },
     "museum/timeline": { demo: "museum", art: "step-5", title: ["50년의", "*발자취*"], lead: "연대기·사진·숫자·인터뷰로 이어지는 하위 페이지 구성이에요. 모두 예시 문구입니다.", label: "OO 50 · 가상 고객", header: ".l-mu-header", intro: { before: "main" }, outro: "body" },
-    immersive: { demo: "immersive", art: "hero-right", title: ["스크롤로", "*움직이는* 카메라"], lead: "스크롤 하나로 카메라가 움직이고 장면이 영화처럼 이어져요. 마우스를 움직이면 깊이감이 살아나요.", label: "실험실", intro: { before: "main" }, outro: "body" },
+    immersive: { demo: "immersive", art: "hero-right", title: ["스크롤로", "*움직이는* 카메라"], lead: "스크롤 하나로 카메라가 움직이고 장면이 영화처럼 이어져요. 마우스를 움직이면 깊이감이 살아나요.", label: "쇼케이스", intro: { before: "main" }, outro: "body" },
     "trends/index": { demo: "trends", art: "about-art", sub: "trends/index", header: ".c-site-nav", intro: { before: ".c-page-intro", replace: true }, outro: "body", drop: ".c-page-outro" },
     "trends/cta": { demo: "trends", art: "contact-art", sub: "trends/cta", header: ".c-site-nav", intro: { before: ".c-page-intro", replace: true }, outro: "body", drop: ".c-page-outro" },
     "trends/bento": { demo: "trends", art: "art-design", sub: "trends/bento", header: ".c-site-nav", intro: { before: ".c-page-intro", replace: true }, outro: "body", drop: ".c-page-outro" },
@@ -85,11 +85,11 @@
     chips = [...old.querySelectorAll(".c-page-intro__chip")]
       .map((a) => `<a class="d-intro__chip" href="${esc(a.getAttribute("href"))}">${esc(a.textContent.trim())}</a>`)
       .join("");
-    // 요즘 UI 는 5번 데모의 하위 쪽이라 LAB 번호는 데모 번호, 머리말은 "요즘 UI · 쪽 이름"
+    // 요즘 UI 는 5번 데모의 하위 쪽이라 DEMO 번호는 데모 번호, 머리말은 "요즘 UI · 쪽 이름"
     no = demo.no;
   } else if (old?.classList.contains("l-kit__intro")) {
     lead = $(".l-kit__lead", old)?.textContent.trim();
-    label = "실험실";
+    label = "쇼케이스";
   }
   const nextTarget = (() => {
     const subs = SUBS[cfg.demo];
@@ -99,7 +99,7 @@
     }
     const j = DEMOS.findIndex((d) => d.id === cfg.demo);
     const nx = DEMOS[j + 1];
-    return nx ? { title: nx.title, href: nx.href, kind: `다음 데모 · LAB ${nx.no}` } : STANDALONE ? { title: "처음부터 다시", href: "ui-kit/", kind: "마지막 데모까지 보셨어요" } : { title: "실험실로 돌아가기", href: "lab.html", kind: "마지막 데모까지 보셨어요" };
+    return nx ? { title: nx.title, href: nx.href, kind: `다음 데모 · DEMO ${nx.no}` } : STANDALONE ? { title: "처음부터 다시", href: "ui-kit/", kind: "마지막 데모까지 보셨어요" } : { title: "쇼케이스로 돌아가기", href: "lab.html", kind: "마지막 데모까지 보셨어요" };
   })();
 
   /* ── 머리줄 ── */
@@ -114,7 +114,7 @@
       <nav class="d-nav__links" aria-label="주 메뉴"${STANDALONE ? " hidden" : ""}>
         <a class="d-nav__link" href="${u("index.html")}">크루 소개</a>
         <a class="d-nav__link" href="${u("prototypes.html")}">작업</a>
-        <a class="d-nav__link" href="${u("lab.html")}" aria-current="page">실험실</a>
+        <a class="d-nav__link" href="${u("lab.html")}" aria-current="page">쇼케이스</a>
         <a class="d-nav__link" href="${u("index.html#process")}">일하는 방식</a>
         <a class="d-nav__link" href="${u("index.html#contact")}">문의</a>
       </nav>
@@ -126,11 +126,19 @@
         <p class="d-nav__group-title">보람찬크루</p>
         <a class="d-nav__item" href="${u("index.html")}">크루 소개</a>
         <a class="d-nav__item" href="${u("prototypes.html")}">작업</a>
-        <a class="d-nav__item" href="${u("lab.html")}">실험실 · 데모 목록</a>
+        <a class="d-nav__item" href="${u("lab.html")}">쇼케이스</a>
+        <a class="d-nav__item" href="${u("index.html#process")}">일하는 방식</a>
+        <a class="d-nav__item" href="${u("index.html#contact")}">문의</a>
+      </div>
+      <div class="d-nav__group"${STANDALONE ? " hidden" : ""}>
+        <p class="d-nav__group-title">바로 가기</p>
+        <a class="d-nav__item" href="${u("prototype-kogas.html")}">KOGAS 40 역사관 <span class="d-nav__item-desc">대표 작업</span></a>
+        <a class="d-nav__item" href="${u("prototype-sgwon.html")}">승가원 30주년 역사관 <span class="d-nav__item-desc">대표 작업</span></a>
+        <a class="d-nav__item" href="${u("prototype-kdic.html")}">예금보험공사 30주년 역사관 <span class="d-nav__item-desc">대표 작업</span></a>
       </div>
       <div class="d-nav__group">
-        <p class="d-nav__group-title">실험실 데모</p>
-        ${DEMOS.map((d) => `<a class="d-nav__item" href="${u(d.href)}"${d.id === cfg.demo && !subs ? ' aria-current="page"' : ""}>${esc(d.title)} <span class="d-nav__item-desc">LAB ${d.no}</span></a>`).join("")}
+        <p class="d-nav__group-title">쇼케이스 데모</p>
+        ${DEMOS.map((d) => `<a class="d-nav__item" href="${u(d.href)}"${d.id === cfg.demo && !subs ? ' aria-current="page"' : ""}>${esc(d.title)} <span class="d-nav__item-desc">DEMO ${d.no}</span></a>`).join("")}
       </div>
       ${subs ? `<div class="d-nav__group"><p class="d-nav__group-title">${esc(demo.title)}</p>${subs.map((s) => `<a class="d-nav__item" href="${u(s.href)}"${s.id === key ? ' aria-current="page"' : ""}>${esc(s.title)}</a>`).join("")}</div>` : ""}
     </div>`;
@@ -145,6 +153,20 @@
   } else {
     // 머리줄 자체가 데모(GNB)인 쪽은 그대로 두고 틀의 소개·푸터만 맞춘다
     document.documentElement.classList.add("has-own-header");
+    if (!STANDALONE) {
+      const labLink = document.querySelector('.c-gnb__sub-inner a[href$="lab.html"]');
+      if (labLink) {
+        labLink.textContent = "쇼케이스 전체";
+        const li = labLink.closest("li");
+        [["문의", "index.html#contact"], ["작업", "prototypes.html"], ["크루 소개", "index.html"]].forEach(([t, h]) => {
+          const n = li.cloneNode(true);
+          const a = n.querySelector("a");
+          a.textContent = t;
+          a.setAttribute("href", u(h));
+          li.before(n);
+        });
+      }
+    }
   }
   document.documentElement.classList.add("has-demo-frame");
 
@@ -157,9 +179,10 @@
     el.innerHTML = `
       <img class="d-intro__art" src="${`${ART}${cfg.art}.webp`}" width="420" height="420" alt="" decoding="async">
       <div class="d-intro__inner">
-        <p class="d-intro__eyebrow"><span class="d-intro__badge">LAB ${no}</span>보람찬크루 · ${esc(label ?? "실험실")}</p>
+        <p class="d-intro__eyebrow"><span class="d-intro__badge">DEMO ${no}</span>보람찬크루 · ${esc(label ?? "쇼케이스")}</p>
         <h1 class="d-intro__title" id="d-intro-title">${title}</h1>
         ${lead ? `<p class="d-intro__lead">${esc(lead)}</p>` : ""}
+        ${STANDALONE ? "" : `<div class="d-intro__actions"><a class="d-btn" href="${u("prototypes.html")}">작업 보기 ${arrow}</a><a class="d-btn d-btn--line" href="${u("index.html")}">크루 소개</a></div>`}
         ${chips ? `<nav class="d-intro__chips" aria-label="이 페이지 예시">${chips}</nav>` : ""}
       </div>
       <span class="d-intro__hint" aria-hidden="true">아래로 스크롤</span>`;
@@ -199,13 +222,14 @@
   outro.dataset.demoFrame = "outro";
   outro.innerHTML = `
     <div class="d-outro__inner">
+      ${STANDALONE ? "" : `<div class="d-outro__cta"><p class="d-outro__cta-eyebrow">문의</p><h2 class="d-outro__cta-title">다음 작업을<br>함께 이야기해요</h2><p class="d-outro__cta-text">작은 사이트라도 기획의 의도가 살아 있게. 프로젝트 협업이나 작업물 이야기, 언제든 편하게.</p><div class="d-intro__actions"><a class="d-btn d-btn--lime" href="${u("index.html#contact")}">문의하기 ${arrow}</a><a class="d-btn d-btn--ghost" href="${u("prototypes.html")}">작업 보기</a></div></div>`}
       <p class="d-outro__word" aria-hidden="true">보람찬크루</p>
       <div>
         <p class="d-outro__label">${esc(nextTarget.kind)}</p>
         <a class="d-outro__next" href="${u(nextTarget.href)}">${esc(nextTarget.title)} ${arrow}</a>
       </div>
-      <nav class="d-outro__pills" aria-label="실험실 바로가기">
-        ${STANDALONE ? "" : `<a class="d-outro__pill d-outro__pill--main" href="${u("lab.html")}">← 실험실로 돌아가기</a><a class="d-outro__pill" href="${u("index.html")}">크루 소개</a>`}
+      <nav class="d-outro__pills" aria-label="쇼케이스 바로가기">
+        ${STANDALONE ? "" : `<a class="d-outro__pill d-outro__pill--main" href="${u("lab.html")}">← 쇼케이스로 돌아가기</a><a class="d-outro__pill" href="${u("index.html")}">크루 소개</a>`}
         ${DEMOS.map((d) => `<a class="d-outro__pill" href="${u(d.href)}"${d.id === cfg.demo ? ' aria-current="page"' : ""}>${esc(d.title)}</a>`).join("")}
       </nav>
     </div>
