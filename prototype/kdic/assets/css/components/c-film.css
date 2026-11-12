@@ -5,6 +5,7 @@
     position: relative;
     color: var(--kd-text-on-ink);
     background: var(--kd-ink);
+    --kd-red: var(--kd-red-on-ink);
   }
 
   .c-film--2 {
@@ -45,7 +46,7 @@
 
   .c-film__years {
     margin: 0;
-    font-size: clamp(var(--text-4xl), 1.4rem + 4.4vw, var(--text-7xl));
+    font-size: clamp(var(--text-4xl), 1.2rem + 2.6vw, var(--text-6xl));
     font-weight: var(--font-weight-black);
     line-height: 1;
     letter-spacing: var(--tracking-tighter);

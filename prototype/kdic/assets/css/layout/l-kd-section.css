@@ -13,6 +13,7 @@
   .l-kd-section--ink {
     color: var(--kd-text-on-ink);
     background: var(--kd-ink);
+    --kd-red: var(--kd-red-on-ink);
   }
 
   .l-kd-section--tight {

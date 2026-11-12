@@ -5,6 +5,7 @@
     gap: var(--space-3);
     padding: var(--space-12) var(--gutter);
     color: var(--kd-text-on-ink);
+    --kd-red: var(--kd-red-on-ink);
     text-decoration: none;
     background: var(--kd-ink-2);
     border-top: 1px solid var(--kd-line-on-ink);

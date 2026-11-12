@@ -1,4 +1,4 @@
-/* 사사(社史) E-BOOK 책장: 책 표지 세 권. 마우스를 올리면 책이 살짝 들리고 그림자가 커진다 */
+/* 사사(社史) E-BOOK 책장: 10·20·30년사 표지 세 권이 선반 위에 서 있다. 마우스를 올리면 책이 돌아서며 들린다 */
 @layer components {
   .c-book {
     display: grid;
@@ -15,19 +15,19 @@
   .c-book__cover {
     display: grid;
     place-items: center;
-    padding: var(--space-8) var(--space-4) var(--space-6);
+    padding: var(--space-8) var(--space-4) 0;
+    perspective: 60rem;
     background: var(--kd-ink-2);
-    border-bottom: 3px solid var(--kd-red);
+    border-bottom: var(--space-2) solid var(--kd-paper-3);
   }
 
   .c-book__img {
     display: block;
     width: min(100%, 14rem);
     height: auto;
-    box-shadow: var(--kd-shadow);
-    transition:
-      transform var(--kd-dur) var(--kd-ease),
-      box-shadow var(--kd-dur) var(--kd-ease);
+    transform-origin: 50% 100%;
+    filter: drop-shadow(0 var(--space-3) var(--space-3) var(--kd-veil-strong));
+    transition: transform var(--kd-dur) var(--kd-ease);
   }
 
   .c-book__year {
@@ -61,8 +61,7 @@
 
   @media (hover: hover) {
     .c-book__item:hover .c-book__img {
-      transform: translate3d(0, calc(var(--space-2) * -1), 0);
-      box-shadow: var(--kd-shadow-float);
+      transform: translate3d(0, calc(var(--space-2) * -1), 0) rotateY(-16deg);
     }
   }
 

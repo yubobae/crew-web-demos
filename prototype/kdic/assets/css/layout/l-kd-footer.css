@@ -27,7 +27,10 @@
   .l-kd-footer__logo {
     display: block;
     width: auto;
-    height: clamp(var(--space-24), 12vw, var(--space-40));
+    height: clamp(var(--space-24), 10vw, var(--space-32));
+    padding: var(--space-4);
+    background: var(--kd-paper);
+    border-radius: var(--kd-radius);
   }
 
   .l-kd-footer__cols {

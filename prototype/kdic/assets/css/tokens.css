@@ -432,9 +432,9 @@
    =================================================================== */
 @layer tokens {
   :root {
-    --kd-ink: oklch(0.17 0.03 262);
-    --kd-ink-2: oklch(0.225 0.035 262);
-    --kd-ink-3: oklch(0.29 0.04 262);
+    --kd-ink: oklch(0.33 0.15 262);
+    --kd-ink-2: oklch(0.28 0.13 262);
+    --kd-ink-3: oklch(0.4 0.15 262);
     --kd-paper: oklch(0.985 0.003 250);
     --kd-paper-2: oklch(0.955 0.006 250);
     --kd-paper-3: oklch(0.915 0.01 250);
@@ -446,21 +446,21 @@
     --kd-navy: oklch(0.37 0.13 265);
     --kd-navy-soft: oklch(0.37 0.13 265 / 10%);
     --kd-red: oklch(0.57 0.225 27);
+    --kd-red-on-ink: oklch(0.74 0.15 25);
     --kd-red-deep: oklch(0.49 0.2 27);
     --kd-red-soft: oklch(0.57 0.225 27 / 12%);
     --kd-blue: oklch(0.42 0.2 263);
-    --kd-violet: oklch(0.5 0.2 330);
-    --kd-grad: linear-gradient(90deg, var(--kd-blue), var(--kd-violet) 52%, var(--kd-red));
+    --kd-grad: var(--kd-red);
     --kd-steel: oklch(0.7 0.05 245);
     --kd-line: oklch(0.24 0.03 262 / 14%);
     --kd-line-strong: oklch(0.24 0.03 262 / 38%);
     --kd-line-on-ink: oklch(1 0 0 / 16%);
     --kd-line-on-ink-strong: oklch(1 0 0 / 42%);
-    --kd-veil: oklch(0.15 0.04 262 / 62%);
-    --kd-veil-strong: oklch(0.13 0.04 262 / 86%);
+    --kd-veil: oklch(0.3 0.15 262 / 58%);
+    --kd-veil-strong: oklch(0.27 0.14 262 / 88%);
     --kd-scrim: oklch(0.12 0.03 262 / 94%);
     --kd-glass: oklch(0.985 0.003 250 / 86%);
-    --kd-glass-ink: oklch(0.17 0.03 262 / 70%);
+    --kd-glass-ink: oklch(0.33 0.15 262 / 94%);
     --kd-shadow: 0 18px 44px -22px oklch(0.2 0.05 262 / 46%);
     --kd-shadow-float: 0 8px 24px -10px oklch(0.2 0.05 262 / 40%);
     --kd-ease: cubic-bezier(0.22, 1, 0.36, 1);

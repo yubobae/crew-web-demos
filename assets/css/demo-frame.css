@@ -1,0 +1,592 @@
+/* 데모 공통 틀: 크루 사이트와 같은 '알약 머리줄 + 소개 장면 + 밤보라 푸터'.
+   demo-frame.js 가 각 데모에 넣는다. 데모 본문의 테마(밝음/어두움)와 상관없이 틀은 늘 크루 종이색·밤보라로 보인다.
+   색은 demo-skin.css 의 크루 값을 따르고, 틀 전용 값만 --d-* 로 둔다. */
+@layer demo-frame {
+  :root {
+    --d-paper: oklch(0.975 0.006 85);
+    --d-paper-2: oklch(0.995 0.003 85);
+    --d-ink: oklch(0.2 0.02 280);
+    --d-ink-soft: oklch(0.45 0.03 280);
+    --d-line: oklch(0.9 0.01 85);
+    --d-accent: oklch(0.66 0.21 34);
+    --d-violet: oklch(0.58 0.23 288);
+    --d-lime: oklch(0.88 0.19 125);
+    --d-night: oklch(0.15 0.04 285);
+    --d-night-2: oklch(0.21 0.05 285);
+    --d-on-night: oklch(0.97 0.008 85);
+    --d-on-night-soft: oklch(0.75 0.03 285);
+    --d-gutter: clamp(1rem, 4vw, 3rem);
+    --d-nav-h: 3.5rem;
+    --d-max: 76rem;
+    --d-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  /* ── 알약 머리줄 ───────────────────────────── */
+  .d-nav {
+    position: fixed;
+    inset: 0.75rem var(--d-gutter) auto;
+    z-index: 1000;
+    max-width: var(--d-max);
+    margin-inline: auto;
+    font-family: var(--font-sans, "Pretendard Variable", system-ui, sans-serif);
+    color: var(--d-ink);
+  }
+
+  .d-nav__bar {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    height: var(--d-nav-h);
+    padding: 0 0.5rem 0 1.1rem;
+    background: color-mix(in oklch, var(--d-paper) 84%, transparent);
+    border: 1px solid var(--d-line);
+    border-radius: 999px;
+    backdrop-filter: blur(14px) saturate(1.4);
+    box-shadow: 0 0.5rem 1.5rem oklch(0.2 0.03 285 / 0.06);
+  }
+
+  .d-nav__logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    margin-right: auto;
+    font-size: 1rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--d-ink);
+    text-decoration: none;
+  }
+
+  .d-nav__mark {
+    width: 1.2rem;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: conic-gradient(from 200deg, oklch(0.66 0.21 34), oklch(0.58 0.23 288), oklch(0.8 0.1 235), oklch(0.66 0.21 34));
+  }
+
+  .d-nav__links {
+    display: none;
+    align-items: center;
+    gap: 0.25rem;
+  }
+
+  .d-nav__link {
+    padding: 0.5rem 0.85rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--d-ink-soft);
+    text-decoration: none;
+    border-radius: 999px;
+    transition: background-color 160ms var(--d-ease), color 160ms var(--d-ease);
+  }
+
+  .d-nav__link[aria-current="page"] {
+    color: var(--d-ink);
+    background: var(--d-paper-2);
+    box-shadow: inset 0 0 0 1px var(--d-line);
+  }
+
+  .d-nav__extra {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .d-nav__menu {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    height: 2.5rem;
+    padding: 0 1rem;
+    font: inherit;
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: var(--d-on-night);
+    background: var(--d-night);
+    border: 0;
+    border-radius: 999px;
+    cursor: pointer;
+  }
+
+  .d-nav__menu svg {
+    transition: transform 200ms var(--d-ease);
+  }
+
+  .d-nav__menu[aria-expanded="true"] svg {
+    transform: rotate(180deg);
+  }
+
+  /* 드롭다운 메뉴: popover 는 pointer-events 를 상속하지 않게 눌림을 되살린다 */
+  .d-nav__panel {
+    position: fixed;
+    inset: auto;
+    top: calc(0.75rem + var(--d-nav-h) + 0.5rem);
+    right: max(var(--d-gutter), (100vw - var(--d-max)) / 2);
+    left: auto;
+    width: min(26rem, 100vw - var(--d-gutter) * 2);
+    max-height: calc(100svh - var(--d-nav-h) - 2.5rem);
+    margin: 0;
+    padding: 0.75rem;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    font-family: var(--font-sans, "Pretendard Variable", system-ui, sans-serif);
+    color: var(--d-ink);
+    background: var(--d-paper-2);
+    border: 1px solid var(--d-line);
+    border-radius: 1.5rem;
+    box-shadow: 0 1.5rem 3rem oklch(0.2 0.03 285 / 0.18);
+  }
+
+  .d-nav__panel:popover-open {
+    pointer-events: auto;
+  }
+
+  .d-nav__group + .d-nav__group {
+    margin-top: 0.5rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid var(--d-line);
+  }
+
+  .d-nav__group-title {
+    padding: 0.4rem 0.75rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: var(--d-ink-soft);
+  }
+
+  .d-nav__item {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 0.6rem 0.75rem;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--d-ink);
+    text-decoration: none;
+    border-radius: 0.875rem;
+  }
+
+  .d-nav__item[aria-current="page"] {
+    color: var(--d-accent);
+    background: oklch(0.95 0.035 50);
+  }
+
+  .d-nav__item-desc {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--d-ink-soft);
+  }
+
+  @media (hover: hover) {
+    .d-nav__link:hover {
+      color: var(--d-ink);
+      background: oklch(0.2 0.02 280 / 0.05);
+    }
+
+    .d-nav__item:hover {
+      background: oklch(0.2 0.02 280 / 0.06);
+    }
+  }
+
+  @media (min-width: 820px) {
+    .d-nav__links {
+      display: flex;
+    }
+  }
+
+  :where(.d-nav a, .d-nav button, .d-intro a, .d-outro a):focus-visible {
+    outline: 2px solid var(--d-violet);
+    outline-offset: 2px;
+  }
+
+  /* ── 소개 장면 ──────────────────────────────── */
+  .d-intro {
+    position: relative;
+    isolation: isolate;
+    display: grid;
+    align-items: center;
+    min-height: 100vh;
+    min-height: 100svh;
+    height: 100%;
+    padding: calc(var(--d-nav-h) + 4rem) var(--d-gutter) 5.5rem;
+    overflow: hidden;
+    font-family: var(--font-sans, "Pretendard Variable", system-ui, sans-serif);
+    color: var(--d-ink);
+    background:
+      radial-gradient(60rem 40rem at -5% -10%, oklch(0.9 0.08 40 / 0.6), transparent 60%),
+      radial-gradient(50rem 40rem at 105% 30%, oklch(0.88 0.07 295 / 0.45), transparent 60%),
+      var(--d-paper);
+  }
+
+  .d-intro::before,
+  .d-intro::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    border-radius: 50%;
+    filter: blur(40px);
+    pointer-events: none;
+  }
+
+  .d-intro::before {
+    top: 8%;
+    right: 6%;
+    width: min(44vw, 34rem);
+    aspect-ratio: 1;
+    background: radial-gradient(closest-side, oklch(0.85 0.12 45 / 0.5), transparent);
+    animation: d-drift 14s ease-in-out infinite alternate;
+  }
+
+  .d-intro::after {
+    bottom: -10%;
+    left: 30%;
+    width: min(40vw, 28rem);
+    aspect-ratio: 1;
+    background: radial-gradient(closest-side, oklch(0.8 0.12 295 / 0.4), transparent);
+    animation: d-drift 18s ease-in-out infinite alternate-reverse;
+  }
+
+  .d-intro__inner {
+    position: relative;
+    width: 100%;
+    max-width: var(--d-max);
+    margin-inline: auto;
+  }
+
+  .d-intro__eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.3rem 0.9rem 0.3rem 0.35rem;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--d-ink-soft);
+    background: var(--d-paper-2);
+    border: 1px solid var(--d-line);
+    border-radius: 999px;
+    animation: d-fade 700ms var(--d-ease) both;
+  }
+
+  .d-intro__badge {
+    padding: 0.15rem 0.6rem;
+    font-size: 0.6875rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    color: #fff;
+    background: linear-gradient(120deg, var(--d-accent), var(--d-violet));
+    border-radius: 999px;
+  }
+
+  .d-intro__title {
+    max-width: 12ch;
+    margin-top: 1.5rem;
+    font-size: clamp(2.75rem, 1rem + 8vw, 7rem);
+    font-weight: 900;
+    letter-spacing: -0.05em;
+    line-height: 1;
+    color: var(--d-ink);
+  }
+
+  .d-intro__line {
+    display: block;
+    overflow: hidden;
+    padding-bottom: 0.08em;
+  }
+
+  .d-intro__line > span {
+    display: block;
+    animation: d-rise 1000ms 100ms var(--d-ease) both;
+  }
+
+  .d-intro__line:nth-child(2) > span {
+    animation-delay: 200ms;
+  }
+
+  .d-intro__line:nth-child(3) > span {
+    animation-delay: 300ms;
+  }
+
+  .d-accent {
+    color: var(--d-accent);
+  }
+
+  .d-intro__lead {
+    max-width: 48ch;
+    margin-top: 1.5rem;
+    font-size: clamp(1rem, 0.9rem + 0.4vw, 1.25rem);
+    line-height: 1.65;
+    color: var(--d-ink-soft);
+    animation: d-fade 700ms 300ms var(--d-ease) both;
+  }
+
+  .d-intro__chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    max-width: 44rem;
+    margin-top: 1.75rem;
+    animation: d-fade 700ms 400ms var(--d-ease) both;
+  }
+
+  .d-intro__chip {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--d-ink);
+    text-decoration: none;
+    border: 1px solid var(--d-line);
+    border-radius: 999px;
+    transition: background-color 160ms var(--d-ease), color 160ms var(--d-ease);
+  }
+
+  @media (hover: hover) {
+    .d-intro__chip:hover {
+      color: var(--d-paper);
+      background: var(--d-ink);
+    }
+  }
+
+  /* 말랑한 3D 도형: 큰 화면은 오른쪽, 휴대폰은 제목 옆 위쪽에 작게 */
+  .d-intro__art {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    z-index: -1;
+    width: clamp(9rem, 28vw, 26rem);
+    height: auto;
+    translate: 0 -50%;
+    pointer-events: none;
+    animation: d-float 7s ease-in-out infinite alternate;
+  }
+
+  @media (max-width: 819px) {
+    .d-intro {
+      align-items: end;
+    }
+
+    .d-intro__art {
+      top: 0;
+      width: 8.5rem;
+      translate: 0 0;
+      opacity: 0.95;
+    }
+
+    .d-intro__title {
+      max-width: 100%;
+    }
+  }
+
+  .d-intro__hint {
+    position: absolute;
+    bottom: 1.5rem;
+    left: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    translate: -50% 0;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: var(--d-ink-soft);
+    text-decoration: none;
+  }
+
+  .d-intro__hint::after {
+    content: "";
+    width: 1.25rem;
+    height: 2rem;
+    background: radial-gradient(circle 0.1875rem at 50% 0.5rem, var(--d-accent) 98%, transparent) no-repeat;
+    border: 2px solid var(--d-ink-soft);
+    border-radius: 999px;
+    animation: d-scroll 1.8s ease-in-out infinite;
+  }
+
+  /* 풀페이지 데모의 첫 구간으로 들어갈 때: 위 여백이 구간 높이에 맞게 */
+  .l-fullpage__section.d-intro,
+  .l-fp__panel.d-intro {
+    min-height: 0;
+  }
+
+  /* ── 푸터(밤보라 커튼): 다음 데모 + 실험실로 돌아가기 ── */
+  .d-outro {
+    position: relative;
+    isolation: isolate;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 3rem;
+    min-height: 70vh;
+    min-height: 70svh;
+    padding: clamp(4rem, 10vw, 8rem) var(--d-gutter) 2rem;
+    overflow: hidden;
+    font-family: var(--font-sans, "Pretendard Variable", system-ui, sans-serif);
+    color: var(--d-on-night);
+    background:
+      radial-gradient(50% 60% at 85% 100%, oklch(0.5 0.2 34 / 0.35), transparent),
+      radial-gradient(40% 50% at 10% 0%, oklch(0.4 0.18 295 / 0.4), transparent),
+      var(--d-night);
+  }
+
+  .d-outro__inner {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    width: 100%;
+    max-width: var(--d-max);
+    margin-inline: auto;
+  }
+
+  .d-outro__word {
+    font-size: clamp(3.5rem, 17vw, 14rem);
+    font-weight: 900;
+    letter-spacing: -0.05em;
+    line-height: 0.95;
+    white-space: nowrap;
+    background: linear-gradient(120deg, var(--d-accent), var(--d-violet) 60%, var(--d-lime));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    user-select: none;
+  }
+
+  .d-outro__label {
+    font-size: 0.875rem;
+    color: var(--d-on-night-soft);
+  }
+
+  .d-outro__next {
+    display: inline-flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 0.75rem;
+    font-size: clamp(2rem, 1rem + 5vw, 5.5rem);
+    font-weight: 900;
+    letter-spacing: -0.04em;
+    line-height: 1.05;
+    color: var(--d-on-night);
+    text-decoration: none;
+  }
+
+  .d-outro__next svg {
+    width: 0.7em;
+    height: 0.7em;
+    flex: none;
+    color: var(--d-lime);
+    transition: transform 400ms var(--d-ease);
+  }
+
+  .d-outro__pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .d-outro__pill {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+    color: var(--d-on-night);
+    text-decoration: none;
+    border: 1px solid oklch(1 0 0 / 0.16);
+    border-radius: 999px;
+    transition: background-color 160ms var(--d-ease);
+  }
+
+  .d-outro__pill--main {
+    font-weight: 700;
+    color: var(--d-night);
+    background: var(--d-lime);
+    border-color: transparent;
+  }
+
+  .d-outro__pill[aria-current="page"] {
+    border-color: var(--d-accent);
+  }
+
+  .d-outro__bottom {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.5rem 1.5rem;
+    width: 100%;
+    max-width: var(--d-max);
+    margin-inline: auto;
+    font-size: 0.875rem;
+    color: var(--d-on-night-soft);
+  }
+
+  @media (hover: hover) {
+    .d-outro__next:hover svg {
+      transform: translateX(0.75rem) rotate(-45deg);
+    }
+
+    .d-outro__pill:hover {
+      background: oklch(1 0 0 / 0.1);
+    }
+
+    .d-outro__pill--main:hover {
+      background: oklch(0.92 0.17 125);
+    }
+  }
+
+  .l-fullpage__section.d-outro,
+  .l-fp__panel.d-outro {
+    min-height: 0;
+    height: 100%;
+    overflow-y: auto;
+  }
+
+  @keyframes d-rise {
+    from {
+      transform: translateY(105%);
+    }
+  }
+
+  @keyframes d-fade {
+    from {
+      opacity: 0;
+      transform: translateY(1rem);
+    }
+  }
+
+  @keyframes d-float {
+    to {
+      transform: translateY(-1rem) rotate(2deg);
+    }
+  }
+
+  @keyframes d-drift {
+    to {
+      transform: translate(-8%, 14%) scale(1.15);
+    }
+  }
+
+  @keyframes d-scroll {
+    50% {
+      background-position: 50% 1.1rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .d-intro::before,
+    .d-intro::after,
+    .d-intro__art,
+    .d-intro__eyebrow,
+    .d-intro__line > span,
+    .d-intro__lead,
+    .d-intro__chips,
+    .d-intro__hint::after {
+      animation: none;
+    }
+
+    .d-nav__link,
+    .d-nav__menu svg,
+    .d-outro__next svg,
+    .d-outro__pill,
+    .d-intro__chip {
+      transition: none;
+    }
+  }
+}
