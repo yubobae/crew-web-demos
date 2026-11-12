@@ -1,40 +1,40 @@
 /* 진입점: 레이어 순서 선언 + 불러오기만 둔다 */
 @layer reset, tokens, base, layout, components, sections, utilities;
 
-@import "tokens.css?v=202611122101";
-@import "base/reset.css?v=202611122101";
-@import "base/document.css?v=202611122101";
+@import "tokens.css?v=202611122110";
+@import "base/reset.css?v=202611122110";
+@import "base/document.css?v=202611122110";
 
-@import "layout/l-kd-footer.css?v=202611122101";
-@import "layout/l-kd-section.css?v=202611122101";
+@import "layout/l-kd-footer.css?v=202611122110";
+@import "layout/l-kd-section.css?v=202611122110";
 
-@import "components/c-bar.css?v=202611122101";
-@import "components/c-book.css?v=202611122101";
-@import "components/c-btn.css?v=202611122101";
-@import "components/c-claim.css?v=202611122101";
-@import "components/c-dial.css?v=202611122101";
-@import "components/c-emblem.css?v=202611122101";
-@import "components/c-era-row.css?v=202611122101";
-@import "components/c-eranav.css?v=202611122101";
-@import "components/c-fig.css?v=202611122101";
-@import "components/c-film.css?v=202611122101";
-@import "components/c-head.css?v=202611122101";
-@import "components/c-ivnav.css?v=202611122101";
-@import "components/c-ivpart.css?v=202611122101";
-@import "components/c-letter.css?v=202611122101";
-@import "components/c-marquee.css?v=202611122101";
-@import "components/c-next.css?v=202611122101";
-@import "components/c-odo.css?v=202611122101";
-@import "components/c-page-head.css?v=202611122101";
-@import "components/c-rise.css?v=202611122101";
-@import "components/c-strip.css?v=202611122101";
-@import "components/c-tabs.css?v=202611122101";
-@import "components/c-tally.css?v=202611122101";
-@import "components/c-vcard.css?v=202611122101";
-@import "components/c-viewer.css?v=202611122101";
-@import "components/c-wall.css?v=202611122101";
-@import "components/c-yt.css?v=202611122101";
+@import "components/c-bar.css?v=202611122110";
+@import "components/c-book.css?v=202611122110";
+@import "components/c-btn.css?v=202611122110";
+@import "components/c-claim.css?v=202611122110";
+@import "components/c-dial.css?v=202611122110";
+@import "components/c-emblem.css?v=202611122110";
+@import "components/c-era-row.css?v=202611122110";
+@import "components/c-eranav.css?v=202611122110";
+@import "components/c-fig.css?v=202611122110";
+@import "components/c-film.css?v=202611122110";
+@import "components/c-head.css?v=202611122110";
+@import "components/c-ivnav.css?v=202611122110";
+@import "components/c-ivpart.css?v=202611122110";
+@import "components/c-letter.css?v=202611122110";
+@import "components/c-marquee.css?v=202611122110";
+@import "components/c-next.css?v=202611122110";
+@import "components/c-odo.css?v=202611122110";
+@import "components/c-page-head.css?v=202611122110";
+@import "components/c-rise.css?v=202611122110";
+@import "components/c-strip.css?v=202611122110";
+@import "components/c-tabs.css?v=202611122110";
+@import "components/c-tally.css?v=202611122110";
+@import "components/c-vcard.css?v=202611122110";
+@import "components/c-viewer.css?v=202611122110";
+@import "components/c-wall.css?v=202611122110";
+@import "components/c-yt.css?v=202611122110";
 
-@import "sections/s-interview.css?v=202611122101";
+@import "sections/s-interview.css?v=202611122110";
 
-@import "utilities/u-visually-hidden.css?v=202611122101";
+@import "utilities/u-visually-hidden.css?v=202611122110";

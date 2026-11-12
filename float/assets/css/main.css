@@ -1,0 +1,98 @@
+/* 떠다니는 오브젝트 데모. 큰 글자 + 기울어진 CSS 스티커 8개.
+   스티커 바깥(.f-st)의 위치·기울기는 main.js 가 매 프레임 바꾸고(마우스 깊이감·끌기 스프링·스크롤 흩어짐),
+   안쪽(.f-in)은 CSS 로 천천히 둥실거린다. 동작 줄이기에서는 둥실거림과 깊이감을 끈다. */
+@layer reset, tokens, base, layout, sections, utilities;
+
+@layer reset {
+  *, *::before, *::after { box-sizing: border-box; }
+  body, h1, h2, p, ul { margin: 0; padding: 0; }
+  ul { list-style: none; }
+}
+
+@layer tokens {
+  :root {
+    --bg: oklch(0.15 0.03 300);
+    --cream: oklch(0.93 0.04 70);
+    --soft: oklch(0.72 0.04 300);
+    --line: oklch(0.3 0.04 300);
+    --font: "Pretendard Variable", Pretendard, system-ui, sans-serif;
+    --gutter: clamp(1.25rem, 5vw, 4rem);
+  }
+}
+
+@layer base {
+  html { color-scheme: dark; }
+  body { font-family: var(--font); color: var(--cream); background: var(--bg); -webkit-font-smoothing: antialiased; overflow-x: clip; }
+}
+
+@layer utilities {
+  .u-visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+}
+
+@layer sections {
+  /* ───── 히어로 ───── */
+  .f-hero { position: relative; display: grid; place-content: center; justify-items: center; gap: 0.6rem; min-height: 100svh; padding: 6rem var(--gutter) 4rem; overflow: hidden; text-align: center; isolation: isolate; }
+  .f-grid { position: absolute; inset: 0; z-index: -2; background:
+    linear-gradient(var(--line) 1px, transparent 1px) 0 0 / 100% 7rem,
+    linear-gradient(90deg, var(--line) 1px, transparent 1px) 0 0 / 7rem 100%;
+    mask-image: radial-gradient(ellipse at center, #000 20%, transparent 75%); opacity: 0.55; }
+  .f-stripe { position: absolute; left: 50%; width: 4.5rem; height: 7rem; z-index: -1; transform: translateX(-50%); background: linear-gradient(90deg, oklch(0.7 0.22 25) 0 20%, oklch(0.82 0.17 80) 20% 40%, oklch(0.78 0.17 150) 40% 60%, oklch(0.7 0.16 235) 60% 80%, oklch(0.62 0.22 300) 80%); }
+  .f-stripe--top { top: 0; }
+  .f-stripe--bot { bottom: 0; }
+
+  .f-chip { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.4rem 0.9rem; font-size: 0.75rem; font-weight: 800; letter-spacing: 0.14em; border: 1px solid var(--line); border-radius: 999px; background: oklch(0.2 0.03 300 / 0.7); }
+  .f-chip i { width: 0.5rem; aspect-ratio: 1; background: oklch(0.78 0.17 150); border-radius: 50%; }
+  .f-title { display: grid; font-size: clamp(3.6rem, 17vw, 13rem); font-weight: 900; line-height: 0.82; letter-spacing: -0.06em; color: var(--cream); text-shadow: 0 0.04em 0 oklch(0 0 0 / 0.35); }
+  .f-title span:last-child { font-size: 0.62em; letter-spacing: -0.05em; }
+  .f-sub { font-size: clamp(0.9rem, 1.6vw, 1.1rem); letter-spacing: 0.3em; color: var(--soft); }
+  .f-hint { margin-top: 1.5rem; font-size: 0.8rem; color: var(--soft); animation: f-nudge 2.4s ease-in-out infinite; }
+  @keyframes f-nudge { 50% { transform: translate(6px, -4px); opacity: 0.6; } }
+
+  /* ───── 스티커 ───── */
+  .f-stickers { position: absolute; inset: 0; pointer-events: none; }
+  .f-st { position: absolute; left: calc(var(--x) * 1%); top: calc(var(--y) * 1%); width: calc(clamp(4.2rem, 10vw, 8rem) * var(--d)); aspect-ratio: 1; margin: calc(clamp(4.2rem, 10vw, 8rem) * var(--d) / -2) 0 0 calc(clamp(4.2rem, 10vw, 8rem) * var(--d) / -2); pointer-events: auto; cursor: grab; touch-action: none; will-change: transform; }
+  .f-st.is-drag { cursor: grabbing; z-index: 3; }
+  .f-in { position: absolute; inset: 0; display: grid; place-items: center; border-radius: 22%; box-shadow: 0 0.6rem 1.2rem oklch(0 0 0 / 0.45), inset 0 0 0 1px oklch(1 0 0 / 0.25); animation: f-bob calc(4s + var(--b) * 0.45s) ease-in-out calc(var(--b) * -0.7s) infinite; transition: scale 300ms cubic-bezier(0.34, 1.56, 0.64, 1); }
+  .f-st.is-drag .f-in { scale: 1.12; }
+  @keyframes f-bob { 50% { transform: translateY(-0.7rem) rotate(2deg); } }
+
+  .s-cursor { background: linear-gradient(145deg, oklch(0.65 0.22 295), oklch(0.5 0.22 275)); }
+  .s-fps { align-content: center; gap: 0; background: #0b0b10; color: oklch(0.85 0.2 135); font-weight: 900; }
+  .s-fps b { font-size: clamp(1.4rem, 4vw, 2.8rem); line-height: 1; letter-spacing: -0.04em; }
+  .s-fps small { font-size: clamp(0.55rem, 1.2vw, 0.85rem); letter-spacing: 0.2em; }
+  .s-toggle { background: var(--cream); }
+  .s-toggle i { position: relative; width: 64%; height: 34%; background: oklch(0.7 0.2 150); border-radius: 999px; }
+  .s-toggle i::after { content: ""; position: absolute; top: 12%; right: 8%; height: 76%; aspect-ratio: 1; background: #fff; border-radius: 50%; box-shadow: 0 1px 4px oklch(0 0 0 / 0.4); }
+  .s-heart { background: linear-gradient(145deg, oklch(0.72 0.22 15), oklch(0.58 0.24 5)); border-radius: 50%; }
+  .s-win { display: block; position: absolute; background: oklch(0.96 0.01 80); }
+  .s-win i { position: absolute; top: 12%; width: 9%; aspect-ratio: 1; border-radius: 50%; background: oklch(0.7 0.2 25); }
+  .s-win i:nth-of-type(1) { left: 10%; }
+  .s-win i:nth-of-type(2) { left: 24%; background: oklch(0.82 0.17 85); }
+  .s-win i:nth-of-type(3) { left: 38%; background: oklch(0.75 0.17 150); }
+  .s-win u { position: absolute; left: 10%; height: 9%; background: oklch(0.75 0.03 280); border-radius: 999px; text-decoration: none; }
+  .s-win u:nth-of-type(1) { top: 40%; width: 70%; background: oklch(0.55 0.2 280); }
+  .s-win u:nth-of-type(2) { top: 58%; width: 48%; }
+  .s-code { font-size: clamp(1.1rem, 3vw, 2.1rem); font-weight: 900; letter-spacing: -0.06em; color: oklch(0.25 0.04 60); background: linear-gradient(145deg, oklch(0.88 0.16 90), oklch(0.78 0.17 65)); }
+  .s-type { font-size: clamp(1.6rem, 4.6vw, 3.4rem); font-weight: 900; letter-spacing: -0.06em; color: oklch(0.22 0.04 280); background: var(--cream); }
+  .s-pal { grid-template-columns: 1fr 1fr; gap: 12%; padding: 20%; background: oklch(0.34 0.05 300); }
+  .s-pal i { border-radius: 50%; }
+  .s-pal i:nth-child(1) { background: oklch(0.7 0.22 25); }
+  .s-pal i:nth-child(2) { background: oklch(0.82 0.17 85); }
+  .s-pal i:nth-child(3) { background: oklch(0.75 0.17 150); }
+  .s-pal i:nth-child(4) { background: oklch(0.65 0.2 270); }
+
+  /* ───── 아래 설명 ───── */
+  .f-facts { max-width: 64rem; margin: 0 auto; padding: 5rem var(--gutter) 6rem; }
+  .f-facts h2 { font-size: clamp(1.6rem, 4vw, 2.6rem); font-weight: 900; letter-spacing: -0.04em; }
+  .f-facts ul { display: grid; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); gap: 1rem; margin-top: 1.75rem; }
+  .f-facts li { padding: 1.4rem; font-size: 0.95rem; line-height: 1.65; color: var(--soft); background: oklch(0.2 0.03 300); border: 1px solid var(--line); border-radius: 1.4rem; }
+  .f-facts b { display: block; margin-bottom: 0.4rem; font-size: 1.15rem; color: var(--cream); }
+
+  @media (max-width: 719px) {
+    .f-stripe { width: 3rem; height: 4.5rem; }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .f-in, .f-hint { animation: none; }
+}
