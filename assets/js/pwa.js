@@ -36,7 +36,7 @@
   }
 
   // 설치 안내
-  const standalone = matchMedia("(display-mode: standalone)").matches || navigator.standalone === true;
+  const standalone = ["standalone", "fullscreen", "minimal-ui", "window-controls-overlay"].some((m) => matchMedia(`(display-mode: ${m})`).matches) || navigator.standalone === true;
   const installButtons = () => [...document.querySelectorAll("[data-pwa-install]")];
   const iosHints = () => [...document.querySelectorAll("[data-pwa-ios]")];
   let deferred = null;
