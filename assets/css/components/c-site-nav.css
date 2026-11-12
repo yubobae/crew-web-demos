@@ -135,8 +135,11 @@
     position: fixed;
     inset: calc(var(--tr-nav-h) + var(--space-5)) var(--space-3) auto auto;
     width: min(100% - var(--space-6), 22rem);
+    max-height: calc(100svh - var(--tr-nav-h) - var(--space-5) - var(--space-3) - var(--pwa-off, 0px));
     margin: 0;
     padding: var(--space-3);
+    overflow-y: auto;
+    overscroll-behavior: contain;
     color: var(--tr-ink);
     background: var(--tr-paper);
     border: 1px solid var(--tr-line);

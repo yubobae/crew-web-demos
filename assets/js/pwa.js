@@ -130,7 +130,7 @@
         .c-site-nav{top:calc(var(--space-3, .75rem) + var(--pwa-off,0px))}
         .d-nav{top:calc(.75rem + var(--pwa-off,0px))}
         .c-site-nav__panel{top:calc(var(--tr-nav-h) + var(--space-5) + var(--pwa-off,0px))}
-        .d-nav__panel{top:calc(.75rem + var(--d-nav-h) + .5rem + var(--pwa-off,0px))}
+        .d-nav__panel{top:calc(.75rem + var(--d-nav-h) + .5rem + var(--pwa-off,0px));max-height:calc(100svh - var(--d-nav-h) - 2.5rem - var(--pwa-off,0px))}
         @media (max-width:480px){.pwa-toast__tag{display:none}}
         @media (prefers-reduced-motion:reduce){.pwa-toast{transition:none}}`;
       document.head.append(s);
