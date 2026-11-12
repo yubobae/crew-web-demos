@@ -44,7 +44,7 @@
     scroll: { demo: "scroll", art: "std-width", title: ["스크롤이", "*이야기*를 이끕니다"], lead: "스크롤 연동, 부드러운 이동, 패럴랙스, 가로 넘김과 스냅. 머리줄의 메뉴로 구간을 오가 보세요.", label: "실험실", keepHeader: true, intro: { before: "main" }, outro: "body" },
     "museum/index": { demo: "museum", art: "art-handover", title: ["50년의 믿음,", "*다음 100년*의 약속"], lead: "OO 50 디지털 역사관 구성 데모. 구간이 한 장씩 덮이며 넘어가고, 효과 재생 방식을 골라 볼 수 있어요.", label: "OO 50 · 가상 고객", keepHeader: true, intro: { track: ".l-fp" }, outro: { fpPanel: true } },
     "museum/timeline": { demo: "museum", art: "step-5", title: ["50년의", "*발자취*"], lead: "연대기·사진·숫자·인터뷰로 이어지는 하위 페이지 구성이에요. 모두 예시 문구입니다.", label: "OO 50 · 가상 고객", header: ".l-mu-header", intro: { before: "main" }, outro: "body" },
-    immersive: { demo: "immersive", art: "hero-right", title: ["스크롤로", "*움직이는* 카메라"], lead: "스크롤 하나로 카메라가 움직이고 장면이 영화처럼 이어져요. 마우스를 움직이면 깊이감이 살아나요.", label: "실험실", header: ".l-bar, .l-bar__line", intro: { before: "main" }, outro: "body" },
+    immersive: { demo: "immersive", art: "hero-right", title: ["스크롤로", "*움직이는* 카메라"], lead: "스크롤 하나로 카메라가 움직이고 장면이 영화처럼 이어져요. 마우스를 움직이면 깊이감이 살아나요.", label: "실험실", intro: { before: "main" }, outro: "body" },
     "trends/index": { demo: "trends", art: "about-art", sub: "trends/index", header: ".c-site-nav", intro: { before: ".c-page-intro", replace: true }, outro: "body", drop: ".c-page-outro" },
     "trends/cta": { demo: "trends", art: "contact-art", sub: "trends/cta", header: ".c-site-nav", intro: { before: ".c-page-intro", replace: true }, outro: "body", drop: ".c-page-outro" },
     "trends/bento": { demo: "trends", art: "art-design", sub: "trends/bento", header: ".c-site-nav", intro: { before: ".c-page-intro", replace: true }, outro: "body", drop: ".c-page-outro" },
@@ -162,7 +162,8 @@
     return el;
   };
   /* 기존 첫 화면에 h1 이 이미 있으면 소개 장면의 제목은 h2 로 낮춰 h1 을 하나만 둔다 */
-  const intro = makeIntro(cfg.intro?.track ? "section" : "section");
+  const intro = makeIntro();
+  intro.dataset.theme = "light"; // 역사관 머리줄이 밝은 면 글자색으로 바뀌게
   const slot = cfg.intro;
   if (slot?.track) {
     const track = $(slot.track);
@@ -212,8 +213,10 @@
   } else if (o?.fpPanel) {
     outro.classList.add("l-fp__panel", "l-fp__panel--auto");
     outro.dataset.fpAuto = "";
-    const fp = $(".l-fp main") ?? $(".l-fp");
-    fp.append(outro);
+    outro.dataset.theme = "dark";
+    const oldFoot = $(".l-fp .l-footer");
+    if (oldFoot) oldFoot.replaceWith(outro);
+    else ($(".l-fp main") ?? $(".l-fp")).append(outro);
   } else {
     document.body.append(outro);
   }

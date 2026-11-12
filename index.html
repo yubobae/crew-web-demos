@@ -15,8 +15,8 @@
   <link rel="icon" href="favicon.ico" sizes="48x48">
   <link rel="icon" type="image/png" sizes="32x32" href="assets/media/icons/favicon-32.png">
   <link rel="apple-touch-icon" href="assets/media/icons/apple-touch-icon.png">
-  <link rel="stylesheet" href="assets/css/main.css">
-  <script type="module" src="assets/js/main.js"></script>
+  <link rel="stylesheet" href="assets/css/main.css?v=202611121011">
+  <script type="module" src="assets/js/main.js?v=202611121011"></script>
 </head>
 <body data-effect="cursor scroll-progress">
   <a class="u-visually-hidden" href="#main">본문 바로가기</a>
@@ -25,9 +25,8 @@
       <a class="c-site-nav__logo" href="index.html"><span class="c-site-nav__mark" aria-hidden="true"></span>보람찬크루</a>
       <nav class="c-site-nav__links" aria-label="주 메뉴" data-module="glider" data-glide="hover">
         <span class="c-site-nav__glider js-glider" aria-hidden="true"></span>
-        <a class="c-site-nav__link js-glide-item" href="index.html" aria-current="page">크루 소개</a>
         <a class="c-site-nav__link js-glide-item" href="prototypes.html">작업</a>
-        <a class="c-site-nav__link js-glide-item" href="lab.html">실험실</a>
+        <a class="c-site-nav__link js-glide-item" href="lab.html">쇼케이스</a>
         <a class="c-site-nav__link js-glide-item" href="index.html#process">일하는 방식</a>
         <a class="c-site-nav__link js-glide-item" href="index.html#contact">문의</a>
       </nav>
@@ -36,20 +35,25 @@
     <div class="c-site-nav__panel" id="site-menu" popover>
       <div class="c-site-nav__group c-site-nav__group--pages">
         <p class="c-site-nav__group-title">보람찬크루</p>
-        <a class="c-site-nav__item" href="index.html">크루 소개</a>
         <a class="c-site-nav__item" href="prototypes.html">작업</a>
-        <a class="c-site-nav__item" href="lab.html">실험실</a>
+        <a class="c-site-nav__item" href="lab.html">쇼케이스</a>
         <a class="c-site-nav__item" href="index.html#process">일하는 방식</a>
         <a class="c-site-nav__item" href="index.html#contact">문의</a>
       </div>
       <div class="c-site-nav__group">
-        <p class="c-site-nav__group-title">바로 가기</p>
-        <a class="c-site-nav__item" href="prototype-kogas.html">KOGAS 40 역사관 <span class="c-site-nav__item-desc">대표 작업</span></a>
-        <a class="c-site-nav__item" href="prototype-sgwon.html">승가원 30주년 역사관 <span class="c-site-nav__item-desc">대표 작업</span></a>
-        <a class="c-site-nav__item" href="prototype-kdic.html">예금보험공사 30주년 역사관 <span class="c-site-nav__item-desc">대표 작업</span></a>
-        <a class="c-site-nav__item" href="prototype/kogas/" rel="nofollow noopener" target="_blank">KOGAS 데모 바로 보기 <span class="c-site-nav__item-desc">데모</span></a>
-        <a class="c-site-nav__item" href="prototype/sgwon/" rel="nofollow noopener" target="_blank">승가원 데모 바로 보기 <span class="c-site-nav__item-desc">데모</span></a>
-        <a class="c-site-nav__item" href="prototype/kdic/" rel="nofollow noopener" target="_blank">예금보험공사 데모 바로 보기 <span class="c-site-nav__item-desc">데모</span></a>
+        <p class="c-site-nav__group-title">대표 작업</p>
+        <a class="c-site-nav__item" href="prototype-kogas.html">KOGAS 40 역사관</a>
+        <a class="c-site-nav__item" href="prototype-sgwon.html">승가원 30주년 역사관</a>
+        <a class="c-site-nav__item" href="prototype-kdic.html">예금보험공사 30주년 역사관</a>
+      </div>
+      <div class="c-site-nav__group">
+        <p class="c-site-nav__group-title">쇼케이스</p>
+        <a class="c-site-nav__item" href="ui-kit/">UI 키트</a>
+        <a class="c-site-nav__item" href="effects/">인터랙션 효과</a>
+        <a class="c-site-nav__item" href="scroll/">스크롤</a>
+        <a class="c-site-nav__item" href="museum/">디지털 역사관</a>
+        <a class="c-site-nav__item" href="trends/">요즘 UI</a>
+        <a class="c-site-nav__item" href="immersive/">몰입형 3D 스크롤</a>
       </div>
     </div>
   </header>
@@ -67,7 +71,7 @@
             <p class="c-run-lead">기획의 의도를 살린 화면 설계부터 프레임워크 없는 가벼운 코드, 정교한 인터랙션까지. 스크롤을 내려 보세요.</p>
             <div class="c-run-actions" data-effect="magnetic">
               <a class="c-btn" href="#work">작업 보기 <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-              <a class="c-btn c-btn--line" href="#about">크루 소개</a>
+              <a class="c-btn c-btn--line" href="#showcase">쇼케이스 보기</a>
             </div>
           </div>
         </section>
@@ -76,7 +80,7 @@
           <div class="c-run-3d" aria-hidden="true"><div class="c-run-world c-run-world--tunnel js-tunnel"></div></div>
           <div class="c-run-copy c-run-copy--right">
             <p class="c-run-eyebrow">02 · 만드는 것</p>
-            <h2 class="c-run-title" id="svc-title">GO<br>DEEPER</h2>
+            <h2 class="c-run-title" id="svc-title">손끝까지<br>정교하게</h2>
             <ul class="c-run-list">
               <li class="c-run-list__item"><span class="c-run-list__no">DESIGN</span><span class="c-run-list__name">화면 설계 · 디자인</span><span class="c-run-list__desc">기획의 의도를 살린 구조와 시안, 사진과 글이 가장 잘 읽히는 첫 화면.</span></li>
               <li class="c-run-list__item"><span class="c-run-list__no">BUILD</span><span class="c-run-list__name">퍼블리싱 · 개발</span><span class="c-run-list__desc">반응형 사이트를 프레임워크 없이. HTML·CSS·순수 JS 모듈.</span></li>
@@ -90,7 +94,7 @@
           <div class="c-run-clouds" aria-hidden="true"></div>
           <div class="c-run-copy c-run-copy--center">
             <p class="c-run-eyebrow">03 · 작업</p>
-            <h2 class="c-run-title c-run-title--sm" id="work-title">PROTOTYPES</h2>
+            <h2 class="c-run-title c-run-title--sm" id="work-title">직접 만든<br>세 개의 역사관</h2>
             <p class="c-run-lead">실제 프로젝트 전에 같은 공개 자료로 다시 만들어 본 세 개의 디지털 역사관. 눌러서 직접 써 보세요.</p>
           </div>
           <div class="c-run-works">
@@ -107,7 +111,7 @@
             <p class="c-run-marquee__row js-row" data-dir="-1">PURE CSS 3D · SCROLL DRIVEN · NO LIBRARY · PURE CSS 3D · SCROLL DRIVEN · NO LIBRARY ·</p>
           </div>
           <div class="c-run-copy c-run-copy--center">
-            <h2 class="c-run-title c-run-title--sm" id="proc-title">FIVE STEPS<br>TO LAUNCH</h2>
+            <h2 class="c-run-title c-run-title--sm" id="proc-title">다섯 걸음으로<br>오픈까지</h2>
             <ol class="c-run-steps">
               <li class="c-run-steps__item">구성 확정<small>1개월</small></li>
               <li class="c-run-steps__item">디자인<small>2개월</small></li>
@@ -118,32 +122,7 @@
           </div>
         </section>
 
-        <section class="c-run-scene c-run-scene--cta" id="standards" data-name="STANDARDS" aria-labelledby="std-title">
-          <div class="c-run-copy c-run-copy--center">
-            <p class="c-run-eyebrow">04 · 우리가 지키는 기준</p>
-            <h2 class="c-run-title c-run-title--sm" id="std-title">모든 사이트는<br>같은 기준을 거칩니다</h2>
-            <div class="c-run-nums">
-              <p class="c-run-num"><span class="c-run-num__v"><span class="js-cnt" data-to="60">60</span><i>fps</i></span><span class="c-run-num__l">끊기지 않는 움직임</span></p>
-              <p class="c-run-num"><span class="c-run-num__v"><span class="js-cnt" data-to="5">5</span><i>폭</i></span><span class="c-run-num__l">모든 화면 크기 검수</span></p>
-              <p class="c-run-num"><span class="c-run-num__v"><span class="js-cnt" data-to="0">0</span><i>개</i></span><span class="c-run-num__l">프레임워크</span></p>
-            </div>
-          </div>
-        </section>
-
-        <section class="c-run-scene c-run-scene--horizon" id="contact" data-name="CONTACT" aria-labelledby="contact-title">
-          <div class="c-run-horizon" aria-hidden="true"></div>
-          <div class="c-run-copy c-run-copy--center">
-            <p class="c-run-eyebrow">05 · 문의</p>
-            <h2 class="c-run-title c-run-title--sm" id="contact-title">다음 작업을<br>함께 이야기해요</h2>
-            <p class="c-run-lead">보람찬크루의 작업과 실험은 계속 이어집니다. 프로젝트 협업이나 작업물 이야기, 언제든 편하게.</p>
-            <div class="c-run-actions" data-effect="magnetic">
-              <a class="c-btn" href="prototypes.html">작업 보기 <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-              <a class="c-btn c-btn--line" href="lab.html">실험실 둘러보기</a>
-            </div>
-          </div>
-        </section>
-
-        <div class="c-run-hud" aria-hidden="true"><i class="c-run-hud__dot is-on"></i><i class="c-run-hud__dot"></i><i class="c-run-hud__dot"></i><i class="c-run-hud__dot"></i><i class="c-run-hud__dot"></i><i class="c-run-hud__dot"></i></div>
+        <div class="c-run-hud" aria-hidden="true"><i class="c-run-hud__dot is-on"></i><i class="c-run-hud__dot"></i><i class="c-run-hud__dot"></i><i class="c-run-hud__dot"></i></div>
       </div>
     </div>
 
@@ -170,35 +149,62 @@
       </div>
     </section>
 
-    <section class="l-section" id="lab" aria-labelledby="lab-title">
+    <section class="l-section" id="showcase" aria-labelledby="lab-title">
       <div class="l-section__head" data-effect="reveal">
-        <span class="l-section__num">05</span>
-        <h2 class="l-section__title" id="lab-title">실험실</h2>
-        <p class="l-section__desc">새 작업에 쓸 부품과 움직임을 먼저 만들어 보는 곳. 직접 눌러 볼 수 있어요.</p>
+        <span class="l-section__num">02</span>
+        <h2 class="l-section__title" id="lab-title">쇼케이스</h2>
+        <p class="l-section__desc">새 작업에 쓸 부품과 움직임을 먼저 만들어 보는 곳. 눌러서 직접 써 보세요.</p>
       </div>
       <div class="c-showcase" data-effect="reveal tilt-grid">
         <a class="c-showcase__card c-card js-reveal js-tilt" href="immersive/">
           <span class="c-showcase__media" aria-hidden="true"><img class="c-showcase__pc" src="assets/media/shots/demo-immersive-pc.webp" width="1200" height="750" alt="" loading="lazy" decoding="async"><img class="c-showcase__mo" src="assets/media/shots/demo-immersive-mo.webp" width="600" height="1298" alt="" loading="lazy" decoding="async"></span>
-          <span class="c-showcase__no">LAB 06</span>
+          <span class="c-showcase__no">DEMO 06</span>
           <span class="c-showcase__title">몰입형 3D 스크롤</span>
           <span class="c-showcase__desc">스크롤 하나로 카메라가 움직이고 장면이 영화처럼 이어집니다. 상자 더미, 터널, 구름층, 마퀴, 글자 등장, 수평선까지 6장면.</span>
         </a>
         <a class="c-showcase__card c-card js-reveal js-tilt" href="trends/">
           <span class="c-showcase__media" aria-hidden="true"><img class="c-showcase__pc" src="assets/media/shots/demo-trends-pc.webp" width="1200" height="750" alt="" loading="lazy" decoding="async"><img class="c-showcase__mo" src="assets/media/shots/demo-trends-mo.webp" width="600" height="1298" alt="" loading="lazy" decoding="async"></span>
-          <span class="c-showcase__no">LAB 05</span>
+          <span class="c-showcase__no">DEMO 05</span>
           <span class="c-showcase__title">요즘 UI</span>
           <span class="c-showcase__desc">디자인 갤러리에서 자주 보이는 패턴을 8쪽으로. 내비게이션·CTA·벤토·푸터·마이크로·히어로·섹션·폼.</span>
         </a>
         <a class="c-showcase__card c-card js-reveal js-tilt" href="museum/">
           <span class="c-showcase__media" aria-hidden="true"><img class="c-showcase__pc" src="assets/media/shots/demo-museum-pc.webp" width="1200" height="750" alt="" loading="lazy" decoding="async"><img class="c-showcase__mo" src="assets/media/shots/demo-museum-mo.webp" width="600" height="1298" alt="" loading="lazy" decoding="async"></span>
-          <span class="c-showcase__no">LAB 04</span>
+          <span class="c-showcase__no">DEMO 04</span>
           <span class="c-showcase__title">디지털 역사관 구성</span>
           <span class="c-showcase__desc">풀페이지 메인과 연대기 하위 페이지. 효과 재생 방식(한 번·매번·되감기·스크롤)을 골라 봅니다.</span>
         </a>
+        <a class="c-showcase__card c-card js-reveal js-tilt" href="scroll/">
+          <span class="c-showcase__media" aria-hidden="true"><img class="c-showcase__pc" src="assets/media/shots/demo-scroll-pc.webp" width="1200" height="750" alt="" loading="lazy" decoding="async"><img class="c-showcase__mo" src="assets/media/shots/demo-scroll-mo.webp" width="600" height="1298" alt="" loading="lazy" decoding="async"></span>
+          <span class="c-showcase__no">DEMO 03</span>
+          <span class="c-showcase__title">스크롤 인터랙션</span>
+          <span class="c-showcase__desc">GNB와 푸터가 있는 실제 페이지 구조에서 부드러운 스크롤·섹션 넘김·패럴랙스를 봅니다.</span>
+        </a>
+        <a class="c-showcase__card c-card js-reveal js-tilt" href="effects/">
+          <span class="c-showcase__media" aria-hidden="true"><img class="c-showcase__pc" src="assets/media/shots/demo-effects-pc.webp" width="1200" height="750" alt="" loading="lazy" decoding="async"><img class="c-showcase__mo" src="assets/media/shots/demo-effects-mo.webp" width="600" height="1298" alt="" loading="lazy" decoding="async"></span>
+          <span class="c-showcase__no">DEMO 02</span>
+          <span class="c-showcase__title">인터랙션 효과</span>
+          <span class="c-showcase__desc">숫자 회전 카운터, 풀페이지, 무한 슬라이더, 모션 탭, 스포트라이트 카드.</span>
+        </a>
+        <a class="c-showcase__card c-card js-reveal js-tilt" href="ui-kit/">
+          <span class="c-showcase__media" aria-hidden="true"><img class="c-showcase__pc" src="assets/media/shots/demo-ui-kit-pc.webp" width="1200" height="750" alt="" loading="lazy" decoding="async"><img class="c-showcase__mo" src="assets/media/shots/demo-ui-kit-mo.webp" width="600" height="1298" alt="" loading="lazy" decoding="async"></span>
+          <span class="c-showcase__no">DEMO 01</span>
+          <span class="c-showcase__title">UI 키트</span>
+          <span class="c-showcase__desc">shadcn/ui의 디자인과 인터랙션을 옮긴 기본 부품 12종. 라이트·다크 모드.</span>
+        </a>
       </div>
-      <div class="c-btn-row" data-effect="magnetic"><a class="c-btn c-btn--line" href="lab.html">실험실 전체 보기 <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+      <div class="c-btn-row" data-effect="magnetic"><a class="c-btn c-btn--line" href="lab.html">쇼케이스 전체 보기 <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
     </section>
   </section>
+    <section class="l-section" id="contact" aria-labelledby="contact-title">
+      <div class="c-contact" data-effect="reveal magnetic">
+        <img class="c-contact__art" src="assets/media/art/contact-art.webp" width="640" height="448" alt="" loading="lazy" decoding="async">
+        <p class="c-contact__eyebrow">문의</p>
+        <h2 class="c-contact__title" id="contact-title">다음 작업을<br>함께 이야기해요</h2>
+        <p class="c-contact__text">작은 사이트라도 기획의 의도가 살아 있게. 프로젝트 협업이나 작업물 이야기, 언제든 편하게.</p>
+        <div class="c-contact__actions"><a class="c-btn" href="prototypes.html">작업 보기 <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a class="c-btn c-btn--ghost-night" href="lab.html">쇼케이스 보기</a></div>
+      </div>
+    </section>
   </main>
 
   <footer class="l-curtain__foot c-curtain-footer">
@@ -207,13 +213,11 @@
       <p class="c-curtain-footer__label">다음으로</p>
       <a class="c-curtain-footer__next" href="prototypes.html">작업 보기 <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
     </div>
-    <nav class="c-curtain-footer__demos" aria-label="데모 바로가기">
-      <a class="c-curtain-footer__demo" href="prototypes.html">프로토타입</a>
-      <a class="c-curtain-footer__demo" href="ui-kit/">UI 키트</a>
-      <a class="c-curtain-footer__demo" href="effects/">인터랙션 효과</a>
-      <a class="c-curtain-footer__demo" href="scroll/">스크롤</a>
-      <a class="c-curtain-footer__demo" href="museum/">디지털 역사관</a>
-      <a class="c-curtain-footer__demo" href="trends/">요즘 UI</a>
+    <nav class="c-curtain-footer__demos" aria-label="바로가기">
+      <a class="c-curtain-footer__demo" href="prototypes.html">작업</a>
+      <a class="c-curtain-footer__demo" href="lab.html">쇼케이스</a>
+      <a class="c-curtain-footer__demo" href="index.html#process">일하는 방식</a>
+      <a class="c-curtain-footer__demo" href="index.html#contact">문의</a>
     </nav>
     <div class="c-curtain-footer__bottom"><span>© 2026 보람찬크루</span><span>HTML · CSS · 순수 JS 모듈 · 프레임워크 없음</span></div>
   </footer>

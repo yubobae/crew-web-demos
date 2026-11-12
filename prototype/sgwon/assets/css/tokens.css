@@ -469,35 +469,35 @@
 
 /* ===================================================================
    프로토타입: 승가원 30주년 디지털 역사관 다시 만들기 — --sg-* 팔레트
-   따뜻한 종이색 + 감 주황 + 잎 초록. 명조(Noto Serif KR) 제목 + Pretendard 본문.
+   BI 색(연두·하늘·노랑) + 흰 종이색, 짙은 숲색 글자. 둥근 고딕(Jua) 제목 + Pretendard 본문.
    가스공사 프로토타입(파랑·청록, 산세리프)과 일부러 다른 분위기.
    =================================================================== */
 @layer tokens {
   :root {
-    --font-serif: "Noto Serif KR", "Nanum Myeongjo", "Apple SD Gothic Neo", serif;
-    --sg-paper: oklch(0.975 0.014 85);
-    --sg-paper-2: oklch(0.945 0.026 80);
-    --sg-paper-3: oklch(0.9 0.038 75);
-    --sg-cream: oklch(0.992 0.008 85);
-    --sg-ink: oklch(0.27 0.03 55);
-    --sg-ink-soft: oklch(0.47 0.03 60);
-    --sg-line: oklch(0.27 0.03 55 / 14%);
-    --sg-persimmon: oklch(0.66 0.16 48);
-    --sg-persimmon-deep: oklch(0.54 0.15 45);
-    --sg-persimmon-soft: oklch(0.66 0.16 48 / 13%);
-    --sg-leaf: oklch(0.6 0.1 150);
-    --sg-leaf-soft: oklch(0.6 0.1 150 / 15%);
-    --sg-sun: oklch(0.86 0.13 88);
-    --sg-sky: oklch(0.82 0.07 230);
+    --font-serif: "Jua", "Pretendard Variable", "Apple SD Gothic Neo", sans-serif;
+    --sg-paper: oklch(0.984 0.012 120);
+    --sg-paper-2: oklch(0.956 0.034 122);
+    --sg-paper-3: oklch(0.92 0.06 120);
+    --sg-cream: oklch(0.996 0.005 120);
+    --sg-ink: oklch(0.25 0.045 165);
+    --sg-ink-soft: oklch(0.46 0.04 165);
+    --sg-line: oklch(0.25 0.045 165 / 14%);
+    --sg-persimmon: oklch(0.5 0.15 145);
+    --sg-persimmon-deep: oklch(0.4 0.12 148);
+    --sg-persimmon-soft: oklch(0.7 0.19 128 / 16%);
+    --sg-leaf: oklch(0.79 0.21 128);
+    --sg-leaf-soft: oklch(0.79 0.21 128 / 18%);
+    --sg-sun: oklch(0.83 0.17 85);
+    --sg-sky: oklch(0.68 0.14 235);
     --sg-white: oklch(1 0 0);
-    --sg-shade: oklch(0.22 0.04 50 / 50%);
-    --sg-shade-strong: oklch(0.2 0.04 50 / 78%);
-    --sg-scrim: oklch(0.18 0.03 50 / 94%);
-    --sg-glass: oklch(0.99 0.01 85 / 80%);
-    --sg-glass-dark: oklch(0.22 0.04 50 / 38%);
+    --sg-shade: oklch(0.2 0.05 165 / 48%);
+    --sg-shade-strong: oklch(0.18 0.05 165 / 78%);
+    --sg-scrim: oklch(0.17 0.05 165 / 92%);
+    --sg-glass: oklch(0.992 0.01 120 / 82%);
+    --sg-glass-dark: oklch(0.2 0.05 165 / 38%);
     --sg-line-light: oklch(1 0 0 / 38%);
-    --sg-shadow: 0 18px 50px -24px oklch(0.3 0.06 50 / 42%);
-    --sg-shadow-float: 0 10px 30px -12px oklch(0.3 0.06 50 / 38%);
+    --sg-shadow: 0 18px 50px -24px oklch(0.3 0.07 165 / 34%);
+    --sg-shadow-float: 0 10px 30px -12px oklch(0.3 0.07 165 / 30%);
     --sg-ease: cubic-bezier(0.22, 1, 0.36, 1);
     --sg-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
     --sg-dur: 450ms;

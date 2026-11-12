@@ -1,4 +1,4 @@
-/* 하위 페이지 머리: 위는 넓은 사진, 그 아래 가장자리를 겹치는 크림색 종이 카드에 제목·설명. (가스공사의 "사진 위 글자"와 다른 구성)
+/* 하위 페이지 머리: 위는 넓은 사진, 그 아래 가장자리를 겹치는 흰 종이 카드에 제목·설명(왼쪽 정렬, 윗변에 BI 세 가지 색 띠).
    사진은 천천히 당겨지고, 종이 카드는 아래에서 올라온다. */
 @layer components {
   .c-sg-head {
@@ -30,15 +30,24 @@
   .c-sg-head__card {
     position: relative;
     z-index: 1;
-    width: min(100% - var(--gutter) * 2, 56rem);
+    width: min(100% - var(--gutter) * 2, 72rem);
     margin: calc(var(--space-20) * -1) auto 0;
+    overflow: hidden;
     padding: clamp(var(--space-6), 4vw, var(--space-12));
-    text-align: center;
+    text-align: left;
     background: var(--sg-cream);
     border: 1px solid var(--sg-line);
-    border-radius: var(--radius-4xl);
+    border-radius: var(--radius-3xl);
     box-shadow: var(--sg-shadow);
     animation: c-sg-head-up 1100ms 300ms var(--sg-ease) both;
+  }
+
+  .c-sg-head__card::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto;
+    height: var(--space-2);
+    background: linear-gradient(to right, var(--sg-leaf) 0 40%, var(--sg-sky) 40% 75%, var(--sg-sun) 75%);
   }
 
   .c-sg-head__crumb {
@@ -66,8 +75,8 @@
   }
 
   .c-sg-head__desc {
-    max-width: 40ch;
-    margin: var(--space-4) auto 0;
+    max-width: 44ch;
+    margin: var(--space-4) 0 0;
     color: var(--sg-ink-soft);
   }
 

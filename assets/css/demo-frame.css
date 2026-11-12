@@ -208,7 +208,6 @@
     align-items: center;
     min-height: 100vh;
     min-height: 100svh;
-    height: 100%;
     padding: calc(var(--d-nav-h) + 4rem) var(--d-gutter) 5.5rem;
     overflow: hidden;
     font-family: var(--font-sans, "Pretendard Variable", system-ui, sans-serif);
@@ -366,8 +365,8 @@
     }
 
     .d-intro__art {
-      top: 0;
-      width: 8.5rem;
+      top: calc(var(--d-nav-h) + 1.75rem);
+      width: 7.5rem;
       translate: 0 0;
       opacity: 0.95;
     }
@@ -403,10 +402,15 @@
     animation: d-scroll 1.8s ease-in-out infinite;
   }
 
-  /* 풀페이지 데모의 첫 구간으로 들어갈 때: 위 여백이 구간 높이에 맞게 */
-  .l-fullpage__section.d-intro,
-  .l-fp__panel.d-intro {
-    min-height: 0;
+  /* 풀페이지 안의 소개·푸터는 구간 높이(100svh)를 따른다 */
+  .l-fullpage.is-enabled .d-intro,
+  .l-fullpage.is-enabled .d-outro,
+  .l-fp.is-enabled .d-intro {
+    height: 100svh;
+  }
+
+  .l-fp.is-enabled .d-outro {
+    height: auto;
   }
 
   /* ── 푸터(밤보라 커튼): 다음 데모 + 실험실로 돌아가기 ── */
@@ -531,10 +535,7 @@
     }
   }
 
-  .l-fullpage__section.d-outro,
-  .l-fp__panel.d-outro {
-    min-height: 0;
-    height: 100%;
+  .l-fullpage__section.d-outro {
     overflow-y: auto;
   }
 
@@ -588,5 +589,17 @@
     .d-intro__chip {
       transition: none;
     }
+  }
+}
+
+/* 몰입형 3D: 기존 위쪽 막대는 공통 머리줄로 대신하고, 진행선만 맨 위에 남긴다 */
+@layer demo-frame {
+  .has-demo-frame .l-bar {
+    display: none;
+  }
+
+  .has-demo-frame .l-bar__line {
+    inset: 0 0 auto;
+    z-index: 1001;
   }
 }

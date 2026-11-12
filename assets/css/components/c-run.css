@@ -15,7 +15,7 @@
     --cur: 0;
     --p: 0; --k1: 0; --k2: 0; --k3: 0; --k4: 0; --k5: 0; --k6: 0; --mx: 0; --my: 0;
     position: relative;
-    height: 720svh;
+    height: 480svh;
   }
 
   .c-run-stage {
@@ -231,7 +231,7 @@
     .c-run-copy { padding-bottom: 5svh; }
     .c-run-copy--right { justify-self: start; text-align: left; }
     .c-run-copy--right .c-run-lead { margin-left: 0; }
-    .c-run-run { height: 640svh; }
+    .c-run-run { height: 430svh; }
   }
 
   /* 동작 줄이기: 고정 무대를 풀고 장면을 위에서 아래로 나열 */

@@ -1,4 +1,4 @@
-/* 구역 틀: 가운데 폭 + 머리(영문 작은 글, 명조 제목, 설명). 머리는 화면에 들어오면 떠오른다(reveal.js). 따뜻한 바탕색 수정자. */
+/* 구역 틀: 가운데 폭 + 머리(영문 작은 글, 둥근 제목 + BI의 빛줄기 두 개, 설명). 머리는 화면에 들어오면 떠오른다(reveal.js). 따뜻한 바탕색 수정자. */
 @layer layout {
   .l-sg-section {
     width: min(100% - var(--gutter) * 2, 78rem);
@@ -48,9 +48,33 @@
   }
 
   .l-sg-section__title {
+    position: relative;
+    width: fit-content;
+    padding-right: var(--space-8);
     font-size: clamp(var(--text-3xl), 1.2rem + 2.6vw, var(--text-5xl));
     font-weight: var(--font-weight-black);
     letter-spacing: var(--tracking-tighter);
+  }
+
+  .l-sg-section__title::before,
+  .l-sg-section__title::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: var(--space-1);
+    width: var(--space-1);
+    height: var(--space-3);
+    background: var(--sg-sun);
+    border-radius: var(--radius-full);
+    transform: rotate(-24deg);
+    transform-origin: bottom;
+  }
+
+  .l-sg-section__title::after {
+    right: 0;
+    height: var(--space-4);
+    background: var(--sg-sky);
+    transform: rotate(32deg);
   }
 
   .l-sg-section__desc {

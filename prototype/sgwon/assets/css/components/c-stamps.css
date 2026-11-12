@@ -46,8 +46,8 @@
 
   .c-stamps__item:nth-child(5) {
     --i: 4;
-    background: var(--sg-ink);
-    color: var(--sg-cream);
+    background: var(--sg-sky);
+    color: var(--sg-ink);
   }
 
   .c-stamps__item:nth-child(6) {
