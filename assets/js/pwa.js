@@ -100,8 +100,8 @@
       const s = document.createElement("style");
       s.id = "pwa-toast-css";
       s.textContent = `
-        .pwa-toast{position:fixed;z-index:2147483000;left:50%;bottom:max(16px,env(safe-area-inset-bottom));width:min(420px,calc(100vw - 32px));box-sizing:border-box;display:flex;align-items:center;gap:12px;padding:12px 12px 12px 16px;color:#eef1fa;background:#161a2b;border:1px solid #2b3250;border-radius:16px;box-shadow:0 12px 40px rgb(0 0 0/45%);font:500 14px/1.45 Pretendard,system-ui,sans-serif;transform:translate(-50%,24px);opacity:0;transition:transform 400ms cubic-bezier(.2,.9,.3,1.2),opacity 300ms}
-        .pwa-toast.is-in{transform:translate(-50%,0);opacity:1}
+        .pwa-toast{position:fixed;z-index:2147483000;left:0;right:0;top:0;box-sizing:border-box;display:flex;align-items:center;gap:12px;padding:calc(10px + env(safe-area-inset-top)) 12px 10px max(16px,env(safe-area-inset-left));color:#eef1fa;background:#161a2b;border-bottom:1px solid #2b3250;box-shadow:0 8px 28px rgb(0 0 0/40%);font:500 14px/1.45 Pretendard,system-ui,sans-serif;transform:translateY(-110%);transition:transform 450ms cubic-bezier(.2,.9,.3,1)}
+        .pwa-toast.is-in{transform:translateY(0)}
         .pwa-toast__text{flex:1;min-width:0}
         .pwa-toast__text b{display:block;font-weight:700}
         .pwa-toast__text span{display:block;font-size:13px;color:#a9b1cf}
@@ -109,7 +109,7 @@
         .pwa-toast__go{padding:8px 14px;font-weight:700;color:#fff;background:#3b6cff}
         .pwa-toast__x{flex:none;width:32px;height:32px;font-size:20px;line-height:1;color:#a9b1cf;background:transparent}
         .pwa-toast button:focus-visible{outline:3px solid #7fa0ff;outline-offset:2px}
-        @media (prefers-reduced-motion:reduce){.pwa-toast{transition:opacity 200ms;transform:translate(-50%,0)}}`;
+        @media (prefers-reduced-motion:reduce){.pwa-toast{transition:none}}`;
       document.head.append(s);
     }
     toast = document.createElement("div");
