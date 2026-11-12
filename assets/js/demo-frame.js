@@ -37,6 +37,12 @@
       { id: "trends/sections", title: "섹션", href: "trends/sections.html" },
       { id: "trends/forms", title: "폼", href: "trends/forms.html" },
     ],
+    immersive: [
+      { id: "immersive/index", title: "스튜디오 6장면", href: "immersive/" },
+      { id: "immersive/ring", title: "링 갤러리", href: "immersive/ring.html" },
+      { id: "immersive/flight", title: "비행", href: "immersive/flight.html" },
+      { id: "immersive/room", title: "방 안", href: "immersive/room.html" },
+    ],
   };
 
   /* 페이지별 설정
@@ -48,7 +54,10 @@
     scroll: { demo: "scroll", art: "std-width", title: ["스크롤이", "*이야기*를 이끕니다"], lead: "스크롤 연동, 부드러운 이동, 패럴랙스, 가로 넘김과 스냅. 머리줄의 메뉴로 구간을 오가 보세요.", label: "쇼케이스", keepHeader: true, intro: { before: "main" }, outro: "body" },
     "museum/index": { demo: "museum", art: "art-handover", title: ["50년의 믿음,", "*다음 100년*의 약속"], lead: "OO 50 디지털 역사관 구성 데모. 구간이 한 장씩 덮이며 넘어가고, 효과 재생 방식을 골라 볼 수 있어요.", label: "OO 50 · 가상 고객", keepHeader: true, intro: { track: ".l-fp" }, outro: { fpPanel: true } },
     "museum/timeline": { demo: "museum", art: "step-5", title: ["50년의", "*발자취*"], lead: "연대기·사진·숫자·인터뷰로 이어지는 하위 페이지 구성이에요. 모두 예시 문구입니다.", label: "OO 50 · 가상 고객", header: ".l-mu-header", intro: { before: "main" }, outro: "body" },
-    immersive: { demo: "immersive", art: "hero-right", title: ["스크롤로", "*움직이는* 카메라"], lead: "스크롤 하나로 카메라가 움직이고 장면이 영화처럼 이어져요. 마우스를 움직이면 깊이감이 살아나요.", label: "쇼케이스", intro: { before: "main" }, outro: "body" },
+    "immersive/index": { demo: "immersive", art: "hero-right", title: ["스크롤로", "*움직이는* 카메라"], lead: "스크롤 하나로 카메라가 움직이고 장면이 영화처럼 이어져요. 마우스를 움직이면 깊이감이 살아나요.", label: "쇼케이스", intro: { before: "main" }, outro: "body" },
+    "immersive/ring": { demo: "immersive", art: "art-motion", title: ["돌아가는", "*링 갤러리*"], lead: "카드 링, 나선, 지구본, 부채꼴. 스크롤이 곧 회전이에요. 전부 CSS 3D입니다.", label: "쇼케이스", intro: { before: "main" }, outro: "body" },
+    "immersive/flight": { demo: "immersive", art: "step-4", title: ["말과 빛 사이를", "*날아가는* 비행"], lead: "공중에 뜬 글자, 액자 복도, 워프, 착륙. 스크롤하는 만큼 앞으로 나아갑니다.", label: "쇼케이스", intro: { before: "main" }, outro: "body" },
+    "immersive/room": { demo: "immersive", art: "art-build", title: ["방 한가운데서", "*둘러보는* 화면"], lead: "스크롤하면 방이 천천히 돌아 네 벽의 이야기를 차례로 보여 줘요.", label: "쇼케이스", intro: { before: "main" }, outro: "body" },
     "trends/index": { demo: "trends", art: "about-art", sub: "trends/index", header: ".c-site-nav", intro: { before: ".c-page-intro", replace: true }, outro: "body", drop: ".c-page-outro" },
     "trends/cta": { demo: "trends", art: "contact-art", sub: "trends/cta", header: ".c-site-nav", intro: { before: ".c-page-intro", replace: true }, outro: "body", drop: ".c-page-outro" },
     "trends/bento": { demo: "trends", art: "art-design", sub: "trends/bento", header: ".c-site-nav", intro: { before: ".c-page-intro", replace: true }, outro: "body", drop: ".c-page-outro" },

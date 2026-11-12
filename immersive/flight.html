@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>비행 · 몰입형 3D 스크롤 | 보람찬크루 쇼케이스</title>
+  <meta name="description" content="공중에 뜬 글자, 액자 복도, 워프, 착륙. 스크롤하는 만큼 앞으로 나아가는 CSS 3D 데모.">
+  <meta name="robots" content="noindex, nofollow, noimageindex, noarchive">
+  <meta name="theme-color" content="#f0ede6">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+  <link rel="icon" href="../favicon.ico" sizes="48x48">
+  <link rel="stylesheet" href="assets/css/main.css?v=202611122047">
+  <script type="module" src="assets/js/main.js?v=202611122047"></script>
+  <link rel="stylesheet" href="../assets/css/demo-frame.css?v=202611122047">
+</head>
+<body>
+  <a class="u-visually-hidden" href="#main">본문 바로가기</a>
+  <header class="l-bar">
+    <a class="l-bar__back" href="../lab.html">← 쇼케이스</a>
+    <p class="l-bar__label" aria-hidden="true"><span class="js-no">01</span> / 04 <span class="l-bar__name js-name">WORDS</span></p>
+    <p class="l-bar__hint" aria-hidden="true">스크롤 ↓</p>
+  </header>
+  <div class="l-bar__line" aria-hidden="true"><span class="l-bar__fill"></span></div>
+
+  <main class="s-run s-run--flight" id="main" style="--n:4" data-module="scenes" data-steps="4" data-names="WORDS,HALL,WARP,LAND">
+    <div class="s-stage">
+      <section class="s-scene s-scene--a1 is-on" data-name="WORDS" aria-labelledby="f1">
+        <div class="s-3d" aria-hidden="true"><div class="s-world s-world--words">
+          <span class="s-word" style="--x:-260;--y:-60;--z:-700;--fs:200">CAMERA</span>
+          <span class="s-word s-word--line" style="--x:260;--y:40;--z:-1120;--fs:200">MOVES</span>
+          <span class="s-word s-word--acc" style="--x:-200;--y:-40;--z:-1540;--fs:190">THROUGH</span>
+          <span class="s-word" style="--x:240;--y:50;--z:-1960;--fs:200">EVERY</span>
+          <span class="s-word s-word--line" style="--x:-240;--y:-30;--z:-2380;--fs:220">WORD</span>
+          <span class="s-word s-word--acc" style="--x:260;--y:60;--z:-2800;--fs:240">IN</span>
+          <span class="s-word" style="--x:-60;--y:-20;--z:-3240;--fs:260">DEPTH</span>
+          <span class="s-word s-word--acc" style="--x:0;--y:10;--z:-3660;--fs:300">↓</span>
+        </div></div>
+        <div class="s-copy s-copy--top">
+          <p class="s-eyebrow">비행 · 쇼케이스</p>
+          <h1 class="s-title s-title--sm" id="f1">FLY THROUGH<br>THE WORDS</h1>
+        </div>
+      </section>
+      <section class="s-scene s-scene--a2" data-name="HALL" aria-labelledby="f2">
+        <div class="s-3d" aria-hidden="true"><div class="s-world s-world--corridor js-corridor"></div></div>
+        <div class="s-copy s-copy--center s-copy--top">
+          <h2 class="s-title s-title--sm" id="f2">THE LONG<br>HALLWAY</h2>
+          <p class="s-lead">액자가 양쪽 벽에 줄지은 복도를 지나갑니다.</p>
+        </div>
+      </section>
+      <section class="s-scene s-scene--a3" data-name="WARP" aria-labelledby="f3">
+        <div class="s-warp js-warp" aria-hidden="true"></div>
+        <div class="s-copy s-copy--center">
+          <h2 class="s-title s-title--sm" id="f3">LIGHT<br>SPEED</h2>
+          <p class="s-lead">별이 길게 늘어지며 중심에서 쏟아집니다.</p>
+        </div>
+      </section>
+      <section class="s-scene s-scene--a4" data-name="LAND" aria-labelledby="f4">
+        <div class="s-planet" aria-hidden="true"></div>
+        <div class="s-copy s-copy--center s-copy--top">
+          <h2 class="s-title s-title--sm" id="f4">TOUCH<br>DOWN</h2>
+          <a class="s-btn" href="room.html">다음 쪽: 방 안</a>
+        </div>
+      </section>
+    </div>
+  </main>
+  <script src="../assets/js/demo-frame.js?v=202611122047" data-demo="immersive/flight"></script>
+</body>
+</html>

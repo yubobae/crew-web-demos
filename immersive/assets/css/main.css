@@ -87,7 +87,8 @@
   .s-run {
     --p: 0; --k1: 0; --k2: 0; --k3: 0; --k4: 0; --k5: 0; --k6: 0; --mx: 0; --my: 0;
     position: relative;
-    height: 720svh;
+    --n: 6;
+    height: calc(var(--n) * 120svh);
   }
 
   .s-stage {
@@ -314,7 +315,7 @@
     .s-copy { padding-bottom: 5svh; }
     .s-copy--right { justify-self: start; text-align: left; }
     .s-copy--right .s-lead { margin-left: 0; }
-    .s-run { height: 640svh; }
+    .s-run { height: calc(var(--n) * 107svh); }
   }
 
   /* 동작 줄이기: 고정 무대를 풀고 장면을 위에서 아래로 나열 */
@@ -330,5 +331,260 @@
     .s-horizon { transform: none; }
     .s-title { transform: none; }
     .l-bar__hint { display: none; }
+  }
+}
+
+/* ───────── 새 페이지 공통: 4단계 장면 ───────── */
+@layer sections {
+  .s-scene--a1 { --k: var(--k1); opacity: min(1, calc((1 - var(--k1)) * 9)); }
+  .s-scene--a2 { --k: var(--k2); opacity: min(1, calc(var(--k2) * 9), calc((1 - var(--k2)) * 9)); }
+  .s-scene--a3 { --k: var(--k3); opacity: min(1, calc(var(--k3) * 9), calc((1 - var(--k3)) * 9)); }
+  .s-scene--a4 { --k: var(--k4); opacity: min(1, calc(var(--k4) * 9)); }
+  .s-scene--a1 .s-title { transform: none; }
+  .s-run--flight .s-scene--a1 .s-copy { opacity: clamp(0, calc(1 - var(--k1) * 4), 1); }
+
+  .s-copy--top { align-self: start; padding: calc(var(--bar-h) + 2.5rem) var(--gutter) 0; }
+  .s-copy--light .s-lead { opacity: 0.85; }
+
+  /* 카드(링·나선·부채꼴 공용) */
+  .s-card {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: calc(150px * var(--u));
+    height: calc(210px * var(--u));
+    margin: calc(-105px * var(--u)) 0 0 calc(-75px * var(--u));
+    padding: calc(14px * var(--u));
+    color: var(--white);
+    border-radius: calc(12px * var(--u));
+    background: linear-gradient(150deg, var(--c1), var(--c2));
+    box-shadow: inset 0 0 0 1px oklch(1 0 0 / 0.3), 0 calc(18px * var(--u)) calc(40px * var(--u)) oklch(0 0 0 / 0.25);
+  }
+  .s-card__no { font-size: calc(44px * var(--u)); font-weight: 900; letter-spacing: -0.04em; line-height: 1; }
+  .s-card__kind { font-size: calc(12px * var(--u)); font-weight: 700; letter-spacing: 0.14em; }
+  .s-card--sm { width: calc(104px * var(--u)); height: calc(146px * var(--u)); margin: calc(-73px * var(--u)) 0 0 calc(-52px * var(--u)); padding: calc(10px * var(--u)); }
+  .s-card--sm .s-card__no { font-size: calc(30px * var(--u)); }
+  .s-card--sm .s-card__kind { font-size: calc(9px * var(--u)); }
+
+  /* ───────── 링 페이지 ───────── */
+  .s-run--ring .s-scene--a1 { background: radial-gradient(ellipse at 50% 60%, var(--white), var(--paper) 72%); }
+  .s-run--ring .s-scene--a2 { background: radial-gradient(ellipse at 50% 40%, oklch(0.32 0.12 285), var(--night) 78%); color: var(--white); }
+  .s-run--ring .s-scene--a3 { background: linear-gradient(180deg, oklch(0.22 0.06 250), oklch(0.12 0.03 260)); color: var(--white); }
+  .s-run--ring .s-scene--a4 { background: linear-gradient(180deg, oklch(0.95 0.02 85), oklch(0.88 0.06 55)); }
+
+  .s-world--ring {
+    transform: translateZ(calc(var(--k1) * 140px)) rotateX(calc(-10deg + var(--my) * 5deg)) rotateY(calc(var(--k1) * -300deg + var(--mx) * 10deg));
+  }
+  .s-world--ring .s-card { transform: rotateY(var(--a)) translateZ(calc(330px * var(--u))); }
+
+  .s-world--helix {
+    transform: translateY(calc((var(--k2) - 0.5) * 720px * var(--u))) rotateX(calc(var(--my) * 4deg)) rotateY(calc(var(--k2) * -560deg + var(--mx) * 8deg));
+  }
+  .s-world--helix .s-card { transform: translateY(calc(var(--y) * var(--u))) rotateY(var(--a)) translateZ(calc(260px * var(--u))); }
+
+  .s-world--globe {
+    --R: calc(310px * var(--u));
+    transform: scale(calc(0.7 + var(--k3) * 0.35)) rotateX(calc(-18deg + var(--my) * 6deg)) rotateY(calc(var(--k3) * 360deg + var(--mx) * 12deg));
+  }
+  .s-dot {
+    position: absolute;
+    width: calc(9px * var(--u));
+    height: calc(9px * var(--u));
+    margin: calc(-4.5px * var(--u)) 0 0 calc(-4.5px * var(--u));
+    border-radius: 50%;
+    background: oklch(0.85 0.1 235);
+    transform: rotateY(var(--az)) rotateX(var(--el)) translateZ(var(--R));
+  }
+  .s-dot--pin {
+    width: auto;
+    height: auto;
+    margin: calc(-9px * var(--u)) 0 0 0;
+    padding: calc(4px * var(--u)) calc(9px * var(--u));
+    font-size: calc(14px * var(--u));
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    color: var(--ink);
+    border-radius: 999px;
+    background: var(--accent);
+    backface-visibility: hidden;
+  }
+  .s-orbit {
+    position: absolute;
+    width: calc(var(--R) * 2.2);
+    height: calc(var(--R) * 2.2);
+    margin: calc(var(--R) * -1.1) 0 0 calc(var(--R) * -1.1);
+    border: 1px solid oklch(1 0 0 / 0.25);
+    border-radius: 50%;
+    transform: rotateY(calc(var(--r) * 60deg)) rotateX(90deg);
+  }
+
+  .s-fan { position: absolute; left: 50%; bottom: 10%; width: 0; height: 0; }
+  .s-fan .s-card {
+    margin: calc(-210px * var(--u)) 0 0 calc(-75px * var(--u));
+    transform-origin: 50% 130%;
+    transform: translateX(calc(var(--f) * var(--k4) * 62px * var(--u))) rotate(calc(var(--f) * var(--k4) * 11deg));
+    transition: translate 300ms var(--ease);
+  }
+  @media (hover: hover) { .s-fan .s-card:hover { translate: 0 calc(-24px * var(--u)); } }
+
+  /* ───────── 비행 페이지 ───────── */
+  .s-run--flight .s-scene--a1 { background: radial-gradient(ellipse at 50% 50%, var(--white), oklch(0.9 0.02 85) 80%); }
+  .s-run--flight .s-scene--a2 { background: linear-gradient(180deg, oklch(0.18 0.05 285), oklch(0.1 0.03 275)); color: var(--white); }
+  .s-run--flight .s-scene--a3 { background: #05030c; color: var(--white); }
+  .s-run--flight .s-scene--a4 { background: linear-gradient(180deg, oklch(0.15 0.05 285), oklch(0.32 0.15 300) 60%, oklch(0.75 0.15 45)); color: var(--white); }
+
+  .s-world--words { transform: translate3d(calc(var(--mx) * -2rem), calc(var(--my) * -1.5rem), calc(var(--k1) * 3800px * var(--u))); }
+  .s-word {
+    position: absolute;
+    left: calc(var(--x) * var(--u));
+    top: calc(var(--y) * var(--u));
+    font-size: calc(var(--fs, 150) * var(--u) * 1px);
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -0.04em;
+    white-space: nowrap;
+    transform: translate3d(-50%, -50%, calc(var(--z) * var(--u) * 1px));
+  }
+  .s-word--line { color: transparent; -webkit-text-stroke: calc(2px * var(--u)) var(--ink); }
+  .s-word--acc { color: var(--accent); }
+
+  .s-world--corridor { transform: translate3d(calc(var(--mx) * -2rem), calc(var(--my) * -1rem), calc(var(--k2) * 3900px * var(--u))) rotateZ(calc(var(--mx) * 1.5deg)); }
+  .s-floor {
+    position: absolute;
+    left: calc(-360px * var(--u));
+    width: calc(720px * var(--u));
+    height: calc(6000px * var(--u));
+    top: calc(150px * var(--u));
+    transform-origin: 50% 0;
+    transform: translateZ(calc(850px * var(--u))) rotateX(-90deg);
+    background:
+      repeating-linear-gradient(0deg, oklch(0.7 0.2 38 / 0.5) 0 2px, transparent 2px calc(170px * var(--u))),
+      repeating-linear-gradient(90deg, oklch(1 0 0 / 0.12) 0 1px, transparent 1px calc(90px * var(--u)));
+    mask-image: linear-gradient(0deg, transparent, #000 15%);
+  }
+  .s-frame {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: calc(300px * var(--u));
+    height: calc(200px * var(--u));
+    margin: calc(-100px * var(--u)) 0 0 calc(-150px * var(--u));
+    padding: calc(16px * var(--u));
+    border-radius: calc(8px * var(--u));
+    background: linear-gradient(140deg, var(--c1), var(--c2));
+    box-shadow: inset 0 0 0 calc(6px * var(--u)) oklch(1 0 0 / 0.9);
+    transform: translate3d(calc(var(--side) * 250px * var(--u)), calc(-10px * var(--u)), calc(var(--z) * var(--u) * 1px)) rotateY(calc(var(--side) * -72deg));
+  }
+  .s-frame__no { font-size: calc(13px * var(--u)); font-weight: 800; letter-spacing: 0.12em; padding: calc(10px * var(--u)); }
+  .s-frame__kind { font-size: calc(42px * var(--u)); font-weight: 900; letter-spacing: -0.04em; padding: calc(10px * var(--u)); line-height: 1; }
+
+  .s-warp { position: absolute; inset: 0; overflow: hidden; }
+  .s-streak {
+    --e: calc(var(--k3) * var(--k3));
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: calc(2px + var(--e) * var(--d) * 22vmax);
+    height: 2px;
+    border-radius: 2px;
+    background: linear-gradient(90deg, transparent, oklch(0.95 0.05 250));
+    opacity: min(1, calc(var(--k3) * 4));
+    transform: rotate(var(--a)) translateX(calc(4vmax + var(--e) * var(--d) * 70vmax));
+  }
+
+  .s-planet {
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    width: min(150vmin, 1100px);
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: radial-gradient(circle at 50% 8%, oklch(0.98 0.06 80), oklch(0.78 0.18 45) 22%, oklch(0.45 0.2 310) 55%, oklch(0.2 0.08 285) 80%);
+    box-shadow: 0 0 120px oklch(0.8 0.15 60 / 0.5);
+    transform: translate(-50%, calc(62% - var(--k4) * 38%)) scale(calc(0.7 + var(--k4) * 0.3));
+  }
+  .s-planet::after {
+    content: "";
+    position: absolute;
+    inset: 44% -22% auto;
+    height: 26%;
+    border: 2px solid oklch(1 0 0 / 0.35);
+    border-radius: 50%;
+    transform: rotate(-8deg);
+  }
+
+  /* ───────── 방 안 페이지 ───────── */
+  .s-run--room { --P: clamp(280px, 62vw, 640px); background: var(--night); }
+  .s-run--room .s-stage { background: radial-gradient(ellipse at 50% 50%, oklch(0.24 0.08 285), var(--night) 80%); color: var(--white); }
+  .s-room { position: absolute; inset: 0; perspective: var(--P); perspective-origin: 50% 50%; }
+  .s-room__world {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    transform-style: preserve-3d;
+    transform: translateZ(calc(var(--P) * 0.97)) rotateX(calc(var(--my) * -3deg)) rotateY(calc(var(--w, 0) * -90deg + var(--mx) * 4deg));
+  }
+  .s-wall {
+    --D: var(--P);
+    position: absolute;
+    display: grid;
+    align-content: center;
+    gap: calc(var(--D) * 0.03);
+    width: calc(var(--D) * 2);
+    height: calc(var(--D) * 1.24);
+    margin: calc(var(--D) * -0.62) 0 0 calc(var(--D) * -1);
+    padding: calc(var(--D) * 0.12);
+    background: linear-gradient(135deg, oklch(0.26 0.1 285 / 0.92), oklch(0.18 0.06 280 / 0.92));
+    box-shadow: inset 0 0 0 2px oklch(0.66 0.21 34 / 0.55), inset 0 0 calc(var(--D) * 0.25) oklch(0.58 0.23 288 / 0.5);
+    transform: rotateY(calc(var(--i) * 90deg)) translateZ(calc(var(--D) * -1));
+  }
+  .s-wall__no { font-size: calc(var(--D) * 0.03); font-weight: 800; letter-spacing: 0.16em; color: var(--accent); }
+  .s-wall__title { font-size: calc(var(--D) * 0.17); font-weight: 900; line-height: 0.95; letter-spacing: -0.04em; }
+  .s-wall__lead { max-width: 28em; font-size: calc(var(--D) * 0.036); line-height: 1.6; opacity: 0.8; }
+  .s-wall__stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: calc(var(--D) * 0.04); margin: 0; padding: 0; list-style: none; }
+  .s-wall__stats li { font-size: calc(var(--D) * 0.03); opacity: 0.8; }
+  .s-wall__stats b { display: block; font-size: calc(var(--D) * 0.13); font-weight: 900; line-height: 1; color: var(--white); opacity: 1; letter-spacing: -0.04em; }
+  .s-wall__list { margin: 0; padding: 0; list-style: none; font-size: calc(var(--D) * 0.075); font-weight: 800; letter-spacing: -0.02em; }
+  .s-wall__list li { display: flex; gap: 0.6em; padding: 0.18em 0; border-bottom: 1px solid oklch(1 0 0 / 0.18); }
+  .s-wall__list span { font-size: 0.45em; align-self: center; color: var(--accent); letter-spacing: 0.1em; }
+  .s-wall .s-btn { justify-self: start; margin-top: calc(var(--D) * 0.02); font-size: calc(var(--D) * 0.036); }
+  .s-floor2, .s-ceil {
+    position: absolute;
+    width: calc(var(--P) * 2);
+    height: calc(var(--P) * 2);
+    margin: calc(var(--P) * -1) 0 0 calc(var(--P) * -1);
+    background:
+      repeating-linear-gradient(0deg, oklch(0.66 0.21 34 / 0.45) 0 2px, transparent 2px calc(var(--P) / 4)),
+      repeating-linear-gradient(90deg, oklch(0.66 0.21 34 / 0.45) 0 2px, transparent 2px calc(var(--P) / 4)),
+      oklch(0.16 0.05 280);
+  }
+  .s-floor2 { transform: translateY(calc(var(--P) * 0.62)) rotateX(90deg); }
+  .s-ceil { transform: translateY(calc(var(--P) * -0.62)) rotateX(90deg); opacity: 0.7; }
+
+  .s-btn--dark { color: var(--white); background: var(--ink); }
+
+  @media (max-width: 819px) {
+    .s-copy--top { padding-top: calc(var(--bar-h) + 1.5rem); }
+    .s-world--ring, .s-world--helix { scale: 1.3; }
+    .s-world--globe { scale: 1.2; }
+    .s-wall__lead { font-size: calc(var(--D) * 0.052); }
+    .s-wall__stats li { font-size: calc(var(--D) * 0.045); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .s-world--ring, .s-world--helix, .s-world--globe { transform: none; scale: 1; }
+    .s-world--ring .s-card, .s-world--helix .s-card { transform: translateX(calc((var(--a) / 1deg - 180) * 1.2px * var(--u))); }
+    .s-world--words, .s-world--corridor { transform: none; }
+    .s-fan .s-card { transform: translateX(calc(var(--f) * 62px * var(--u))); }
+    .s-streak { opacity: 0.6; }
+    .s-planet { transform: translate(-50%, 30%); }
+    .s-room { position: relative; perspective: none; display: grid; gap: 1rem; padding: 4rem var(--gutter) 2rem; }
+    .s-room__world { position: static; width: auto; height: auto; display: grid; gap: 1rem; transform: none; }
+    .s-wall { position: relative; width: auto; height: auto; margin: 0; transform: none; padding: 2rem; --D: 38rem; }
+    .s-floor2, .s-ceil { display: none; }
   }
 }

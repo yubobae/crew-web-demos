@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>방 안 · 몰입형 3D 스크롤 | 보람찬크루 쇼케이스</title>
+  <meta name="description" content="스크롤하면 방이 천천히 돌아 네 벽의 이야기를 차례로 보여 주는 CSS 3D 데모.">
+  <meta name="robots" content="noindex, nofollow, noimageindex, noarchive">
+  <meta name="theme-color" content="#1a1030">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+  <link rel="icon" href="../favicon.ico" sizes="48x48">
+  <link rel="stylesheet" href="assets/css/main.css?v=202611122047">
+  <script type="module" src="assets/js/main.js?v=202611122047"></script>
+  <link rel="stylesheet" href="../assets/css/demo-frame.css?v=202611122047">
+</head>
+<body>
+  <a class="u-visually-hidden" href="#main">본문 바로가기</a>
+  <header class="l-bar">
+    <a class="l-bar__back" href="../lab.html">← 쇼케이스</a>
+    <p class="l-bar__label" aria-hidden="true"><span class="js-no">01</span> / 04 <span class="l-bar__name js-name">INTRO</span></p>
+    <p class="l-bar__hint" aria-hidden="true">스크롤 ↓</p>
+  </header>
+  <div class="l-bar__line" aria-hidden="true"><span class="l-bar__fill"></span></div>
+
+  <main class="s-run s-run--room" id="main" style="--n:4" data-module="scenes" data-steps="4" data-names="INTRO,NUMBERS,SERVICE,EXIT">
+    <div class="s-stage">
+      <div class="s-room">
+        <div class="s-room__world">
+          <div class="s-floor2" aria-hidden="true"></div>
+          <div class="s-ceil" aria-hidden="true"></div>
+          <section class="s-wall" style="--i:0" aria-labelledby="w1">
+            <p class="s-wall__no">WALL 01 · INTRO</p>
+            <h1 class="s-wall__title" id="w1">INSIDE<br>THE ROOM</h1>
+            <p class="s-wall__lead">스크롤하면 방이 천천히 돌아요. 마우스를 움직이면 시선이 따라옵니다.</p>
+          </section>
+          <section class="s-wall" style="--i:1" aria-labelledby="w2">
+            <p class="s-wall__no">WALL 02 · NUMBERS</p>
+            <h2 class="s-wall__title" id="w2">BY THE<br>NUMBERS</h2>
+            <ul class="s-wall__stats">
+              <li><b>60</b>FPS 유지</li>
+              <li><b>5</b>화면 폭 검수</li>
+              <li><b>0</b>프레임워크</li>
+            </ul>
+          </section>
+          <section class="s-wall" style="--i:2" aria-labelledby="w3">
+            <p class="s-wall__no">WALL 03 · SERVICE</p>
+            <h2 class="s-wall__title" id="w3">WHAT WE<br>MAKE</h2>
+            <ul class="s-wall__list">
+              <li><span>01</span>DESIGN</li>
+              <li><span>02</span>BUILD</li>
+              <li><span>03</span>MOTION</li>
+              <li><span>04</span>HANDOVER</li>
+            </ul>
+          </section>
+          <section class="s-wall" style="--i:3" aria-labelledby="w4">
+            <p class="s-wall__no">WALL 04 · EXIT</p>
+            <h2 class="s-wall__title" id="w4">STEP<br>OUTSIDE</h2>
+            <a class="s-btn" href="../lab.html">쇼케이스로 돌아가기</a>
+          </section>
+        </div>
+      </div>
+    </div>
+  </main>
+  <script src="../assets/js/demo-frame.js?v=202611122047" data-demo="immersive/room"></script>
+</body>
+</html>
