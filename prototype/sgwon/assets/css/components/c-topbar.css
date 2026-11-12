@@ -19,18 +19,6 @@
       box-shadow var(--sg-dur) var(--sg-ease);
   }
 
-  .c-topbar--light {
-    color: var(--sg-ink);
-  }
-
-  .c-topbar--light .c-topbar__bi--light {
-    display: none;
-  }
-
-  .c-topbar--light .c-topbar__bi--dark {
-    display: block;
-  }
-
   .c-topbar.is-condensed {
     color: var(--sg-ink);
     background: var(--sg-glass);
