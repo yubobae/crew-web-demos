@@ -18,6 +18,14 @@ node tools/stamp-version.mjs
 
 모든 쪽(하위 데모 폴더 포함)의 `main.css`·`main.js`·`demo-frame.*` 주소와 각 `main.css`의 `@import`에 `?v=시각`을 붙인다(컨벤션 10-1).
 
+## 앱처럼 설치하기 (PWA)
+
+- 안드로이드 크롬: 주소창 메뉴의 "앱 설치" 또는 홈 푸터의 **앱으로 설치** 버튼
+- 아이폰 사파리: 공유 → **홈 화면에 추가**
+- 한 번 열어 본 쪽은 인터넷이 없어도 열린다(없는 쪽은 오프라인 안내 쪽).
+- 구성: `manifest.webmanifest`(설치 정보·아이콘), `sw.js`(서비스 워커), `offline.html`, `assets/js/pwa.js`(등록·설치 버튼)
+- 서비스 워커는 **쪽은 항상 서버에 최신을 먼저 물어보고**, 도장(`?v=`)이 붙은 CSS·JS만 저장본을 바로 쓴다. 그래서 올리기 전 도장(`node tools/stamp-version.mjs`)이 `sw.js`의 `VERSION`도 바꿔 옛 저장소를 지운다.
+
 ## 업데이트
 
 각 데모 폴더는 보람찬크루 컨벤션 저장소의 `samples/ui-kit`, `samples/effects`, `samples/scroll`을 그대로 복사한 것입니다. 원본을 고친 뒤 이 저장소로 다시 복사해 올립니다. 새 데모는 폴더 하나(`<이름>/index.html` + `assets/`)로 추가하고 첫 화면 목록에 카드를 하나 더합니다.

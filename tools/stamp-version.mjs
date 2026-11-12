@@ -3,6 +3,7 @@
 // 하네스의 tools/stamp-version.mjs 와 같은 규칙(컨벤션 10-1)이되, 하위 폴더(데모 쪽)와 공통 틀 파일까지 처리한다.
 // - 모든 *.html(하위 폴더 포함)에서 main.css, main.js, demo-frame.css/js, demo-skin.css 주소에 ?v=버전
 // - 모든 assets/css/main.css(하위 폴더 포함)의 @import 주소마다 ?v=버전
+// - pwa.js 주소에 ?v=버전, sw.js 의 VERSION 갱신
 // 버전을 주지 않으면 지금 시각(예: 202611121530).
 import { readFileSync, writeFileSync, readdirSync } from "node:fs";
 import path from "node:path";
@@ -22,7 +23,7 @@ const walk = (d) =>
   });
 
 // 정규식은 문자열로 이어 붙이지 않고 RegExp 리터럴로 쓴다(역슬래시가 사라지는 일을 막는다)
-const urlRe = /((?:\.\.\/)*assets\/(?:css\/main\.css|js\/main\.js|css\/demo-frame\.css|js\/demo-frame\.js|css\/demo-skin\.css))(\?v=[^"'\s>]*)?(?=["'\s>])/g;
+const urlRe = /((?:\.\.\/)*assets\/(?:css\/main\.css|js\/main\.js|css\/demo-frame\.css|js\/demo-frame\.js|css\/demo-skin\.css|js\/pwa\.js))(\?v=[^"'\s>]*)?(?=["'\s>])/g;
 const importRe = /@import\s+"([^"?]+)(\?v=[^"]*)?"/g;
 
 let css = 0;
@@ -38,5 +39,12 @@ for (const f of walk(dir)) {
     if (after !== before) writeFileSync(f, after);
     pages++;
   }
+}
+// 서비스 워커의 VERSION(저장소 이름에 들어간다): 바뀌면 옛 저장소가 지워진다
+const sw = path.join(dir, "sw.js");
+try {
+  writeFileSync(sw, readFileSync(sw, "utf8").replace(/const VERSION = "[^"]*";/, `const VERSION = "${v}";`));
+} catch {
+  /* sw.js 가 없으면 건너뜀 */
 }
 console.log(`버전 ${v}: 쪽 ${pages}개, main.css ${css}개`);

@@ -15,8 +15,10 @@
   <link rel="icon" href="favicon.ico" sizes="48x48">
   <link rel="icon" type="image/png" sizes="32x32" href="assets/media/icons/favicon-32.png">
   <link rel="apple-touch-icon" href="assets/media/icons/apple-touch-icon.png">
-  <link rel="stylesheet" href="assets/css/main.css?v=202611121643">
-  <script type="module" src="assets/js/main.js?v=202611121643"></script>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="assets/css/main.css?v=202611121649">
+  <script type="module" src="assets/js/main.js?v=202611121649"></script>
+  <script src="assets/js/pwa.js?v=202611121649" defer></script>
 </head>
 <body class="t-dark" data-effect="scroll-progress">
   <a class="u-visually-hidden" href="#main">본문 바로가기</a>
@@ -132,7 +134,7 @@
       <a class="c-curtain-footer__demo" href="lab.html">쇼케이스</a>
       <a class="c-curtain-footer__demo" href="index.html#process">일하는 방식</a>
     </nav>
-    <div class="c-curtain-footer__bottom"><span>© 2026 보람찬크루</span><span>HTML · CSS · 순수 JS 모듈 · 프레임워크 없음</span></div>
+    <div class="c-curtain-footer__bottom"><span>© 2026 보람찬크루</span><span class="c-curtain-footer__app"><button class="c-curtain-footer__install" type="button" data-pwa-install hidden>앱으로 설치</button><span data-pwa-ios hidden>공유 → "홈 화면에 추가"로 앱처럼 설치할 수 있어요</span></span><span>HTML · CSS · 순수 JS 모듈 · 프레임워크 없음</span></div>
   </footer>
   </div>
 </body>

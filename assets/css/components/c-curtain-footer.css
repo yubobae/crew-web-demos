@@ -96,4 +96,34 @@
     color: transparent;
     user-select: none;
   }
+
+  /* 앱 설치 안내(설치할 수 있을 때만 JS가 보이게 한다) */
+  .c-curtain-footer__app {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-3);
+    font-size: var(--text-sm);
+    color: var(--tr-on-night-soft);
+  }
+
+  .c-curtain-footer__app[hidden],
+  .c-curtain-footer__app [hidden] {
+    display: none;
+  }
+
+  .c-curtain-footer__install {
+    padding: var(--space-1-5) var(--space-4);
+    font: inherit;
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-bold);
+    color: var(--tr-night);
+    background: var(--tr-on-night);
+    border: 0;
+    border-radius: var(--radius-full);
+    cursor: pointer;
+    transition: transform 300ms var(--tr-spring);
+  }
+
+  .c-curtain-footer__install:active { transform: scale(0.96); }
+  .c-curtain-footer__install:focus-visible { outline: 3px solid var(--tr-accent); outline-offset: 3px; }
 }

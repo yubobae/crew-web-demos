@@ -61,6 +61,14 @@
 
   const cfg = PAGES[key];
   if (!cfg) return;
+
+  /* 설치(PWA)·오프라인: 데모 사이트에서만 사이트 맨 위의 pwa.js 를 불러온다(자기 주소의 ?v= 도장을 그대로 따른다) */
+  if (!STANDALONE) {
+    const pwa = document.createElement("script");
+    pwa.src = new URL("assets/js/pwa.js", ROOT).href + (script.src.includes("?") ? script.src.slice(script.src.indexOf("?")) : "");
+    pwa.defer = true;
+    document.head.append(pwa);
+  }
   const demo = DEMOS.find((d) => d.id === cfg.demo);
   const $ = (sel, scope = document) => scope.querySelector(sel);
   const u = (path) => ROOT + path;

@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#0e0f13">
+  <title>오프라인 | 보람찬크루</title>
+  <style>
+    /* 이 쪽은 인터넷이 없을 때 보이므로 다른 파일 없이 혼자 그려진다 */
+    *{box-sizing:border-box;margin:0}
+    html{background:#0e0f13;color-scheme:dark}
+    body{min-height:100svh;display:grid;place-items:center;padding:24px;font-family:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,system-ui,"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",sans-serif;color:#f3f2ee;background:radial-gradient(60% 50% at 80% 10%,#2b3dff55,transparent 70%),radial-gradient(50% 50% at 10% 100%,#8b5cff40,transparent 70%),#0e0f13;word-break:keep-all}
+    main{max-width:28rem;text-align:center}
+    .mark{width:4.5rem;aspect-ratio:1;margin:0 auto 1.75rem;border-radius:50%;background:conic-gradient(from 200deg,#4f7bff,#9b6bff,#5ad0f5,#4f7bff);box-shadow:0 0 4rem #4f7bff66}
+    h1{font-size:clamp(2rem,8vw,2.75rem);font-weight:800;letter-spacing:-.05em;line-height:1.1}
+    p{margin-top:1rem;color:#9fa0b3;line-height:1.7}
+    button,a{display:inline-flex;margin:1.75rem .25rem 0;padding:.9rem 1.6rem;font:inherit;font-weight:700;color:#0e0f13;background:#f3f2ee;border:0;border-radius:999px;text-decoration:none;cursor:pointer}
+    a{color:#f3f2ee;background:transparent;box-shadow:inset 0 0 0 1px #ffffff33}
+    button:focus-visible,a:focus-visible{outline:3px solid #4f7bff;outline-offset:3px}
+  </style>
+</head>
+<body>
+  <main>
+    <div class="mark" aria-hidden="true"></div>
+    <h1>지금은 오프라인이에요</h1>
+    <p>인터넷에 연결되면 이어서 볼 수 있어요. 이미 열어 본 쪽은 연결 없이도 보일 수 있습니다.</p>
+    <button type="button" onclick="location.reload()">다시 시도</button>
+    <a href="./">처음으로</a>
+  </main>
+</body>
+</html>
