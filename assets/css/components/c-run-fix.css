@@ -1,0 +1,23 @@
+/* 메인 몰입형 스크롤 다듬기: 제목 크기·글 폭, 어두운 장면의 윤곽 버튼 */
+@layer components {
+  .c-run-scene--studio .c-run-copy { width: min(100%, 62rem); }
+  .c-run-scene--studio .c-run-title { font-size: clamp(2.5rem, 1rem + 5.2vw, 6.75rem); }
+  .c-run-title--sm { font-size: clamp(2rem, 1rem + 4.6vw, 5.25rem); }
+  .c-run-scene--deep .c-run-title,
+  .c-run-scene--cloud .c-run-title { font-size: clamp(2.5rem, 1rem + 6vw, 7rem); }
+  .c-run-scene--cloud .c-run-title--sm { font-size: clamp(2.25rem, 1rem + 5.4vw, 6rem); overflow-wrap: normal; word-break: keep-all; }
+  .c-run-copy .c-run-lead { opacity: 0.8; }
+
+  .c-run-actions .c-btn--line {
+    color: inherit;
+    background: transparent;
+    border: 1.5px solid currentColor;
+  }
+
+  .c-run-scene--studio .c-run-eyebrow { position: static; }
+
+  @media (max-width: 819px) {
+    .c-run-scene--studio .c-run-title { font-size: clamp(2.25rem, 1rem + 8vw, 3.5rem); }
+    .c-run-scene--studio .c-run-copy { padding-bottom: 4svh; }
+  }
+}

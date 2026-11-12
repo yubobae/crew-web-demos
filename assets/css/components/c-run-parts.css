@@ -1,0 +1,98 @@
+/* 크루 메인 몰입형 스크롤 장면 안의 내용: 만드는 것 목록 · 작업 카드 · 단계 · 숫자 · 오른쪽 점 표시.
+   각 요소는 자기 장면의 진행률(--cur 0~1)에 맞춰 차례로 나타난다. 동작 줄이기에서는 전부 보인다. */
+@layer components {
+  .c-run-scene:not(.is-vis) { visibility: hidden; }
+  .c-run-scene--studio .c-run-copy { padding-bottom: clamp(3rem, 12svh, 7rem); }
+  .c-run-scene--studio .c-run-title { font-size: clamp(2.75rem, 1rem + 7.5vw, 8rem); }
+  .c-run-title .is-accent { color: var(--accent); }
+  .c-run-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.75rem; }
+  .c-run-copy--right .c-run-actions { justify-content: flex-end; }
+  .c-run-copy--center .c-run-actions { justify-content: center; }
+  .c-run-actions .c-btn--line { color: inherit; }
+
+  .c-run-list { display: grid; gap: 0; margin: 1.75rem 0 0; padding: 0; list-style: none; text-align: left; }
+  .c-run-list__item {
+    --i: 0;
+    --on: clamp(0, calc((var(--cur) - 0.18 - var(--i) * 0.09) * 10), 1);
+    display: grid;
+    grid-template-columns: 6.5rem 1fr;
+    gap: 0.25rem 1rem;
+    padding: 0.9rem 0;
+    border-top: 1px solid oklch(1 0 0 / calc(var(--on) * 0.3));
+    opacity: var(--on);
+    transform: translateX(calc((1 - var(--on)) * 3rem));
+  }
+  .c-run-list__item:nth-child(2) { --i: 1; }
+  .c-run-list__item:nth-child(3) { --i: 2; }
+  .c-run-list__item:nth-child(4) { --i: 3; }
+  .c-run-list__no { padding-top: 0.25rem; font-size: 0.75rem; font-weight: 800; letter-spacing: 0.1em; color: var(--accent); }
+  .c-run-list__name { font-size: 1.25rem; font-weight: 800; }
+  .c-run-list__desc { grid-column: 2; font-size: 0.9375rem; opacity: 0.75; }
+
+  .c-run-works { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(0.75rem, 2vw, 1.5rem); width: min(100% - var(--gutter) * 2, 72rem); margin-top: 1.75rem; }
+  .c-run-work {
+    --i: 0;
+    --on: clamp(0, calc((var(--cur) - 0.2 - var(--i) * 0.1) * 8), 1);
+    display: grid;
+    gap: 0.6rem;
+    padding: 0.6rem;
+    text-align: left;
+    text-decoration: none;
+    color: var(--ink);
+    background: oklch(1 0 0 / 0.88);
+    border-radius: 1.25rem;
+    opacity: var(--on);
+    transform: translateY(calc((1 - var(--on)) * 3rem)) scale(calc(0.94 + var(--on) * 0.06));
+    transition: box-shadow 240ms var(--ease);
+  }
+  .c-run-work:nth-child(2) { --i: 1; }
+  .c-run-work:nth-child(3) { --i: 2; }
+  .c-run-work__img { width: 100%; height: auto; aspect-ratio: 8 / 5; object-fit: cover; border-radius: 0.85rem; }
+  .c-run-work__tag { padding: 0 0.4rem; font-size: 0.6875rem; font-weight: 800; letter-spacing: 0.1em; color: var(--accent); }
+  .c-run-work__name { padding: 0 0.4rem 0.4rem; font-size: 1.0625rem; font-weight: 800; }
+  @media (hover: hover) { .c-run-work:hover { box-shadow: 0 1.5rem 3rem -1rem oklch(0.3 0.1 260 / 0.5); } }
+
+  .c-run-steps { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem; margin: 1.5rem 0 0; padding: 0; list-style: none; }
+  .c-run-steps__item {
+    --i: 0;
+    --on: clamp(0, calc((var(--cur) - 0.2 - var(--i) * 0.08) * 9), 1);
+    padding: 0.55rem 1.1rem;
+    font-weight: 700;
+    color: var(--white);
+    background: var(--ink);
+    border-radius: 999px;
+    opacity: var(--on);
+    transform: translateY(calc((1 - var(--on)) * 1.5rem));
+  }
+  .c-run-steps__item:nth-child(2) { --i: 1; }
+  .c-run-steps__item:nth-child(3) { --i: 2; }
+  .c-run-steps__item:nth-child(4) { --i: 3; }
+  .c-run-steps__item:nth-child(5) { --i: 4; }
+  .c-run-steps__item small { margin-left: 0.4rem; font-weight: 500; opacity: 0.6; }
+
+  .c-run-nums { display: grid; grid-template-columns: repeat(3, auto); gap: clamp(1.5rem, 6vw, 5rem); justify-content: center; margin-top: 1.5rem; }
+  .c-run-num { display: grid; gap: 0.35rem; text-align: center; opacity: clamp(0, calc((var(--cur) - 0.1) * 6), 1); }
+  .c-run-num__v { font-size: clamp(2.75rem, 1rem + 9vw, 8rem); font-weight: 900; line-height: 1; letter-spacing: -0.05em; font-variant-numeric: tabular-nums; }
+  .c-run-num__v i { margin-left: 0.15em; font-size: 0.35em; font-style: normal; color: var(--accent); }
+  .c-run-num__l { font-size: 0.9375rem; opacity: 0.75; }
+
+  .c-run-hud { position: absolute; top: 50%; right: clamp(0.75rem, 2vw, 1.5rem); z-index: 5; display: grid; gap: 0.6rem; transform: translateY(-50%); }
+  .c-run-hud__dot { width: 0.5rem; aspect-ratio: 1; background: currentColor; border-radius: 50%; opacity: 0.25; transition: opacity 240ms, transform 240ms var(--ease); }
+  .c-run-hud__dot.is-on { background: var(--accent); opacity: 1; transform: scale(1.5); }
+
+  @media (max-width: 819px) {
+    .c-run-works { grid-template-columns: minmax(0, 1fr); gap: 0.5rem; }
+    .c-run-work { grid-template-columns: 7rem 1fr; align-items: center; }
+    .c-run-work__tag { display: none; }
+    .c-run-list__item { grid-template-columns: 1fr; }
+    .c-run-list__desc { grid-column: 1; }
+    .c-run-nums { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.5rem; }
+    .c-run-hud { display: none; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .c-run-list__item, .c-run-work, .c-run-steps__item, .c-run-num { opacity: 1; transform: none; }
+    .c-run-hud { display: none; }
+    .c-run-scene { visibility: visible !important; }
+  }
+}
