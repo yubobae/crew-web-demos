@@ -225,6 +225,41 @@
     background: var(--kd-line-on-ink-strong);
   }
 
+  /* 30년사 표지의 빨간 K 선: 세로선 하나에서 대각선 둘이 갈라진다. 장면이 바뀔 때마다 대각선이 가로질러 그어진다 */
+  .c-dial__k {
+    position: absolute;
+    inset: 0 0 0 auto;
+    z-index: 3;
+    width: 38%;
+    border-left: 1px solid var(--kd-red);
+    opacity: 0.6;
+    pointer-events: none;
+  }
+
+  .c-dial__k-svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    fill: none;
+    stroke: var(--kd-red);
+    stroke-width: 2px;
+    clip-path: inset(0);
+  }
+
+  .c-dial.is-sweep .c-dial__k-svg {
+    animation: c-dial-k 1100ms var(--kd-ease-wipe) both;
+  }
+
+  @keyframes c-dial-k {
+    from {
+      clip-path: inset(0 100% 0 0);
+    }
+
+    to {
+      clip-path: inset(0);
+    }
+  }
+
   /* 오른쪽 눈금자 */
   .c-dial__ruler {
     --ruler-h: min(46vh, 26rem);
@@ -257,6 +292,14 @@
     position: absolute;
     right: var(--space-6);
     transform: translateY(-50%);
+  }
+
+  .c-dial__tick--a,
+  .c-dial__tick--d {
+    padding: var(--space-0-5) var(--space-1-5);
+    font-weight: var(--font-weight-bold);
+    color: var(--kd-ink);
+    background: var(--kd-paper);
   }
 
   .c-dial__tick--a {
@@ -422,6 +465,7 @@
 
     .c-dial__odo,
     .c-dial__ruler,
+    .c-dial__k,
     .c-dial__index,
     .c-dial__hint {
       display: none;

@@ -28,9 +28,11 @@ export function init(root) {
 
   const paint = (y) => {
     year = y;
+    // 주행계: 윗자리는 바로 아랫자리가 9에서 0으로 넘어가는 동안에만 한 칸 굴러간다(아랫자리의 실제 위치 p를 받아 이어 간다)
+    let below = 0;
     for (let k = 0; k < 4; k++) {
-      // 주행계처럼: 아랫자리가 9→0으로 넘어가는 동안에만 윗자리가 한 칸 굴러간다
-      const p = k === 0 ? y % 10 : Math.floor(y / 10 ** k) % 10 + Math.max(0, (y / 10 ** (k - 1)) % 10 - 9);
+      const p = k === 0 ? y % 10 : Math.floor(y / 10 ** k) % 10 + Math.max(0, below - 9);
+      below = p;
       stage.style.setProperty(`--p${k}`, p.toFixed(3));
     }
     stage.style.setProperty("--r", String(Math.min(1, Math.max(0, (y - START) / (first - START)))));
@@ -53,6 +55,11 @@ export function init(root) {
     layer.classList.add("is-active");
     layers[0].classList.remove("is-first");
     steps.forEach((s, k) => s.classList.toggle("is-on", k === i));
+    if (!immediate) {
+      root.classList.remove("is-sweep");
+      void root.offsetWidth;
+      root.classList.add("is-sweep");
+    }
     clearTimeout(timer);
     timer = setTimeout(() => layers.forEach((l, k) => k !== current && l.classList.remove("is-active")), 1300);
     if (prev !== layer) rollTo(years[i], 1100);

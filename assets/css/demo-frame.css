@@ -603,3 +603,23 @@
     z-index: 1001;
   }
 }
+
+/* 역사관 풀페이지: 구간은 겹쳐 쌓는 방식이라 틀의 position 이 이를 덮어쓰지 않게 한다 */
+@layer demo-frame {
+  .l-fp.is-enabled .d-intro {
+    position: absolute;
+    inset: 0;
+  }
+
+  .l-fp.is-enabled .d-outro {
+    position: absolute;
+    inset: auto 0 0;
+  }
+}
+
+/* 역사관의 '재생 방식' 패널(왼쪽 아래 고정)이 푸터 버튼을 가리지 않게 아래 여백을 더 둔다 */
+@layer demo-frame {
+  body:has(.c-mu-panel) .d-outro {
+    padding-bottom: 9rem;
+  }
+}

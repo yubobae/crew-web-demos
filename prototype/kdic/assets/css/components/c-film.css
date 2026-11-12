@@ -8,21 +8,52 @@
     --kd-red: var(--kd-red-on-ink);
   }
 
+  /* 시기마다 사사(社史) 표지의 질감: 1 = 10년사(회색 천 표지·세로 제목), 2 = 20년사(검은 천 표지·은빛 아치 명판), 3 = 30년사(청색 표지·빨간 K 선) */
+  .c-film--1 {
+    color: var(--kd-cloth-ink);
+    background: var(--kd-cloth);
+    --kd-text-on-ink-soft: var(--kd-cloth-ink);
+    --kd-line-on-ink: var(--kd-line);
+    --kd-red: var(--kd-red-deep);
+  }
+
   .c-film--2 {
-    background: var(--kd-ink-2);
+    background: var(--kd-slate);
   }
 
   .c-film--3 {
-    background: var(--kd-ink-3);
+    background: var(--kd-ink);
+  }
+
+  .c-film__k {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .c-film__k-svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    fill: none;
+    stroke: var(--kd-red);
+    stroke-width: 1.5px;
+    opacity: 0.55;
+  }
+
+  .c-film__vert {
+    display: none;
   }
 
   .c-film__pin {
+    position: relative;
     display: grid;
     gap: var(--space-8);
     padding: var(--space-16) 0;
   }
 
   .c-film__intro {
+    position: relative;
     padding-inline: var(--gutter);
   }
 
@@ -185,6 +216,29 @@
 
     .c-film.is-pinned .c-film__bar {
       display: block;
+    }
+
+    .c-film--2 .c-film__intro {
+      margin-left: var(--gutter);
+      padding: var(--space-20) var(--space-8) var(--space-6);
+      border: 1px solid var(--kd-silver);
+      border-radius: var(--space-40) var(--space-40) 0 0;
+      box-shadow:
+        inset 0 0 0 var(--space-2) var(--kd-slate),
+        inset 0 0 0 calc(var(--space-2) + 1px) var(--kd-silver);
+    }
+
+    .c-film--1 .c-film__vert {
+      position: absolute;
+      top: 0;
+      right: 0;
+      display: block;
+      margin: 0;
+      font-size: var(--text-xl);
+      font-weight: var(--font-weight-bold);
+      letter-spacing: var(--tracking-widest);
+      writing-mode: vertical-rl;
+      color: var(--kd-cloth-ink);
     }
   }
 
