@@ -17,6 +17,12 @@
     transform: translateX(-50%);
   }
 
+  @media (min-width: 820px) {
+    .c-dock {
+      display: none;
+    }
+  }
+
   .c-dock__item {
     display: grid;
     justify-items: center;

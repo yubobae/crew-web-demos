@@ -147,6 +147,7 @@
       padding: 0;
       margin: 0;
       list-style: none;
+      opacity: clamp(0, calc(var(--pp) * 6), 1);
       transform: translateY(-50%);
     }
 

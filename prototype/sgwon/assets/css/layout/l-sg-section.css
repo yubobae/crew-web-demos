@@ -3,7 +3,7 @@
   .l-sg-section {
     width: min(100% - var(--gutter) * 2, 78rem);
     margin-inline: auto;
-    padding-block: clamp(var(--space-16), 9vw, var(--space-32));
+    padding-block: clamp(var(--space-12), 6vw, var(--space-24));
   }
 
   .l-sg-section--tight {

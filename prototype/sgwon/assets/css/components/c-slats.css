@@ -1,5 +1,5 @@
-/* 첫 화면(사진 배경): 사진이 세로 다섯 조각(슬랫)으로 열리며 다음 사진으로 바뀐다. 사진은 열리는 동안 천천히 당겨진다.
-   마스크의 열린 폭(--sg-w)을 @property로 애니메이션한다. 글은 가운데 아래, 명조 큰 글자. 불러올 때부터 계속(CSS만). */
+/* 첫 화면(밝은 분할형): 왼쪽에 흰 종이 위 큰 글, 오른쪽(휴대폰은 위)에 아치 모양 사진 창. 사진은 세로 다섯 조각(슬랫)으로 열리며 다음 사진으로 바뀐다.
+   마스크의 열린 폭(--sg-w)을 @property로 애니메이션한다. 불러올 때부터 계속(CSS만). */
 @layer components {
   @property --sg-w {
     syntax: "<percentage>";
@@ -12,20 +12,35 @@
     position: relative;
     display: grid;
     align-content: end;
-    justify-items: center;
+    justify-items: start;
     min-height: max(100svh, 40rem);
-    padding: calc(var(--sg-top-h) + var(--space-12)) var(--gutter) calc(var(--sg-dock-h) + var(--space-16));
+    padding: calc(var(--sg-top-h) + 38svh + var(--space-6)) var(--gutter) calc(var(--sg-dock-h) + var(--space-6));
     overflow: hidden;
     isolation: isolate;
-    text-align: center;
-    color: var(--sg-white);
-    background: var(--sg-ink);
+    text-align: left;
+    color: var(--sg-ink);
+    background: var(--sg-paper);
+  }
+
+  .c-slats::before {
+    content: "";
+    position: absolute;
+    z-index: -4;
+    top: calc(var(--sg-top-h) * -1);
+    right: -12vw;
+    width: min(70vw, 52rem);
+    aspect-ratio: 1;
+    background: var(--sg-leaf-soft);
+    border-radius: var(--radius-full);
   }
 
   .c-slats__slide {
     position: absolute;
-    inset: 0;
+    inset: calc(var(--sg-top-h) + var(--space-3)) var(--gutter) auto;
+    height: 38svh;
     z-index: -3;
+    overflow: hidden;
+    border-radius: var(--radius-full) var(--radius-full) var(--radius-3xl) var(--radius-3xl);
     opacity: 0;
     animation: c-slats-show var(--cycle) linear infinite;
   }
@@ -57,23 +72,29 @@
   .c-slats::after {
     content: "";
     position: absolute;
-    inset: 0;
-    z-index: -1;
-    background:
-      linear-gradient(to bottom, var(--sg-shade) 0%, transparent 24%),
-      linear-gradient(to top, var(--sg-shade-strong) 0%, transparent 62%);
+    z-index: -2;
+    left: -6vw;
+    bottom: calc(var(--sg-dock-h) * -0.5);
+    width: min(26vw, 14rem);
+    aspect-ratio: 1;
+    background: var(--sg-sun);
+    border-radius: var(--radius-full);
+    opacity: 0.85;
   }
 
   .c-slats__eyebrow {
+    padding: var(--space-1) var(--space-3);
     font-size: var(--text-sm);
     font-weight: var(--font-weight-bold);
-    letter-spacing: var(--tracking-widest);
+    color: var(--sg-persimmon-deep);
+    background: var(--sg-persimmon-soft);
+    border-radius: var(--radius-full);
     animation: c-slats-up 900ms 1200ms var(--sg-ease) both;
   }
 
   .c-slats__title {
     margin-top: var(--space-4);
-    font-size: clamp(var(--text-4xl), 1.6rem + 5.4vw, 8rem);
+    font-size: clamp(var(--text-4xl), 1.6rem + 4.2vw, 6.5rem);
     font-weight: var(--font-weight-black);
     letter-spacing: var(--tracking-tighter);
     line-height: 1.08;
@@ -95,19 +116,18 @@
   }
 
   .c-slats__lead {
-    max-width: 40ch;
-    margin-top: var(--space-5);
+    max-width: 36ch;
+    margin-top: var(--space-4);
     font-size: var(--text-lg);
-    opacity: 0.92;
+    color: var(--sg-ink-soft);
     animation: c-slats-up 900ms 1700ms var(--sg-ease) both;
   }
 
   .c-slats__actions {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
     gap: var(--space-3);
-    margin-top: var(--space-8);
+    margin-top: var(--space-6);
     animation: c-slats-up 900ms 1850ms var(--sg-ease) both;
   }
 
@@ -117,18 +137,17 @@
     gap: var(--space-2);
     padding: var(--space-3) var(--space-6);
     font-weight: var(--font-weight-semibold);
-    color: var(--sg-ink);
+    color: var(--sg-white);
     text-decoration: none;
-    background: var(--sg-cream);
+    background: var(--sg-persimmon);
     border-radius: var(--radius-full);
     transition: transform var(--sg-dur-fast) var(--sg-spring);
   }
 
   .c-slats__btn--ghost {
-    color: var(--sg-white);
-    background: var(--sg-glass-dark);
-    border: 1px solid var(--sg-line-light);
-    backdrop-filter: blur(10px);
+    color: var(--sg-ink);
+    background: transparent;
+    border: 2px solid var(--sg-ink);
   }
 
   .c-slats__btn:active {
@@ -139,7 +158,7 @@
   .c-slats__meta {
     position: absolute;
     right: var(--gutter);
-    bottom: calc(var(--sg-dock-h) + var(--space-8));
+    bottom: var(--space-5);
     display: grid;
     justify-items: end;
     gap: var(--space-2);
@@ -179,14 +198,14 @@
     width: var(--space-6);
     height: 2px;
     overflow: hidden;
-    background: var(--sg-line-light);
+    background: var(--sg-line);
   }
 
   .c-slats__dot::after {
     content: "";
     display: block;
     height: 100%;
-    background: var(--sg-white);
+    background: var(--sg-ink);
     transform: scaleX(0);
     transform-origin: left;
     animation: c-slats-bar var(--cycle) linear infinite;
@@ -245,15 +264,26 @@
     }
   }
 
+  @media (min-width: 820px) {
+    .c-slats {
+      align-content: center;
+      padding: calc(var(--sg-top-h) + var(--space-8)) calc(min(42vw, 34rem) + var(--gutter) * 2) calc(var(--sg-dock-h)) var(--gutter);
+    }
+
+    .c-slats__slide {
+      inset: calc(var(--sg-top-h) + var(--space-6)) var(--gutter) var(--space-16) auto;
+      width: min(42vw, 34rem);
+      height: auto;
+    }
+  }
+
   @media (max-width: 819px) {
     .c-slats__meta {
-      position: static;
-      justify-items: center;
-      margin-top: var(--space-8);
+      display: none;
     }
 
     .c-slats__caps {
-      text-align: center;
+      text-align: start;
     }
   }
 
