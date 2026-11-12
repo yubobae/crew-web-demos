@@ -85,14 +85,31 @@
       /* 저장이 막혀 있으면 이번 방문에서만 닫힌다 */
     }
   };
+  /* 공지 띠(UI 키트의 c-announce 와 같은 모양): 페이지 맨 위 흐름 안에 들어가 아래 내용을 밀어 내리고,
+     닫으면 높이가 접히며 사라진다. 떠 있는 머리줄은 띠 높이만큼 내려가 가려지지 않는다(--pwa-off). */
   let toast = null;
+  let offTick = null;
+  const setOff = () => {
+    const h = toast ? Math.max(0, toast.getBoundingClientRect().bottom) : 0; // 화면 위에서 띠가 차지하는 높이
+    document.documentElement.style.setProperty("--pwa-off", `${h}px`);
+  };
   const closeToast = (remember = true) => {
     if (remember) snooze();
     if (!toast) return;
     const t = toast;
-    toast = null;
     t.classList.remove("is-in");
-    setTimeout(() => t.remove(), 400);
+    const done = () => {
+      if (toast === t) toast = null;
+      t.remove();
+      cancelAnimationFrame(offTick);
+      document.documentElement.style.removeProperty("--pwa-off");
+    };
+    setTimeout(done, 450);
+    const follow = () => {
+      setOff();
+      if (toast === t) offTick = requestAnimationFrame(follow);
+    };
+    follow();
   };
   const openToast = () => {
     if (toast || standalone || snoozed()) return;
@@ -100,15 +117,21 @@
       const s = document.createElement("style");
       s.id = "pwa-toast-css";
       s.textContent = `
-        .pwa-toast{position:fixed;z-index:2147483000;left:0;right:0;top:0;box-sizing:border-box;display:flex;align-items:center;gap:12px;padding:calc(10px + env(safe-area-inset-top)) 12px 10px max(16px,env(safe-area-inset-left));color:#eef1fa;background:#161a2b;border-bottom:1px solid #2b3250;box-shadow:0 8px 28px rgb(0 0 0/40%);font:500 14px/1.45 Pretendard,system-ui,sans-serif;transform:translateY(-110%);transition:transform 450ms cubic-bezier(.2,.9,.3,1)}
-        .pwa-toast.is-in{transform:translateY(0)}
-        .pwa-toast__text{flex:1;min-width:0}
-        .pwa-toast__text b{display:block;font-weight:700}
-        .pwa-toast__text span{display:block;font-size:13px;color:#a9b1cf}
-        .pwa-toast button{font:inherit;cursor:pointer;border:0;border-radius:999px;-webkit-tap-highlight-color:transparent}
-        .pwa-toast__go{padding:8px 14px;font-weight:700;color:#fff;background:#3b6cff}
-        .pwa-toast__x{flex:none;width:32px;height:32px;font-size:20px;line-height:1;color:#a9b1cf;background:transparent}
-        .pwa-toast button:focus-visible{outline:3px solid #7fa0ff;outline-offset:2px}
+        .pwa-toast{display:grid;grid-template-rows:0fr;transition:grid-template-rows 400ms cubic-bezier(.22,1,.36,1);font:500 14px/1.45 Pretendard,system-ui,sans-serif}
+        .pwa-toast.is-in{grid-template-rows:1fr}
+        .pwa-toast__in{display:flex;align-items:center;justify-content:center;gap:12px;min-height:0;overflow:hidden;color:#fff;background:linear-gradient(90deg,oklch(.58 .23 288),oklch(.6 .22 266));background-color:#6a4dff}
+        .pwa-toast__msg{display:inline-flex;align-items:center;flex-wrap:wrap;gap:4px 8px;padding:10px 0 10px max(16px,env(safe-area-inset-left))}
+        .pwa-toast__tag{padding:2px 8px;font-size:12px;font-weight:700;color:#5b3bd6;background:#fff;border-radius:999px}
+        .pwa-toast button{font:inherit;cursor:pointer;border:0;-webkit-tap-highlight-color:transparent}
+        .pwa-toast__go{padding:4px 12px;font-size:13px;font-weight:700;color:#5b3bd6;background:#fff;border-radius:999px}
+        .pwa-toast__x{flex:none;display:grid;place-items:center;width:28px;height:28px;margin-right:max(8px,env(safe-area-inset-right));color:#fff;background:transparent;border-radius:999px;opacity:.85}
+        .pwa-toast__x:hover{opacity:1}
+        .pwa-toast button:focus-visible{outline:3px solid #fff;outline-offset:2px}
+        .c-site-nav{top:calc(var(--space-3, .75rem) + var(--pwa-off,0px))}
+        .d-nav{top:calc(.75rem + var(--pwa-off,0px))}
+        .c-site-nav__panel{top:calc(var(--tr-nav-h) + var(--space-5) + var(--pwa-off,0px))}
+        .d-nav__panel{top:calc(.75rem + var(--d-nav-h) + .5rem + var(--pwa-off,0px))}
+        @media (max-width:480px){.pwa-toast__tag{display:none}}
         @media (prefers-reduced-motion:reduce){.pwa-toast{transition:none}}`;
       document.head.append(s);
     }
@@ -116,10 +139,10 @@
     toast.className = "pwa-toast";
     toast.setAttribute("role", "status");
     toast.innerHTML =
-      '<div class="pwa-toast__text"><b>앱으로 설치할 수 있어요</b><span></span></div>' +
+      '<div class="pwa-toast__in"><div class="pwa-toast__msg"><span class="pwa-toast__tag">앱 설치</span><span class="pwa-toast__text"></span>' +
       (deferred ? '<button type="button" class="pwa-toast__go">설치</button>' : "") +
-      '<button type="button" class="pwa-toast__x" aria-label="닫기">×</button>';
-    toast.querySelector("span").textContent = deferred ? "홈 화면에 두고 앱처럼 바로 열어 보세요." : '공유 버튼 → "홈 화면에 추가"를 눌러 주세요.';
+      '</div><button type="button" class="pwa-toast__x" aria-label="안내 닫기"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>';
+    toast.querySelector(".pwa-toast__text").textContent = deferred ? "홈 화면에 두고 앱처럼 바로 열어 보세요." : '공유 버튼 → "홈 화면에 추가"로 앱처럼 설치할 수 있어요.';
     toast.querySelector(".pwa-toast__x").addEventListener("click", () => closeToast());
     const go = toast.querySelector(".pwa-toast__go");
     if (go)
@@ -131,9 +154,21 @@
         installButtons().forEach((b) => (b.hidden = true));
         closeToast(false);
       });
-    document.body.append(toast);
-    requestAnimationFrame(() => requestAnimationFrame(() => toast && toast.classList.add("is-in")));
+    document.body.prepend(toast);
+    const t0 = performance.now();
+    const track = () => {
+      setOff();
+      if (toast && performance.now() - t0 < 600) offTick = requestAnimationFrame(track); // 펼쳐지는 동안만 따라가고, 이후엔 스크롤 때만 갱신
+    };
+    requestAnimationFrame(() =>
+      requestAnimationFrame(() => {
+        if (!toast) return;
+        toast.classList.add("is-in");
+        track();
+      }),
+    );
   };
+  addEventListener("scroll", () => toast && setOff(), { passive: true });
   const later = (fn) => setTimeout(fn, 2500); // 화면이 자리 잡은 뒤에 띄운다
   addEventListener("beforeinstallprompt", () => later(openToast));
   addEventListener("appinstalled", () => closeToast(false));

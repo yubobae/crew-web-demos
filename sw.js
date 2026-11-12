@@ -5,7 +5,7 @@
    - 이미지·글꼴·도장 없는 파일: 저장본을 먼저 보여 주고 뒤에서 새로 받아 둔다.
    - 동영상(Range 요청)·다른 사이트 요청(CDN 글꼴 제외)은 건드리지 않는다.
    VERSION 은 배포 때 tools/stamp-version.mjs 가 바꾼다. 바뀌면 옛 저장소를 지운다. */
-const VERSION = "202611121946";
+const VERSION = "202611122023";
 const CACHE = `crew-${VERSION}`;
 const SCOPE = self.registration.scope;
 const PRECACHE = ["offline.html", "manifest.webmanifest", "assets/media/icons/icon-192.png", "assets/media/icons/icon-512.png"];
