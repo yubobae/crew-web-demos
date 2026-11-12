@@ -34,10 +34,22 @@
   }
 
   .c-topbar__mark {
-    font-family: var(--font-serif);
-    font-size: var(--text-2xl);
-    font-weight: var(--font-weight-black);
-    letter-spacing: var(--tracking-tight);
+    display: inline-flex;
+    align-self: center;
+  }
+
+  .c-topbar__bi {
+    width: auto;
+    height: var(--space-10);
+  }
+
+  .c-topbar__bi--dark,
+  .is-condensed .c-topbar__bi--light {
+    display: none;
+  }
+
+  .is-condensed .c-topbar__bi--dark {
+    display: block;
   }
 
   .c-topbar__sub {
