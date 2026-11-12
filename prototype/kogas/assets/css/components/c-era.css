@@ -2,6 +2,7 @@
    사건은 화면에 들어오며 하나씩 떠오른다(reveal.js가 is-ready·is-in). 휴대폰은 한 줄로 쌓인다. */
 @layer components {
   .c-era {
+    overflow-x: clip; /* 등장 전 옆으로 밀려 있는 줄이 화면 폭을 넘기지 않게 */
     display: grid;
     grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
     gap: clamp(var(--space-8), 6vw, var(--space-24));
