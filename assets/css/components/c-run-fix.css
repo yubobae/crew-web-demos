@@ -21,3 +21,51 @@
     .c-run-scene--studio .c-run-copy { padding-bottom: 4svh; }
   }
 }
+
+/* 장식 층(3D 상자·구름·마퀴·수평선)은 눌림을 가로채지 않는다: 메뉴 판과 버튼이 이 위에 있어도 눌리도록 */
+@layer components {
+  .c-run-3d,
+  .c-run-3d *,
+  .c-run-clouds,
+  .c-run-marquee,
+  .c-run-horizon,
+  .c-run-hud {
+    pointer-events: none;
+  }
+
+  .c-run-copy,
+  .c-run-works {
+    position: relative;
+    z-index: 3;
+  }
+}
+
+/* 시각 검수에서 찾은 겹침 고치기: 첫 화면 상자 더미는 오른쪽으로, 터널은 왼쪽으로 비켜 글을 가리지 않게, 마지막 장면 글은 위로 */
+@layer components {
+  .c-run-scene--studio .c-run-world--cluster { left: 74%; top: 52%; }
+  .c-run-scene--deep .c-run-world--tunnel { left: 30%; }
+  .c-run-scene--deep::after {
+    content: "";
+    position: absolute;
+    inset: 0 0 0 38%;
+    z-index: 1;
+    background: linear-gradient(90deg, transparent, oklch(0.15 0.04 285 / 0.78) 35%);
+    pointer-events: none;
+  }
+  .c-run-scene--horizon .c-run-copy { align-self: start; padding-top: clamp(6rem, 20svh, 11rem); }
+  .c-run-scene--horizon .c-run-horizon { height: 52%; }
+
+  @media (max-width: 819px) {
+    .c-run-scene--studio .c-run-world--cluster { left: 72%; top: 26%; transform-origin: center; }
+    .c-run-scene--deep .c-run-world--tunnel { left: 50%; top: 30%; }
+    .c-run-scene--deep::after { inset: 0; background: linear-gradient(180deg, transparent 20%, oklch(0.15 0.04 285 / 0.85) 60%); }
+  }
+}
+
+@layer components {
+  .c-run-scene--horizon .c-btn--line {
+    background: oklch(0.15 0.04 285 / 0.5);
+    border-color: oklch(1 0 0 / 0.9);
+    color: var(--white);
+  }
+}

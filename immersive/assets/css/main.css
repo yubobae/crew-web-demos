@@ -151,6 +151,9 @@
 
   .s-title--sm { font-size: clamp(2.25rem, 1rem + 5.5vw, 6rem); }
 
+  /* 첫 장면은 스크롤 0에서 이미 보이므로 아래로 밀린 채 시작하면 소개 글과 겹친다 */
+  .s-scene--studio .s-title { transform: none; }
+
   .s-lead {
     margin-top: 1.25rem;
     max-width: 30rem;

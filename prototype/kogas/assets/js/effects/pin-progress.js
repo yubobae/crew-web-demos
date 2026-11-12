@@ -16,6 +16,7 @@ export function init(root) {
     if (v === last) return;
     last = v;
     root.style.setProperty("--pp", String(v));
+    root.classList.toggle("is-stage2", v > 0.3);
   };
   const onScroll = () => {
     if (!frame) frame = requestAnimationFrame(update);

@@ -153,6 +153,7 @@
   }
 
   .c-site-nav__panel:popover-open {
+    pointer-events: auto;
     opacity: 1;
     transform: none;
   }

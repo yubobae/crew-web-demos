@@ -117,3 +117,11 @@
     }
   }
 }
+
+/* 큰 메뉴 글자는 보이기 전(투명)에는 눌림도 받지 않는다: 첫 화면 버튼을 가리지 않도록 */
+@layer components {
+  .c-gate-wrap:not(.is-stage2) .c-gate__index {
+    visibility: hidden;
+    pointer-events: none;
+  }
+}
