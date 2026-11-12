@@ -3,16 +3,16 @@
    색은 demo-skin.css 의 크루 값을 따르고, 틀 전용 값만 --d-* 로 둔다. */
 @layer demo-frame {
   :root {
-    --d-paper: oklch(0.975 0.006 85);
-    --d-paper-2: oklch(0.995 0.003 85);
-    --d-ink: oklch(0.2 0.02 280);
-    --d-ink-soft: oklch(0.45 0.03 280);
-    --d-line: oklch(0.9 0.01 85);
-    --d-accent: oklch(0.66 0.21 34);
-    --d-violet: oklch(0.58 0.23 288);
-    --d-lime: oklch(0.88 0.19 125);
-    --d-night: oklch(0.15 0.04 285);
-    --d-night-2: oklch(0.21 0.05 285);
+    --d-paper: oklch(0.14 0.012 270);
+    --d-paper-2: oklch(0.2 0.014 270);
+    --d-ink: oklch(0.96 0.005 85);
+    --d-ink-soft: oklch(0.7 0.02 275);
+    --d-line: oklch(1 0 0 / 14%);
+    --d-accent: oklch(0.6 0.22 266);
+    --d-violet: oklch(0.64 0.22 292);
+    --d-lime: oklch(0.96 0.005 85); /* 이름은 옛 값 그대로, 지금은 밝은 강조(흰색 계열) */
+    --d-night: oklch(0.1 0.012 270);
+    --d-night-2: oklch(0.16 0.014 270);
     --d-on-night: oklch(0.97 0.008 85);
     --d-on-night-soft: oklch(0.75 0.03 285);
     --d-gutter: clamp(1rem, 4vw, 3rem);
@@ -42,7 +42,7 @@
     border: 1px solid var(--d-line);
     border-radius: 999px;
     backdrop-filter: blur(14px) saturate(1.4);
-    box-shadow: 0 0.5rem 1.5rem oklch(0.2 0.03 285 / 0.06);
+    box-shadow: 0 0.5rem 1.5rem oklch(0 0 0 / 0.4);
   }
 
   .d-nav__logo {
@@ -61,7 +61,7 @@
     width: 1.2rem;
     aspect-ratio: 1;
     border-radius: 50%;
-    background: conic-gradient(from 200deg, oklch(0.66 0.21 34), oklch(0.58 0.23 288), oklch(0.8 0.1 235), oklch(0.66 0.21 34));
+    background: conic-gradient(from 200deg, oklch(0.6 0.22 266), oklch(0.64 0.22 292), oklch(0.75 0.12 220), oklch(0.6 0.22 266));
   }
 
   .d-nav__links {
@@ -100,8 +100,8 @@
     font: inherit;
     font-size: 0.875rem;
     font-weight: 700;
-    color: var(--d-on-night);
-    background: var(--d-night);
+    color: var(--d-paper);
+    background: var(--d-ink);
     border: 0;
     border-radius: 999px;
     cursor: pointer;
@@ -133,7 +133,7 @@
     background: var(--d-paper-2);
     border: 1px solid var(--d-line);
     border-radius: 1.5rem;
-    box-shadow: 0 1.5rem 3rem oklch(0.2 0.03 285 / 0.18);
+    box-shadow: 0 1.5rem 3rem oklch(0 0 0 / 0.6);
   }
 
   .d-nav__panel:popover-open {
@@ -169,7 +169,7 @@
 
   .d-nav__item[aria-current="page"] {
     color: var(--d-accent);
-    background: oklch(0.95 0.035 50);
+    background: oklch(0.6 0.22 266 / 0.22);
   }
 
   .d-nav__item-desc {
@@ -181,11 +181,11 @@
   @media (hover: hover) {
     .d-nav__link:hover {
       color: var(--d-ink);
-      background: oklch(0.2 0.02 280 / 0.05);
+      background: oklch(1 0 0 / 0.08);
     }
 
     .d-nav__item:hover {
-      background: oklch(0.2 0.02 280 / 0.06);
+      background: oklch(1 0 0 / 0.08);
     }
   }
 
@@ -213,9 +213,17 @@
     font-family: var(--font-sans, "Pretendard Variable", system-ui, sans-serif);
     color: var(--d-ink);
     background:
-      radial-gradient(60rem 40rem at -5% -10%, oklch(0.9 0.08 40 / 0.6), transparent 60%),
-      radial-gradient(50rem 40rem at 105% 30%, oklch(0.88 0.07 295 / 0.45), transparent 60%),
+      radial-gradient(60rem 40rem at -5% -10%, oklch(0.5 0.2 266 / 0.55), transparent 60%),
+      radial-gradient(50rem 40rem at 105% 30%, oklch(0.5 0.2 292 / 0.5), transparent 60%),
       var(--d-paper);
+  }
+
+  /* 데모가 폭 제한 컨테이너 안에 있어도 소개·끝 장면은 화면 폭 전체를 쓴다(가운데 정렬된 컨테이너 기준).
+     100vw 는 세로 스크롤바까지 포함하므로 demo-frame.js 가 넣는 스크롤바 폭(--d-sbw)을 뺀다. */
+  .d-intro,
+  .d-outro {
+    width: calc(100vw - var(--d-sbw, 0px));
+    margin-inline: calc(50% - 50vw + var(--d-sbw, 0px) / 2);
   }
 
   .d-intro::before,
@@ -233,7 +241,7 @@
     right: 6%;
     width: min(44vw, 34rem);
     aspect-ratio: 1;
-    background: radial-gradient(closest-side, oklch(0.85 0.12 45 / 0.5), transparent);
+    background: radial-gradient(closest-side, oklch(0.6 0.22 266 / 0.55), transparent);
     animation: d-drift 14s ease-in-out infinite alternate;
   }
 
@@ -242,7 +250,7 @@
     left: 30%;
     width: min(40vw, 28rem);
     aspect-ratio: 1;
-    background: radial-gradient(closest-side, oklch(0.8 0.12 295 / 0.4), transparent);
+    background: radial-gradient(closest-side, oklch(0.7 0.14 220 / 0.4), transparent);
     animation: d-drift 18s ease-in-out infinite alternate-reverse;
   }
 
@@ -428,8 +436,8 @@
     font-family: var(--font-sans, "Pretendard Variable", system-ui, sans-serif);
     color: var(--d-on-night);
     background:
-      radial-gradient(50% 60% at 85% 100%, oklch(0.5 0.2 34 / 0.35), transparent),
-      radial-gradient(40% 50% at 10% 0%, oklch(0.4 0.18 295 / 0.4), transparent),
+      radial-gradient(50% 60% at 85% 100%, oklch(0.5 0.2 266 / 0.45), transparent),
+      radial-gradient(40% 50% at 10% 0%, oklch(0.42 0.18 292 / 0.45), transparent),
       var(--d-night);
   }
 
@@ -448,7 +456,7 @@
     letter-spacing: -0.05em;
     line-height: 0.95;
     white-space: nowrap;
-    background: linear-gradient(120deg, var(--d-accent), var(--d-violet) 60%, var(--d-lime));
+    background: linear-gradient(120deg, var(--d-accent), var(--d-violet) 60%, oklch(0.72 0.2 350));
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
@@ -531,7 +539,7 @@
     }
 
     .d-outro__pill--main:hover {
-      background: oklch(0.92 0.17 125);
+      background: oklch(1 0 0);
     }
   }
 

@@ -16,6 +16,8 @@
     --tr-glass: oklch(0.2 0.014 270 / 72%);
     --tr-shadow-float: 0 12px 32px -12px oklch(0 0 0 / 60%), 0 2px 6px oklch(0 0 0 / 30%);
     --tr-shadow-pop: 0 24px 60px -20px oklch(0 0 0 / 70%);
+    --cl-card-bg: oklch(0.2 0.014 270);
+    --cl-shadow-rest: inset 0 1px 0 oklch(1 0 0 / 7%);
     color-scheme: dark;
   }
 
@@ -188,6 +190,7 @@
   /* 어두운 홈에서는 버튼 색을 뒤집는다: 밝은 버튼에 어두운 글자 */
   body.t-dark .c-btn { color: var(--tr-paper); }
   body.t-dark .c-btn--line { color: var(--tr-ink); background: transparent; border-color: var(--tr-line); }
+  body.t-dark .c-device { background: var(--tr-paper-3); }
 
   /* 글자 띠 */
   .c-words { overflow: hidden; padding-block: var(--space-8); color: var(--tr-ink); background: var(--tr-paper-2); border-block: 1px solid var(--tr-line); }

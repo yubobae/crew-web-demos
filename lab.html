@@ -6,7 +6,7 @@
   <title>쇼케이스 | 보람찬크루</title>
   <meta name="description" content="보람찬크루가 새 작업에 쓸 부품과 인터랙션을 먼저 만들어 보는 데모 모음입니다. UI 키트, 인터랙션 효과, 스크롤, 디지털 역사관 구성, 요즘 UI.">
   <meta name="robots" content="noindex, nofollow, noimageindex, noarchive">
-  <meta name="theme-color" content="#f8f7f4">
+  <meta name="theme-color" content="#0e0f13">
   <meta property="og:title" content="쇼케이스 | 보람찬크루">
   <meta property="og:description" content="보람찬크루가 새 작업에 쓸 부품과 인터랙션을 먼저 만들어 보는 데모 모음입니다. UI 키트, 인터랙션 효과, 스크롤, 디지털 역사관 구성, 요즘 UI.">
   <meta property="og:type" content="website">
@@ -18,7 +18,7 @@
   <link rel="stylesheet" href="assets/css/main.css">
   <script type="module" src="assets/js/main.js"></script>
 </head>
-<body data-effect="cursor scroll-progress">
+<body class="t-dark" data-effect="scroll-progress">
   <a class="u-visually-hidden" href="#main">본문 바로가기</a>
   <header class="c-site-nav" data-module="site-nav">
     <div class="c-site-nav__bar">
@@ -58,64 +58,65 @@
 
   <div class="l-curtain">
   <main class="l-curtain__main" id="main">
-    <div class="c-page-intro" data-effect="parallax magnetic">
-      <div class="c-page-intro__art-wrap js-par" data-speed="0.12"><img class="c-page-intro__art" src="assets/media/art/about-art.webp" width="840" height="480" alt="" decoding="async"></div>
-      <p class="c-page-intro__eyebrow"><span class="c-page-intro__badge">SHOWCASE</span>보람찬크루 · 쇼케이스</p>
-      <h1 class="c-page-intro__title">
-        <span class="c-page-intro__line"><span class="c-page-intro__line-inner">먼저 만들어 보고,</span></span>
-        <span class="c-page-intro__line"><span class="c-page-intro__line-inner"><span class="c-page-intro__accent">검증된 것</span>만 씁니다</span></span>
-      </h1>
-      <p class="c-page-intro__lead">실제 사이트에 넣기 전에 부품과 움직임을 데모로 만들어 휴대폰·PC에서 확인해요. 모두 크루 공통 컨벤션으로 만들었고, 직접 눌러 볼 수 있어요.</p>
+    <div class="c-pagehead">
+      <div class="c-pagehead__aurora" aria-hidden="true"><i></i><i></i><i></i></div>
+      <div class="c-pagehead__inner">
+        <p class="c-pagehead__eyebrow"><span class="c-pagehead__badge">SHOWCASE</span>보람찬크루 · 쇼케이스</p>
+        <h1 class="c-pagehead__title"><span class="c-pagehead__line">먼저 만들어 보고,</span><span class="c-pagehead__line"><span class="c-pagehead__accent">검증된 것</span>만 씁니다</span></h1>
+        <p class="c-pagehead__lead">실제 사이트에 넣기 전에 부품과 움직임을 데모로 만들어 휴대폰·PC에서 확인해요. 모두 크루 공통 컨벤션으로 만들었고, 직접 눌러 볼 수 있어요.</p>
+        
+      </div>
     </div>
-    <section class="l-section" aria-labelledby="demos-title">
+    <section class="l-section" id="showcase" aria-labelledby="showcase-title" data-module="gallery-filter">
       <div class="l-section__head" data-effect="reveal">
         <span class="l-section__num">01</span>
-        <h2 class="l-section__title" id="demos-title">데모 다섯 개</h2>
-        <p class="l-section__desc">카드를 누르면 데모가 열려요. 데모 안의 메뉴로 다른 데모나 크루 사이트로 돌아올 수 있어요.</p>
+        <h2 class="l-section__title" id="showcase-title">쇼케이스</h2>
+        <p class="l-section__desc">새 작업에 쓸 부품과 움직임을 먼저 만들어 보는 곳. 분류를 골라 눌러서 써 보세요.</p>
       </div>
-      <div class="c-showcase" data-effect="reveal tilt-grid">
-        <a class="c-showcase__card c-card js-reveal js-tilt" href="immersive/">
-          <span class="c-showcase__media" aria-hidden="true"><img class="c-showcase__pc" src="assets/media/shots/demo-immersive-pc.webp" width="1200" height="750" alt="" loading="lazy" decoding="async"><img class="c-showcase__mo" src="assets/media/shots/demo-immersive-mo.webp" width="600" height="1298" alt="" loading="lazy" decoding="async"></span>
-          <span class="c-showcase__no">DEMO 06</span>
-          <span class="c-showcase__title">몰입형 3D 스크롤</span>
-          <span class="c-showcase__desc">스크롤 하나로 카메라가 움직이고 장면이 영화처럼 이어집니다. 상자 더미, 터널, 구름층, 마퀴, 글자 등장, 수평선까지 6장면.</span>
-          <span class="c-showcase__tags"><span class="c-showcase__tag">CSS 3D</span><span class="c-showcase__tag">스크롤 연동</span><span class="c-showcase__tag">장면 전환</span><span class="c-showcase__tag">마우스 깊이감</span></span>
-        </a>
-        <a class="c-showcase__card c-card js-reveal js-tilt" href="trends/">
-          <span class="c-showcase__media" aria-hidden="true"><img class="c-showcase__pc" src="assets/media/shots/demo-trends-pc.webp" width="1200" height="750" alt="" loading="lazy" decoding="async"><img class="c-showcase__mo" src="assets/media/shots/demo-trends-mo.webp" width="600" height="1298" alt="" loading="lazy" decoding="async"></span>
-          <span class="c-showcase__no">DEMO 05</span>
-          <span class="c-showcase__title">요즘 UI</span>
-          <span class="c-showcase__desc">디자인 갤러리에서 자주 보이는 패턴을 8쪽으로. 내비게이션·CTA·벤토·푸터·마이크로·히어로·섹션·폼.</span>
-          <span class="c-showcase__tags"><span class="c-showcase__tag">알약 헤더</span><span class="c-showcase__tag">명령 팔레트</span><span class="c-showcase__tag">벤토</span><span class="c-showcase__tag">쌓이는 카드</span><span class="c-showcase__tag">인증번호 칸</span></span>
-        </a>
-        <a class="c-showcase__card c-card js-reveal js-tilt" href="museum/">
-          <span class="c-showcase__media" aria-hidden="true"><img class="c-showcase__pc" src="assets/media/shots/demo-museum-pc.webp" width="1200" height="750" alt="" loading="lazy" decoding="async"><img class="c-showcase__mo" src="assets/media/shots/demo-museum-mo.webp" width="600" height="1298" alt="" loading="lazy" decoding="async"></span>
-          <span class="c-showcase__no">DEMO 04</span>
-          <span class="c-showcase__title">디지털 역사관 구성</span>
-          <span class="c-showcase__desc">풀페이지 메인과 연대기 하위 페이지. 효과 재생 방식(한 번·매번·되감기·스크롤)을 골라 봅니다.</span>
-          <span class="c-showcase__tags"><span class="c-showcase__tag">풀페이지</span><span class="c-showcase__tag">연대기 추적</span><span class="c-showcase__tag">재생 방식 4종</span></span>
-        </a>
-        <a class="c-showcase__card c-card js-reveal js-tilt" href="scroll/">
-          <span class="c-showcase__media" aria-hidden="true"><img class="c-showcase__pc" src="assets/media/shots/demo-scroll-pc.webp" width="1200" height="750" alt="" loading="lazy" decoding="async"><img class="c-showcase__mo" src="assets/media/shots/demo-scroll-mo.webp" width="600" height="1298" alt="" loading="lazy" decoding="async"></span>
-          <span class="c-showcase__no">DEMO 03</span>
-          <span class="c-showcase__title">스크롤 인터랙션</span>
-          <span class="c-showcase__desc">GNB와 푸터가 있는 실제 페이지 구조에서 부드러운 스크롤·섹션 넘김·패럴랙스를 봅니다.</span>
-          <span class="c-showcase__tags"><span class="c-showcase__tag">섹션 넘김</span><span class="c-showcase__tag">고정 확대</span><span class="c-showcase__tag">가로 스크롤</span></span>
-        </a>
-        <a class="c-showcase__card c-card js-reveal js-tilt" href="effects/">
-          <span class="c-showcase__media" aria-hidden="true"><img class="c-showcase__pc" src="assets/media/shots/demo-effects-pc.webp" width="1200" height="750" alt="" loading="lazy" decoding="async"><img class="c-showcase__mo" src="assets/media/shots/demo-effects-mo.webp" width="600" height="1298" alt="" loading="lazy" decoding="async"></span>
-          <span class="c-showcase__no">DEMO 02</span>
-          <span class="c-showcase__title">인터랙션 효과</span>
-          <span class="c-showcase__desc">숫자 회전 카운터, 풀페이지, 무한 슬라이더, 모션 탭, 스포트라이트 카드.</span>
-          <span class="c-showcase__tags"><span class="c-showcase__tag">카운터</span><span class="c-showcase__tag">모션 탭</span><span class="c-showcase__tag">스포트라이트</span></span>
-        </a>
-        <a class="c-showcase__card c-card js-reveal js-tilt" href="ui-kit/">
-          <span class="c-showcase__media" aria-hidden="true"><img class="c-showcase__pc" src="assets/media/shots/demo-ui-kit-pc.webp" width="1200" height="750" alt="" loading="lazy" decoding="async"><img class="c-showcase__mo" src="assets/media/shots/demo-ui-kit-mo.webp" width="600" height="1298" alt="" loading="lazy" decoding="async"></span>
-          <span class="c-showcase__no">DEMO 01</span>
-          <span class="c-showcase__title">UI 키트</span>
-          <span class="c-showcase__desc">shadcn/ui의 디자인과 인터랙션을 옮긴 기본 부품 12종. 라이트·다크 모드.</span>
-          <span class="c-showcase__tags"><span class="c-showcase__tag">부품 12종</span><span class="c-showcase__tag">다크 모드</span><span class="c-showcase__tag">키보드</span></span>
-        </a>
+      <div class="c-g-tools">
+        <label class="c-g-search"><span class="u-visually-hidden">쇼케이스 검색</span><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input type="search" placeholder="어떤 부품이나 효과를 찾으세요?" data-search autocomplete="off"></label>
+        <div class="c-g-chips" role="group" aria-label="분류"><button class="c-g-chip" type="button" data-filter="all" aria-pressed="true">전체</button><button class="c-g-chip" type="button" data-filter="part" aria-pressed="false">부품</button><button class="c-g-chip" type="button" data-filter="motion" aria-pressed="false">모션</button><button class="c-g-chip" type="button" data-filter="page" aria-pressed="false">페이지</button></div>
+      </div>
+      <p class="c-g-popular"><span>인기</span> <button type="button" data-tag="스크롤">스크롤</button><button type="button" data-tag="카운터">카운터</button><button type="button" data-tag="푸터">푸터</button><button type="button" data-tag="3D">3D</button><button type="button" data-tag="탭">탭</button><button type="button" data-tag="벤토">벤토</button></p>
+      <p class="c-g-empty" data-empty hidden>맞는 데모가 없어요. 다른 말로 찾아보세요.</p>
+      <p class="u-visually-hidden" role="status" aria-live="polite" data-live></p>
+      <div class="c-g-grid" data-grid>
+          <a class="c-g-card" href="ui-kit/" data-tags="버튼 입력 체크박스 스위치 모달 탭 토스트 아코디언" data-cat="part">
+            <span class="c-g-card__art"><img src="assets/media/shots/demo-ui-kit-pc.webp" width="1200" height="750" alt="" loading="lazy" decoding="async"><span class="c-g-card__go" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></span>
+            <span class="c-g-card__meta"><span class="c-g-card__tag">부품</span>데모 01<span class="c-g-card__count">12종</span></span>
+            <span class="c-g-card__title">UI 키트</span>
+            <span class="c-g-card__desc">shadcn/ui의 디자인과 인터랙션을 옮긴 기본 부품 12종. 라이트·다크 모드.</span>
+          </a>
+          <a class="c-g-card" href="effects/" data-tags="카운터 슬라이더 탭 스포트라이트 빛나는버튼 풀페이지" data-cat="motion">
+            <span class="c-g-card__art"><img src="assets/media/shots/demo-effects-pc.webp" width="1200" height="750" alt="" loading="lazy" decoding="async"><span class="c-g-card__go" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></span>
+            <span class="c-g-card__meta"><span class="c-g-card__tag">모션</span>데모 02<span class="c-g-card__count">9종</span></span>
+            <span class="c-g-card__title">인터랙션 효과</span>
+            <span class="c-g-card__desc">숫자 회전 카운터, 풀페이지, 무한 슬라이더, 모션 탭, 스포트라이트 카드.</span>
+          </a>
+          <a class="c-g-card" href="scroll/" data-tags="스크롤 패럴랙스 푸터 헤더 스냅 갤러리 가로스크롤" data-cat="motion">
+            <span class="c-g-card__art"><img src="assets/media/shots/demo-scroll-pc.webp" width="1200" height="750" alt="" loading="lazy" decoding="async"><span class="c-g-card__go" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></span>
+            <span class="c-g-card__meta"><span class="c-g-card__tag">모션</span>데모 03<span class="c-g-card__count">10종</span></span>
+            <span class="c-g-card__title">스크롤 인터랙션</span>
+            <span class="c-g-card__desc">부드러운 스크롤·섹션 넘김·패럴랙스를 실제 페이지 구조에서 봅니다.</span>
+          </a>
+          <a class="c-g-card" href="museum/" data-tags="역사관 연대기 타임라인 사진 영상" data-cat="page">
+            <span class="c-g-card__art"><img src="assets/media/shots/demo-museum-pc.webp" width="1200" height="750" alt="" loading="lazy" decoding="async"><span class="c-g-card__go" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></span>
+            <span class="c-g-card__meta"><span class="c-g-card__tag">페이지</span>데모 04<span class="c-g-card__count">2쪽</span></span>
+            <span class="c-g-card__title">디지털 역사관 구성</span>
+            <span class="c-g-card__desc">풀페이지 메인과 연대기 하위 페이지. 효과 재생 방식을 골라 봅니다.</span>
+          </a>
+          <a class="c-g-card" href="trends/" data-tags="내비게이션 CTA 벤토 푸터 히어로 폼" data-cat="part page">
+            <span class="c-g-card__art"><img src="assets/media/shots/demo-trends-pc.webp" width="1200" height="750" alt="" loading="lazy" decoding="async"><span class="c-g-card__go" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></span>
+            <span class="c-g-card__meta"><span class="c-g-card__tag">부품 페이지</span>데모 05<span class="c-g-card__count">8쪽</span></span>
+            <span class="c-g-card__title">요즘 UI</span>
+            <span class="c-g-card__desc">내비게이션·CTA·벤토·푸터·마이크로·히어로·섹션·폼 8쪽.</span>
+          </a>
+          <a class="c-g-card" href="immersive/" data-tags="3D 카메라 터널 마퀴 구름" data-cat="motion page">
+            <span class="c-g-card__art"><img src="assets/media/shots/demo-immersive-pc.webp" width="1200" height="750" alt="" loading="lazy" decoding="async"><span class="c-g-card__go" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></span>
+            <span class="c-g-card__meta"><span class="c-g-card__tag">모션 페이지</span>데모 06<span class="c-g-card__count">6장면</span></span>
+            <span class="c-g-card__title">몰입형 3D 스크롤</span>
+            <span class="c-g-card__desc">스크롤 하나로 카메라가 움직이고 장면이 영화처럼 이어지는 6장면.</span>
+          </a>
       </div>
     </section>
   </main>

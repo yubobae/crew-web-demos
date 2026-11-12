@@ -43,7 +43,7 @@
      demo: DEMOS id / title: ["첫 줄", "*주황 강조* 둘째 줄"] / art: assets/media/art 파일 / lead: 소개 문구(없으면 본문의 것을 가져옴)
      header: 지울 기존 머리줄 선택자 / intro: 소개 장면을 넣는 자리 / outro: 푸터를 넣는 자리 / drop: 같이 지울 것 */
   const PAGES = {
-    "ui-kit": { demo: "ui-kit", art: "art-build", title: ["보람찬크루", "*UI 키트*"], label: "쇼케이스", header: ".l-kit__header", intro: { before: ".l-kit__intro", replace: true }, outro: "body", theme: true },
+    "ui-kit": { demo: "ui-kit", art: "art-build", title: ["보람찬크루", "*UI 키트*"], label: "쇼케이스", header: ".l-kit__header", intro: null, outro: "body", theme: true },
     effects: { demo: "effects", art: "art-motion", title: ["움직임으로", "*말하는* 화면"], lead: "숫자가 구르고, 문구가 열리고, 화면이 넘어가요. 아래로 스크롤하거나 키보드 ↑ ↓ 로 구간을 넘겨 보세요.", label: "쇼케이스", header: ".l-header", intro: { track: ".l-fullpage__track" }, outro: { track: ".l-fullpage__track" } },
     scroll: { demo: "scroll", art: "std-width", title: ["스크롤이", "*이야기*를 이끕니다"], lead: "스크롤 연동, 부드러운 이동, 패럴랙스, 가로 넘김과 스냅. 머리줄의 메뉴로 구간을 오가 보세요.", label: "쇼케이스", keepHeader: true, intro: { before: "main" }, outro: "body" },
     "museum/index": { demo: "museum", art: "art-handover", title: ["50년의 믿음,", "*다음 100년*의 약속"], lead: "OO 50 디지털 역사관 구성 데모. 구간이 한 장씩 덮이며 넘어가고, 효과 재생 방식을 골라 볼 수 있어요.", label: "OO 50 · 가상 고객", keepHeader: true, intro: { track: ".l-fp" }, outro: { fpPanel: true } },
@@ -187,9 +187,10 @@
     return el;
   };
   /* 기존 첫 화면에 h1 이 이미 있으면 소개 장면의 제목은 h2 로 낮춰 h1 을 하나만 둔다 */
-  const intro = makeIntro();
-  intro.dataset.theme = "light"; // 역사관 머리줄이 밝은 면 글자색으로 바뀌게
-  const slot = cfg.intro;
+  /* intro: null 이면 소개 장면 없이 머리줄과 푸터만 넣는다(디자인시스템 문서처럼 본문이 바로 시작하는 쪽) */
+  const intro = cfg.intro === null ? null : makeIntro();
+  if (intro) intro.dataset.theme = "light"; // 역사관 머리줄이 밝은 면 글자색으로 바뀌게
+  const slot = intro ? cfg.intro : null;
   if (slot?.track) {
     const track = $(slot.track);
     intro.classList.add(track.classList.contains("l-fp") ? "l-fp__panel" : "l-fullpage__section");
@@ -205,7 +206,7 @@
     if (slot.replace) ref.remove();
   }
   /* h1 은 소개 장면의 제목 하나만: 본문에 원래 있던 h1 은 클래스·내용은 그대로 두고 h2 로 바꾼다 */
-  document.querySelectorAll("h1").forEach((h) => {
+  if (intro) document.querySelectorAll("h1").forEach((h) => {
     if (!intro.contains(h)) {
       const h2 = document.createElement("h2");
       for (const a of h.attributes) h2.setAttribute(a.name, a.value);
@@ -247,4 +248,12 @@
   } else {
     document.body.append(outro);
   }
+})();
+
+// 세로 스크롤바 폭을 --d-sbw 로 넣는다. 소개·끝 장면이 화면 폭(100vw)을 쓸 때 이 폭만큼 빼서 가로로 넘치지 않게 한다.
+(() => {
+  const root = document.documentElement;
+  const set = () => root.style.setProperty("--d-sbw", `${innerWidth - root.clientWidth}px`);
+  set();
+  addEventListener("resize", set);
 })();
